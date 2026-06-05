@@ -1,0 +1,18 @@
+# GetCustomerBillingProviderConfigurationsV1200ResponseDataInner
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**id** | [**uuid::Uuid**](uuid::Uuid.md) | ID of this configuration; can be provided as the billing_provider_configuration_id when creating a contract. | 
+**billing_provider** | **String** | The billing provider set for this configuration. | 
+**customer_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
+**configuration** | [**std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md) | Configuration for the billing provider. The structure of this object is specific to the billing provider. | 
+**delivery_method_id** | [**uuid::Uuid**](uuid::Uuid.md) | ID of the delivery method to use for this customer. | 
+**delivery_method** | **String** | The method to use for delivering invoices to this customer. | 
+**delivery_method_configuration** | [**std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md) | Configuration for the delivery method. The structure of this object is specific to the delivery method. | 
+**archived_at** | Option<**String**> |  | 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
