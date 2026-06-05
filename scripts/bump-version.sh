@@ -4,6 +4,10 @@
 set -euo pipefail
 
 CUR=$(grep '^version' Cargo.toml | head -1 | sed 's/.*"\(.*\)"/\1/')
+if [[ ! "$CUR" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+  echo "error: version '$CUR' is not a plain MAJOR.MINOR.PATCH; refusing to bump" >&2
+  exit 1
+fi
 IFS='.' read -r MAJOR MINOR PATCH <<< "$CUR"
 NEW="${MAJOR}.${MINOR}.$((PATCH + 1))"
 

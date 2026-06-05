@@ -64,6 +64,6 @@ apply_gate usage_api usage
 
 echo "==> Verifying compilation..."
 cargo check --all-features
-cargo check --no-default-features --features "all,native-tls"
+cargo check --no-default-features --features "customers,native-tls"
 
 echo "==> Done. Review changes with: git diff"

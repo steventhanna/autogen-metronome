@@ -84,7 +84,7 @@ field: Some(Some(v)) // sent with value
 ## Regenerating from the Spec
 
 ```bash
-# Requires: brew install openapi-generator jq
+# Requires: brew install openapi-generator
 ./generate.sh
 ```
 

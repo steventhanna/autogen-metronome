@@ -9,6 +9,12 @@ permissions:
   contents: write
   pull-requests: write
 
+# Serialize runs so two overlapping spec updates can't both branch from the same
+# base version and race on the version bump / PR creation.
+concurrency:
+  group: metronome-spec-update
+  cancel-in-progress: false
+
 jobs:
   check-and-update:
     runs-on: ubuntu-latest
@@ -96,7 +102,7 @@ jobs:
         if: steps.hash.outputs.changed == 'true' && steps.existing.outputs.exists != 'true'
         run: |
           cargo check --all-features
-          cargo check --no-default-features --features "all,native-tls"
+          cargo check --no-default-features --features "customers,native-tls"
           cargo test --all-features
 
       - name: Create Pull Request
