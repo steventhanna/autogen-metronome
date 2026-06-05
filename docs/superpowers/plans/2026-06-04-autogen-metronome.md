@@ -219,16 +219,19 @@ keywords = ["metronome", "billing", "api", "sdk"]
 categories = ["api-bindings"]
 repository = "https://github.com/steventhanna/autogen-metronome"
 
+# NOTE: serde_repr and uuid are required by the GENERATED models, so they are
+# main dependencies (not dev-only). Verified against the first generation.
 [dependencies]
 reqwest = { version = "^0.12", default-features = false, features = ["json", "multipart"] }
 serde = { version = "^1.0", features = ["derive"] }
 serde_json = "^1.0"
+serde_repr = "^0.1"
 serde_with = { version = "^3.8", default-features = false, features = ["base64", "std", "macros"] }
 url = "^2.5"
+uuid = { version = "^1.8", features = ["serde", "v4"] }
 
 [dev-dependencies]
 tokio = { version = "^1", features = ["macros", "rt-multi-thread"] }
-uuid = { version = "^1", features = ["v4"] }
 
 [features]
 default = ["all", "native-tls"]
