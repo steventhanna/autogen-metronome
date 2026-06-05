@@ -9,6 +9,19 @@ categories = ["api-bindings"]
 repository = "https://github.com/steventhanna/autogen-metronome"
 readme = "README.md"
 
+# Ship only what consumers need; exclude regeneration tooling and generator markdown.
+exclude = [
+    "docs/",
+    "openapi.json",
+    "SPEC_HASH",
+    "generate.sh",
+    "scripts/",
+    ".github/",
+    ".openapi-generator/",
+    ".openapi-generator-ignore",
+    "CLAUDE.md",
+]
+
 # Build docs.rs with every API group enabled so the full surface is documented.
 [package.metadata.docs.rs]
 all-features = true
