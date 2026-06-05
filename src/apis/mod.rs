@@ -111,21 +111,37 @@ impl From<&str> for ContentType {
     }
 }
 
+#[cfg(feature = "alerts")]
 pub mod alerts_api;
+#[cfg(feature = "billable-metrics")]
 pub mod billable_metrics_api;
+#[cfg(feature = "contracts")]
 pub mod contracts_api;
+#[cfg(feature = "credits-and-commits")]
 pub mod credits_and_commits_api;
+#[cfg(feature = "custom-fields")]
 pub mod custom_fields_api;
+#[cfg(feature = "customers")]
 pub mod customers_api;
+#[cfg(feature = "packages")]
 pub mod default_api;
+#[cfg(feature = "invoices")]
 pub mod invoices_api;
+#[cfg(feature = "named-schedules")]
 pub mod named_schedules_api;
+#[cfg(feature = "notifications")]
 pub mod notifications_api;
+#[cfg(feature = "packages")]
 pub mod packages_api;
+#[cfg(feature = "products")]
 pub mod products_api;
+#[cfg(feature = "rate-cards")]
 pub mod rate_cards_api;
+#[cfg(feature = "security")]
 pub mod security_api;
+#[cfg(feature = "settings")]
 pub mod settings_api;
+#[cfg(feature = "usage")]
 pub mod usage_api;
 
 pub mod configuration;
