@@ -7,6 +7,11 @@ description = "Auto-generated, strongly-typed Rust client for the Metronome API"
 keywords = ["metronome", "billing", "api", "sdk"]
 categories = ["api-bindings"]
 repository = "https://github.com/steventhanna/autogen-metronome"
+readme = "README.md"
+
+# Build docs.rs with every API group enabled so the full surface is documented.
+[package.metadata.docs.rs]
+all-features = true
 
 [dependencies]
 reqwest = { version = "^0.12", default-features = false, features = ["json", "multipart"] }
