@@ -22,10 +22,13 @@ pub struct GetContractV2Request {
     pub include_ledgers: Option<bool>,
     /// Optional RFC 3339 timestamp. Return the contract as of this date. Cannot be used with include_ledgers parameter.
     #[serde(rename = "as_of_date", skip_serializing_if = "Option::is_none")]
-    pub as_of_date: Option<String>,
+    pub as_of_date: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Include the balance of credits and commits in the response. Setting this flag may cause the query to be slower.
     #[serde(rename = "include_balance", skip_serializing_if = "Option::is_none")]
     pub include_balance: Option<bool>,
+    /// Indicates that this API request was triggered by a webhook notification with the provided ID.
+    #[serde(rename = "webhook_notification_id", skip_serializing_if = "Option::is_none")]
+    pub webhook_notification_id: Option<String>,
 }
 
 impl GetContractV2Request {
@@ -36,6 +39,7 @@ impl GetContractV2Request {
             include_ledgers: None,
             as_of_date: None,
             include_balance: None,
+            webhook_notification_id: None,
         }
     }
 }

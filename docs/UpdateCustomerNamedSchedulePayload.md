@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | [**uuid::Uuid**](uuid::Uuid.md) | ID of the customer whose named schedule is to be updated | 
+**customer_id** | **uuid::Uuid** | ID of the customer whose named schedule is to be updated | 
 **schedule_name** | **String** | The identifier for the schedule to be updated | 
-**starting_at** | **String** |  | 
-**ending_before** | Option<**String**> |  | [optional]
-**value** | Option<[**serde_json::Value**](.md)> | The value to set for the named schedule. The structure of this object is specific to the named schedule. | 
+**starting_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
+**ending_before** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
+**value** | Option<**serde_json::Value**> | The value to set for the named schedule. The structure of this object is specific to the named schedule. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

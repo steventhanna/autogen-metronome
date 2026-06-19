@@ -36,7 +36,7 @@ pub struct OverrideTemplateInput {
     /// Required for TIERED type. Must have at least one tier.
     #[serde(rename = "tiers", skip_serializing_if = "Option::is_none")]
     pub tiers: Option<Vec<models::OverrideTierInput>>,
-    /// Indicates whether the override should only apply to commits. Defaults to `false`. If `true`, you can specify relevant commits in `override_specifiers` by passing `commit_ids`. if you do not specify `commit_ids`, then the override will apply when consuming any prepaid or postpaid commit.
+    /// Indicates whether the override should only apply to commits. Defaults to `false`. If `true` you can specify relevant commits in `override_specifiers` by passing `commit_ids`, `recurring_commit_ids`, or `any_commit_or_credit_ids`.  If you do not specify any of these fields, the override will apply when consuming any prepaid commit, postpaid commit, or credit
     #[serde(rename = "is_commit_specific", skip_serializing_if = "Option::is_none")]
     pub is_commit_specific: Option<bool>,
     /// Indicates whether the override applies to commit rates or list rates. Can only be used for overrides that have `is_commit_specific` set to `true`. Defaults to `\"LIST_RATE\"`.

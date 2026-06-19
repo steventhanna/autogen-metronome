@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
+**id** | **uuid::Uuid** |  | 
 **salesforce_opportunity_id** | Option<**String**> | This field's availability is dependent on your client's configuration. | [optional]
-**starting_at** | **String** |  | 
+**starting_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **commits** | [**Vec<models::Commit>**](Commit.md) |  | 
 **credits** | Option<[**Vec<models::Credit>**](Credit.md)> |  | [optional]
 **overrides** | [**Vec<models::Override>**](Override.md) |  | 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **professional_services** | Option<[**Vec<models::ProService>**](ProService.md)> | This field's availability is dependent on your client's configuration. | [optional]
 **scheduled_charges** | [**Vec<models::ScheduledCharge>**](ScheduledCharge.md) |  | 
 **reseller_royalties** | Option<[**Vec<models::ResellerRoyaltyOrUpdate>**](ResellerRoyaltyOrUpdate.md)> | This field's availability is dependent on your client's configuration. | [optional]
-**created_at** | **String** |  | 
+**created_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **created_by** | **String** |  | 
 **netsuite_sales_order_id** | Option<**String**> | This field's availability is dependent on your client's configuration. | [optional]
 

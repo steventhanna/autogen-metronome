@@ -16,7 +16,7 @@ pub struct UpdateSubscriptionInput {
     #[serde(rename = "subscription_id")]
     pub subscription_id: uuid::Uuid,
     #[serde(rename = "ending_before", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<Option<String>>,
+    pub ending_before: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(rename = "quantity_management_mode_update", skip_serializing_if = "Option::is_none")]
     pub quantity_management_mode_update: Option<Box<models::UpdateSubscriptionInputQuantityManagementModeUpdate>>,
     /// Quantity changes are applied on the effective date based on the order which they are sent. For example, if I scheduled the quantity to be 12 on May 21 and then scheduled a quantity delta change of -1, the result from that day would be 11.

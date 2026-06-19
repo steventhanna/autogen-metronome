@@ -26,10 +26,10 @@ pub struct ListContractsV1Request {
     pub include_archived: Option<bool>,
     /// Optional RFC 3339 timestamp. If provided, the response will include only contracts where effective_at is on or after the provided date.  This cannot be provided if the covering_date filter is provided.
     #[serde(rename = "starting_at", skip_serializing_if = "Option::is_none")]
-    pub starting_at: Option<String>,
+    pub starting_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Optional RFC 3339 timestamp. If provided, the response will include only contracts effective on the provided date.  This cannot be provided if the starting_at filter is provided.
     #[serde(rename = "covering_date", skip_serializing_if = "Option::is_none")]
-    pub covering_date: Option<String>,
+    pub covering_date: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl ListContractsV1Request {

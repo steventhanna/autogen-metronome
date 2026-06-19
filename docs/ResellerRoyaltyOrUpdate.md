@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **reseller_type** | [**models::ResellerType**](ResellerType.md) |  | 
 **fraction** | Option<**f64**> |  | [optional]
 **netsuite_reseller_id** | Option<**String**> |  | [optional]
-**starting_at** | Option<**String**> |  | [optional]
-**ending_before** | Option<**String**> |  | [optional]
+**starting_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
+**ending_before** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **reseller_contract_value** | Option<**f64**> |  | [optional]
 **aws_account_number** | Option<**String**> |  | [optional]
 **aws_payer_reference_id** | Option<**String**> |  | [optional]

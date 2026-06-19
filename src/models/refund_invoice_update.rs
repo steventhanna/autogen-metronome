@@ -16,11 +16,11 @@ pub struct RefundInvoiceUpdate {
     #[serde(rename = "invoice_id")]
     pub invoice_id: uuid::Uuid,
     #[serde(rename = "date")]
-    pub date: String,
+    pub date: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl RefundInvoiceUpdate {
-    pub fn new(invoice_id: uuid::Uuid, date: String) -> RefundInvoiceUpdate {
+    pub fn new(invoice_id: uuid::Uuid, date: chrono::DateTime<chrono::FixedOffset>) -> RefundInvoiceUpdate {
         RefundInvoiceUpdate {
             invoice_id,
             date,

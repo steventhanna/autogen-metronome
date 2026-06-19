@@ -19,13 +19,13 @@ pub struct ListCustomerCreditsV1Request {
     pub credit_id: Option<uuid::Uuid>,
     /// Return only credits that have access schedules that \"cover\" the provided date
     #[serde(rename = "covering_date", skip_serializing_if = "Option::is_none")]
-    pub covering_date: Option<String>,
+    pub covering_date: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Include only credits that have any access on or after the provided date
     #[serde(rename = "starting_at", skip_serializing_if = "Option::is_none")]
-    pub starting_at: Option<String>,
+    pub starting_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Include only credits that have any access before the provided date (exclusive)
     #[serde(rename = "effective_before", skip_serializing_if = "Option::is_none")]
-    pub effective_before: Option<String>,
+    pub effective_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Include credits on the contract level.
     #[serde(rename = "include_contract_credits", skip_serializing_if = "Option::is_none")]
     pub include_contract_credits: Option<bool>,

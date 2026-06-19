@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**subscription_id** | Option<[**uuid::Uuid**](uuid::Uuid.md)> |  | [optional]
+**subscription_id** | Option<**uuid::Uuid**> |  | [optional]
 **allocation** | Option<[**models::SubscriptionConfigAllocation**](SubscriptionConfigAllocation.md)> |  | [optional]
 **apply_seat_increase_config** | Option<[**models::ApplySeatIncreaseConfigForRecurringCommit**](ApplySeatIncreaseConfigForRecurringCommit.md)> |  | [optional]
 

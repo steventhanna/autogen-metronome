@@ -17,11 +17,11 @@ pub struct UsageStatementSchedule {
     pub frequency: Frequency,
     /// Contract usage statements follow a selected cadence based on this date.
     #[serde(rename = "billing_anchor_date")]
-    pub billing_anchor_date: String,
+    pub billing_anchor_date: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl UsageStatementSchedule {
-    pub fn new(frequency: Frequency, billing_anchor_date: String) -> UsageStatementSchedule {
+    pub fn new(frequency: Frequency, billing_anchor_date: chrono::DateTime<chrono::FixedOffset>) -> UsageStatementSchedule {
         UsageStatementSchedule {
             frequency,
             billing_anchor_date,

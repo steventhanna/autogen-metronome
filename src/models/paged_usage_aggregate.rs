@@ -14,9 +14,9 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PagedUsageAggregate {
     #[serde(rename = "starting_on")]
-    pub starting_on: String,
+    pub starting_on: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "ending_before")]
-    pub ending_before: String,
+    pub ending_before: chrono::DateTime<chrono::FixedOffset>,
     /// Use `group` instead. The group key for single-key grouping.
     #[serde(rename = "group_key", deserialize_with = "Option::deserialize")]
     pub group_key: Option<String>,
@@ -31,7 +31,7 @@ pub struct PagedUsageAggregate {
 }
 
 impl PagedUsageAggregate {
-    pub fn new(starting_on: String, ending_before: String, group_key: Option<String>, group_value: Option<String>, value: Option<f64>) -> PagedUsageAggregate {
+    pub fn new(starting_on: chrono::DateTime<chrono::FixedOffset>, ending_before: chrono::DateTime<chrono::FixedOffset>, group_key: Option<String>, group_value: Option<String>, value: Option<f64>) -> PagedUsageAggregate {
         PagedUsageAggregate {
             starting_on,
             ending_before,

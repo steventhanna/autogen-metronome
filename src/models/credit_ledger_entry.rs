@@ -22,7 +22,7 @@ pub struct CreditLedgerEntry {
     #[serde(rename = "running_balance")]
     pub running_balance: f64,
     #[serde(rename = "effective_at")]
-    pub effective_at: String,
+    pub effective_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "created_by")]
     pub created_by: String,
     /// the credit grant this entry is related to
@@ -34,7 +34,7 @@ pub struct CreditLedgerEntry {
 }
 
 impl CreditLedgerEntry {
-    pub fn new(amount: f64, reason: String, running_balance: f64, effective_at: String, created_by: String, credit_grant_id: uuid::Uuid) -> CreditLedgerEntry {
+    pub fn new(amount: f64, reason: String, running_balance: f64, effective_at: chrono::DateTime<chrono::FixedOffset>, created_by: String, credit_grant_id: uuid::Uuid) -> CreditLedgerEntry {
         CreditLedgerEntry {
             amount,
             reason,

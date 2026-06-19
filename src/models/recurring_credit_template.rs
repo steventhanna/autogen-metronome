@@ -20,7 +20,7 @@ pub struct RecurringCreditTemplate {
     #[serde(rename = "product")]
     pub product: Box<models::SubscriptionRateProduct>,
     #[serde(rename = "access_amount")]
-    pub access_amount: Box<models::RecurringCommitOrCreditBaseAccessAmount>,
+    pub access_amount: Box<models::RecurringCommitOrCreditInputBaseAccessAmount>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
     /// Will be passed down to the individual commits. This controls how much of an individual unexpired commit will roll over upon contract transition. Must be between 0 and 1.
@@ -46,7 +46,7 @@ pub struct RecurringCreditTemplate {
     pub duration: Option<Box<models::RelativeDate>>,
     #[serde(rename = "commit_duration")]
     pub commit_duration: Box<models::RecurringCommitOrCreditTemplateBaseCommitDuration>,
-    /// The frequency at which the recurring commits will be created.  If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
+    /// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
     #[serde(rename = "recurrence_frequency", skip_serializing_if = "Option::is_none")]
     pub recurrence_frequency: Option<RecurrenceFrequency>,
     /// Determines whether the first and last commit will be prorated.  If not provided, the default is FIRST_AND_LAST (i.e. prorate both the first and last commits).
@@ -59,7 +59,7 @@ pub struct RecurringCreditTemplate {
 }
 
 impl RecurringCreditTemplate {
-    pub fn new(id: uuid::Uuid, product: models::SubscriptionRateProduct, access_amount: models::RecurringCommitOrCreditBaseAccessAmount, priority: f64, rate_type: RateType, starting_at_offset: models::RelativeDate, commit_duration: models::RecurringCommitOrCreditTemplateBaseCommitDuration) -> RecurringCreditTemplate {
+    pub fn new(id: uuid::Uuid, product: models::SubscriptionRateProduct, access_amount: models::RecurringCommitOrCreditInputBaseAccessAmount, priority: f64, rate_type: RateType, starting_at_offset: models::RelativeDate, commit_duration: models::RecurringCommitOrCreditTemplateBaseCommitDuration) -> RecurringCreditTemplate {
         RecurringCreditTemplate {
             id,
             name: None,
@@ -96,7 +96,7 @@ impl Default for RateType {
         Self::CommitRate
     }
 }
-/// The frequency at which the recurring commits will be created.  If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
+/// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum RecurrenceFrequency {
     #[serde(rename = "MONTHLY")]
@@ -107,6 +107,8 @@ pub enum RecurrenceFrequency {
     Annual,
     #[serde(rename = "WEEKLY")]
     Weekly,
+    #[serde(rename = "DAILY")]
+    Daily,
 }
 
 impl Default for RecurrenceFrequency {

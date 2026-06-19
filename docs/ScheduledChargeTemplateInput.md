@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**product_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
+**product_id** | **uuid::Uuid** |  | 
 **name** | Option<**String**> | displayed on invoices | [optional]
 **schedule** | [**models::RelativeSchedulePointInTimeInput**](RelativeSchedulePointInTimeInput.md) |  | 
 **custom_fields** | Option<**std::collections::HashMap<String, String>**> | Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" } | [optional]

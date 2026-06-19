@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **tax_product_id** | Option<**String**> | Optional Stripe product ID to use for the tax line item. If omitted a random Stripe product will be created and used for the invoice. | [optional]
 **redirect_url** | Option<**String**> | The URL to redirect the user to after they have corrected a billing issue | [optional]
 **invoice_custom_fields** | Option<[**Vec<models::NameValuePair>**](NameValuePair.md)> | Custom fields to add to the prepaid invoice | [optional]
-**invoice_metadata** | Option<[**std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> | Invoice metadata to add to the prepaid invoice | [optional]
+**invoice_metadata** | Option<**std::collections::HashMap<String, serde_json::Value>**> | Invoice metadata to add to the prepaid invoice | [optional]
 **payment_method_id** | Option<**String**> | Optional Stripe payment method ID to use. | [optional]
 **product_id** | Option<**String**> | Optional Stripe product ID to use for the grant. | [optional]
 

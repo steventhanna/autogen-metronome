@@ -22,11 +22,11 @@ pub struct SetUsageFilterPayload {
     #[serde(rename = "group_values")]
     pub group_values: Vec<String>,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl SetUsageFilterPayload {
-    pub fn new(customer_id: uuid::Uuid, contract_id: uuid::Uuid, group_key: String, group_values: Vec<String>, starting_at: String) -> SetUsageFilterPayload {
+    pub fn new(customer_id: uuid::Uuid, contract_id: uuid::Uuid, group_key: String, group_values: Vec<String>, starting_at: chrono::DateTime<chrono::FixedOffset>) -> SetUsageFilterPayload {
         SetUsageFilterPayload {
             customer_id,
             contract_id,

@@ -21,7 +21,7 @@ pub struct UpdateContractEndDatePayload {
     pub contract_id: uuid::Uuid,
     /// RFC 3339 timestamp indicating when the contract will end (exclusive). If not provided, the contract will be updated to be open-ended.
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// If true, allows setting the contract end date earlier than the end_timestamp of existing finalized invoices. Finalized invoices will be unchanged; if you want to incorporate the new end date, you can void and regenerate finalized usage invoices. Defaults to true.
     #[serde(rename = "allow_ending_before_finalized_invoice", skip_serializing_if = "Option::is_none")]
     pub allow_ending_before_finalized_invoice: Option<bool>,

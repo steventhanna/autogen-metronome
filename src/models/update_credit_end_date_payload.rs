@@ -21,11 +21,11 @@ pub struct UpdateCreditEndDatePayload {
     pub credit_id: uuid::Uuid,
     /// RFC 3339 timestamp indicating when access to the credit will end and it will no longer be possible to draw it down (exclusive).
     #[serde(rename = "access_ending_before")]
-    pub access_ending_before: String,
+    pub access_ending_before: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl UpdateCreditEndDatePayload {
-    pub fn new(customer_id: uuid::Uuid, credit_id: uuid::Uuid, access_ending_before: String) -> UpdateCreditEndDatePayload {
+    pub fn new(customer_id: uuid::Uuid, credit_id: uuid::Uuid, access_ending_before: chrono::DateTime<chrono::FixedOffset>) -> UpdateCreditEndDatePayload {
         UpdateCreditEndDatePayload {
             customer_id,
             credit_id,

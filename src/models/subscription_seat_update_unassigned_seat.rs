@@ -18,11 +18,11 @@ pub struct SubscriptionSeatUpdateUnassignedSeat {
     pub quantity: f64,
     /// Unassigned seats will be updated starting at this date.
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl SubscriptionSeatUpdateUnassignedSeat {
-    pub fn new(quantity: f64, starting_at: String) -> SubscriptionSeatUpdateUnassignedSeat {
+    pub fn new(quantity: f64, starting_at: chrono::DateTime<chrono::FixedOffset>) -> SubscriptionSeatUpdateUnassignedSeat {
         SubscriptionSeatUpdateUnassignedSeat {
             quantity,
             starting_at,

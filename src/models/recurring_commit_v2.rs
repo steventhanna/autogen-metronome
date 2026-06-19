@@ -16,14 +16,14 @@ pub struct RecurringCommitV2 {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
     #[serde(rename = "contract", skip_serializing_if = "Option::is_none")]
-    pub contract: Option<Box<models::VoidInvoiceV1200ResponseData>>,
+    pub contract: Option<Box<models::VoidInvoiceV1Request>>,
     /// Displayed on invoices. Will be passed through to the individual commits
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
     #[serde(rename = "product")]
     pub product: Box<models::SubscriptionRateProduct>,
     #[serde(rename = "access_amount")]
-    pub access_amount: Box<models::RecurringCommitOrCreditBaseAccessAmount>,
+    pub access_amount: Box<models::RecurringCommitOrCreditInputBaseAccessAmount>,
     /// Will be passed down to the individual commits
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -50,12 +50,12 @@ pub struct RecurringCommitV2 {
     pub rate_type: RateType,
     /// Determines the start time for the first commit
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     /// Determines when the contract will stop creating recurring commits. Optional
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "commit_duration")]
-    pub commit_duration: Box<models::RecurringCommitOrCreditBaseCommitDuration>,
+    pub commit_duration: Box<models::RecurringCommitOrCreditInputBaseCommitDuration>,
     /// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
     #[serde(rename = "recurrence_frequency", skip_serializing_if = "Option::is_none")]
     pub recurrence_frequency: Option<RecurrenceFrequency>,
@@ -73,7 +73,7 @@ pub struct RecurringCommitV2 {
 }
 
 impl RecurringCommitV2 {
-    pub fn new(id: uuid::Uuid, product: models::SubscriptionRateProduct, access_amount: models::RecurringCommitOrCreditBaseAccessAmount, priority: f64, rate_type: RateType, starting_at: String, commit_duration: models::RecurringCommitOrCreditBaseCommitDuration) -> RecurringCommitV2 {
+    pub fn new(id: uuid::Uuid, product: models::SubscriptionRateProduct, access_amount: models::RecurringCommitOrCreditInputBaseAccessAmount, priority: f64, rate_type: RateType, starting_at: chrono::DateTime<chrono::FixedOffset>, commit_duration: models::RecurringCommitOrCreditInputBaseCommitDuration) -> RecurringCommitV2 {
         RecurringCommitV2 {
             id,
             contract: None,
@@ -137,6 +137,10 @@ pub enum RecurrenceFrequency {
     Weekly,
     #[serde(rename = "weekly")]
     Weekly2,
+    #[serde(rename = "DAILY")]
+    Daily,
+    #[serde(rename = "daily")]
+    Daily2,
 }
 
 impl Default for RecurrenceFrequency {

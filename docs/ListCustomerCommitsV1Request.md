@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
-**commit_id** | Option<[**uuid::Uuid**](uuid::Uuid.md)> |  | [optional]
-**covering_date** | Option<**String**> | Include only commits that have access schedules that \"cover\" the provided date | [optional]
-**starting_at** | Option<**String**> | Include only commits that have any access on or after the provided date | [optional]
-**effective_before** | Option<**String**> | Include only commits that have any access before the provided date (exclusive) | [optional]
+**customer_id** | **uuid::Uuid** |  | 
+**commit_id** | Option<**uuid::Uuid**> |  | [optional]
+**covering_date** | Option<**chrono::DateTime<chrono::FixedOffset>**> | Include only commits that have access schedules that \"cover\" the provided date | [optional]
+**starting_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> | Include only commits that have any access on or after the provided date | [optional]
+**effective_before** | Option<**chrono::DateTime<chrono::FixedOffset>**> | Include only commits that have any access before the provided date (exclusive) | [optional]
 **include_contract_commits** | Option<**bool**> | Include commits on the contract level. | [optional]
 **include_archived** | Option<**bool**> | Include archived commits and commits from archived contracts. | [optional]
 **include_ledgers** | Option<**bool**> | Include commit ledgers in the response. Setting this flag may cause the query to be slower. | [optional]

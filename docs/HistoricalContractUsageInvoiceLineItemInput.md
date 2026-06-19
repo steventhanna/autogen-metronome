@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**product_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
-**inclusive_start_date** | **String** |  | 
-**exclusive_end_date** | **String** |  | 
+**product_id** | **uuid::Uuid** |  | 
+**inclusive_start_date** | **chrono::DateTime<chrono::FixedOffset>** |  | 
+**exclusive_end_date** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **quantity** | Option<**f64**> |  | [optional]
 **pricing_group_values** | Option<**std::collections::HashMap<String, String>**> |  | [optional]
 **presentation_group_values** | Option<**std::collections::HashMap<String, String>**> |  | [optional]

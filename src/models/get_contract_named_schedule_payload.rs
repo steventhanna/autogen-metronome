@@ -24,7 +24,7 @@ pub struct GetContractNamedSchedulePayload {
     pub schedule_name: String,
     /// If provided, at most one schedule segment will be returned (the one that covers this date). If not provided, all segments will be returned.
     #[serde(rename = "covering_date", skip_serializing_if = "Option::is_none")]
-    pub covering_date: Option<String>,
+    pub covering_date: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// A set of key-value pairs that qualifies which schedule should be applied when looking up a schedule by name.
     #[serde(rename = "properties", skip_serializing_if = "Option::is_none")]
     pub properties: Option<std::collections::HashMap<String, String>>,

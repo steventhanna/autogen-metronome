@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
+**id** | **uuid::Uuid** |  | 
 **name** | Option<**String**> |  | [optional]
 **netsuite_sales_order_id** | Option<**String**> |  | [optional]
 **schedule** | Option<[**models::SchedulePointInTimeInputV2**](SchedulePointInTimeInputV2.md)> |  | [optional]

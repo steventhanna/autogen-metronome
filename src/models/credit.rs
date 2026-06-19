@@ -16,7 +16,7 @@ pub struct Credit {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
     #[serde(rename = "contract", skip_serializing_if = "Option::is_none")]
-    pub contract: Option<Box<models::VoidInvoiceV1200ResponseData>>,
+    pub contract: Option<Box<models::VoidInvoiceV1Request>>,
     #[serde(rename = "type")]
     pub r#type: Type,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
@@ -34,7 +34,7 @@ pub struct Credit {
     #[serde(rename = "recurring_credit_id", skip_serializing_if = "Option::is_none")]
     pub recurring_credit_id: Option<uuid::Uuid>,
     #[serde(rename = "subscription_config", skip_serializing_if = "Option::is_none")]
-    pub subscription_config: Option<Box<models::CreditSubscriptionConfig>>,
+    pub subscription_config: Option<Box<models::CommitSubscriptionConfig>>,
     #[serde(rename = "applicable_product_ids", skip_serializing_if = "Option::is_none")]
     pub applicable_product_ids: Option<Vec<uuid::Uuid>>,
     #[serde(rename = "applicable_product_tags", skip_serializing_if = "Option::is_none")]
@@ -68,6 +68,9 @@ pub struct Credit {
     pub hierarchy_configuration: Option<Box<models::CommitHierarchyConfiguration>>,
     #[serde(rename = "rolled_over_from", skip_serializing_if = "Option::is_none")]
     pub rolled_over_from: Option<Box<models::CreditRolledOverFrom>>,
+    /// The actor who created this credit. Omitted for system-generated credits such as recurring credits.
+    #[serde(rename = "created_by", skip_serializing_if = "Option::is_none")]
+    pub created_by: Option<String>,
 }
 
 impl Credit {
@@ -96,6 +99,7 @@ impl Credit {
             uniqueness_key: None,
             hierarchy_configuration: None,
             rolled_over_from: None,
+            created_by: None,
         }
     }
 }

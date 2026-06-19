@@ -14,11 +14,11 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UpdateAccessScheduleInput {
     #[serde(rename = "add_schedule_items", skip_serializing_if = "Option::is_none")]
-    pub add_schedule_items: Option<Vec<models::UpdateAccessScheduleInputAddScheduleItemsInner>>,
+    pub add_schedule_items: Option<Vec<models::ScheduleDurationInputScheduleItemsInner>>,
     #[serde(rename = "update_schedule_items", skip_serializing_if = "Option::is_none")]
-    pub update_schedule_items: Option<Vec<models::UpdateAccessScheduleInputUpdateScheduleItemsInner>>,
+    pub update_schedule_items: Option<Vec<models::AccessScheduleUpdateUpdateScheduleItemsInner>>,
     #[serde(rename = "remove_schedule_items", skip_serializing_if = "Option::is_none")]
-    pub remove_schedule_items: Option<Vec<models::VoidInvoiceV1200ResponseData>>,
+    pub remove_schedule_items: Option<Vec<models::VoidInvoiceV1Request>>,
 }
 
 impl UpdateAccessScheduleInput {

@@ -20,9 +20,9 @@ pub struct UsageBatchAggregate {
     #[serde(rename = "billable_metric_name")]
     pub billable_metric_name: String,
     #[serde(rename = "start_timestamp")]
-    pub start_timestamp: String,
+    pub start_timestamp: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "end_timestamp")]
-    pub end_timestamp: String,
+    pub end_timestamp: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "value", deserialize_with = "Option::deserialize")]
     pub value: Option<f64>,
     /// Values will be either a number or null. Null indicates that there were no matches for the group_by value.
@@ -31,7 +31,7 @@ pub struct UsageBatchAggregate {
 }
 
 impl UsageBatchAggregate {
-    pub fn new(customer_id: uuid::Uuid, billable_metric_id: uuid::Uuid, billable_metric_name: String, start_timestamp: String, end_timestamp: String, value: Option<f64>) -> UsageBatchAggregate {
+    pub fn new(customer_id: uuid::Uuid, billable_metric_id: uuid::Uuid, billable_metric_name: String, start_timestamp: chrono::DateTime<chrono::FixedOffset>, end_timestamp: chrono::DateTime<chrono::FixedOffset>, value: Option<f64>) -> UsageBatchAggregate {
         UsageBatchAggregate {
             customer_id,
             billable_metric_id,

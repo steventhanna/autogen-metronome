@@ -23,8 +23,8 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **limit** | Option<**i32**> | Max number of results that should be returned |  |
 **next_page** | Option<**String**> | Cursor that indicates where the next page of results should start. |  |
-**starting_on** | Option<**String**> | RFC 3339 timestamp of the earliest audit log to return. Cannot be used with 'next_page'. |  |
-**ending_before** | Option<**String**> | RFC 3339 timestamp (exclusive). Cannot be used with 'next_page'. |  |
+**starting_on** | Option<**chrono::DateTime<chrono::FixedOffset>**> | RFC 3339 timestamp of the earliest audit log to return. Cannot be used with 'next_page'. |  |
+**ending_before** | Option<**chrono::DateTime<chrono::FixedOffset>**> | RFC 3339 timestamp (exclusive). Cannot be used with 'next_page'. |  |
 **sort** | Option<**String**> | Sort order by timestamp, e.g. date_asc or date_desc. Defaults to date_asc. |  |
 **resource_id** | Option<**String**> | Optional parameter that can be used to filter which audit logs are returned. If you specify resource_id, you must also specify resource_type. |  |
 **resource_type** | Option<**String**> | Optional parameter that can be used to filter which audit logs are returned. If you specify resource_type, you must also specify resource_id. |  |

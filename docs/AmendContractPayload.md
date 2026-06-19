@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | [**uuid::Uuid**](uuid::Uuid.md) | ID of the customer whose contract is to be amended | 
-**contract_id** | [**uuid::Uuid**](uuid::Uuid.md) | ID of the contract to amend | 
+**customer_id** | **uuid::Uuid** | ID of the customer whose contract is to be amended | 
+**contract_id** | **uuid::Uuid** | ID of the contract to amend | 
 **netsuite_sales_order_id** | Option<**String**> | This field's availability is dependent on your client's configuration. | [optional]
 **salesforce_opportunity_id** | Option<**String**> | This field's availability is dependent on your client's configuration. | [optional]
 **total_contract_value** | Option<**f64**> | This field's availability is dependent on your client's configuration. | [optional]
-**starting_at** | **String** | inclusive start time for the amendment | 
+**starting_at** | **chrono::DateTime<chrono::FixedOffset>** | inclusive start time for the amendment | 
 **commits** | Option<[**Vec<models::CommitInput>**](CommitInput.md)> |  | [optional]
 **credits** | Option<[**Vec<models::CreditInput>**](CreditInput.md)> |  | [optional]
 **overrides** | Option<[**Vec<models::OverrideInput>**](OverrideInput.md)> |  | [optional]

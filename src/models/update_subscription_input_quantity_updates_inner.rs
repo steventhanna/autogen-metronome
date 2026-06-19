@@ -20,11 +20,11 @@ pub struct UpdateSubscriptionInputQuantityUpdatesInner {
     #[serde(rename = "quantity_delta", skip_serializing_if = "Option::is_none")]
     pub quantity_delta: Option<f64>,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl UpdateSubscriptionInputQuantityUpdatesInner {
-    pub fn new(starting_at: String) -> UpdateSubscriptionInputQuantityUpdatesInner {
+    pub fn new(starting_at: chrono::DateTime<chrono::FixedOffset>) -> UpdateSubscriptionInputQuantityUpdatesInner {
         UpdateSubscriptionInputQuantityUpdatesInner {
             quantity: None,
             quantity_delta: None,

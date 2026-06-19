@@ -20,7 +20,7 @@ pub struct PaymentGateConfigV2 {
     #[serde(rename = "tax_type", skip_serializing_if = "Option::is_none")]
     pub tax_type: Option<TaxType>,
     #[serde(rename = "stripe_config", skip_serializing_if = "Option::is_none")]
-    pub stripe_config: Option<Box<models::PaymentGateConfigV2StripeConfig>>,
+    pub stripe_config: Option<Box<models::PaymentGateConfigStripeConfig>>,
     #[serde(rename = "precalculated_tax_config", skip_serializing_if = "Option::is_none")]
     pub precalculated_tax_config: Option<Box<models::PaymentGateConfigPrecalculatedTaxConfig>>,
 }

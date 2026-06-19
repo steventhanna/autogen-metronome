@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**models::EmbeddableDashboardV1200ResponseData**](embeddableDashboard_v1_200_response_data.md) |  | 
+**data** | [**models::EmbeddableDashboardV1200ResponseData**](EmbeddableDashboardV1200ResponseData.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

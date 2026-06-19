@@ -26,10 +26,10 @@ pub struct ResellerRoyaltyOrUpdateInput {
     #[serde(rename = "applicable_product_tags", skip_serializing_if = "Option::is_none")]
     pub applicable_product_tags: Option<Vec<String>>,
     #[serde(rename = "starting_at", skip_serializing_if = "Option::is_none")]
-    pub starting_at: Option<String>,
+    pub starting_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Use null to indicate that the existing end timestamp should be removed.
     #[serde(rename = "ending_before", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<Option<String>>,
+    pub ending_before: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(rename = "reseller_contract_value", skip_serializing_if = "Option::is_none")]
     pub reseller_contract_value: Option<f64>,
     #[serde(rename = "aws_options", skip_serializing_if = "Option::is_none")]

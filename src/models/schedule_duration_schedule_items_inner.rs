@@ -18,13 +18,13 @@ pub struct ScheduleDurationScheduleItemsInner {
     #[serde(rename = "amount")]
     pub amount: f64,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "ending_before")]
-    pub ending_before: String,
+    pub ending_before: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl ScheduleDurationScheduleItemsInner {
-    pub fn new(id: uuid::Uuid, amount: f64, starting_at: String, ending_before: String) -> ScheduleDurationScheduleItemsInner {
+    pub fn new(id: uuid::Uuid, amount: f64, starting_at: chrono::DateTime<chrono::FixedOffset>, ending_before: chrono::DateTime<chrono::FixedOffset>) -> ScheduleDurationScheduleItemsInner {
         ScheduleDurationScheduleItemsInner {
             id,
             amount,

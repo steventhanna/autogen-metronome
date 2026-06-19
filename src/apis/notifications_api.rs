@@ -67,7 +67,7 @@ pub enum ListSystemNotificationConfigsV2Error {
 /// Archive an offset lifecycle event notification configuration. Archived notifications are not processed. 
 pub async fn archive_notification_config_v2(configuration: &configuration::Configuration, archive_notification_config_payload: Option<models::ArchiveNotificationConfigPayload>) -> Result<models::CreateNotificationConfigV2200Response, Error<ArchiveNotificationConfigV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_archive_notification_config_payload = archive_notification_config_payload;
+    let p_body_archive_notification_config_payload = archive_notification_config_payload;
 
     let uri_str = format!("{}/v2/notifications/archive", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -78,7 +78,7 @@ pub async fn archive_notification_config_v2(configuration: &configuration::Confi
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_archive_notification_config_payload);
+    req_builder = req_builder.json(&p_body_archive_notification_config_payload);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -108,7 +108,7 @@ pub async fn archive_notification_config_v2(configuration: &configuration::Confi
 /// Create an offset lifecycle event notification configuration. The lifecycle event type is inferred from the policy.type field. 
 pub async fn create_notification_config_v2(configuration: &configuration::Configuration, create_notification_config_payload: Option<models::CreateNotificationConfigPayload>) -> Result<models::CreateNotificationConfigV2200Response, Error<CreateNotificationConfigV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_create_notification_config_payload = create_notification_config_payload;
+    let p_body_create_notification_config_payload = create_notification_config_payload;
 
     let uri_str = format!("{}/v2/notifications/create", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -119,7 +119,7 @@ pub async fn create_notification_config_v2(configuration: &configuration::Config
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_create_notification_config_payload);
+    req_builder = req_builder.json(&p_body_create_notification_config_payload);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -149,7 +149,7 @@ pub async fn create_notification_config_v2(configuration: &configuration::Config
 /// Edit an existing offset lifecycle event notification configuration.
 pub async fn edit_notification_config_v2(configuration: &configuration::Configuration, edit_notification_config_payload: Option<models::EditNotificationConfigPayload>) -> Result<models::EditNotificationConfigV2200Response, Error<EditNotificationConfigV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_edit_notification_config_payload = edit_notification_config_payload;
+    let p_body_edit_notification_config_payload = edit_notification_config_payload;
 
     let uri_str = format!("{}/v2/notifications/edit", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -160,7 +160,7 @@ pub async fn edit_notification_config_v2(configuration: &configuration::Configur
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_edit_notification_config_payload);
+    req_builder = req_builder.json(&p_body_edit_notification_config_payload);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -190,7 +190,7 @@ pub async fn edit_notification_config_v2(configuration: &configuration::Configur
 /// Retrieve a specific offset lifecycle event notification configuration by ID.
 pub async fn get_notification_config_v2(configuration: &configuration::Configuration, get_notification_config_payload: Option<models::GetNotificationConfigPayload>) -> Result<models::CreateNotificationConfigV2200Response, Error<GetNotificationConfigV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_get_notification_config_payload = get_notification_config_payload;
+    let p_body_get_notification_config_payload = get_notification_config_payload;
 
     let uri_str = format!("{}/v2/notifications/get", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -201,7 +201,7 @@ pub async fn get_notification_config_v2(configuration: &configuration::Configura
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_get_notification_config_payload);
+    req_builder = req_builder.json(&p_body_get_notification_config_payload);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -231,7 +231,7 @@ pub async fn get_notification_config_v2(configuration: &configuration::Configura
 /// List offset lifecycle event notification configurations. These are user-created notifications that trigger at a specified time offset relative to lifecycle events. Returns a maximum of 400 results per request. 
 pub async fn list_offset_notification_configs_v2(configuration: &configuration::Configuration, list_offset_notification_configs_payload: Option<models::ListOffsetNotificationConfigsPayload>) -> Result<models::ListOffsetNotificationConfigsV2200Response, Error<ListOffsetNotificationConfigsV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_list_offset_notification_configs_payload = list_offset_notification_configs_payload;
+    let p_body_list_offset_notification_configs_payload = list_offset_notification_configs_payload;
 
     let uri_str = format!("{}/v2/notifications/offset/list", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -242,7 +242,7 @@ pub async fn list_offset_notification_configs_v2(configuration: &configuration::
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_list_offset_notification_configs_payload);
+    req_builder = req_builder.json(&p_body_list_offset_notification_configs_payload);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

@@ -21,9 +21,9 @@ pub struct PagedUsageQueryPayload {
     #[serde(rename = "window_size")]
     pub window_size: WindowSize,
     #[serde(rename = "starting_on", skip_serializing_if = "Option::is_none")]
-    pub starting_on: Option<String>,
+    pub starting_on: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "group_by", skip_serializing_if = "Option::is_none")]
     pub group_by: Option<Box<models::PagedUsageQueryPayloadGroupBy>>,
     /// Group key to group usage by. Supports both simple (single key) and compound (multiple keys) group keys.  For simple group keys, provide a single key e.g. `[\"region\"]`. For compound group keys, provide multiple keys e.g. `[\"region\", \"team\"]`.  For streaming metrics, the keys must be defined as a simple or compound group key on the billable metric. For compound group keys, all keys must match an exact compound group key definition — partial matches are not allowed.  Cannot be used together with `group_by`. 

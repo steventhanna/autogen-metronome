@@ -22,7 +22,7 @@ pub struct CommitPaymentGateConfig {
     #[serde(rename = "stripe_config", skip_serializing_if = "Option::is_none")]
     pub stripe_config: Option<Box<models::CommitPaymentGateConfigStripeConfig>>,
     #[serde(rename = "precalculated_tax_config", skip_serializing_if = "Option::is_none")]
-    pub precalculated_tax_config: Option<Box<models::CommitPaymentGateConfigPrecalculatedTaxConfig>>,
+    pub precalculated_tax_config: Option<Box<models::PaymentGateConfigPrecalculatedTaxConfig>>,
 }
 
 impl CommitPaymentGateConfig {

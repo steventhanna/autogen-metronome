@@ -18,14 +18,14 @@ pub struct GetRatesPayload {
     pub rate_card_id: uuid::Uuid,
     /// inclusive starting point for the rates schedule
     #[serde(rename = "at")]
-    pub at: String,
+    pub at: chrono::DateTime<chrono::FixedOffset>,
     /// List of rate selectors, rates matching ANY of the selector will be included in the response Passing no selectors will result in all rates being returned.
     #[serde(rename = "selectors", skip_serializing_if = "Option::is_none")]
     pub selectors: Option<Vec<models::RateSelectorWithProductTags>>,
 }
 
 impl GetRatesPayload {
-    pub fn new(rate_card_id: uuid::Uuid, at: String) -> GetRatesPayload {
+    pub fn new(rate_card_id: uuid::Uuid, at: chrono::DateTime<chrono::FixedOffset>) -> GetRatesPayload {
         GetRatesPayload {
             rate_card_id,
             at,

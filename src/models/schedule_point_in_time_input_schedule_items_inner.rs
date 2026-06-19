@@ -24,11 +24,11 @@ pub struct SchedulePointInTimeInputScheduleItemsInner {
     pub amount: Option<f64>,
     /// timestamp of the scheduled event
     #[serde(rename = "timestamp")]
-    pub timestamp: String,
+    pub timestamp: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl SchedulePointInTimeInputScheduleItemsInner {
-    pub fn new(timestamp: String) -> SchedulePointInTimeInputScheduleItemsInner {
+    pub fn new(timestamp: chrono::DateTime<chrono::FixedOffset>) -> SchedulePointInTimeInputScheduleItemsInner {
         SchedulePointInTimeInputScheduleItemsInner {
             unit_price: None,
             quantity: None,

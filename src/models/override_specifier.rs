@@ -25,6 +25,8 @@ pub struct OverrideSpecifier {
     pub commit_ids: Option<Vec<String>>,
     #[serde(rename = "recurring_commit_ids", skip_serializing_if = "Option::is_none")]
     pub recurring_commit_ids: Option<Vec<String>>,
+    #[serde(rename = "any_commit_or_credit_ids", skip_serializing_if = "Option::is_none")]
+    pub any_commit_or_credit_ids: Option<Vec<String>>,
     #[serde(rename = "billing_frequency", skip_serializing_if = "Option::is_none")]
     pub billing_frequency: Option<BillingFrequency>,
     /// If provided, the specifier will not apply to product usage that matches the inclusion criteria and any of the excluding values.
@@ -41,6 +43,7 @@ impl OverrideSpecifier {
             presentation_group_values: None,
             commit_ids: None,
             recurring_commit_ids: None,
+            any_commit_or_credit_ids: None,
             billing_frequency: None,
             exclude: None,
         }

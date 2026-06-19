@@ -19,10 +19,10 @@ pub struct CustomerPlanDetail {
     pub name: String,
     /// The start date of the plan
     #[serde(rename = "starting_on")]
-    pub starting_on: String,
+    pub starting_on: chrono::DateTime<chrono::FixedOffset>,
     /// The end date of the plan
     #[serde(rename = "ending_before", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<Option<String>>,
+    pub ending_before: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     /// Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" }
     #[serde(rename = "custom_fields")]
     pub custom_fields: std::collections::HashMap<String, String>,
@@ -31,7 +31,7 @@ pub struct CustomerPlanDetail {
 }
 
 impl CustomerPlanDetail {
-    pub fn new(id: uuid::Uuid, name: String, starting_on: String, custom_fields: std::collections::HashMap<String, String>, customer_plan_id: uuid::Uuid) -> CustomerPlanDetail {
+    pub fn new(id: uuid::Uuid, name: String, starting_on: chrono::DateTime<chrono::FixedOffset>, custom_fields: std::collections::HashMap<String, String>, customer_plan_id: uuid::Uuid) -> CustomerPlanDetail {
         CustomerPlanDetail {
             id,
             name,

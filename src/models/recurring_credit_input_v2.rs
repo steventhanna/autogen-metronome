@@ -49,10 +49,10 @@ pub struct RecurringCreditInputV2 {
     pub rate_type: Option<RateType>,
     /// determines the start time for the first commit
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     /// Determines when the contract will stop creating recurring commits. optional
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "commit_duration")]
     pub commit_duration: Box<models::RecurringCommitOrCreditInputBaseCommitDuration>,
     /// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
@@ -70,7 +70,7 @@ pub struct RecurringCreditInputV2 {
 }
 
 impl RecurringCreditInputV2 {
-    pub fn new(product_id: uuid::Uuid, access_amount: models::RecurringCommitOrCreditInputBaseAccessAmount, priority: f64, starting_at: String, commit_duration: models::RecurringCommitOrCreditInputBaseCommitDuration) -> RecurringCreditInputV2 {
+    pub fn new(product_id: uuid::Uuid, access_amount: models::RecurringCommitOrCreditInputBaseAccessAmount, priority: f64, starting_at: chrono::DateTime<chrono::FixedOffset>, commit_duration: models::RecurringCommitOrCreditInputBaseCommitDuration) -> RecurringCreditInputV2 {
         RecurringCreditInputV2 {
             name: None,
             product_id,
@@ -132,6 +132,10 @@ pub enum RecurrenceFrequency {
     Weekly,
     #[serde(rename = "weekly")]
     Weekly2,
+    #[serde(rename = "DAILY")]
+    Daily,
+    #[serde(rename = "daily")]
+    Daily2,
 }
 
 impl Default for RecurrenceFrequency {

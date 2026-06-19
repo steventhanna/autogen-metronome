@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
-**contract_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
+**customer_id** | **uuid::Uuid** |  | 
+**contract_id** | **uuid::Uuid** |  | 
 **include_ledgers** | Option<**bool**> | Include commit ledgers in the response. Setting this flag may cause the query to be slower. | [optional]
 **include_balance** | Option<**bool**> | Include the balance of credits and commits in the response. Setting this flag may cause the query to be slower. | [optional]
 

@@ -25,9 +25,9 @@ pub struct RateSchedule {
     #[serde(rename = "pricing_group_values", skip_serializing_if = "Option::is_none")]
     pub pricing_group_values: Option<std::collections::HashMap<String, String>>,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "entitled")]
     pub entitled: bool,
     #[serde(rename = "rate")]
@@ -39,7 +39,7 @@ pub struct RateSchedule {
 }
 
 impl RateSchedule {
-    pub fn new(product_id: uuid::Uuid, product_name: String, product_tags: Vec<String>, product_custom_fields: std::collections::HashMap<String, String>, starting_at: String, entitled: bool, rate: models::Rate) -> RateSchedule {
+    pub fn new(product_id: uuid::Uuid, product_name: String, product_tags: Vec<String>, product_custom_fields: std::collections::HashMap<String, String>, starting_at: chrono::DateTime<chrono::FixedOffset>, entitled: bool, rate: models::Rate) -> RateSchedule {
         RateSchedule {
             product_id,
             product_name,

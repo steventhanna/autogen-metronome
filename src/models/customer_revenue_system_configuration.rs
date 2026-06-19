@@ -32,7 +32,7 @@ pub struct CustomerRevenueSystemConfiguration {
     #[serde(rename = "delivery_method_configuration", skip_serializing_if = "Option::is_none")]
     pub delivery_method_configuration: Option<std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "archived_at", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub archived_at: Option<Option<String>>,
+    pub archived_at: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
 }
 
 impl CustomerRevenueSystemConfiguration {

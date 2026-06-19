@@ -16,10 +16,10 @@ use serde::{Deserialize, Serialize};
 pub struct SchedulePointInTimeInputV2RecurringSchedule {
     /// RFC 3339 timestamp (inclusive).
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     /// RFC 3339 timestamp (exclusive).
     #[serde(rename = "ending_before")]
-    pub ending_before: String,
+    pub ending_before: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "frequency")]
     pub frequency: models::RecurringScheduleFrequencyV2,
     /// Unit price for the charge. Will be multiplied by quantity to determine the amount and must be specified with quantity. If specified amount cannot be provided.
@@ -37,7 +37,7 @@ pub struct SchedulePointInTimeInputV2RecurringSchedule {
 
 impl SchedulePointInTimeInputV2RecurringSchedule {
     /// Enter the unit price and quantity for the charge or instead only send the amount. If amount is sent, the unit price is assumed to be the amount and quantity is inferred to be 1.
-    pub fn new(starting_at: String, ending_before: String, frequency: models::RecurringScheduleFrequencyV2, amount_distribution: AmountDistribution) -> SchedulePointInTimeInputV2RecurringSchedule {
+    pub fn new(starting_at: chrono::DateTime<chrono::FixedOffset>, ending_before: chrono::DateTime<chrono::FixedOffset>, frequency: models::RecurringScheduleFrequencyV2, amount_distribution: AmountDistribution) -> SchedulePointInTimeInputV2RecurringSchedule {
         SchedulePointInTimeInputV2RecurringSchedule {
             starting_at,
             ending_before,

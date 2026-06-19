@@ -16,9 +16,9 @@ pub struct SubscriptionsUpdate {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "quantity_updates", skip_serializing_if = "Option::is_none")]
-    pub quantity_updates: Option<Vec<models::SubscriptionsUpdateQuantityUpdatesInner>>,
+    pub quantity_updates: Option<Vec<models::UpdateSubscriptionInputQuantityUpdatesInner>>,
     #[serde(rename = "seat_updates", skip_serializing_if = "Option::is_none")]
     pub seat_updates: Option<Box<models::SubscriptionSeatUpdateInput>>,
 }

@@ -19,20 +19,20 @@ pub struct ScheduleProServicesInvoiceV1Request {
     pub contract_id: uuid::Uuid,
     /// The date the invoice is issued
     #[serde(rename = "issued_at")]
-    pub issued_at: String,
+    pub issued_at: chrono::DateTime<chrono::FixedOffset>,
     /// The start date of the invoice header in Netsuite
     #[serde(rename = "netsuite_invoice_header_start", skip_serializing_if = "Option::is_none")]
-    pub netsuite_invoice_header_start: Option<String>,
+    pub netsuite_invoice_header_start: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// The end date of the invoice header in Netsuite
     #[serde(rename = "netsuite_invoice_header_end", skip_serializing_if = "Option::is_none")]
-    pub netsuite_invoice_header_end: Option<String>,
+    pub netsuite_invoice_header_end: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Each line requires an amount or both unit_price and quantity.
     #[serde(rename = "line_items")]
     pub line_items: Vec<models::ProServiceInvoiceLineItem>,
 }
 
 impl ScheduleProServicesInvoiceV1Request {
-    pub fn new(customer_id: uuid::Uuid, contract_id: uuid::Uuid, issued_at: String, line_items: Vec<models::ProServiceInvoiceLineItem>) -> ScheduleProServicesInvoiceV1Request {
+    pub fn new(customer_id: uuid::Uuid, contract_id: uuid::Uuid, issued_at: chrono::DateTime<chrono::FixedOffset>, line_items: Vec<models::ProServiceInvoiceLineItem>) -> ScheduleProServicesInvoiceV1Request {
         ScheduleProServicesInvoiceV1Request {
             customer_id,
             contract_id,

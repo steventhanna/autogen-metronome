@@ -15,14 +15,14 @@ use serde::{Deserialize, Serialize};
 pub struct SubscriptionBillingCycleConfig {
     /// The date this subscription's billing cycle is anchored to.
     #[serde(rename = "anchor_date")]
-    pub anchor_date: String,
+    pub anchor_date: chrono::DateTime<chrono::FixedOffset>,
     /// Controls whether this subscription consolidates onto usage invoices or gets its own scheduled invoice.
     #[serde(rename = "invoice_placement")]
     pub invoice_placement: InvoicePlacement,
 }
 
 impl SubscriptionBillingCycleConfig {
-    pub fn new(anchor_date: String, invoice_placement: InvoicePlacement) -> SubscriptionBillingCycleConfig {
+    pub fn new(anchor_date: chrono::DateTime<chrono::FixedOffset>, invoice_placement: InvoicePlacement) -> SubscriptionBillingCycleConfig {
         SubscriptionBillingCycleConfig {
             anchor_date,
             invoice_placement,

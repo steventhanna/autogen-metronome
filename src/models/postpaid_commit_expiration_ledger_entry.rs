@@ -16,13 +16,13 @@ pub struct PostpaidCommitExpirationLedgerEntry {
     #[serde(rename = "type")]
     pub r#type: Type,
     #[serde(rename = "timestamp")]
-    pub timestamp: String,
+    pub timestamp: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "amount")]
     pub amount: f64,
 }
 
 impl PostpaidCommitExpirationLedgerEntry {
-    pub fn new(r#type: Type, timestamp: String, amount: f64) -> PostpaidCommitExpirationLedgerEntry {
+    pub fn new(r#type: Type, timestamp: chrono::DateTime<chrono::FixedOffset>, amount: f64) -> PostpaidCommitExpirationLedgerEntry {
         PostpaidCommitExpirationLedgerEntry {
             r#type,
             timestamp,

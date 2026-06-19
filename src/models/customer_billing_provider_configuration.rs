@@ -32,11 +32,11 @@ pub struct CustomerBillingProviderConfiguration {
     #[serde(rename = "delivery_method_configuration")]
     pub delivery_method_configuration: std::collections::HashMap<String, serde_json::Value>,
     #[serde(rename = "archived_at", deserialize_with = "Option::deserialize")]
-    pub archived_at: Option<String>,
+    pub archived_at: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl CustomerBillingProviderConfiguration {
-    pub fn new(id: uuid::Uuid, billing_provider: models::BillingProviderType, customer_id: uuid::Uuid, configuration: std::collections::HashMap<String, serde_json::Value>, delivery_method_id: uuid::Uuid, delivery_method: models::BillingProviderDeliveryMethodType, delivery_method_configuration: std::collections::HashMap<String, serde_json::Value>, archived_at: Option<String>) -> CustomerBillingProviderConfiguration {
+    pub fn new(id: uuid::Uuid, billing_provider: models::BillingProviderType, customer_id: uuid::Uuid, configuration: std::collections::HashMap<String, serde_json::Value>, delivery_method_id: uuid::Uuid, delivery_method: models::BillingProviderDeliveryMethodType, delivery_method_configuration: std::collections::HashMap<String, serde_json::Value>, archived_at: Option<chrono::DateTime<chrono::FixedOffset>>) -> CustomerBillingProviderConfiguration {
         CustomerBillingProviderConfiguration {
             id,
             billing_provider,

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**scheduled_charge_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
+**scheduled_charge_id** | **uuid::Uuid** |  | 
 **netsuite_sales_order_id** | Option<**String**> |  | [optional]
 **invoice_schedule** | Option<[**models::UpdateInvoiceScheduleInput**](UpdateInvoiceScheduleInput.md)> |  | [optional]
 

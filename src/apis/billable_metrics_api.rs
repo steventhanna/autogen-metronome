@@ -63,7 +63,7 @@ pub enum UpdateBillableMetricV1Error {
 /// Use this endpoint to retire billable metrics that are no longer used. After a billable metric is archived, that billable metric can no longer be used in any new Products to define how that product should be metered. If you archive a billable metric that is already associated with a Product, the Product will continue to function as usual, metering based on the definition of the archived billable metric.   Archived billable metrics will be returned on the `getBillableMetric` and `listBillableMetrics` endpoints with a populated `archived_at` field. 
 pub async fn archive_billable_metric_v1(configuration: &configuration::Configuration, id: Option<models::Id>) -> Result<models::ArchiveAlertV1200Response, Error<ArchiveBillableMetricV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_body_id = id;
 
     let uri_str = format!("{}/v1/billable-metrics/archive", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -74,7 +74,7 @@ pub async fn archive_billable_metric_v1(configuration: &configuration::Configura
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_id);
+    req_builder = req_builder.json(&p_body_id);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -104,7 +104,7 @@ pub async fn archive_billable_metric_v1(configuration: &configuration::Configura
 /// Create billable metrics programmatically with this endpoint—an essential step in configuring your pricing and packaging in Metronome.  A billable metric is a customizable query that filters and aggregates events from your event stream. These metrics are continuously tracked as usage data enters Metronome through the ingestion pipeline. The ingestion process transforms raw usage data into actionable pricing metrics, enabling accurate metering and billing for your products.  ### Use this endpoint to:  - Create individual or multiple billable metrics as part of a setup workflow. - Automate the entire pricing configuration process, from metric creation to customer contract setup. - Define metrics using either standard filtering/aggregation or a custom SQL query.  ### Key response fields:  - The ID of the billable metric that was created - The created billable metric will be available to be used in Products, usage endpoints, and alerts.   ### Usage guidelines:  - Metrics defined using standard filtering and aggregation are Streaming billable metrics, which have been optimized for ultra low latency and high throughput workflows.  - Use SQL billable metrics if you require more flexible aggregation options. 
 pub async fn create_billable_metric_v1_v1(configuration: &configuration::Configuration, create_billable_metric_v1_payload: Option<models::CreateBillableMetricV1Payload>) -> Result<models::ArchiveAlertV1200Response, Error<CreateBillableMetricV1V1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_create_billable_metric_v1_payload = create_billable_metric_v1_payload;
+    let p_body_create_billable_metric_v1_payload = create_billable_metric_v1_payload;
 
     let uri_str = format!("{}/v1/billable-metrics/create", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -115,7 +115,7 @@ pub async fn create_billable_metric_v1_v1(configuration: &configuration::Configu
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_create_billable_metric_v1_payload);
+    req_builder = req_builder.json(&p_body_create_billable_metric_v1_payload);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -145,9 +145,9 @@ pub async fn create_billable_metric_v1_v1(configuration: &configuration::Configu
 /// Retrieves the complete configuration for a specific billable metric by its ID. Use this to review billable metric setup before associating it with products. Returns the metric's `name`, `event_type_filter`, `property_filters`, `aggregation_type`, `aggregation_key`, `group_keys`, `custom fields`, and `SQL query` (if it's a SQL billable metric).   Important:  - Archived billable metrics will include an `archived_at` timestamp; they no longer process new usage events but remain accessible for historical reference. 
 pub async fn get_billable_metric_v1(configuration: &configuration::Configuration, billable_metric_id: &str) -> Result<models::GetBillableMetricV1200Response, Error<GetBillableMetricV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_billable_metric_id = billable_metric_id;
+    let p_path_billable_metric_id = billable_metric_id;
 
-    let uri_str = format!("{}/v1/billable-metrics/{billable_metric_id}", configuration.base_path, billable_metric_id=crate::apis::urlencode(p_billable_metric_id));
+    let uri_str = format!("{}/v1/billable-metrics/{billable_metric_id}", configuration.base_path, billable_metric_id=crate::apis::urlencode(p_path_billable_metric_id));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -185,20 +185,20 @@ pub async fn get_billable_metric_v1(configuration: &configuration::Configuration
 /// Retrieves all billable metrics with their complete configurations. Use this for programmatic discovery and management of billable metrics, such as associating metrics to products and auditing for orphaned or archived metrics.  Important: Archived metrics are excluded by default; use `include_archived`=`true` parameter to include them. 
 pub async fn list_all_billable_metrics_v1(configuration: &configuration::Configuration, limit: Option<i32>, next_page: Option<&str>, include_archived: Option<bool>) -> Result<models::ListAllBillableMetricsV1200Response, Error<ListAllBillableMetricsV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_limit = limit;
-    let p_next_page = next_page;
-    let p_include_archived = include_archived;
+    let p_query_limit = limit;
+    let p_query_next_page = next_page;
+    let p_query_include_archived = include_archived;
 
     let uri_str = format!("{}/v1/billable-metrics", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_next_page {
+    if let Some(ref param_value) = p_query_next_page {
         req_builder = req_builder.query(&[("next_page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_include_archived {
+    if let Some(ref param_value) = p_query_include_archived {
         req_builder = req_builder.query(&[("include_archived", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -236,25 +236,25 @@ pub async fn list_all_billable_metrics_v1(configuration: &configuration::Configu
 /// Get all billable metrics available for a specific customer. Supports pagination and filtering by current plan status or archived metrics. Use this endpoint to see which metrics are being tracked for billing calculations for a given customer. 
 pub async fn list_billable_metrics_v1(configuration: &configuration::Configuration, customer_id: &str, limit: Option<i32>, next_page: Option<&str>, on_current_plan: Option<bool>, include_archived: Option<bool>) -> Result<models::ListBillableMetricsV1200Response, Error<ListBillableMetricsV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_customer_id = customer_id;
-    let p_limit = limit;
-    let p_next_page = next_page;
-    let p_on_current_plan = on_current_plan;
-    let p_include_archived = include_archived;
+    let p_path_customer_id = customer_id;
+    let p_query_limit = limit;
+    let p_query_next_page = next_page;
+    let p_query_on_current_plan = on_current_plan;
+    let p_query_include_archived = include_archived;
 
-    let uri_str = format!("{}/v1/customers/{customer_id}/billable-metrics", configuration.base_path, customer_id=crate::apis::urlencode(p_customer_id));
+    let uri_str = format!("{}/v1/customers/{customer_id}/billable-metrics", configuration.base_path, customer_id=crate::apis::urlencode(p_path_customer_id));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_next_page {
+    if let Some(ref param_value) = p_query_next_page {
         req_builder = req_builder.query(&[("next_page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_on_current_plan {
+    if let Some(ref param_value) = p_query_on_current_plan {
         req_builder = req_builder.query(&[("on_current_plan", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_include_archived {
+    if let Some(ref param_value) = p_query_include_archived {
         req_builder = req_builder.query(&[("include_archived", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -292,10 +292,10 @@ pub async fn list_billable_metrics_v1(configuration: &configuration::Configurati
 /// Updates only the display name of an existing billable metric. Use this to correct mistakes or apply standardized naming conventions across all billable metrics. Returns the billable metric ID to confirm the update.   Important: Only the name can be modified via this endpoint; configurations cannot be changed after creation.   #### Example workflow: If you need to make changes to a streaming billable metric, for example, Metronome supports easily rolling out these changes using a simple workflow: 1. Duplicate the billable metric 2. Make required changes 3. Save the metric 4. Navigate to the product you have associated with the incorrect metric 5. Schedule the product to reference the newly created metric on the appropriate date 
 pub async fn update_billable_metric_v1(configuration: &configuration::Configuration, billable_metric_id: &str, update_billable_metric_v1_request: Option<models::UpdateBillableMetricV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<UpdateBillableMetricV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_billable_metric_id = billable_metric_id;
-    let p_update_billable_metric_v1_request = update_billable_metric_v1_request;
+    let p_path_billable_metric_id = billable_metric_id;
+    let p_body_update_billable_metric_v1_request = update_billable_metric_v1_request;
 
-    let uri_str = format!("{}/v1/billable-metrics/{billable_metric_id}", configuration.base_path, billable_metric_id=crate::apis::urlencode(p_billable_metric_id));
+    let uri_str = format!("{}/v1/billable-metrics/{billable_metric_id}", configuration.base_path, billable_metric_id=crate::apis::urlencode(p_path_billable_metric_id));
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -304,7 +304,7 @@ pub async fn update_billable_metric_v1(configuration: &configuration::Configurat
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_update_billable_metric_v1_request);
+    req_builder = req_builder.json(&p_body_update_billable_metric_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

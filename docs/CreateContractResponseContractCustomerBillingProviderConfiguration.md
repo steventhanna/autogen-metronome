@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | Option<[**uuid::Uuid**](uuid::Uuid.md)> |  | [optional]
+**id** | Option<**uuid::Uuid**> |  | [optional]
 **billing_provider** | Option<[**models::BillingProviderType**](BillingProviderType.md)> |  | [optional]
 **delivery_method** | Option<[**models::BillingProviderDeliveryMethodType**](BillingProviderDeliveryMethodType.md)> |  | [optional]
 

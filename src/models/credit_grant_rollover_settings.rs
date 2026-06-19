@@ -16,7 +16,7 @@ use serde::{Deserialize, Serialize};
 pub struct CreditGrantRolloverSettings {
     /// The date to expire the rollover credits.
     #[serde(rename = "expires_at")]
-    pub expires_at: String,
+    pub expires_at: chrono::DateTime<chrono::FixedOffset>,
     /// The priority to give the rollover credit grant that gets created when a rollover happens.
     #[serde(rename = "priority")]
     pub priority: f64,
@@ -26,7 +26,7 @@ pub struct CreditGrantRolloverSettings {
 
 impl CreditGrantRolloverSettings {
     /// Configure a rollover for this credit grant so if it expires it rolls over a configured amount to a new credit grant. This feature is currently opt-in only. Contact Metronome to be added to the beta.
-    pub fn new(expires_at: String, priority: f64, rollover_amount: models::CreditGrantRolloverSettingsRolloverAmount) -> CreditGrantRolloverSettings {
+    pub fn new(expires_at: chrono::DateTime<chrono::FixedOffset>, priority: f64, rollover_amount: models::CreditGrantRolloverSettingsRolloverAmount) -> CreditGrantRolloverSettings {
         CreditGrantRolloverSettings {
             expires_at,
             priority,

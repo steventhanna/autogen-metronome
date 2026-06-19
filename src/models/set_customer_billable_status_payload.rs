@@ -19,11 +19,11 @@ pub struct SetCustomerBillableStatusPayload {
     pub billable_status: models::BillableStatus,
     /// For usage invoices, any invoices where the service periods starts on or after this date will be included. For all other invoice types, only invoices where the issue_date falls on or after this date will be included.
     #[serde(rename = "effective_at")]
-    pub effective_at: String,
+    pub effective_at: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl SetCustomerBillableStatusPayload {
-    pub fn new(customer_id: uuid::Uuid, billable_status: models::BillableStatus, effective_at: String) -> SetCustomerBillableStatusPayload {
+    pub fn new(customer_id: uuid::Uuid, billable_status: models::BillableStatus, effective_at: chrono::DateTime<chrono::FixedOffset>) -> SetCustomerBillableStatusPayload {
         SetCustomerBillableStatusPayload {
             customer_id,
             billable_status,

@@ -24,11 +24,11 @@ pub struct CommitAddInvoiceScheduleScheduleItemsInner {
     #[serde(rename = "quantity", skip_serializing_if = "Option::is_none")]
     pub quantity: Option<f64>,
     #[serde(rename = "timestamp")]
-    pub timestamp: String,
+    pub timestamp: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl CommitAddInvoiceScheduleScheduleItemsInner {
-    pub fn new(id: uuid::Uuid, timestamp: String) -> CommitAddInvoiceScheduleScheduleItemsInner {
+    pub fn new(id: uuid::Uuid, timestamp: chrono::DateTime<chrono::FixedOffset>) -> CommitAddInvoiceScheduleScheduleItemsInner {
         CommitAddInvoiceScheduleScheduleItemsInner {
             id,
             invoice_id: None,

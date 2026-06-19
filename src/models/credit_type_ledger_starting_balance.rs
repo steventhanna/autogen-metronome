@@ -21,11 +21,11 @@ pub struct CreditTypeLedgerStartingBalance {
     pub including_pending: f64,
     /// the starting_on request parameter (if supplied) or the first credit grant's effective_at date
     #[serde(rename = "effective_at")]
-    pub effective_at: String,
+    pub effective_at: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl CreditTypeLedgerStartingBalance {
-    pub fn new(excluding_pending: f64, including_pending: f64, effective_at: String) -> CreditTypeLedgerStartingBalance {
+    pub fn new(excluding_pending: f64, including_pending: f64, effective_at: chrono::DateTime<chrono::FixedOffset>) -> CreditTypeLedgerStartingBalance {
         CreditTypeLedgerStartingBalance {
             excluding_pending,
             including_pending,

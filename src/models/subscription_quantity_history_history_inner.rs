@@ -14,13 +14,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SubscriptionQuantityHistoryHistoryInner {
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "data")]
     pub data: Vec<models::SubscriptionQuantityHistoryHistoryInnerDataInner>,
 }
 
 impl SubscriptionQuantityHistoryHistoryInner {
-    pub fn new(starting_at: String, data: Vec<models::SubscriptionQuantityHistoryHistoryInnerDataInner>) -> SubscriptionQuantityHistoryHistoryInner {
+    pub fn new(starting_at: chrono::DateTime<chrono::FixedOffset>, data: Vec<models::SubscriptionQuantityHistoryHistoryInnerDataInner>) -> SubscriptionQuantityHistoryHistoryInner {
         SubscriptionQuantityHistoryHistoryInner {
             starting_at,
             data,

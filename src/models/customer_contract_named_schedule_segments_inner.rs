@@ -16,13 +16,13 @@ pub struct CustomerContractNamedScheduleSegmentsInner {
     #[serde(rename = "value", deserialize_with = "Option::deserialize")]
     pub value: Option<serde_json::Value>,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl CustomerContractNamedScheduleSegmentsInner {
-    pub fn new(value: Option<serde_json::Value>, starting_at: String) -> CustomerContractNamedScheduleSegmentsInner {
+    pub fn new(value: Option<serde_json::Value>, starting_at: chrono::DateTime<chrono::FixedOffset>) -> CustomerContractNamedScheduleSegmentsInner {
         CustomerContractNamedScheduleSegmentsInner {
             value,
             starting_at,

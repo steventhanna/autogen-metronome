@@ -15,10 +15,10 @@ use serde::{Deserialize, Serialize};
 pub struct SpendBreakdownInvoicesQueryPayload {
     /// RFC 3339 timestamp. Breakdowns will only be returned for time windows that start on or after this time.
     #[serde(rename = "starting_on")]
-    pub starting_on: String,
+    pub starting_on: chrono::DateTime<chrono::FixedOffset>,
     /// RFC 3339 timestamp. Breakdowns will only be returned for time windows that end on or before this time.
     #[serde(rename = "ending_before")]
-    pub ending_before: String,
+    pub ending_before: chrono::DateTime<chrono::FixedOffset>,
     /// If set, all zero quantity line items will be filtered out of the response.
     #[serde(rename = "skip_zero_qty_line_items", skip_serializing_if = "Option::is_none")]
     pub skip_zero_qty_line_items: Option<bool>,
@@ -46,7 +46,7 @@ pub struct SpendBreakdownInvoicesQueryPayload {
 }
 
 impl SpendBreakdownInvoicesQueryPayload {
-    pub fn new(starting_on: String, ending_before: String) -> SpendBreakdownInvoicesQueryPayload {
+    pub fn new(starting_on: chrono::DateTime<chrono::FixedOffset>, ending_before: chrono::DateTime<chrono::FixedOffset>) -> SpendBreakdownInvoicesQueryPayload {
         SpendBreakdownInvoicesQueryPayload {
             starting_on,
             ending_before,

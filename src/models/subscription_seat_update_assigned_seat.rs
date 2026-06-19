@@ -17,11 +17,11 @@ pub struct SubscriptionSeatUpdateAssignedSeat {
     pub seat_ids: Vec<String>,
     /// Assigned seats will be added/removed starting at this date.
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl SubscriptionSeatUpdateAssignedSeat {
-    pub fn new(seat_ids: Vec<String>, starting_at: String) -> SubscriptionSeatUpdateAssignedSeat {
+    pub fn new(seat_ids: Vec<String>, starting_at: chrono::DateTime<chrono::FixedOffset>) -> SubscriptionSeatUpdateAssignedSeat {
         SubscriptionSeatUpdateAssignedSeat {
             seat_ids,
             starting_at,

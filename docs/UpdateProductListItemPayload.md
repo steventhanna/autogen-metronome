@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**product_id** | [**uuid::Uuid**](uuid::Uuid.md) | ID of the product to update | 
+**product_id** | **uuid::Uuid** | ID of the product to update | 
 **name** | Option<**String**> | displayed on invoices. If not provided, defaults to product's current name. | [optional]
-**starting_at** | **String** | Timestamp representing when the update should go into effect. It must be on an hour boundary (e.g. 1:00, not 1:30). | 
+**starting_at** | **chrono::DateTime<chrono::FixedOffset>** | Timestamp representing when the update should go into effect. It must be on an hour boundary (e.g. 1:00, not 1:30). | 
 **is_refundable** | Option<**bool**> | Defaults to product's current refundability status. This field's availability is dependent on your client's configuration. | [optional]
 **exclude_free_usage** | Option<**bool**> | Beta feature only available for composite products. If true, products with $0 will not be included when computing composite usage. Defaults to false | [optional]
 **include_composite_spend** | Option<**bool**> | Only for composite products. If true, allows a composite to incorporate spend from other composite products. Defaults to false | [optional]
-**billable_metric_id** | Option<[**uuid::Uuid**](uuid::Uuid.md)> | Available for USAGE products only. If not provided, defaults to product's current billable metric. | [optional]
-**sql_breakdown_granularity** | Option<**String**> | Defines the breakdown behavior when calculating usage from SQL Billable Metrics. If set to 'service_period' (default), the usage will be evaluated once for all events the invoice service period and the usage will be applied at the last instant of the invoice. If set to 'hour', it will be broken down and evaluated for each hour. For most use cases, 'hour' is recommended. The setting has no effect for Streaming Billable Metrics. | [optional]
+**billable_metric_id** | Option<**uuid::Uuid**> | Available for USAGE products only. If not provided, defaults to product's current billable metric. | [optional]
+**sql_breakdown_granularity** | Option<**SqlBreakdownGranularity**> | Defines the breakdown behavior when calculating usage from SQL Billable Metrics. If set to 'service_period' (default), the usage will be evaluated once for all events the invoice service period and the usage will be applied at the last instant of the invoice. If set to 'hour', it will be broken down and evaluated for each hour. For most use cases, 'hour' is recommended. The setting has no effect for Streaming Billable Metrics. (enum: HOUR, hour, SERVICE_PERIOD, service_period) | [optional]
 **netsuite_internal_item_id** | Option<**String**> | If not provided, defaults to product's current netsuite_internal_item_id. This field's availability is dependent on your client's configuration. | [optional]
 **netsuite_overage_item_id** | Option<**String**> | Available for USAGE and COMPOSITE products only. If not provided, defaults to product's current netsuite_overage_item_id. This field's availability is dependent on your client's configuration. | [optional]
-**composite_product_ids** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> | Available for COMPOSITE products only. If not provided, defaults to product's current composite_product_ids. | [optional]
+**composite_product_ids** | Option<**Vec<uuid::Uuid>**> | Available for COMPOSITE products only. If not provided, defaults to product's current composite_product_ids. | [optional]
 **quantity_conversion** | Option<[**models::QuantityConversion**](QuantityConversion.md)> |  | [optional]
 **quantity_rounding** | Option<[**models::QuantityRounding**](QuantityRounding.md)> |  | [optional]
 **tags** | Option<**Vec<String>**> | If not provided, defaults to product's current tags | [optional]

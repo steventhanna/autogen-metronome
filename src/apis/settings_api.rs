@@ -61,7 +61,7 @@ pub enum UpsertAvalaraCredentialsV1Error {
 /// Lists all configured billing providers and their delivery method configurations for your account. Returns provider details, delivery method IDs, and configuration settings needed for mapping individual customer contracts to billing integrations. 
 pub async fn list_configured_billing_providers_v1(configuration: &configuration::Configuration, list_configured_billing_providers_v1_request: Option<models::ListConfiguredBillingProvidersV1Request>) -> Result<models::ListConfiguredBillingProvidersV1200Response, Error<ListConfiguredBillingProvidersV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_list_configured_billing_providers_v1_request = list_configured_billing_providers_v1_request;
+    let p_body_list_configured_billing_providers_v1_request = list_configured_billing_providers_v1_request;
 
     let uri_str = format!("{}/v1/listConfiguredBillingProviders", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -72,7 +72,7 @@ pub async fn list_configured_billing_providers_v1(configuration: &configuration:
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_list_configured_billing_providers_v1_request);
+    req_builder = req_builder.json(&p_body_list_configured_billing_providers_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -102,16 +102,16 @@ pub async fn list_configured_billing_providers_v1(configuration: &configuration:
 /// List all pricing units. All fiat currency types (for example, USD or GBP) will be included, as well as any custom pricing units that were configured. Custom pricing units can be used to charge for usage in a non-fiat pricing unit, for example AI credits.  Note: The USD (cents) pricing unit is 2714e483-4ff1-48e4-9e25-ac732e8f24f2. 
 pub async fn list_credit_types_v1(configuration: &configuration::Configuration, limit: Option<i32>, next_page: Option<&str>) -> Result<models::ListCreditTypesV1200Response, Error<ListCreditTypesV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_limit = limit;
-    let p_next_page = next_page;
+    let p_query_limit = limit;
+    let p_query_next_page = next_page;
 
     let uri_str = format!("{}/v1/credit-types/list", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_next_page {
+    if let Some(ref param_value) = p_query_next_page {
         req_builder = req_builder.query(&[("next_page", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -149,7 +149,7 @@ pub async fn list_credit_types_v1(configuration: &configuration::Configuration, 
 /// Set up account-level configuration for a billing provider. Once configured, individual contracts across customers can be mapped to this configuration using the returned delivery_method_id. 
 pub async fn set_up_billing_provider_v1(configuration: &configuration::Configuration, set_up_billing_provider_v1_request: Option<models::SetUpBillingProviderV1Request>) -> Result<models::SetUpBillingProviderV1200Response, Error<SetUpBillingProviderV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_set_up_billing_provider_v1_request = set_up_billing_provider_v1_request;
+    let p_body_set_up_billing_provider_v1_request = set_up_billing_provider_v1_request;
 
     let uri_str = format!("{}/v1/setUpBillingProvider", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -160,7 +160,7 @@ pub async fn set_up_billing_provider_v1(configuration: &configuration::Configura
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_set_up_billing_provider_v1_request);
+    req_builder = req_builder.json(&p_body_set_up_billing_provider_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -190,7 +190,7 @@ pub async fn set_up_billing_provider_v1(configuration: &configuration::Configura
 /// Set the Anrok API token for some specified delivery_method_ids, which can be found in the `/listConfiguredBillingProviders` response. This maps the Anrok key to the appropriate billing entity. These API tokens are only used for Threshold Billing workflows today. 
 pub async fn upsert_anrok_api_token_v1(configuration: &configuration::Configuration, upsert_anrok_api_token_v1_request: Option<models::UpsertAnrokApiTokenV1Request>) -> Result<models::UpsertAnrokApiTokenV1200Response, Error<UpsertAnrokApiTokenV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_upsert_anrok_api_token_v1_request = upsert_anrok_api_token_v1_request;
+    let p_body_upsert_anrok_api_token_v1_request = upsert_anrok_api_token_v1_request;
 
     let uri_str = format!("{}/v1/upsertAnrokApiToken", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -201,7 +201,7 @@ pub async fn upsert_anrok_api_token_v1(configuration: &configuration::Configurat
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_upsert_anrok_api_token_v1_request);
+    req_builder = req_builder.json(&p_body_upsert_anrok_api_token_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -231,7 +231,7 @@ pub async fn upsert_anrok_api_token_v1(configuration: &configuration::Configurat
 /// Set the Avalara credentials for some specified `delivery_method_ids`, which can be found in the `/listConfiguredBillingProviders` response. This maps the Avalara credentials to the appropriate billing entity. These credentials are only used for PLG Invoicing today. 
 pub async fn upsert_avalara_credentials_v1(configuration: &configuration::Configuration, upsert_avalara_credentials_v1_request: Option<models::UpsertAvalaraCredentialsV1Request>) -> Result<serde_json::Value, Error<UpsertAvalaraCredentialsV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_upsert_avalara_credentials_v1_request = upsert_avalara_credentials_v1_request;
+    let p_body_upsert_avalara_credentials_v1_request = upsert_avalara_credentials_v1_request;
 
     let uri_str = format!("{}/v1/upsertAvalaraCredentials", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -242,7 +242,7 @@ pub async fn upsert_avalara_credentials_v1(configuration: &configuration::Config
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_upsert_avalara_credentials_v1_request);
+    req_builder = req_builder.json(&p_body_upsert_avalara_credentials_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

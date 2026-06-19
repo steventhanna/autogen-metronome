@@ -23,13 +23,13 @@ pub struct UsageBatchQueryPayload {
     #[serde(rename = "window_size")]
     pub window_size: WindowSize,
     #[serde(rename = "starting_on")]
-    pub starting_on: String,
+    pub starting_on: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "ending_before")]
-    pub ending_before: String,
+    pub ending_before: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl UsageBatchQueryPayload {
-    pub fn new(window_size: WindowSize, starting_on: String, ending_before: String) -> UsageBatchQueryPayload {
+    pub fn new(window_size: WindowSize, starting_on: chrono::DateTime<chrono::FixedOffset>, ending_before: chrono::DateTime<chrono::FixedOffset>) -> UsageBatchQueryPayload {
         UsageBatchQueryPayload {
             customer_ids: None,
             billable_metrics: None,

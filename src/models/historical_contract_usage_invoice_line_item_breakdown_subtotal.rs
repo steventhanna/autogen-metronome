@@ -14,15 +14,15 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct HistoricalContractUsageInvoiceLineItemBreakdownSubtotal {
     #[serde(rename = "inclusive_start_date")]
-    pub inclusive_start_date: String,
+    pub inclusive_start_date: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "exclusive_end_date")]
-    pub exclusive_end_date: String,
+    pub exclusive_end_date: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "quantity")]
     pub quantity: f64,
 }
 
 impl HistoricalContractUsageInvoiceLineItemBreakdownSubtotal {
-    pub fn new(inclusive_start_date: String, exclusive_end_date: String, quantity: f64) -> HistoricalContractUsageInvoiceLineItemBreakdownSubtotal {
+    pub fn new(inclusive_start_date: chrono::DateTime<chrono::FixedOffset>, exclusive_end_date: chrono::DateTime<chrono::FixedOffset>, quantity: f64) -> HistoricalContractUsageInvoiceLineItemBreakdownSubtotal {
         HistoricalContractUsageInvoiceLineItemBreakdownSubtotal {
             inclusive_start_date,
             exclusive_end_date,

@@ -19,7 +19,7 @@ pub struct CreateContractResponseContract {
     #[serde(rename = "customer_id")]
     pub customer_id: uuid::Uuid,
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "created_by")]
     pub created_by: String,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
@@ -33,9 +33,9 @@ pub struct CreateContractResponseContract {
     #[serde(rename = "rate_card_id", skip_serializing_if = "Option::is_none")]
     pub rate_card_id: Option<uuid::Uuid>,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "net_payment_terms_days", skip_serializing_if = "Option::is_none")]
     pub net_payment_terms_days: Option<f64>,
     /// Defaults to LOWEST_MULTIPLIER, which applies the greatest discount to list prices automatically. EXPLICIT prioritization requires specifying priorities for each multiplier; the one with the lowest priority value will be prioritized first.
@@ -81,7 +81,7 @@ pub struct CreateContractResponseContract {
 
 impl CreateContractResponseContract {
     /// The created contract.
-    pub fn new(id: uuid::Uuid, customer_id: uuid::Uuid, created_at: String, created_by: String, starting_at: String, usage_statement_schedule: models::UsageStatementSchedule, usage_filter: Vec<models::CreateContractResponseContractUsageFilterInner>, commits: Vec<models::Commit>, overrides: Vec<models::Override>, scheduled_charges: Vec<models::ScheduledCharge>, transitions: Vec<models::ContractTransition>) -> CreateContractResponseContract {
+    pub fn new(id: uuid::Uuid, customer_id: uuid::Uuid, created_at: chrono::DateTime<chrono::FixedOffset>, created_by: String, starting_at: chrono::DateTime<chrono::FixedOffset>, usage_statement_schedule: models::UsageStatementSchedule, usage_filter: Vec<models::CreateContractResponseContractUsageFilterInner>, commits: Vec<models::Commit>, overrides: Vec<models::Override>, scheduled_charges: Vec<models::ScheduledCharge>, transitions: Vec<models::ContractTransition>) -> CreateContractResponseContract {
         CreateContractResponseContract {
             id,
             customer_id,

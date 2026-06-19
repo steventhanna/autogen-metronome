@@ -16,7 +16,7 @@ pub struct Commit {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
     #[serde(rename = "contract", skip_serializing_if = "Option::is_none")]
-    pub contract: Option<Box<models::VoidInvoiceV1200ResponseData>>,
+    pub contract: Option<Box<models::VoidInvoiceV1Request>>,
     #[serde(rename = "type")]
     pub r#type: Type,
     #[serde(rename = "rate_type", skip_serializing_if = "Option::is_none")]
@@ -33,7 +33,7 @@ pub struct Commit {
     #[serde(rename = "invoice_schedule", skip_serializing_if = "Option::is_none")]
     pub invoice_schedule: Option<Box<models::SchedulePointInTime>>,
     #[serde(rename = "invoice_contract", skip_serializing_if = "Option::is_none")]
-    pub invoice_contract: Option<Box<models::CommitInvoiceContract>>,
+    pub invoice_contract: Option<Box<models::VoidInvoiceV1Request>>,
     /// The ID of the recurring commit that this commit was generated from, if applicable.
     #[serde(rename = "recurring_commit_id", skip_serializing_if = "Option::is_none")]
     pub recurring_commit_id: Option<uuid::Uuid>,
@@ -77,18 +77,21 @@ pub struct Commit {
     pub uniqueness_key: Option<String>,
     /// RFC 3339 timestamp indicating when the commit was archived. If not provided, the commit is not archived.
     #[serde(rename = "archived_at", skip_serializing_if = "Option::is_none")]
-    pub archived_at: Option<String>,
+    pub archived_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "hierarchy_configuration", skip_serializing_if = "Option::is_none")]
     pub hierarchy_configuration: Option<Box<models::CommitHierarchyConfiguration>>,
     #[serde(rename = "spend_tracker_attributes", skip_serializing_if = "Option::is_none")]
     pub spend_tracker_attributes: Option<Box<models::SpendTrackerAttributes>>,
     /// Timestamp of when the commit was created. - Recurring commits: latter of commit service period date and parent commit start date - Rollover commits: when the new contract started 
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
+    /// The actor who created this commit. Omitted for system-generated commits such as recurring commits, rollover commits, and threshold commits.
+    #[serde(rename = "created_by", skip_serializing_if = "Option::is_none")]
+    pub created_by: Option<String>,
 }
 
 impl Commit {
-    pub fn new(id: uuid::Uuid, r#type: Type, product: models::SubscriptionRateProduct, created_at: String) -> Commit {
+    pub fn new(id: uuid::Uuid, r#type: Type, product: models::SubscriptionRateProduct, created_at: chrono::DateTime<chrono::FixedOffset>) -> Commit {
         Commit {
             id,
             contract: None,
@@ -120,6 +123,7 @@ impl Commit {
             hierarchy_configuration: None,
             spend_tracker_attributes: None,
             created_at,
+            created_by: None,
         }
     }
 }

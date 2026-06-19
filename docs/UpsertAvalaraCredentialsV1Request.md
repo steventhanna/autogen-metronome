@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **delivery_method_ids** | **Vec<String>** | The delivery method IDs of the billing provider configurations to update, can be found in the response of the `/listConfiguredBillingProviders` endpoint. | 
-**avalara_environment** | **String** | The Avalara environment to use (SANDBOX or PRODUCTION). | 
+**avalara_environment** | **AvalaraEnvironment** | The Avalara environment to use (SANDBOX or PRODUCTION). (enum: PRODUCTION, SANDBOX) | 
 **avalara_username** | **String** | The username for the Avalara account. | 
 **avalara_password** | **String** | The password for the Avalara account. | 
 **commit_transactions** | Option<**bool**> | Commit transactions if you want Metronome tax calculations used for reporting and tax filings. | [optional]

@@ -6,10 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **billing_provider_type** | [**models::BillingProviderType**](BillingProviderType.md) |  | 
 **invoice_id** | Option<**String**> |  | [optional]
-**issued_at_timestamp** | Option<**String**> |  | [optional]
+**issued_at_timestamp** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **external_status** | Option<[**models::ExternalInvoiceStatus**](ExternalInvoiceStatus.md)> |  | [optional]
 **pdf_url** | Option<**String**> | A URL to the PDF of the invoice, if available from the billing provider. | [optional]
-**tax** | Option<[**models::ExternalInvoiceTax**](ExternalInvoice_tax.md)> |  | [optional]
+**tax** | Option<[**models::ExternalInvoiceTax**](ExternalInvoiceTax.md)> |  | [optional]
 **invoiced_total** | Option<**f64**> | The total amount invoiced, if available from the billing provider. | [optional]
 **invoiced_sub_total** | Option<**f64**> | The subtotal amount invoiced, if available from the billing provider. | [optional]
 **billing_provider_error** | Option<**String**> | Error message from the billing provider, if available. | [optional]

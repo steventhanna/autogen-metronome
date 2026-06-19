@@ -17,7 +17,7 @@ pub struct Contract {
     pub id: uuid::Uuid,
     /// RFC 3339 timestamp indicating when the contract was archived. If not returned, the contract is not archived.
     #[serde(rename = "archived_at", skip_serializing_if = "Option::is_none")]
-    pub archived_at: Option<String>,
+    pub archived_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "customer_id")]
     pub customer_id: uuid::Uuid,
     /// ID of the package this contract was created from, if applicable.

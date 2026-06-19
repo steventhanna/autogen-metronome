@@ -123,8 +123,8 @@ Retrieve granular time-series breakdowns of invoice data at hourly or daily inte
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **customer_id** | **uuid::Uuid** |  | [required] |
-**starting_on** | **String** | RFC 3339 timestamp. Breakdowns will only be returned for time windows that start on or after this time. | [required] |
-**ending_before** | **String** | RFC 3339 timestamp. Breakdowns will only be returned for time windows that end on or before this time. | [required] |
+**starting_on** | **chrono::DateTime<chrono::FixedOffset>** | RFC 3339 timestamp. Breakdowns will only be returned for time windows that start on or after this time. | [required] |
+**ending_before** | **chrono::DateTime<chrono::FixedOffset>** | RFC 3339 timestamp. Breakdowns will only be returned for time windows that end on or before this time. | [required] |
 **next_page** | Option<**String**> | Cursor that indicates where the next page of results should start. |  |
 **status** | Option<**String**> | Invoice status, e.g. DRAFT or FINALIZED |  |
 **skip_zero_qty_line_items** | Option<**bool**> | If set, all zero quantity line items will be filtered out of the response |  |
@@ -151,7 +151,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_invoices_v1
 
-> models::ListInvoicesV1200Response list_invoices_v1(customer_id, limit, next_page, status, r#type, skip_zero_qty_line_items, sort, credit_type_id, contract_id, starting_on, ending_before)
+> models::ListInvoicesV1200Response list_invoices_v1(customer_id, limit, next_page, status, r#type, skip_zero_qty_line_items, sort, credit_type_id, contract_id, starting_on, ending_before, webhook_notification_id)
 List invoices
 
 Retrieves a paginated list of invoices for a specific customer, with flexible filtering options to narrow results by status, date range, credit type, and more. This endpoint provides a comprehensive view of a customer's billing history and current charges, supporting both real-time billing dashboards and historical reporting needs.  ### Use this endpoint to: - Display historical invoice details in customer-facing dashboards or billing portals. - Retrieve current month draft invoices to show customers their month-to-date spend. - Access finalized invoices for historical billing records and payment reconciliation. - Validate customer pricing and credit applications for customer support queries.  - Generate financial reports by filtering invoices within specific date ranges  ### Key response fields: Array of invoice objects containing: - Invoice ID and status (DRAFT, FINALIZED, VOID) - Invoice type (USAGE, SCHEDULED) - Billing period start and end dates - Issue date and due date - Total amount, subtotal, and amount due - Applied credits summary - Contract ID reference - External billing provider status (if integrated with Stripe, etc.) - Pagination metadata `next_page` cursor  ### Usage guidelines: - The endpoint returns invoice summaries; use the Get Invoice endpoint for detailed line items - Draft invoices are continuously updated as new usage is reported and will show real-time spend - Results are ordered by creation date descending by default (newest first) - When filtering by date range, the filter applies to the billing period, not the issue date - For customers with many invoices, implement pagination to ensure all results are retrieved External billing provider statuses (like Stripe payment status) are included when applicable - Voided invoices are included in results by default unless filtered out by status 
@@ -170,8 +170,9 @@ Name | Type | Description  | Required | Notes
 **sort** | Option<**String**> | Invoice sort order by issued_at, e.g. date_asc or date_desc.  Defaults to date_asc. |  |
 **credit_type_id** | Option<**String**> | Only return invoices for the specified credit type |  |
 **contract_id** | Option<**uuid::Uuid**> | Only return invoices for the specified contract |  |
-**starting_on** | Option<**String**> | RFC 3339 timestamp (inclusive). Invoices will only be returned for billing periods that start at or after this time. |  |
-**ending_before** | Option<**String**> | RFC 3339 timestamp (exclusive). Invoices will only be returned for billing periods that end before this time. |  |
+**starting_on** | Option<**chrono::DateTime<chrono::FixedOffset>**> | RFC 3339 timestamp (inclusive). Invoices will only be returned for billing periods that start at or after this time. |  |
+**ending_before** | Option<**chrono::DateTime<chrono::FixedOffset>**> | RFC 3339 timestamp (exclusive). Invoices will only be returned for billing periods that end before this time. |  |
+**webhook_notification_id** | Option<**String**> | Indicates that this API request was triggered by a webhook notification with the provided ID. |  |
 
 ### Return type
 
@@ -254,7 +255,7 @@ Name | Type | Description  | Required | Notes
 
 ## regenerate_invoice_v1
 
-> models::RegenerateInvoiceV1200Response regenerate_invoice_v1(regenerate_invoice_v1_request)
+> models::VoidInvoiceV1200Response regenerate_invoice_v1(void_invoice_v1_request)
 Regenerate an invoice
 
 This endpoint regenerates a voided invoice and recalculates the invoice based on up-to-date rates, available balances, and other fees regardless of the billing period.  ### Use this endpoint to: Recalculate an invoice with updated rate terms, available balance, and fees to correct billing disputes or discrepancies  ### Key response fields: The regenerated invoice id, which is distinct from the previously voided invoice.  ### Usage guidelines: If an invoice is attached to a contract with a billing provider on it, the regenerated invoice will be distributed based on the configuration. 
@@ -264,11 +265,11 @@ This endpoint regenerates a voided invoice and recalculates the invoice based on
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**regenerate_invoice_v1_request** | Option<[**RegenerateInvoiceV1Request**](RegenerateInvoiceV1Request.md)> | The invoice id to regenerate |  |
+**void_invoice_v1_request** | Option<[**VoidInvoiceV1Request**](VoidInvoiceV1Request.md)> | The invoice id to regenerate |  |
 
 ### Return type
 
-[**models::RegenerateInvoiceV1200Response**](regenerateInvoice_v1_200_response.md)
+[**models::VoidInvoiceV1200Response**](voidInvoice_v1_200_response.md)
 
 ### Authorization
 

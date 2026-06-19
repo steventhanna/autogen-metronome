@@ -15,10 +15,10 @@ use serde::{Deserialize, Serialize};
 pub struct SubscriptionSeatsScheduleEntry {
     /// The start time of this seat schedule period
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     /// The end time of this seat schedule period (null if ongoing)
     #[serde(rename = "ending_before", deserialize_with = "Option::deserialize")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Total number of assigned and unassigned seats in this period
     #[serde(rename = "total_quantity")]
     pub total_quantity: i32,
@@ -28,7 +28,7 @@ pub struct SubscriptionSeatsScheduleEntry {
 }
 
 impl SubscriptionSeatsScheduleEntry {
-    pub fn new(starting_at: String, ending_before: Option<String>, total_quantity: i32, assigned_seat_ids: Vec<String>) -> SubscriptionSeatsScheduleEntry {
+    pub fn new(starting_at: chrono::DateTime<chrono::FixedOffset>, ending_before: Option<chrono::DateTime<chrono::FixedOffset>>, total_quantity: i32, assigned_seat_ids: Vec<String>) -> SubscriptionSeatsScheduleEntry {
         SubscriptionSeatsScheduleEntry {
             starting_at,
             ending_before,

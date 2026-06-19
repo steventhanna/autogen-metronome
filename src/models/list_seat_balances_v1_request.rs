@@ -25,6 +25,9 @@ pub struct ListSeatBalancesV1Request {
     /// Optional filter to only include specific seats.
     #[serde(rename = "seat_ids", skip_serializing_if = "Option::is_none")]
     pub seat_ids: Option<Vec<String>>,
+    /// When true, any seat_ids not found in contract subscriptions will be silently omitted from the response instead of returning a 400 error.
+    #[serde(rename = "skip_missing_seat_ids", skip_serializing_if = "Option::is_none")]
+    pub skip_missing_seat_ids: Option<bool>,
     /// Include credits and commits in the response
     #[serde(rename = "include_credits_and_commits", skip_serializing_if = "Option::is_none")]
     pub include_credits_and_commits: Option<bool>,
@@ -33,13 +36,13 @@ pub struct ListSeatBalancesV1Request {
     pub include_ledgers: Option<bool>,
     /// Include only commits or credits with access effective on or after this date (cannot be used with covering_date).
     #[serde(rename = "starting_at", skip_serializing_if = "Option::is_none")]
-    pub starting_at: Option<String>,
+    pub starting_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Include only commits or credits with access effective on or before this date (cannot be used with covering_date).
     #[serde(rename = "effective_before", skip_serializing_if = "Option::is_none")]
-    pub effective_before: Option<String>,
+    pub effective_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Include only commits or credits with access that cover this specific date (cannot be used with starting_at or ending_before).
     #[serde(rename = "covering_date", skip_serializing_if = "Option::is_none")]
-    pub covering_date: Option<String>,
+    pub covering_date: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Maximum number of seats to return. Range: 1-100. Default: 25. When `include_credits_and_commits = true`, if the total commits/credits across all seats exceeds 100, a limit of 100 applies to the total credits and commits. Seats are included greedily to maximize the number of seats returned. Example: if seat 1 has 98 commits and seat 2 has 10 commits, both seats will be returned (total: 108 commits). Each returned seat includes all of its associated credits and commits. 
     #[serde(rename = "limit", skip_serializing_if = "Option::is_none")]
     pub limit: Option<i32>,
@@ -55,6 +58,7 @@ impl ListSeatBalancesV1Request {
             contract_id,
             subscription_ids: None,
             seat_ids: None,
+            skip_missing_seat_ids: None,
             include_credits_and_commits: None,
             include_ledgers: None,
             starting_at: None,

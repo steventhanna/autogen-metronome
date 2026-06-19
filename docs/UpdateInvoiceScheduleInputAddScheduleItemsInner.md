@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**timestamp** | **String** |  | 
+**timestamp** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **amount** | Option<**f64**> |  | [optional]
 **quantity** | Option<**f64**> |  | [optional]
 **unit_price** | Option<**f64**> |  | [optional]

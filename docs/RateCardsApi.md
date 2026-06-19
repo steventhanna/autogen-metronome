@@ -23,7 +23,7 @@ Method | HTTP request | Description
 > models::AddRateV1200Response add_rate_v1(add_rate_payload)
 Add a rate
 
-Add a new rate 
+Add a new rate  This endpoint is heavily rate limited. For adding multiple rates, using the [addRates](https://docs.metronome.com/api-reference/rate-cards/add-rates) endpoint is strongly encouraged. 
 
 ### Parameters
 

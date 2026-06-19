@@ -24,11 +24,11 @@ pub struct SchedulePointInTimeScheduleItemsInner {
     #[serde(rename = "quantity")]
     pub quantity: f64,
     #[serde(rename = "timestamp")]
-    pub timestamp: String,
+    pub timestamp: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl SchedulePointInTimeScheduleItemsInner {
-    pub fn new(id: uuid::Uuid, amount: f64, unit_price: f64, quantity: f64, timestamp: String) -> SchedulePointInTimeScheduleItemsInner {
+    pub fn new(id: uuid::Uuid, amount: f64, unit_price: f64, quantity: f64, timestamp: chrono::DateTime<chrono::FixedOffset>) -> SchedulePointInTimeScheduleItemsInner {
         SchedulePointInTimeScheduleItemsInner {
             id,
             invoice_id: None,
