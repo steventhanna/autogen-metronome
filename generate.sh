@@ -12,6 +12,21 @@ sedi() {
 
 SPEC_URL="https://api.metronome.com/v1/docs/openapi"
 
+# Pinned generator version. The JAR is fetched directly from Maven Central (cached under
+# ~/.cache) so local and CI runs are byte-for-byte identical — no dependence on a brew/npm
+# install whose default generator version drifts. Bumping this is a deliberate act: it can
+# change generated output (e.g. the String -> chrono date-time switch in 7.15+, which requires
+# the chrono dependency in Cargo.toml). Regenerate and review the diff when you change it.
+GENERATOR_VERSION="${GENERATOR_VERSION:-7.23.0}"
+JAR_CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/openapi-generator"
+JAR="$JAR_CACHE/openapi-generator-cli-${GENERATOR_VERSION}.jar"
+if [ ! -f "$JAR" ]; then
+  echo "==> Fetching openapi-generator ${GENERATOR_VERSION} JAR..."
+  mkdir -p "$JAR_CACHE"
+  curl -sS -L --fail -o "$JAR" \
+    "https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/${GENERATOR_VERSION}/openapi-generator-cli-${GENERATOR_VERSION}.jar"
+fi
+
 echo "==> Fetching Metronome OpenAPI spec..."
 curl -sS -L -o openapi.json "$SPEC_URL"
 echo "    Downloaded $(wc -c < openapi.json | tr -d ' ') bytes"
@@ -20,8 +35,8 @@ echo "==> Recording spec hash..."
 shasum -a 256 openapi.json | awk '{print $1}' > SPEC_HASH
 echo "    SPEC_HASH = $(cat SPEC_HASH)"
 
-echo "==> Running openapi-generator..."
-openapi-generator generate \
+echo "==> Running openapi-generator ${GENERATOR_VERSION}..."
+java -jar "$JAR" generate \
   -i openapi.json \
   -g rust \
   --library reqwest \
