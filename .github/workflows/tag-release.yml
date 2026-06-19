@@ -1,22 +1,35 @@
-name: Tag Release on Merge
+name: Release on Merge
 
 on:
   pull_request:
     types: [closed]
     branches: [main]
+  # Manual trigger to (re)publish the version currently on main — e.g. for a release
+  # that was tagged before crates.io publishing was automated.
+  workflow_dispatch: {}
 
 permissions:
   contents: write
 
 jobs:
-  tag:
-    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'update/metronome-spec-')
+  release:
+    # Spec-update PR merges (which bump the version via bump-version.sh) or a manual dispatch.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.pull_request.merged == true &&
+       startsWith(github.event.pull_request.head.ref, 'update/metronome-spec-'))
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Tag
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Read version
+        id: ver
+        run: echo "version=$(grep '^version' Cargo.toml | head -1 | sed 's/.*"\(.*\)"/\1/')" >> "$GITHUB_OUTPUT"
+
+      - name: Tag v${{ steps.ver.outputs.version }}
+        env:
+          VERSION: ${{ steps.ver.outputs.version }}
         run: |
-          VERSION=$(grep '^version' Cargo.toml | head -1 | sed 's/.*"\(.*\)"/\1/')
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           if git ls-remote --exit-code --tags origin "refs/tags/v$VERSION" >/dev/null 2>&1; then
@@ -25,5 +38,20 @@ jobs:
             git tag -a "v$VERSION" -m "Release v$VERSION"
             git push origin "v$VERSION"
           fi
+
+      - name: Publish v${{ steps.ver.outputs.version }} to crates.io
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.ver.outputs.version }}
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+        run: |
+          if [ -z "$CARGO_REGISTRY_TOKEN" ]; then
+            echo "::error::CARGO_REGISTRY_TOKEN secret is not set. Add it under Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+          # Idempotent: skip if this version is already on crates.io (the API needs a User-Agent).
+          if curl -sf -H "User-Agent: autogen-metronome-release" \
+            "https://crates.io/api/v1/crates/autogen-metronome/$VERSION" >/dev/null 2>&1; then
+            echo "autogen-metronome $VERSION is already on crates.io, skipping publish."
+          else
+            cargo publish --locked
+          fi
