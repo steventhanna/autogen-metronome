@@ -17,14 +17,14 @@ pub struct ScheduleDurationInputScheduleItemsInner {
     pub amount: f64,
     /// RFC 3339 timestamp (inclusive)
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     /// RFC 3339 timestamp (exclusive)
     #[serde(rename = "ending_before")]
-    pub ending_before: String,
+    pub ending_before: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl ScheduleDurationInputScheduleItemsInner {
-    pub fn new(amount: f64, starting_at: String, ending_before: String) -> ScheduleDurationInputScheduleItemsInner {
+    pub fn new(amount: f64, starting_at: chrono::DateTime<chrono::FixedOffset>, ending_before: chrono::DateTime<chrono::FixedOffset>) -> ScheduleDurationInputScheduleItemsInner {
         ScheduleDurationInputScheduleItemsInner {
             amount,
             starting_at,

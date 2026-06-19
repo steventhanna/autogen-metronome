@@ -16,7 +16,7 @@ pub struct ContractEdit {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
     #[serde(rename = "timestamp", skip_serializing_if = "Option::is_none")]
-    pub timestamp: Option<String>,
+    pub timestamp: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Prevents the creation of duplicates. If a request to create a record is made with a previously used uniqueness key, a new record will not be created and the request will fail with a 409 error.
     #[serde(rename = "uniqueness_key", skip_serializing_if = "Option::is_none")]
     pub uniqueness_key: Option<String>,
@@ -63,7 +63,7 @@ pub struct ContractEdit {
     #[serde(rename = "update_recurring_credits", skip_serializing_if = "Option::is_none")]
     pub update_recurring_credits: Option<Vec<models::RecurringCreditUpdate>>,
     #[serde(rename = "update_contract_end_date", skip_serializing_if = "Option::is_none")]
-    pub update_contract_end_date: Option<String>,
+    pub update_contract_end_date: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "update_refund_invoices", skip_serializing_if = "Option::is_none")]
     pub update_refund_invoices: Option<Vec<models::RefundInvoiceUpdate>>,
     /// Optional list of subscriptions to update.
@@ -74,13 +74,13 @@ pub struct ContractEdit {
     #[serde(rename = "update_spend_threshold_configuration", skip_serializing_if = "Option::is_none")]
     pub update_spend_threshold_configuration: Option<Box<models::UpdateSpendThresholdConfiguration>>,
     #[serde(rename = "archive_commits", skip_serializing_if = "Option::is_none")]
-    pub archive_commits: Option<Vec<models::VoidInvoiceV1200ResponseData>>,
+    pub archive_commits: Option<Vec<models::VoidInvoiceV1Request>>,
     #[serde(rename = "archive_credits", skip_serializing_if = "Option::is_none")]
-    pub archive_credits: Option<Vec<models::VoidInvoiceV1200ResponseData>>,
+    pub archive_credits: Option<Vec<models::VoidInvoiceV1Request>>,
     #[serde(rename = "archive_scheduled_charges", skip_serializing_if = "Option::is_none")]
-    pub archive_scheduled_charges: Option<Vec<models::VoidInvoiceV1200ResponseData>>,
+    pub archive_scheduled_charges: Option<Vec<models::VoidInvoiceV1Request>>,
     #[serde(rename = "remove_overrides", skip_serializing_if = "Option::is_none")]
-    pub remove_overrides: Option<Vec<models::VoidInvoiceV1200ResponseData>>,
+    pub remove_overrides: Option<Vec<models::VoidInvoiceV1Request>>,
 }
 
 impl ContractEdit {

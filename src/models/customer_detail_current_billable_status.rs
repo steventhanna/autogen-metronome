@@ -17,7 +17,7 @@ pub struct CustomerDetailCurrentBillableStatus {
     #[serde(rename = "value")]
     pub value: models::BillableStatus,
     #[serde(rename = "effective_at", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub effective_at: Option<Option<String>>,
+    pub effective_at: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
 }
 
 impl CustomerDetailCurrentBillableStatus {

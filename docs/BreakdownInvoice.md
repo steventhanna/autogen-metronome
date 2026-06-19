@@ -4,35 +4,35 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
-**customer_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
+**id** | **uuid::Uuid** |  | 
+**customer_id** | **uuid::Uuid** |  | 
 **customer_custom_fields** | Option<**std::collections::HashMap<String, String>**> | Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" } | [optional]
 **netsuite_sales_order_id** | Option<**String**> | This field's availability is dependent on your client's configuration. | [optional]
 **salesforce_opportunity_id** | Option<**String**> | This field's availability is dependent on your client's configuration. | [optional]
 **net_payment_terms_days** | Option<**f64**> |  | [optional]
 **credit_type** | [**models::CreditType**](CreditType.md) |  | 
 **line_items** | [**Vec<models::InvoiceLineItem>**](InvoiceLineItem.md) |  | 
-**start_timestamp** | Option<**String**> | Beginning of the usage period this invoice covers (UTC) | [optional]
-**end_timestamp** | Option<**String**> | End of the usage period this invoice covers (UTC) | [optional]
-**issued_at** | Option<**String**> | When the invoice was issued (UTC) | [optional]
-**created_at** | Option<**String**> | When the invoice was created (UTC). This field is present for correction invoices only. | [optional]
+**start_timestamp** | Option<**chrono::DateTime<chrono::FixedOffset>**> | Beginning of the usage period this invoice covers (UTC) | [optional]
+**end_timestamp** | Option<**chrono::DateTime<chrono::FixedOffset>**> | End of the usage period this invoice covers (UTC) | [optional]
+**issued_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> | When the invoice was issued (UTC) | [optional]
+**created_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> | When the invoice was created (UTC). This field is present for correction invoices only. | [optional]
 **status** | **String** |  | 
 **total** | **f64** |  | 
 **r#type** | **String** |  | 
 **external_invoice** | Option<[**models::ExternalInvoice**](ExternalInvoice.md)> |  | [optional]
 **revenue_system_invoices** | Option<[**Vec<models::RevenueSystemInvoice>**](RevenueSystemInvoice.md)> |  | [optional]
-**contract_id** | Option<[**uuid::Uuid**](uuid::Uuid.md)> |  | [optional]
+**contract_id** | Option<**uuid::Uuid**> |  | [optional]
 **contract_custom_fields** | Option<**std::collections::HashMap<String, String>**> | Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" } | [optional]
-**amendment_id** | Option<[**uuid::Uuid**](uuid::Uuid.md)> |  | [optional]
-**correction_record** | Option<[**models::InvoiceCorrectionRecord**](Invoice_correction_record.md)> |  | [optional]
-**reseller_royalty** | Option<[**models::InvoiceResellerRoyalty**](Invoice_reseller_royalty.md)> |  | [optional]
-**custom_fields** | Option<[**std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)> |  | [optional]
-**billable_status** | Option<[**models::BillableStatus**](.md)> |  | [optional]
-**constituent_invoices** | Option<[**Vec<models::InvoiceConstituentInvoicesInner>**](Invoice_constituent_invoices_inner.md)> | Required on invoices with type USAGE_CONSOLIDATED. List of constituent invoices that were consolidated to create this invoice. | [optional]
-**payer** | Option<[**models::InvoicePayer**](Invoice_payer.md)> |  | [optional]
-**regenerated_from_invoice_id** | Option<[**uuid::Uuid**](uuid::Uuid.md)> |  | [optional]
-**breakdown_start_timestamp** | **String** |  | 
-**breakdown_end_timestamp** | **String** |  | 
+**amendment_id** | Option<**uuid::Uuid**> |  | [optional]
+**correction_record** | Option<[**models::InvoiceCorrectionRecord**](InvoiceCorrectionRecord.md)> |  | [optional]
+**reseller_royalty** | Option<[**models::InvoiceResellerRoyalty**](InvoiceResellerRoyalty.md)> |  | [optional]
+**custom_fields** | Option<**std::collections::HashMap<String, serde_json::Value>**> |  | [optional]
+**billable_status** | Option<[**models::BillableStatus**](BillableStatus.md)> |  | [optional]
+**constituent_invoices** | Option<[**Vec<models::InvoiceConstituentInvoicesInner>**](InvoiceConstituentInvoicesInner.md)> | Required on invoices with type USAGE_CONSOLIDATED. List of constituent invoices that were consolidated to create this invoice. | [optional]
+**payer** | Option<[**models::InvoicePayer**](InvoicePayer.md)> |  | [optional]
+**regenerated_from_invoice_id** | Option<**uuid::Uuid**> |  | [optional]
+**breakdown_start_timestamp** | **chrono::DateTime<chrono::FixedOffset>** |  | 
+**breakdown_end_timestamp** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

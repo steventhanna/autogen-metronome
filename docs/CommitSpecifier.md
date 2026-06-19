@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**product_id** | Option<[**uuid::Uuid**](uuid::Uuid.md)> | If provided, the specifier will only apply to the product with the specified ID. | [optional]
+**product_id** | Option<**uuid::Uuid**> | If provided, the specifier will only apply to the product with the specified ID. | [optional]
 **product_tags** | Option<**Vec<String>**> | If provided, the specifier will only apply to products with all the specified tags. | [optional]
 **pricing_group_values** | Option<**std::collections::HashMap<String, String>**> |  | [optional]
 **presentation_group_values** | Option<**std::collections::HashMap<String, String>**> |  | [optional]

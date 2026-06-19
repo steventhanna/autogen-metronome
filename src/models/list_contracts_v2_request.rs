@@ -26,10 +26,10 @@ pub struct ListContractsV2Request {
     pub include_balance: Option<bool>,
     /// Optional RFC 3339 timestamp. Only include contracts that started on or after this date. This cannot be provided if covering_date filter is provided.
     #[serde(rename = "starting_at", skip_serializing_if = "Option::is_none")]
-    pub starting_at: Option<String>,
+    pub starting_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Optional RFC 3339 timestamp. Only include contracts active on the provided date. This cannot be provided if starting_at filter is provided.
     #[serde(rename = "covering_date", skip_serializing_if = "Option::is_none")]
-    pub covering_date: Option<String>,
+    pub covering_date: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl ListContractsV2Request {

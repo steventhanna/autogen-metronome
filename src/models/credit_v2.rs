@@ -16,7 +16,7 @@ pub struct CreditV2 {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
     #[serde(rename = "contract", skip_serializing_if = "Option::is_none")]
-    pub contract: Option<Box<models::VoidInvoiceV1200ResponseData>>,
+    pub contract: Option<Box<models::VoidInvoiceV1Request>>,
     #[serde(rename = "type")]
     pub r#type: Type,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
@@ -55,14 +55,17 @@ pub struct CreditV2 {
     #[serde(rename = "custom_fields", skip_serializing_if = "Option::is_none")]
     pub custom_fields: Option<std::collections::HashMap<String, String>>,
     #[serde(rename = "archived_at", skip_serializing_if = "Option::is_none")]
-    pub archived_at: Option<String>,
+    pub archived_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "hierarchy_configuration", skip_serializing_if = "Option::is_none")]
     pub hierarchy_configuration: Option<Box<models::CommitHierarchyConfiguration>>,
     #[serde(rename = "rolled_over_from", skip_serializing_if = "Option::is_none")]
     pub rolled_over_from: Option<Box<models::CreditRolledOverFrom>>,
     /// Timestamp of when the credit was created. - Recurring credits: latter of credit service period date and parent credit start date 
     #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
-    pub created_at: Option<String>,
+    pub created_at: Option<chrono::DateTime<chrono::FixedOffset>>,
+    /// The actor who created this credit. Omitted for system-generated credits such as recurring credits.
+    #[serde(rename = "created_by", skip_serializing_if = "Option::is_none")]
+    pub created_by: Option<String>,
     /// The ID of the recurring credit that created this credit
     #[serde(rename = "recurring_credit_id", skip_serializing_if = "Option::is_none")]
     pub recurring_credit_id: Option<uuid::Uuid>,
@@ -94,6 +97,7 @@ impl CreditV2 {
             hierarchy_configuration: None,
             rolled_over_from: None,
             created_at: None,
+            created_by: None,
             recurring_credit_id: None,
             subscription_config: None,
         }

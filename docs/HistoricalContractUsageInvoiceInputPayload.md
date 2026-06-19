@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
-**contract_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
-**credit_type_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
-**inclusive_start_date** | **String** |  | 
-**exclusive_end_date** | **String** |  | 
-**issue_date** | **String** |  | 
-**breakdown_granularity** | Option<**String**> |  | [optional]
+**customer_id** | **uuid::Uuid** |  | 
+**contract_id** | **uuid::Uuid** |  | 
+**credit_type_id** | **uuid::Uuid** |  | 
+**inclusive_start_date** | **chrono::DateTime<chrono::FixedOffset>** |  | 
+**exclusive_end_date** | **chrono::DateTime<chrono::FixedOffset>** |  | 
+**issue_date** | **chrono::DateTime<chrono::FixedOffset>** |  | 
+**breakdown_granularity** | Option<**BreakdownGranularity**> |  (enum: hour, day, HOUR, DAY, Hour, Day) | [optional]
 **usage_line_items** | [**Vec<models::HistoricalContractUsageInvoiceLineItemInput>**](HistoricalContractUsageInvoiceLineItemInput.md) |  | 
 **billable_status** | Option<[**models::BillableStatus**](BillableStatus.md)> |  | [optional]
 **custom_fields** | Option<**std::collections::HashMap<String, String>**> | Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" } | [optional]

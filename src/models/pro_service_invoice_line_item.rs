@@ -30,10 +30,10 @@ pub struct ProServiceInvoiceLineItem {
     pub amount: Option<f64>,
     /// The start date for the billing period on the invoice.
     #[serde(rename = "netsuite_invoice_billing_start", skip_serializing_if = "Option::is_none")]
-    pub netsuite_invoice_billing_start: Option<String>,
+    pub netsuite_invoice_billing_start: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// The end date for the billing period on the invoice.
     #[serde(rename = "netsuite_invoice_billing_end", skip_serializing_if = "Option::is_none")]
-    pub netsuite_invoice_billing_end: Option<String>,
+    pub netsuite_invoice_billing_end: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// For client use.
     #[serde(rename = "metadata", skip_serializing_if = "Option::is_none")]
     pub metadata: Option<String>,

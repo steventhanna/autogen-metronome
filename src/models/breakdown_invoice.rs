@@ -34,16 +34,16 @@ pub struct BreakdownInvoice {
     pub line_items: Vec<models::InvoiceLineItem>,
     /// Beginning of the usage period this invoice covers (UTC)
     #[serde(rename = "start_timestamp", skip_serializing_if = "Option::is_none")]
-    pub start_timestamp: Option<String>,
+    pub start_timestamp: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// End of the usage period this invoice covers (UTC)
     #[serde(rename = "end_timestamp", skip_serializing_if = "Option::is_none")]
-    pub end_timestamp: Option<String>,
+    pub end_timestamp: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// When the invoice was issued (UTC)
     #[serde(rename = "issued_at", skip_serializing_if = "Option::is_none")]
-    pub issued_at: Option<String>,
+    pub issued_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// When the invoice was created (UTC). This field is present for correction invoices only.
     #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
-    pub created_at: Option<String>,
+    pub created_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "status")]
     pub status: String,
     #[serde(rename = "total")]
@@ -77,13 +77,13 @@ pub struct BreakdownInvoice {
     #[serde(rename = "regenerated_from_invoice_id", skip_serializing_if = "Option::is_none")]
     pub regenerated_from_invoice_id: Option<uuid::Uuid>,
     #[serde(rename = "breakdown_start_timestamp")]
-    pub breakdown_start_timestamp: String,
+    pub breakdown_start_timestamp: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "breakdown_end_timestamp")]
-    pub breakdown_end_timestamp: String,
+    pub breakdown_end_timestamp: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl BreakdownInvoice {
-    pub fn new(id: uuid::Uuid, customer_id: uuid::Uuid, credit_type: models::CreditType, line_items: Vec<models::InvoiceLineItem>, status: String, total: f64, r#type: String, breakdown_start_timestamp: String, breakdown_end_timestamp: String) -> BreakdownInvoice {
+    pub fn new(id: uuid::Uuid, customer_id: uuid::Uuid, credit_type: models::CreditType, line_items: Vec<models::InvoiceLineItem>, status: String, total: f64, r#type: String, breakdown_start_timestamp: chrono::DateTime<chrono::FixedOffset>, breakdown_end_timestamp: chrono::DateTime<chrono::FixedOffset>) -> BreakdownInvoice {
         BreakdownInvoice {
             id,
             customer_id,

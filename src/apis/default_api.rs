@@ -26,17 +26,17 @@ pub enum ListPackagesV1Error {
 /// Lists all packages with details including name, aliases, duration, and terms. To view contracts on a specific package, use the `listContractsOnPackage` endpoint. 
 pub async fn list_packages_v1(configuration: &configuration::Configuration, limit: Option<i32>, next_page: Option<&str>, list_packages_v1_request: Option<models::ListPackagesV1Request>) -> Result<models::ListPackagesV1200Response, Error<ListPackagesV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_limit = limit;
-    let p_next_page = next_page;
-    let p_list_packages_v1_request = list_packages_v1_request;
+    let p_query_limit = limit;
+    let p_query_next_page = next_page;
+    let p_body_list_packages_v1_request = list_packages_v1_request;
 
     let uri_str = format!("{}/v1/packages/list", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_next_page {
+    if let Some(ref param_value) = p_query_next_page {
         req_builder = req_builder.query(&[("next_page", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -45,7 +45,7 @@ pub async fn list_packages_v1(configuration: &configuration::Configuration, limi
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_list_packages_v1_request);
+    req_builder = req_builder.json(&p_body_list_packages_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

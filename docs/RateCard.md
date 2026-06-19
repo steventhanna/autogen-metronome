@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
+**id** | **uuid::Uuid** |  | 
 **name** | **String** |  | 
-**created_at** | **String** |  | 
+**created_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **created_by** | **String** |  | 
 **description** | Option<**String**> |  | [optional]
 **fiat_credit_type** | Option<[**models::CreditType**](CreditType.md)> |  | [optional]

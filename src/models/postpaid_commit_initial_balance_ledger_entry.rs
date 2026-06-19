@@ -16,13 +16,13 @@ pub struct PostpaidCommitInitialBalanceLedgerEntry {
     #[serde(rename = "type")]
     pub r#type: Type,
     #[serde(rename = "timestamp")]
-    pub timestamp: String,
+    pub timestamp: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "amount")]
     pub amount: f64,
 }
 
 impl PostpaidCommitInitialBalanceLedgerEntry {
-    pub fn new(r#type: Type, timestamp: String, amount: f64) -> PostpaidCommitInitialBalanceLedgerEntry {
+    pub fn new(r#type: Type, timestamp: chrono::DateTime<chrono::FixedOffset>, amount: f64) -> PostpaidCommitInitialBalanceLedgerEntry {
         PostpaidCommitInitialBalanceLedgerEntry {
             r#type,
             timestamp,

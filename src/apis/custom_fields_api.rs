@@ -54,7 +54,7 @@ pub enum SetCustomFieldsV1Error {
 /// Creates a new custom field key for a given entity (e.g. billable metric, contract, alert).  Custom fields are properties that you can add to Metronome objects to store metadata like foreign keys or other descriptors. This metadata can get transferred to or accessed by other systems to contextualize Metronome data and power business processes. For example, to service workflows like revenue recognition, reconciliation, and invoicing, custom fields help Metronome know the relationship between entities in the platform and third-party systems.  ### Use this endpoint to: - Create a new custom field key for Customer objects in Metronome. You can then use the Set Custom Field Values endpoint to set the value of this key for a specific customer.  - Specify whether the key should enforce uniqueness. If the key is set to enforce uniqueness and you attempt to set a custom field value for the key that already exists, it will fail.   ### Usage guidelines: - Custom fields set on commits, credits, and contracts can be used to scope alert evaluation. For example, you can create a spend threshold alert that only considers spend associated with contracts with custom field key `contract_type` and value `paygo` - Custom fields set on products can be used in the Stripe integration to set metadata on invoices. - Custom fields for customers, contracts, invoices, products, commits, scheduled charges, and subscriptions are passed down to the invoice. 
 pub async fn add_custom_field_key_v1(configuration: &configuration::Configuration, add_custom_field_key_v1_request: Option<models::AddCustomFieldKeyV1Request>) -> Result<(), Error<AddCustomFieldKeyV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_add_custom_field_key_v1_request = add_custom_field_key_v1_request;
+    let p_body_add_custom_field_key_v1_request = add_custom_field_key_v1_request;
 
     let uri_str = format!("{}/v1/customFields/addKey", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -65,7 +65,7 @@ pub async fn add_custom_field_key_v1(configuration: &configuration::Configuratio
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_add_custom_field_key_v1_request);
+    req_builder = req_builder.json(&p_body_add_custom_field_key_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -84,7 +84,7 @@ pub async fn add_custom_field_key_v1(configuration: &configuration::Configuratio
 /// Remove specific custom field values from a Metronome entity instance by specifying the field keys to delete. Use this endpoint to clean up unwanted custom field data while preserving other fields on the same entity. Requires the entity type, entity ID, and array of keys to remove. 
 pub async fn delete_custom_fields_v1(configuration: &configuration::Configuration, delete_custom_fields_v1_request: Option<models::DeleteCustomFieldsV1Request>) -> Result<(), Error<DeleteCustomFieldsV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_delete_custom_fields_v1_request = delete_custom_fields_v1_request;
+    let p_body_delete_custom_fields_v1_request = delete_custom_fields_v1_request;
 
     let uri_str = format!("{}/v1/customFields/deleteValues", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -95,7 +95,7 @@ pub async fn delete_custom_fields_v1(configuration: &configuration::Configuratio
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_delete_custom_fields_v1_request);
+    req_builder = req_builder.json(&p_body_delete_custom_fields_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -114,7 +114,7 @@ pub async fn delete_custom_fields_v1(configuration: &configuration::Configuratio
 /// Removes a custom field key from the allowlist for a specific entity type, preventing future use of that key across all instances of the entity. Existing values for this key on entity instances will no longer be accessible once the key is removed. 
 pub async fn disable_custom_field_key_v1(configuration: &configuration::Configuration, disable_custom_field_key_v1_request: Option<models::DisableCustomFieldKeyV1Request>) -> Result<(), Error<DisableCustomFieldKeyV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_disable_custom_field_key_v1_request = disable_custom_field_key_v1_request;
+    let p_body_disable_custom_field_key_v1_request = disable_custom_field_key_v1_request;
 
     let uri_str = format!("{}/v1/customFields/removeKey", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -125,7 +125,7 @@ pub async fn disable_custom_field_key_v1(configuration: &configuration::Configur
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_disable_custom_field_key_v1_request);
+    req_builder = req_builder.json(&p_body_disable_custom_field_key_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -144,13 +144,13 @@ pub async fn disable_custom_field_key_v1(configuration: &configuration::Configur
 /// Retrieve all your active custom field keys, with optional filtering by entity type (customer, contract, product, etc.). Use this endpoint to discover what custom field keys are available before setting values on entities or to audit your custom field configuration across different entity types. 
 pub async fn list_custom_field_keys_v1(configuration: &configuration::Configuration, next_page: Option<&str>, list_custom_field_keys_v1_request: Option<models::ListCustomFieldKeysV1Request>) -> Result<models::ListCustomFieldKeysV1200Response, Error<ListCustomFieldKeysV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_next_page = next_page;
-    let p_list_custom_field_keys_v1_request = list_custom_field_keys_v1_request;
+    let p_query_next_page = next_page;
+    let p_body_list_custom_field_keys_v1_request = list_custom_field_keys_v1_request;
 
     let uri_str = format!("{}/v1/customFields/listKeys", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_next_page {
+    if let Some(ref param_value) = p_query_next_page {
         req_builder = req_builder.query(&[("next_page", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -159,7 +159,7 @@ pub async fn list_custom_field_keys_v1(configuration: &configuration::Configurat
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_list_custom_field_keys_v1_request);
+    req_builder = req_builder.json(&p_body_list_custom_field_keys_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -189,7 +189,7 @@ pub async fn list_custom_field_keys_v1(configuration: &configuration::Configurat
 /// Sets custom field values on a specific Metronome entity instance. Overwrites existing values for matching keys while preserving other fields. All updates are transactional—either all values are set or none are. Custom field values are limited to 200 characters each. 
 pub async fn set_custom_fields_v1(configuration: &configuration::Configuration, set_custom_fields_v1_request: Option<models::SetCustomFieldsV1Request>) -> Result<(), Error<SetCustomFieldsV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_set_custom_fields_v1_request = set_custom_fields_v1_request;
+    let p_body_set_custom_fields_v1_request = set_custom_fields_v1_request;
 
     let uri_str = format!("{}/v1/customFields/setValues", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -200,7 +200,7 @@ pub async fn set_custom_fields_v1(configuration: &configuration::Configuration, 
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_set_custom_fields_v1_request);
+    req_builder = req_builder.json(&p_body_set_custom_fields_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

@@ -34,16 +34,16 @@ pub struct Invoice {
     pub line_items: Vec<models::InvoiceLineItem>,
     /// Beginning of the usage period this invoice covers (UTC)
     #[serde(rename = "start_timestamp", skip_serializing_if = "Option::is_none")]
-    pub start_timestamp: Option<String>,
+    pub start_timestamp: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// End of the usage period this invoice covers (UTC)
     #[serde(rename = "end_timestamp", skip_serializing_if = "Option::is_none")]
-    pub end_timestamp: Option<String>,
+    pub end_timestamp: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// When the invoice was issued (UTC)
     #[serde(rename = "issued_at", skip_serializing_if = "Option::is_none")]
-    pub issued_at: Option<String>,
+    pub issued_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// When the invoice was created (UTC). This field is present for correction invoices only.
     #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
-    pub created_at: Option<String>,
+    pub created_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "status")]
     pub status: String,
     #[serde(rename = "total")]

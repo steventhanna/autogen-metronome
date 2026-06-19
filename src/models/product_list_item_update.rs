@@ -16,11 +16,11 @@ pub struct ProductListItemUpdate {
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
     #[serde(rename = "starting_at", skip_serializing_if = "Option::is_none")]
-    pub starting_at: Option<String>,
+    pub starting_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "is_refundable", skip_serializing_if = "Option::is_none")]
     pub is_refundable: Option<bool>,
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "created_by")]
     pub created_by: String,
     #[serde(rename = "billable_metric_id", skip_serializing_if = "Option::is_none")]
@@ -55,7 +55,7 @@ pub struct ProductListItemUpdate {
 }
 
 impl ProductListItemUpdate {
-    pub fn new(created_at: String, created_by: String) -> ProductListItemUpdate {
+    pub fn new(created_at: chrono::DateTime<chrono::FixedOffset>, created_by: String) -> ProductListItemUpdate {
         ProductListItemUpdate {
             name: None,
             starting_at: None,

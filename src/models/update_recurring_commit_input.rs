@@ -20,7 +20,7 @@ pub struct UpdateRecurringCommitInput {
     #[serde(rename = "invoice_amount", skip_serializing_if = "Option::is_none")]
     pub invoice_amount: Option<Box<models::RecurringCommitOrCreditUpdateBaseAccessAmount>>,
     #[serde(rename = "ending_before", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<Option<String>>,
+    pub ending_before: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     /// If provided, updates the recurring commit to use the specified rate type when generating future commits.
     #[serde(rename = "rate_type", skip_serializing_if = "Option::is_none")]
     pub rate_type: Option<RateType>,

@@ -20,10 +20,10 @@ pub struct UsageStatementScheduleInput {
     pub day: Option<Day>,
     /// Required when using CUSTOM_DATE. This option lets you set a historical billing anchor date, aligning future billing cycles with a chosen cadence. For example, if a contract starts on 2024-09-15 and you set the anchor date to 2024-09-10 with a MONTHLY frequency, the first usage statement will cover 09-15 to 10-10. Subsequent statements will follow the 10th of each month.
     #[serde(rename = "billing_anchor_date", skip_serializing_if = "Option::is_none")]
-    pub billing_anchor_date: Option<String>,
+    pub billing_anchor_date: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// The date Metronome should start generating usage invoices. If unspecified, contract start date will be used. This is useful to set if you want to import historical invoices via our 'Create Historical Invoices' API rather than having Metronome automatically generate them.
     #[serde(rename = "invoice_generation_starting_at", skip_serializing_if = "Option::is_none")]
-    pub invoice_generation_starting_at: Option<String>,
+    pub invoice_generation_starting_at: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl UsageStatementScheduleInput {

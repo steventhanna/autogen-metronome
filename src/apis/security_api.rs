@@ -31,38 +31,38 @@ pub enum GetServicesV1Error {
 
 
 /// Get a comprehensive audit trail of all operations performed in your Metronome account, whether initiated through the API, web interface, or automated processes. This endpoint provides detailed logs of who did what and when, enabling compliance reporting, security monitoring, and operational troubleshooting across all interaction channels.  ### Use this endpoint to: - Monitor all account activity for security and compliance purposes - Track configuration changes regardless of source (API, UI, or system) - Investigate issues by reviewing historical operations  ### Key response fields:  An array of AuditLog objects containing: - id: Unique identifier for the audit log entry - timestamp: When the action occurred (RFC 3339 format) - actor: Information about who performed the action - request: Details including request ID, IP address, and user agent - `resource_type`: The type of resource affected (e.g., customer, contract, invoice) - `resource_id`: The specific resource identifier - `action`: The operation performed - `next_page`: Cursor for continuous log retrieval  ### Usage guidelines: - Continuous retrieval: The next_page token enables uninterrupted log streaming—save it between requests to ensure no logs are missed - Empty responses: An empty data array means no new logs yet; continue polling with the same next_page token - Date filtering:     - `starting_on`: Earliest logs to return (inclusive)     - `ending_before`: Latest logs to return (exclusive)     - Cannot be used with `next_page` - Resource filtering: Must specify both `resource_type` and `resource_id` together - Sort order: Default is `date_asc`; use `date_desc` for newest first 
-pub async fn get_audit_logs_v1(configuration: &configuration::Configuration, limit: Option<i32>, next_page: Option<&str>, starting_on: Option<String>, ending_before: Option<String>, sort: Option<&str>, resource_id: Option<&str>, resource_type: Option<&str>) -> Result<models::GetAuditLogsV1200Response, Error<GetAuditLogsV1Error>> {
+pub async fn get_audit_logs_v1(configuration: &configuration::Configuration, limit: Option<i32>, next_page: Option<&str>, starting_on: Option<chrono::DateTime<chrono::FixedOffset>>, ending_before: Option<chrono::DateTime<chrono::FixedOffset>>, sort: Option<&str>, resource_id: Option<&str>, resource_type: Option<&str>) -> Result<models::GetAuditLogsV1200Response, Error<GetAuditLogsV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_limit = limit;
-    let p_next_page = next_page;
-    let p_starting_on = starting_on;
-    let p_ending_before = ending_before;
-    let p_sort = sort;
-    let p_resource_id = resource_id;
-    let p_resource_type = resource_type;
+    let p_query_limit = limit;
+    let p_query_next_page = next_page;
+    let p_query_starting_on = starting_on;
+    let p_query_ending_before = ending_before;
+    let p_query_sort = sort;
+    let p_query_resource_id = resource_id;
+    let p_query_resource_type = resource_type;
 
     let uri_str = format!("{}/v1/auditLogs", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_next_page {
+    if let Some(ref param_value) = p_query_next_page {
         req_builder = req_builder.query(&[("next_page", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_starting_on {
+    if let Some(ref param_value) = p_query_starting_on {
         req_builder = req_builder.query(&[("starting_on", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ending_before {
+    if let Some(ref param_value) = p_query_ending_before {
         req_builder = req_builder.query(&[("ending_before", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_sort {
+    if let Some(ref param_value) = p_query_sort {
         req_builder = req_builder.query(&[("sort", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_resource_id {
+    if let Some(ref param_value) = p_query_resource_id {
         req_builder = req_builder.query(&[("resource_id", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_resource_type {
+    if let Some(ref param_value) = p_query_resource_type {
         req_builder = req_builder.query(&[("resource_type", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {

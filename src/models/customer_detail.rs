@@ -31,19 +31,19 @@ pub struct CustomerDetail {
     pub custom_fields: std::collections::HashMap<String, String>,
     /// RFC 3339 timestamp indicating when the customer was created.
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     /// RFC 3339 timestamp indicating when the customer was archived. Null if the customer is active.
     #[serde(rename = "archived_at", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub archived_at: Option<Option<String>>,
+    pub archived_at: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     /// RFC 3339 timestamp indicating when the customer was last updated.
     #[serde(rename = "updated_at")]
-    pub updated_at: String,
+    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "current_billable_status", skip_serializing_if = "Option::is_none")]
     pub current_billable_status: Option<Box<models::CustomerDetailCurrentBillableStatus>>,
 }
 
 impl CustomerDetail {
-    pub fn new(id: uuid::Uuid, external_id: String, ingest_aliases: Vec<String>, name: String, customer_config: models::CustomerConfig, custom_fields: std::collections::HashMap<String, String>, created_at: String, updated_at: String) -> CustomerDetail {
+    pub fn new(id: uuid::Uuid, external_id: String, ingest_aliases: Vec<String>, name: String, customer_config: models::CustomerConfig, custom_fields: std::collections::HashMap<String, String>, created_at: chrono::DateTime<chrono::FixedOffset>, updated_at: chrono::DateTime<chrono::FixedOffset>) -> CustomerDetail {
         CustomerDetail {
             id,
             external_id,

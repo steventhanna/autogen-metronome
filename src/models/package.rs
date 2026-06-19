@@ -37,7 +37,7 @@ pub struct Package {
     #[serde(rename = "scheduled_charges_on_usage_invoices", skip_serializing_if = "Option::is_none")]
     pub scheduled_charges_on_usage_invoices: Option<models::ScheduledChargesOnUsageInvoices>,
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "created_by")]
     pub created_by: String,
     #[serde(rename = "net_payment_terms_days", skip_serializing_if = "Option::is_none")]
@@ -67,11 +67,11 @@ pub struct Package {
     #[serde(rename = "contract_name", skip_serializing_if = "Option::is_none")]
     pub contract_name: Option<String>,
     #[serde(rename = "archived_at", skip_serializing_if = "Option::is_none")]
-    pub archived_at: Option<String>,
+    pub archived_at: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl Package {
-    pub fn new(id: uuid::Uuid, commits: Vec<models::CommitTemplate>, overrides: Vec<models::OverrideTemplate>, scheduled_charges: Vec<models::ScheduledChargeTemplate>, created_at: String, created_by: String, usage_statement_schedule: models::UsageStatementScheduleTemplate) -> Package {
+    pub fn new(id: uuid::Uuid, commits: Vec<models::CommitTemplate>, overrides: Vec<models::OverrideTemplate>, scheduled_charges: Vec<models::ScheduledChargeTemplate>, created_at: chrono::DateTime<chrono::FixedOffset>, created_by: String, usage_statement_schedule: models::UsageStatementScheduleTemplate) -> Package {
         Package {
             id,
             uniqueness_key: None,

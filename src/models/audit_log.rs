@@ -16,7 +16,7 @@ pub struct AuditLog {
     #[serde(rename = "id")]
     pub id: String,
     #[serde(rename = "timestamp")]
-    pub timestamp: String,
+    pub timestamp: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "actor", skip_serializing_if = "Option::is_none")]
     pub actor: Option<Box<models::Actor>>,
     #[serde(rename = "request")]
@@ -34,7 +34,7 @@ pub struct AuditLog {
 }
 
 impl AuditLog {
-    pub fn new(id: String, timestamp: String, request: models::AuditLogRequest) -> AuditLog {
+    pub fn new(id: String, timestamp: chrono::DateTime<chrono::FixedOffset>, request: models::AuditLogRequest) -> AuditLog {
         AuditLog {
             id,
             timestamp,

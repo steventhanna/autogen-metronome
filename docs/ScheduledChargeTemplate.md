@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
+**id** | **uuid::Uuid** |  | 
 **custom_fields** | Option<**std::collections::HashMap<String, String>**> | Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" } | [optional]
-**product** | [**models::SubscriptionRateProduct**](SubscriptionRate_product.md) |  | 
+**product** | [**models::SubscriptionRateProduct**](SubscriptionRateProduct.md) |  | 
 **schedule** | [**models::RelativeSchedulePointInTime**](RelativeSchedulePointInTime.md) |  | 
 **name** | Option<**String**> |  | [optional]
 **description** | Option<**String**> |  | [optional]

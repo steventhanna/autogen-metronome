@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
+**customer_id** | **uuid::Uuid** |  | 
 **provider** | Option<[**models::RevenueSystemProviderType**](RevenueSystemProviderType.md)> |  | [optional]
 **include_archived** | Option<**bool**> | Whether to include archived configurations | [optional]
 

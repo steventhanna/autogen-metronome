@@ -36,9 +36,9 @@ pub struct SubscriptionV2 {
     #[serde(rename = "seat_config", skip_serializing_if = "Option::is_none")]
     pub seat_config: Option<Box<models::SubscriptionSeatConfig>>,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "fiat_credit_type_id", skip_serializing_if = "Option::is_none")]
     pub fiat_credit_type_id: Option<uuid::Uuid>,
     #[serde(rename = "billing_cycle_config", skip_serializing_if = "Option::is_none")]
@@ -49,7 +49,7 @@ pub struct SubscriptionV2 {
 }
 
 impl SubscriptionV2 {
-    pub fn new(subscription_rate: models::SubscriptionRate, collection_schedule: CollectionSchedule, proration: models::SubscriptionProrationV2, quantity_schedule: Vec<models::SubscriptionQuantitySchedule>, billing_periods: models::SubscriptionBillingPeriods, quantity_management_mode: QuantityManagementMode, starting_at: String) -> SubscriptionV2 {
+    pub fn new(subscription_rate: models::SubscriptionRate, collection_schedule: CollectionSchedule, proration: models::SubscriptionProrationV2, quantity_schedule: Vec<models::SubscriptionQuantitySchedule>, billing_periods: models::SubscriptionBillingPeriods, quantity_management_mode: QuantityManagementMode, starting_at: chrono::DateTime<chrono::FixedOffset>) -> SubscriptionV2 {
         SubscriptionV2 {
             id: None,
             subscription_rate: Box::new(subscription_rate),

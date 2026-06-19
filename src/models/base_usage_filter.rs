@@ -18,7 +18,7 @@ pub struct BaseUsageFilter {
     #[serde(rename = "group_values")]
     pub group_values: Vec<String>,
     #[serde(rename = "starting_at", skip_serializing_if = "Option::is_none")]
-    pub starting_at: Option<String>,
+    pub starting_at: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl BaseUsageFilter {

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**starting_at** | **String** | RFC 3339 timestamp (inclusive). | 
-**ending_before** | **String** | RFC 3339 timestamp (exclusive). | 
+**starting_at** | **chrono::DateTime<chrono::FixedOffset>** | RFC 3339 timestamp (inclusive). | 
+**ending_before** | **chrono::DateTime<chrono::FixedOffset>** | RFC 3339 timestamp (exclusive). | 
 **frequency** | [**models::RecurringScheduleFrequencyV2**](RecurringScheduleFrequencyV2.md) |  | 
 **unit_price** | Option<**f64**> | Unit price for the charge. Will be multiplied by quantity to determine the amount and must be specified with quantity. If specified amount cannot be provided. | [optional]
 **quantity** | Option<**f64**> | Quantity for the charge. Will be multiplied by unit_price to determine the amount and must be specified with unit_price. If specified amount cannot be provided. | [optional]
 **amount** | Option<**f64**> | Amount for the charge. Can be provided instead of unit_price and quantity. If amount is sent, the unit_price is assumed to be the amount and quantity is inferred to be 1. | [optional]
-**amount_distribution** | **String** |  | 
+**amount_distribution** | **AmountDistribution** |  (enum: DIVIDED, divided, DIVIDED_ROUNDED, divided_rounded, EACH, each) | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -33,6 +33,9 @@ pub struct GetCustomerAlertPayload {
     /// Used to filter the alert by the custom field key-value pair.
     #[serde(rename = "custom_field_filters", skip_serializing_if = "Option::is_none")]
     pub custom_field_filters: Option<Vec<models::CustomFieldFilterType>>,
+    /// Indicates that this API request was triggered by a webhook notification with the provided ID.
+    #[serde(rename = "webhook_notification_id", skip_serializing_if = "Option::is_none")]
+    pub webhook_notification_id: Option<String>,
 }
 
 impl GetCustomerAlertPayload {
@@ -45,6 +48,7 @@ impl GetCustomerAlertPayload {
             seat_filter: None,
             alert_specifiers: None,
             custom_field_filters: None,
+            webhook_notification_id: None,
         }
     }
 }

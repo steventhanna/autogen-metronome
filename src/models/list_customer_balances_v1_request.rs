@@ -19,13 +19,13 @@ pub struct ListCustomerBalancesV1Request {
     pub id: Option<uuid::Uuid>,
     /// Return only balances that have access schedules that \"cover\" the provided date
     #[serde(rename = "covering_date", skip_serializing_if = "Option::is_none")]
-    pub covering_date: Option<String>,
+    pub covering_date: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Include only balances that have any access on or after the provided date
     #[serde(rename = "starting_at", skip_serializing_if = "Option::is_none")]
-    pub starting_at: Option<String>,
+    pub starting_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Include only balances that have any access before the provided date (exclusive)
     #[serde(rename = "effective_before", skip_serializing_if = "Option::is_none")]
-    pub effective_before: Option<String>,
+    pub effective_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Include balances on the contract level.
     #[serde(rename = "include_contract_balances", skip_serializing_if = "Option::is_none")]
     pub include_contract_balances: Option<bool>,
@@ -47,6 +47,9 @@ pub struct ListCustomerBalancesV1Request {
     /// Exclude balances with zero amounts from the response.
     #[serde(rename = "exclude_zero_balances", skip_serializing_if = "Option::is_none")]
     pub exclude_zero_balances: Option<bool>,
+    /// Indicates that this API request was triggered by a webhook notification with the provided ID.
+    #[serde(rename = "webhook_notification_id", skip_serializing_if = "Option::is_none")]
+    pub webhook_notification_id: Option<String>,
 }
 
 impl ListCustomerBalancesV1Request {
@@ -64,6 +67,7 @@ impl ListCustomerBalancesV1Request {
             next_page: None,
             limit: None,
             exclude_zero_balances: None,
+            webhook_notification_id: None,
         }
     }
 }

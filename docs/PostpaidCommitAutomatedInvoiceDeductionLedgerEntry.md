@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**r#type** | **String** |  | 
-**timestamp** | **String** |  | 
+**r#type** | **Type** |  (enum: POSTPAID_COMMIT_AUTOMATED_INVOICE_DEDUCTION) | 
+**timestamp** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **amount** | **f64** |  | 
-**segment_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
-**invoice_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
-**contract_id** | Option<[**uuid::Uuid**](uuid::Uuid.md)> |  | [optional]
+**segment_id** | **uuid::Uuid** |  | 
+**invoice_id** | **uuid::Uuid** |  | 
+**contract_id** | Option<**uuid::Uuid**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

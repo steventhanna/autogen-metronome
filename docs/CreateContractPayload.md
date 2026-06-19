@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
-**package_id** | Option<[**uuid::Uuid**](uuid::Uuid.md)> | If provided, provisions a customer on a package instead of creating a traditional contract. When specified, only customer_id, starting_at, package_id, uniqueness_key, transition, and custom_fields are allowed. | [optional]
+**customer_id** | **uuid::Uuid** |  | 
+**package_id** | Option<**uuid::Uuid**> | If provided, provisions a customer on a package instead of creating a traditional contract. When specified, only customer_id, starting_at, package_id, uniqueness_key, transition, and custom_fields are allowed. | [optional]
 **package_alias** | Option<**String**> | Selects the package linked to the specified alias as of the contract's start date. Mutually exclusive with package_id. | [optional]
 **name** | Option<**String**> |  | [optional]
 **uniqueness_key** | Option<**String**> | Prevents the creation of duplicates. If a request to create a record is made with a previously used uniqueness key, a new record will not be created and the request will fail with a 409 error. | [optional]
 **netsuite_sales_order_id** | Option<**String**> | This field's availability is dependent on your client's configuration. | [optional]
 **salesforce_opportunity_id** | Option<**String**> | This field's availability is dependent on your client's configuration. | [optional]
 **net_payment_terms_days** | Option<**f64**> |  | [optional]
-**rate_card_id** | Option<[**uuid::Uuid**](uuid::Uuid.md)> |  | [optional]
+**rate_card_id** | Option<**uuid::Uuid**> |  | [optional]
 **rate_card_alias** | Option<**String**> | Selects the rate card linked to the specified alias as of the contract's start date. | [optional]
 **total_contract_value** | Option<**f64**> | This field's availability is dependent on your client's configuration. | [optional]
-**starting_at** | **String** | inclusive contract start time | 
-**ending_before** | Option<**String**> | exclusive contract end time | [optional]
+**starting_at** | **chrono::DateTime<chrono::FixedOffset>** | inclusive contract start time | 
+**ending_before** | Option<**chrono::DateTime<chrono::FixedOffset>**> | exclusive contract end time | [optional]
 **commits** | Option<[**Vec<models::CommitInput>**](CommitInput.md)> |  | [optional]
 **credits** | Option<[**Vec<models::CreditInput>**](CreditInput.md)> |  | [optional]
 **recurring_commits** | Option<[**Vec<models::RecurringCommitInput>**](RecurringCommitInput.md)> |  | [optional]
 **recurring_credits** | Option<[**Vec<models::RecurringCreditInput>**](RecurringCreditInput.md)> |  | [optional]
-**multiplier_override_prioritization** | Option<**String**> | Defaults to LOWEST_MULTIPLIER, which applies the greatest discount to list prices automatically. EXPLICIT prioritization requires specifying priorities for each multiplier; the one with the lowest priority value will be prioritized first. If tiered overrides are used, prioritization must be explicit. | [optional]
+**multiplier_override_prioritization** | Option<**MultiplierOverridePrioritization**> | Defaults to LOWEST_MULTIPLIER, which applies the greatest discount to list prices automatically. EXPLICIT prioritization requires specifying priorities for each multiplier; the one with the lowest priority value will be prioritized first. If tiered overrides are used, prioritization must be explicit. (enum: LOWEST_MULTIPLIER, lowest_multiplier, EXPLICIT, explicit) | [optional]
 **overrides** | Option<[**Vec<models::OverrideInput>**](OverrideInput.md)> |  | [optional]
 **discounts** | Option<[**Vec<models::DiscountInput>**](DiscountInput.md)> | This field's availability is dependent on your client's configuration. | [optional]
 **professional_services** | Option<[**Vec<models::ProServiceInput>**](ProServiceInput.md)> | This field's availability is dependent on your client's configuration. | [optional]

@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
-**credit_id** | Option<[**uuid::Uuid**](uuid::Uuid.md)> |  | [optional]
-**covering_date** | Option<**String**> | Return only credits that have access schedules that \"cover\" the provided date | [optional]
-**starting_at** | Option<**String**> | Include only credits that have any access on or after the provided date | [optional]
-**effective_before** | Option<**String**> | Include only credits that have any access before the provided date (exclusive) | [optional]
+**customer_id** | **uuid::Uuid** |  | 
+**credit_id** | Option<**uuid::Uuid**> |  | [optional]
+**covering_date** | Option<**chrono::DateTime<chrono::FixedOffset>**> | Return only credits that have access schedules that \"cover\" the provided date | [optional]
+**starting_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> | Include only credits that have any access on or after the provided date | [optional]
+**effective_before** | Option<**chrono::DateTime<chrono::FixedOffset>**> | Include only credits that have any access before the provided date (exclusive) | [optional]
 **include_contract_credits** | Option<**bool**> | Include credits on the contract level. | [optional]
 **include_archived** | Option<**bool**> | Include archived credits and credits from archived contracts. | [optional]
 **include_ledgers** | Option<**bool**> | Include credit ledgers in the response. Setting this flag may cause the query to be slower. | [optional]

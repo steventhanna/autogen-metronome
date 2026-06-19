@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **alias** | **String** | Human-readable identifier, unique per contract. | 
-**credit_type_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
-**reset_frequency** | **String** |  | 
+**credit_type_id** | **uuid::Uuid** |  | 
+**reset_frequency** | **ResetFrequency** |  (enum: BILLING_PERIOD) | 
 **applicable_spend_specifiers** | [**Vec<models::SpendTrackerApplicableSpendSpecifier>**](SpendTrackerApplicableSpendSpecifier.md) |  | 
 **accumulated_spend** | Option<[**models::SpendTrackerAccumulatedSpend**](SpendTrackerAccumulatedSpend.md)> |  | [optional]
 

@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **credit_type** | [**models::CreditType**](CreditType.md) |  | 
-**starting_balance** | [**models::CreditTypeLedgerStartingBalance**](CreditTypeLedger_starting_balance.md) |  | 
-**ending_balance** | [**models::CreditTypeLedgerEndingBalance**](CreditTypeLedger_ending_balance.md) |  | 
+**starting_balance** | [**models::CreditTypeLedgerStartingBalance**](CreditTypeLedgerStartingBalance.md) |  | 
+**ending_balance** | [**models::CreditTypeLedgerStartingBalance**](CreditTypeLedgerStartingBalance.md) |  | 
 **entries** | [**Vec<models::CreditLedgerEntry>**](CreditLedgerEntry.md) |  | 
 **pending_entries** | [**Vec<models::CreditLedgerEntry>**](CreditLedgerEntry.md) |  | 
 

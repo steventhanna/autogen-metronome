@@ -26,9 +26,9 @@ pub struct ResellerRoyaltyInput {
     #[serde(rename = "applicable_product_tags", skip_serializing_if = "Option::is_none")]
     pub applicable_product_tags: Option<Vec<String>>,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "reseller_contract_value", skip_serializing_if = "Option::is_none")]
     pub reseller_contract_value: Option<f64>,
     #[serde(rename = "aws_options", skip_serializing_if = "Option::is_none")]
@@ -38,7 +38,7 @@ pub struct ResellerRoyaltyInput {
 }
 
 impl ResellerRoyaltyInput {
-    pub fn new(reseller_type: models::ResellerType, fraction: f64, netsuite_reseller_id: String, starting_at: String) -> ResellerRoyaltyInput {
+    pub fn new(reseller_type: models::ResellerType, fraction: f64, netsuite_reseller_id: String, starting_at: chrono::DateTime<chrono::FixedOffset>) -> ResellerRoyaltyInput {
         ResellerRoyaltyInput {
             reseller_type,
             fraction,

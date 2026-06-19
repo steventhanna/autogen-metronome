@@ -19,14 +19,14 @@ pub struct UsageFilterV2 {
     pub group_values: Vec<String>,
     /// This will match contract starting_at value if usage filter is active from the beginning of the contract.
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     /// This will match contract ending_before value if usage filter is active until the end of the contract. It will be undefined if the contract is open-ended.
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl UsageFilterV2 {
-    pub fn new(group_key: String, group_values: Vec<String>, starting_at: String) -> UsageFilterV2 {
+    pub fn new(group_key: String, group_values: Vec<String>, starting_at: chrono::DateTime<chrono::FixedOffset>) -> UsageFilterV2 {
         UsageFilterV2 {
             group_key,
             group_values,

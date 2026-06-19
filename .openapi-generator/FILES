@@ -9,7 +9,6 @@ docs/AddRatesV1Request.md
 docs/AggregationType.md
 docs/AggregationTypeForEventsSearch.md
 docs/Alert.md
-docs/AlertSeatFilter.md
 docs/AlertSpecifier.md
 docs/AlertSpecifierFilter.md
 docs/AlertSpecifierInclusiveCustomFieldFilter.md
@@ -65,11 +64,9 @@ docs/CommitHierarchyConfiguration.md
 docs/CommitHierarchyConfigurationChildAccess.md
 docs/CommitInput.md
 docs/CommitInputV2.md
-docs/CommitInvoiceContract.md
 docs/CommitLedger.md
 docs/CommitLedgerV2.md
 docs/CommitPaymentGateConfig.md
-docs/CommitPaymentGateConfigPrecalculatedTaxConfig.md
 docs/CommitPaymentGateConfigStripeConfig.md
 docs/CommitRate.md
 docs/CommitRolledOverFrom.md
@@ -146,14 +143,12 @@ docs/CreditRolledOverFrom.md
 docs/CreditRolloverLedgerEntry.md
 docs/CreditSeatBasedAdjustmentLedgerEntry.md
 docs/CreditSegmentStartLedgerEntry.md
-docs/CreditSubscriptionConfig.md
 docs/CreditTemplate.md
 docs/CreditTemplateInput.md
 docs/CreditType.md
 docs/CreditTypeConversion.md
 docs/CreditTypeConversionInput.md
 docs/CreditTypeLedger.md
-docs/CreditTypeLedgerEndingBalance.md
 docs/CreditTypeLedgerStartingBalance.md
 docs/CreditUpdate.md
 docs/CreditV2.md
@@ -376,7 +371,6 @@ docs/PaymentGateConfig.md
 docs/PaymentGateConfigPrecalculatedTaxConfig.md
 docs/PaymentGateConfigStripeConfig.md
 docs/PaymentGateConfigV2.md
-docs/PaymentGateConfigV2StripeConfig.md
 docs/PostpaidCommit.md
 docs/PostpaidCommitAutomatedInvoiceDeductionLedgerEntry.md
 docs/PostpaidCommitExpirationLedgerEntry.md
@@ -435,8 +429,6 @@ docs/RecurringCommitInputAllOfProrationRounding.md
 docs/RecurringCommitInputV2.md
 docs/RecurringCommitInputV2AllOfProrationRounding.md
 docs/RecurringCommitOrCreditBase.md
-docs/RecurringCommitOrCreditBaseAccessAmount.md
-docs/RecurringCommitOrCreditBaseCommitDuration.md
 docs/RecurringCommitOrCreditBaseV2.md
 docs/RecurringCommitOrCreditInputBase.md
 docs/RecurringCommitOrCreditInputBaseAccessAmount.md
@@ -452,7 +444,6 @@ docs/RecurringCommitSubscriptionConfigInput.md
 docs/RecurringCommitSubscriptionConfigInputV2.md
 docs/RecurringCommitSubscriptionConfigTemplate.md
 docs/RecurringCommitTemplate.md
-docs/RecurringCommitTemplateAllOfInvoiceAmount.md
 docs/RecurringCommitTemplateInput.md
 docs/RecurringCommitUpdate.md
 docs/RecurringCommitV2.md
@@ -471,9 +462,6 @@ docs/RecurringCreditV2AllOfProrationRounding.md
 docs/RecurringScheduleFrequency.md
 docs/RecurringScheduleFrequencyV2.md
 docs/RefundInvoiceUpdate.md
-docs/RegenerateInvoiceV1200Response.md
-docs/RegenerateInvoiceV1200ResponseData.md
-docs/RegenerateInvoiceV1Request.md
 docs/RelativeDate.md
 docs/RelativeScheduleDuration.md
 docs/RelativeScheduleDurationInput.md
@@ -596,7 +584,6 @@ docs/SubscriptionTemplate.md
 docs/SubscriptionTemplateInput.md
 docs/SubscriptionV2.md
 docs/SubscriptionsUpdate.md
-docs/SubscriptionsUpdateQuantityUpdatesInner.md
 docs/TaxPlatform.md
 docs/TaxProviderType.md
 docs/ThresholdBalanceSpecifier.md
@@ -604,8 +591,6 @@ docs/ThresholdBalanceSpecifierV2.md
 docs/Tier.md
 docs/TierMetadata.md
 docs/UpdateAccessScheduleInput.md
-docs/UpdateAccessScheduleInputAddScheduleItemsInner.md
-docs/UpdateAccessScheduleInputUpdateScheduleItemsInner.md
 docs/UpdateBaseThresholdCommit.md
 docs/UpdateBillableMetricV1Request.md
 docs/UpdateCommitEndDatePayload.md
@@ -652,7 +637,6 @@ docs/UsageStatementScheduleInput.md
 docs/UsageStatementScheduleTemplate.md
 docs/UsageStatementScheduleTemplateInput.md
 docs/VoidInvoiceV1200Response.md
-docs/VoidInvoiceV1200ResponseData.md
 docs/VoidInvoiceV1Request.md
 src/apis/alerts_api.rs
 src/apis/billable_metrics_api.rs
@@ -683,7 +667,6 @@ src/models/add_rates_v1_request.rs
 src/models/aggregation_type.rs
 src/models/aggregation_type_for_events_search.rs
 src/models/alert.rs
-src/models/alert_seat_filter.rs
 src/models/alert_specifier.rs
 src/models/alert_specifier_filter.rs
 src/models/alert_specifier_inclusive_custom_field_filter.rs
@@ -737,11 +720,9 @@ src/models/commit_hierarchy_configuration.rs
 src/models/commit_hierarchy_configuration_child_access.rs
 src/models/commit_input.rs
 src/models/commit_input_v2.rs
-src/models/commit_invoice_contract.rs
 src/models/commit_ledger.rs
 src/models/commit_ledger_v2.rs
 src/models/commit_payment_gate_config.rs
-src/models/commit_payment_gate_config_precalculated_tax_config.rs
 src/models/commit_payment_gate_config_stripe_config.rs
 src/models/commit_rate.rs
 src/models/commit_rolled_over_from.rs
@@ -817,14 +798,12 @@ src/models/credit_rolled_over_from.rs
 src/models/credit_rollover_ledger_entry.rs
 src/models/credit_seat_based_adjustment_ledger_entry.rs
 src/models/credit_segment_start_ledger_entry.rs
-src/models/credit_subscription_config.rs
 src/models/credit_template.rs
 src/models/credit_template_input.rs
 src/models/credit_type.rs
 src/models/credit_type_conversion.rs
 src/models/credit_type_conversion_input.rs
 src/models/credit_type_ledger.rs
-src/models/credit_type_ledger_ending_balance.rs
 src/models/credit_type_ledger_starting_balance.rs
 src/models/credit_update.rs
 src/models/credit_v2.rs
@@ -1040,7 +1019,6 @@ src/models/payment_gate_config.rs
 src/models/payment_gate_config_precalculated_tax_config.rs
 src/models/payment_gate_config_stripe_config.rs
 src/models/payment_gate_config_v2.rs
-src/models/payment_gate_config_v2_stripe_config.rs
 src/models/postpaid_commit.rs
 src/models/postpaid_commit_automated_invoice_deduction_ledger_entry.rs
 src/models/postpaid_commit_expiration_ledger_entry.rs
@@ -1097,8 +1075,6 @@ src/models/recurring_commit_input_all_of_proration_rounding.rs
 src/models/recurring_commit_input_v2.rs
 src/models/recurring_commit_input_v2_all_of_proration_rounding.rs
 src/models/recurring_commit_or_credit_base.rs
-src/models/recurring_commit_or_credit_base_access_amount.rs
-src/models/recurring_commit_or_credit_base_commit_duration.rs
 src/models/recurring_commit_or_credit_base_v2.rs
 src/models/recurring_commit_or_credit_input_base.rs
 src/models/recurring_commit_or_credit_input_base_access_amount.rs
@@ -1114,7 +1090,6 @@ src/models/recurring_commit_subscription_config_input.rs
 src/models/recurring_commit_subscription_config_input_v2.rs
 src/models/recurring_commit_subscription_config_template.rs
 src/models/recurring_commit_template.rs
-src/models/recurring_commit_template_all_of_invoice_amount.rs
 src/models/recurring_commit_template_input.rs
 src/models/recurring_commit_update.rs
 src/models/recurring_commit_v2.rs
@@ -1133,9 +1108,6 @@ src/models/recurring_credit_v2_all_of_proration_rounding.rs
 src/models/recurring_schedule_frequency.rs
 src/models/recurring_schedule_frequency_v2.rs
 src/models/refund_invoice_update.rs
-src/models/regenerate_invoice_v1_200_response.rs
-src/models/regenerate_invoice_v1_200_response_data.rs
-src/models/regenerate_invoice_v1_request.rs
 src/models/relative_date.rs
 src/models/relative_schedule_duration.rs
 src/models/relative_schedule_duration_input.rs
@@ -1256,7 +1228,6 @@ src/models/subscription_template.rs
 src/models/subscription_template_input.rs
 src/models/subscription_v2.rs
 src/models/subscriptions_update.rs
-src/models/subscriptions_update_quantity_updates_inner.rs
 src/models/tax_platform.rs
 src/models/tax_provider_type.rs
 src/models/threshold_balance_specifier.rs
@@ -1264,8 +1235,6 @@ src/models/threshold_balance_specifier_v2.rs
 src/models/tier.rs
 src/models/tier_metadata.rs
 src/models/update_access_schedule_input.rs
-src/models/update_access_schedule_input_add_schedule_items_inner.rs
-src/models/update_access_schedule_input_update_schedule_items_inner.rs
 src/models/update_base_threshold_commit.rs
 src/models/update_billable_metric_v1_request.rs
 src/models/update_commit_end_date_payload.rs
@@ -1311,5 +1280,4 @@ src/models/usage_statement_schedule_input.rs
 src/models/usage_statement_schedule_template.rs
 src/models/usage_statement_schedule_template_input.rs
 src/models/void_invoice_v1_200_response.rs
-src/models/void_invoice_v1_200_response_data.rs
 src/models/void_invoice_v1_request.rs

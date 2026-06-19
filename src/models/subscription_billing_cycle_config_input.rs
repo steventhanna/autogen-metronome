@@ -15,7 +15,7 @@ use serde::{Deserialize, Serialize};
 pub struct SubscriptionBillingCycleConfigInput {
     /// The date to anchor the billing cycle to. If omitted, defaults to the contract's usage invoice billing cycle anchor date.
     #[serde(rename = "anchor_date", skip_serializing_if = "Option::is_none")]
-    pub anchor_date: Option<String>,
+    pub anchor_date: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Controls whether this subscription consolidates onto usage invoices or gets its own scheduled invoice. Defaults to ON_USAGE_INVOICE if omitted.
     #[serde(rename = "invoice_placement", skip_serializing_if = "Option::is_none")]
     pub invoice_placement: Option<InvoicePlacement>,

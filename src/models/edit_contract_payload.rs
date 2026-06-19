@@ -47,9 +47,9 @@ pub struct EditContractPayload {
     #[serde(rename = "add_spend_threshold_configuration", skip_serializing_if = "Option::is_none")]
     pub add_spend_threshold_configuration: Option<Box<models::SpendThresholdConfigurationV2>>,
     #[serde(rename = "add_prepaid_balance_threshold_configuration", skip_serializing_if = "Option::is_none")]
-    pub add_prepaid_balance_threshold_configuration: Option<models::PrepaidBalanceThresholdConfigurationV2>,
+    pub add_prepaid_balance_threshold_configuration: Option<Box<models::PrepaidBalanceThresholdConfigurationV2>>,
     #[serde(rename = "add_billing_provider_configuration_update", skip_serializing_if = "Option::is_none")]
-    pub add_billing_provider_configuration_update: Option<models::BillingProviderConfigurationUpdate>,
+    pub add_billing_provider_configuration_update: Option<Box<models::BillingProviderConfigurationUpdate>>,
     #[serde(rename = "add_revenue_system_configuration_update", skip_serializing_if = "Option::is_none")]
     pub add_revenue_system_configuration_update: Option<Box<models::RevenueSystemConfigurationUpdate>>,
     /// Spend trackers to add to this contract. Aliases must be unique within a contract.
@@ -79,7 +79,7 @@ pub struct EditContractPayload {
     pub update_prepaid_balance_threshold_configuration: Option<Box<models::UpdatePrepaidBalanceThresholdConfiguration>>,
     /// RFC 3339 timestamp indicating when the contract will end (exclusive).
     #[serde(rename = "update_contract_end_date", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub update_contract_end_date: Option<Option<String>>,
+    pub update_contract_end_date: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     /// Number of days after issuance of invoice after which the invoice is due (e.g. Net 30).
     #[serde(rename = "update_net_payment_terms_days", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub update_net_payment_terms_days: Option<Option<f64>>,
@@ -88,19 +88,19 @@ pub struct EditContractPayload {
     pub allow_contract_ending_before_finalized_invoice: Option<bool>,
     /// IDs of commits to archive
     #[serde(rename = "archive_commits", skip_serializing_if = "Option::is_none")]
-    pub archive_commits: Option<Vec<models::VoidInvoiceV1200ResponseData>>,
+    pub archive_commits: Option<Vec<models::VoidInvoiceV1Request>>,
     /// IDs of credits to archive
     #[serde(rename = "archive_credits", skip_serializing_if = "Option::is_none")]
-    pub archive_credits: Option<Vec<models::VoidInvoiceV1200ResponseData>>,
+    pub archive_credits: Option<Vec<models::VoidInvoiceV1Request>>,
     /// IDs of scheduled charges to archive
     #[serde(rename = "archive_scheduled_charges", skip_serializing_if = "Option::is_none")]
-    pub archive_scheduled_charges: Option<Vec<models::VoidInvoiceV1200ResponseData>>,
+    pub archive_scheduled_charges: Option<Vec<models::VoidInvoiceV1Request>>,
     /// Aliases of spend trackers to archive.
     #[serde(rename = "archive_spend_trackers", skip_serializing_if = "Option::is_none")]
     pub archive_spend_trackers: Option<Vec<String>>,
     /// IDs of overrides to remove
     #[serde(rename = "remove_overrides", skip_serializing_if = "Option::is_none")]
-    pub remove_overrides: Option<Vec<models::VoidInvoiceV1200ResponseData>>,
+    pub remove_overrides: Option<Vec<models::VoidInvoiceV1Request>>,
 }
 
 impl EditContractPayload {

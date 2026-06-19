@@ -29,17 +29,17 @@ pub struct LifecycleEventOffsetNotificationConfig {
     pub environment_type: String,
     /// RFC 3339 timestamp when this notification configuration was created. 
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     /// Who created this notification configuration
     #[serde(rename = "created_by")]
     pub created_by: String,
     /// When this notification configuration was archived
     #[serde(rename = "archived_at", deserialize_with = "Option::deserialize")]
-    pub archived_at: Option<String>,
+    pub archived_at: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl LifecycleEventOffsetNotificationConfig {
-    pub fn new(id: uuid::Uuid, name: String, r#type: String, policy: models::LifecycleEventOffsetPolicy, environment_type: String, created_at: String, created_by: String, archived_at: Option<String>) -> LifecycleEventOffsetNotificationConfig {
+    pub fn new(id: uuid::Uuid, name: String, r#type: String, policy: models::LifecycleEventOffsetPolicy, environment_type: String, created_at: chrono::DateTime<chrono::FixedOffset>, created_by: String, archived_at: Option<chrono::DateTime<chrono::FixedOffset>>) -> LifecycleEventOffsetNotificationConfig {
         LifecycleEventOffsetNotificationConfig {
             id,
             name,

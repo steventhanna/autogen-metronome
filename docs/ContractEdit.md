@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
-**timestamp** | Option<**String**> |  | [optional]
+**id** | **uuid::Uuid** |  | 
+**timestamp** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **uniqueness_key** | Option<**String**> | Prevents the creation of duplicates. If a request to create a record is made with a previously used uniqueness key, a new record will not be created and the request will fail with a 409 error. | [optional]
 **add_overrides** | Option<[**Vec<models::OverrideV2>**](OverrideV2.md)> |  | [optional]
 **add_pro_services** | Option<[**Vec<models::ProService>**](ProService.md)> |  | [optional]
@@ -27,15 +27,15 @@ Name | Type | Description | Notes
 **update_credits** | Option<[**Vec<models::CreditUpdate>**](CreditUpdate.md)> |  | [optional]
 **update_recurring_commits** | Option<[**Vec<models::RecurringCommitUpdate>**](RecurringCommitUpdate.md)> |  | [optional]
 **update_recurring_credits** | Option<[**Vec<models::RecurringCreditUpdate>**](RecurringCreditUpdate.md)> |  | [optional]
-**update_contract_end_date** | Option<**String**> |  | [optional]
+**update_contract_end_date** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **update_refund_invoices** | Option<[**Vec<models::RefundInvoiceUpdate>**](RefundInvoiceUpdate.md)> |  | [optional]
 **update_subscriptions** | Option<[**Vec<models::SubscriptionsUpdate>**](SubscriptionsUpdate.md)> | Optional list of subscriptions to update. | [optional]
 **update_prepaid_balance_threshold_configuration** | Option<[**models::UpdatePrepaidBalanceThresholdConfiguration**](UpdatePrepaidBalanceThresholdConfiguration.md)> |  | [optional]
 **update_spend_threshold_configuration** | Option<[**models::UpdateSpendThresholdConfiguration**](UpdateSpendThresholdConfiguration.md)> |  | [optional]
-**archive_commits** | Option<[**Vec<models::VoidInvoiceV1200ResponseData>**](voidInvoice_v1_200_response_data.md)> |  | [optional]
-**archive_credits** | Option<[**Vec<models::VoidInvoiceV1200ResponseData>**](voidInvoice_v1_200_response_data.md)> |  | [optional]
-**archive_scheduled_charges** | Option<[**Vec<models::VoidInvoiceV1200ResponseData>**](voidInvoice_v1_200_response_data.md)> |  | [optional]
-**remove_overrides** | Option<[**Vec<models::VoidInvoiceV1200ResponseData>**](voidInvoice_v1_200_response_data.md)> |  | [optional]
+**archive_commits** | Option<[**Vec<models::VoidInvoiceV1Request>**](VoidInvoiceV1Request.md)> |  | [optional]
+**archive_credits** | Option<[**Vec<models::VoidInvoiceV1Request>**](VoidInvoiceV1Request.md)> |  | [optional]
+**archive_scheduled_charges** | Option<[**Vec<models::VoidInvoiceV1Request>**](VoidInvoiceV1Request.md)> |  | [optional]
+**remove_overrides** | Option<[**Vec<models::VoidInvoiceV1Request>**](VoidInvoiceV1Request.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

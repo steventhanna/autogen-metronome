@@ -36,7 +36,7 @@ pub enum GetPackageV1Error {
 /// Archive a package. Archived packages cannot be used to create new contracts. However, existing contracts associated with the package will continue to function as normal. Once you archive a package, you can still retrieve it in the UI and API, but you cannot unarchive it. 
 pub async fn archive_package_v1(configuration: &configuration::Configuration, archive_package_v1_request: Option<models::ArchivePackageV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<ArchivePackageV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_archive_package_v1_request = archive_package_v1_request;
+    let p_body_archive_package_v1_request = archive_package_v1_request;
 
     let uri_str = format!("{}/v1/packages/archive", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -47,7 +47,7 @@ pub async fn archive_package_v1(configuration: &configuration::Configuration, ar
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_archive_package_v1_request);
+    req_builder = req_builder.json(&p_body_archive_package_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -77,7 +77,7 @@ pub async fn archive_package_v1(configuration: &configuration::Configuration, ar
 /// Gets the details for a specific package, including name, aliases, duration, and terms. Use this endpoint to understand a package’s alias schedule, or display a specific package’s details to end customers. 
 pub async fn get_package_v1(configuration: &configuration::Configuration, get_package_v1_request: Option<models::GetPackageV1Request>) -> Result<models::GetPackageV1200Response, Error<GetPackageV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_get_package_v1_request = get_package_v1_request;
+    let p_body_get_package_v1_request = get_package_v1_request;
 
     let uri_str = format!("{}/v1/packages/get", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -88,7 +88,7 @@ pub async fn get_package_v1(configuration: &configuration::Configuration, get_pa
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_get_package_v1_request);
+    req_builder = req_builder.json(&p_body_get_package_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

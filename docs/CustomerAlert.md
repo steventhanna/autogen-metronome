@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**customer_status** | Option<**String**> | The status of the threshold notification. If the notification is archived, null will be returned. | 
+**customer_status** | Option<**CustomerStatus**> | The status of the threshold notification. If the notification is archived, null will be returned. (enum: ok, in_alarm, evaluating) | 
 **triggered_by** | Option<**String**> | If present, indicates the reason the threshold notification was triggered. | [optional]
 **alert** | [**models::Alert**](Alert.md) |  | 
 

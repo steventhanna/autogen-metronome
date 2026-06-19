@@ -36,7 +36,7 @@ pub struct AddManualBalanceLedgerEntryPayload {
     pub reason: String,
     /// RFC 3339 timestamp indicating when the manual adjustment takes place. If not provided, it will default to the start of the segment.
     #[serde(rename = "timestamp", skip_serializing_if = "Option::is_none")]
-    pub timestamp: Option<String>,
+    pub timestamp: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl AddManualBalanceLedgerEntryPayload {

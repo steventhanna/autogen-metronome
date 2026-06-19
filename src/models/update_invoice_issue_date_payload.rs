@@ -18,11 +18,11 @@ pub struct UpdateInvoiceIssueDatePayload {
     pub invoice_id: uuid::Uuid,
     /// RFC 3339 timestamp. This will be the new issue date of the invoice. It must not be after the end date of the contract.
     #[serde(rename = "issue_date")]
-    pub issue_date: String,
+    pub issue_date: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl UpdateInvoiceIssueDatePayload {
-    pub fn new(invoice_id: uuid::Uuid, issue_date: String) -> UpdateInvoiceIssueDatePayload {
+    pub fn new(invoice_id: uuid::Uuid, issue_date: chrono::DateTime<chrono::FixedOffset>) -> UpdateInvoiceIssueDatePayload {
         UpdateInvoiceIssueDatePayload {
             invoice_id,
             issue_date,

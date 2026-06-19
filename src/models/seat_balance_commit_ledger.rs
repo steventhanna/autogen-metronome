@@ -20,11 +20,11 @@ pub struct SeatBalanceCommitLedger {
     pub amount: f64,
     /// The datetime when the ledger is created
     #[serde(rename = "timestamp")]
-    pub timestamp: String,
+    pub timestamp: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl SeatBalanceCommitLedger {
-    pub fn new(r#type: models::SeatBalanceCommitLedgerEntryType, amount: f64, timestamp: String) -> SeatBalanceCommitLedger {
+    pub fn new(r#type: models::SeatBalanceCommitLedgerEntryType, amount: f64, timestamp: chrono::DateTime<chrono::FixedOffset>) -> SeatBalanceCommitLedger {
         SeatBalanceCommitLedger {
             r#type,
             amount,

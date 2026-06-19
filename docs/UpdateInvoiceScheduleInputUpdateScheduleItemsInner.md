@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
-**timestamp** | Option<**String**> |  | [optional]
+**id** | **uuid::Uuid** |  | 
+**timestamp** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **amount** | Option<**f64**> |  | [optional]
 **quantity** | Option<**f64**> |  | [optional]
 **unit_price** | Option<**f64**> |  | [optional]

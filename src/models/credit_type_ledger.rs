@@ -18,7 +18,7 @@ pub struct CreditTypeLedger {
     #[serde(rename = "starting_balance")]
     pub starting_balance: Box<models::CreditTypeLedgerStartingBalance>,
     #[serde(rename = "ending_balance")]
-    pub ending_balance: Box<models::CreditTypeLedgerEndingBalance>,
+    pub ending_balance: Box<models::CreditTypeLedgerStartingBalance>,
     #[serde(rename = "entries")]
     pub entries: Vec<models::CreditLedgerEntry>,
     #[serde(rename = "pending_entries")]
@@ -26,7 +26,7 @@ pub struct CreditTypeLedger {
 }
 
 impl CreditTypeLedger {
-    pub fn new(credit_type: models::CreditType, starting_balance: models::CreditTypeLedgerStartingBalance, ending_balance: models::CreditTypeLedgerEndingBalance, entries: Vec<models::CreditLedgerEntry>, pending_entries: Vec<models::CreditLedgerEntry>) -> CreditTypeLedger {
+    pub fn new(credit_type: models::CreditType, starting_balance: models::CreditTypeLedgerStartingBalance, ending_balance: models::CreditTypeLedgerStartingBalance, entries: Vec<models::CreditLedgerEntry>, pending_entries: Vec<models::CreditLedgerEntry>) -> CreditTypeLedger {
         CreditTypeLedger {
             credit_type: Box::new(credit_type),
             starting_balance: Box::new(starting_balance),

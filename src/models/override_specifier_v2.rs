@@ -17,6 +17,8 @@ pub struct OverrideSpecifierV2 {
     pub commit_ids: Option<Vec<String>>,
     #[serde(rename = "recurring_commit_ids", skip_serializing_if = "Option::is_none")]
     pub recurring_commit_ids: Option<Vec<String>>,
+    #[serde(rename = "any_commit_or_credit_ids", skip_serializing_if = "Option::is_none")]
+    pub any_commit_or_credit_ids: Option<Vec<String>>,
     #[serde(rename = "product_id", skip_serializing_if = "Option::is_none")]
     pub product_id: Option<uuid::Uuid>,
     #[serde(rename = "product_tags", skip_serializing_if = "Option::is_none")]
@@ -37,6 +39,7 @@ impl OverrideSpecifierV2 {
         OverrideSpecifierV2 {
             commit_ids: None,
             recurring_commit_ids: None,
+            any_commit_or_credit_ids: None,
             product_id: None,
             product_tags: None,
             pricing_group_values: None,

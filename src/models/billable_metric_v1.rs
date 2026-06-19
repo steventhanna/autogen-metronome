@@ -40,7 +40,7 @@ pub struct BillableMetricV1 {
     pub sql: Option<String>,
     /// RFC 3339 timestamp indicating when the billable metric was archived. If not provided, the billable metric is not archived.
     #[serde(rename = "archived_at", skip_serializing_if = "Option::is_none")]
-    pub archived_at: Option<String>,
+    pub archived_at: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl BillableMetricV1 {

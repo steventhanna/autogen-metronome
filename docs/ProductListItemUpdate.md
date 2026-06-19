@@ -5,16 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | Option<**String**> |  | [optional]
-**starting_at** | Option<**String**> |  | [optional]
+**starting_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **is_refundable** | Option<**bool**> |  | [optional]
-**created_at** | **String** |  | 
+**created_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **created_by** | **String** |  | 
-**billable_metric_id** | Option<[**uuid::Uuid**](uuid::Uuid.md)> |  | [optional]
+**billable_metric_id** | Option<**uuid::Uuid**> |  | [optional]
 **quantity_conversion** | Option<[**models::QuantityConversion**](QuantityConversion.md)> |  | [optional]
 **quantity_rounding** | Option<[**models::QuantityRounding**](QuantityRounding.md)> |  | [optional]
 **netsuite_internal_item_id** | Option<**String**> | This field's availability is dependent on your client's configuration. | [optional]
 **netsuite_overage_item_id** | Option<**String**> | This field's availability is dependent on your client's configuration. | [optional]
-**composite_product_ids** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  | [optional]
+**composite_product_ids** | Option<**Vec<uuid::Uuid>**> |  | [optional]
 **composite_tags** | Option<**Vec<String>**> |  | [optional]
 **tags** | Option<**Vec<String>**> |  | [optional]
 **exclude_free_usage** | Option<**bool**> |  | [optional]

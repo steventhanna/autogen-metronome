@@ -18,15 +18,15 @@ pub struct ContractProjectionSummary {
     #[serde(rename = "contract_id")]
     pub contract_id: uuid::Uuid,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "archived_at", skip_serializing_if = "Option::is_none")]
-    pub archived_at: Option<String>,
+    pub archived_at: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl ContractProjectionSummary {
-    pub fn new(customer_id: uuid::Uuid, contract_id: uuid::Uuid, starting_at: String) -> ContractProjectionSummary {
+    pub fn new(customer_id: uuid::Uuid, contract_id: uuid::Uuid, starting_at: chrono::DateTime<chrono::FixedOffset>) -> ContractProjectionSummary {
         ContractProjectionSummary {
             customer_id,
             contract_id,

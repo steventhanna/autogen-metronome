@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
+**id** | **uuid::Uuid** |  | 
 **unit_price** | **f64** |  | 
 **quantity** | **f64** |  | 
 **date_offset** | [**models::RelativeDate**](RelativeDate.md) |  | 

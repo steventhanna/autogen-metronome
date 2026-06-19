@@ -27,7 +27,7 @@ pub struct ListContractsNamedSchedulesPayload {
     pub properties: Option<std::collections::HashMap<String, String>>,
     /// If provided, result contains at most one segment covering this date for each schedule.
     #[serde(rename = "covering_date", skip_serializing_if = "Option::is_none")]
-    pub covering_date: Option<String>,
+    pub covering_date: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Maximum number of named schedules to return.
     #[serde(rename = "limit", skip_serializing_if = "Option::is_none")]
     pub limit: Option<i32>,

@@ -27,13 +27,13 @@ pub struct GetSubscriptionSeatsHistoryV1Request {
     pub cursor: Option<Option<String>>,
     /// Get the seats history segment for the covering date. Cannot be used with `starting_at` or `ending_before`.
     #[serde(rename = "covering_date", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub covering_date: Option<Option<String>>,
+    pub covering_date: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     /// Include seats history segments that are active at or after this timestamp. Use with `ending_before` to get a specific time range. If not set, there's no lower bound.
     #[serde(rename = "starting_at", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub starting_at: Option<Option<String>>,
+    pub starting_at: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     /// Include seats history segments that are active at or before this timestamp. Use with `starting_at` to get a specific time range. If not set, there's no upper bound.
     #[serde(rename = "ending_before", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<Option<String>>,
+    pub ending_before: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
 }
 
 impl GetSubscriptionSeatsHistoryV1Request {

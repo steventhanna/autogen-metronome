@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
-**r#type** | **String** |  | 
-**archived_at** | Option<**String**> |  | [optional]
+**id** | **uuid::Uuid** |  | 
+**r#type** | **Type** |  (enum: USAGE, SUBSCRIPTION, COMPOSITE, FIXED, PRO_SERVICE) | 
+**archived_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **initial** | [**models::ProductListItemState**](ProductListItemState.md) |  | 
 **current** | [**models::ProductListItemState**](ProductListItemState.md) |  | 
 **updates** | [**Vec<models::ProductListItemUpdate>**](ProductListItemUpdate.md) |  | 

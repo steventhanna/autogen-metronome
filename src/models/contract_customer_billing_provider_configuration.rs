@@ -24,12 +24,12 @@ pub struct ContractCustomerBillingProviderConfiguration {
     #[serde(rename = "configuration", skip_serializing_if = "Option::is_none")]
     pub configuration: Option<std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "archived_at", deserialize_with = "Option::deserialize")]
-    pub archived_at: Option<String>,
+    pub archived_at: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl ContractCustomerBillingProviderConfiguration {
     /// The billing provider configuration associated with a contract.
-    pub fn new(billing_provider: models::BillingProviderType, delivery_method: models::BillingProviderDeliveryMethodType, archived_at: Option<String>) -> ContractCustomerBillingProviderConfiguration {
+    pub fn new(billing_provider: models::BillingProviderType, delivery_method: models::BillingProviderDeliveryMethodType, archived_at: Option<chrono::DateTime<chrono::FixedOffset>>) -> ContractCustomerBillingProviderConfiguration {
         ContractCustomerBillingProviderConfiguration {
             billing_provider,
             delivery_method,

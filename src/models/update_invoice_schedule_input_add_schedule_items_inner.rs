@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UpdateInvoiceScheduleInputAddScheduleItemsInner {
     #[serde(rename = "timestamp")]
-    pub timestamp: String,
+    pub timestamp: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "amount", skip_serializing_if = "Option::is_none")]
     pub amount: Option<f64>,
     #[serde(rename = "quantity", skip_serializing_if = "Option::is_none")]
@@ -24,7 +24,7 @@ pub struct UpdateInvoiceScheduleInputAddScheduleItemsInner {
 }
 
 impl UpdateInvoiceScheduleInputAddScheduleItemsInner {
-    pub fn new(timestamp: String) -> UpdateInvoiceScheduleInputAddScheduleItemsInner {
+    pub fn new(timestamp: chrono::DateTime<chrono::FixedOffset>) -> UpdateInvoiceScheduleInputAddScheduleItemsInner {
         UpdateInvoiceScheduleInputAddScheduleItemsInner {
             timestamp,
             amount: None,

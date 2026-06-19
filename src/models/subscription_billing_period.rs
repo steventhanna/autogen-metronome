@@ -14,13 +14,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SubscriptionBillingPeriod {
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "ending_before")]
-    pub ending_before: String,
+    pub ending_before: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl SubscriptionBillingPeriod {
-    pub fn new(starting_at: String, ending_before: String) -> SubscriptionBillingPeriod {
+    pub fn new(starting_at: chrono::DateTime<chrono::FixedOffset>, ending_before: chrono::DateTime<chrono::FixedOffset>) -> SubscriptionBillingPeriod {
         SubscriptionBillingPeriod {
             starting_at,
             ending_before,

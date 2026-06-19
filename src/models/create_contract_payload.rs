@@ -44,10 +44,10 @@ pub struct CreateContractPayload {
     pub total_contract_value: Option<f64>,
     /// inclusive contract start time
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     /// exclusive contract end time
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "commits", skip_serializing_if = "Option::is_none")]
     pub commits: Option<Vec<models::CommitInput>>,
     #[serde(rename = "credits", skip_serializing_if = "Option::is_none")]
@@ -102,7 +102,7 @@ pub struct CreateContractPayload {
 }
 
 impl CreateContractPayload {
-    pub fn new(customer_id: uuid::Uuid, starting_at: String) -> CreateContractPayload {
+    pub fn new(customer_id: uuid::Uuid, starting_at: chrono::DateTime<chrono::FixedOffset>) -> CreateContractPayload {
         CreateContractPayload {
             customer_id,
             package_id: None,

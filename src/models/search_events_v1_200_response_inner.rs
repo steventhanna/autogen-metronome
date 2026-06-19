@@ -23,13 +23,13 @@ pub struct SearchEventsV1200ResponseInner {
     #[serde(rename = "properties", skip_serializing_if = "Option::is_none")]
     pub properties: Option<std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "timestamp")]
-    pub timestamp: String,
+    pub timestamp: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "transaction_id")]
     pub transaction_id: String,
     #[serde(rename = "is_duplicate", skip_serializing_if = "Option::is_none")]
     pub is_duplicate: Option<bool>,
     #[serde(rename = "processed_at", skip_serializing_if = "Option::is_none")]
-    pub processed_at: Option<String>,
+    pub processed_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "matched_customer", skip_serializing_if = "Option::is_none")]
     pub matched_customer: Option<Box<models::SearchEventsV1200ResponseInnerMatchedCustomer>>,
     #[serde(rename = "matched_billable_metrics", skip_serializing_if = "Option::is_none")]
@@ -37,7 +37,7 @@ pub struct SearchEventsV1200ResponseInner {
 }
 
 impl SearchEventsV1200ResponseInner {
-    pub fn new(id: String, customer_id: String, event_type: String, timestamp: String, transaction_id: String) -> SearchEventsV1200ResponseInner {
+    pub fn new(id: String, customer_id: String, event_type: String, timestamp: chrono::DateTime<chrono::FixedOffset>, transaction_id: String) -> SearchEventsV1200ResponseInner {
         SearchEventsV1200ResponseInner {
             id,
             customer_id,

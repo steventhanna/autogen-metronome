@@ -19,7 +19,7 @@ pub struct ContractAmendment {
     #[serde(rename = "salesforce_opportunity_id", skip_serializing_if = "Option::is_none")]
     pub salesforce_opportunity_id: Option<String>,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "commits")]
     pub commits: Vec<models::Commit>,
     #[serde(rename = "credits", skip_serializing_if = "Option::is_none")]
@@ -38,7 +38,7 @@ pub struct ContractAmendment {
     #[serde(rename = "reseller_royalties", skip_serializing_if = "Option::is_none")]
     pub reseller_royalties: Option<Vec<models::ResellerRoyaltyOrUpdate>>,
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "created_by")]
     pub created_by: String,
     /// This field's availability is dependent on your client's configuration.
@@ -47,7 +47,7 @@ pub struct ContractAmendment {
 }
 
 impl ContractAmendment {
-    pub fn new(id: uuid::Uuid, starting_at: String, commits: Vec<models::Commit>, overrides: Vec<models::Override>, scheduled_charges: Vec<models::ScheduledCharge>, created_at: String, created_by: String) -> ContractAmendment {
+    pub fn new(id: uuid::Uuid, starting_at: chrono::DateTime<chrono::FixedOffset>, commits: Vec<models::Commit>, overrides: Vec<models::Override>, scheduled_charges: Vec<models::ScheduledCharge>, created_at: chrono::DateTime<chrono::FixedOffset>, created_by: String) -> ContractAmendment {
         ContractAmendment {
             id,
             salesforce_opportunity_id: None,

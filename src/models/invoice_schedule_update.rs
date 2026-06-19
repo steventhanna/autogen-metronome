@@ -18,7 +18,7 @@ pub struct InvoiceScheduleUpdate {
     #[serde(rename = "update_schedule_items", skip_serializing_if = "Option::is_none")]
     pub update_schedule_items: Option<Vec<models::UpdateInvoiceScheduleInputUpdateScheduleItemsInner>>,
     #[serde(rename = "remove_schedule_items", skip_serializing_if = "Option::is_none")]
-    pub remove_schedule_items: Option<Vec<models::VoidInvoiceV1200ResponseData>>,
+    pub remove_schedule_items: Option<Vec<models::VoidInvoiceV1Request>>,
 }
 
 impl InvoiceScheduleUpdate {
