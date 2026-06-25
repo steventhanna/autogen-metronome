@@ -1,10 +1,12 @@
-# ThresholdBalanceSpecifier
+# SubmitApprovalRequestsV1200ResponseData
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**exclude** | [**Vec<models::ExcludeThresholdBalanceSpecifier>**](ExcludeThresholdBalanceSpecifier.md) | If any of the exclude specifier is met, the balance is not considered when evaluating threshold billing | 
+**id** | **uuid::Uuid** |  | 
+**approval_url** | **String** |  | 
+**created_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
