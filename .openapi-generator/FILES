@@ -16,6 +16,7 @@ docs/AlertsApi.md
 docs/AmendContractPayload.md
 docs/AppliedCommitOrCredit.md
 docs/ApplySeatIncreaseConfigForRecurringCommit.md
+docs/ApprovalRequestsApi.md
 docs/ArchiveAlertPayload.md
 docs/ArchiveAlertV1200Response.md
 docs/ArchiveCommitPayload.md
@@ -550,6 +551,9 @@ docs/SpendTrackerAttributes.md
 docs/SpendTrackerAttributesInput.md
 docs/SpendTrackerInput.md
 docs/SpendTrackerTemplate.md
+docs/SubmitApprovalRequestsV1200Response.md
+docs/SubmitApprovalRequestsV1200ResponseData.md
+docs/SubmitApprovalRequestsV1Request.md
 docs/Subscription.md
 docs/SubscriptionBillingCycleConfig.md
 docs/SubscriptionBillingCycleConfigInput.md
@@ -639,6 +643,7 @@ docs/UsageStatementScheduleTemplateInput.md
 docs/VoidInvoiceV1200Response.md
 docs/VoidInvoiceV1Request.md
 src/apis/alerts_api.rs
+src/apis/approval_requests_api.rs
 src/apis/billable_metrics_api.rs
 src/apis/configuration.rs
 src/apis/contracts_api.rs
@@ -1194,6 +1199,9 @@ src/models/spend_tracker_attributes.rs
 src/models/spend_tracker_attributes_input.rs
 src/models/spend_tracker_input.rs
 src/models/spend_tracker_template.rs
+src/models/submit_approval_requests_v1_200_response.rs
+src/models/submit_approval_requests_v1_200_response_data.rs
+src/models/submit_approval_requests_v1_request.rs
 src/models/subscription.rs
 src/models/subscription_billing_cycle_config.rs
 src/models/subscription_billing_cycle_config_input.rs

@@ -113,6 +113,7 @@ impl From<&str> for ContentType {
 
 #[cfg(feature = "alerts")]
 pub mod alerts_api;
+pub mod approval_requests_api;
 #[cfg(feature = "billable-metrics")]
 pub mod billable_metrics_api;
 #[cfg(feature = "contracts")]
