@@ -16,7 +16,7 @@ pub struct GetContractEditHistoryV2200ResponseDataInnerUpdateScheduledChargesInn
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
     #[serde(rename = "timestamp", skip_serializing_if = "Option::is_none")]
-    pub timestamp: Option<String>,
+    pub timestamp: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "amount", skip_serializing_if = "Option::is_none")]
     pub amount: Option<f64>,
     #[serde(rename = "quantity", skip_serializing_if = "Option::is_none")]

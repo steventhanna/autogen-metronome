@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**reseller_type** | **String** |  | 
+**reseller_type** | **ResellerType** |  (enum: AWS, AWS_PRO_SERVICE, GCP, GCP_PRO_SERVICE) | 
 **fraction** | Option<**f64**> |  | [optional]
 **netsuite_reseller_id** | Option<**String**> |  | [optional]
-**starting_at** | Option<**String**> |  | [optional]
-**ending_before** | Option<**String**> |  | [optional]
+**starting_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
+**ending_before** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **applicable_product_tags** | Option<**Vec<String>**> |  | [optional]
 **applicable_product_ids** | Option<**Vec<String>**> |  | [optional]
 **reseller_contract_value** | Option<**f64**> |  | [optional]

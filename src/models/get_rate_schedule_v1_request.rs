@@ -18,17 +18,17 @@ pub struct GetRateScheduleV1Request {
     pub rate_card_id: uuid::Uuid,
     /// inclusive starting point for the rates schedule
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     /// optional exclusive end date for the rates schedule. When not specified rates will show all future schedule segments.
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// List of rate selectors, rates matching ANY of the selector will be included in the response Passing no selectors will result in all rates being returned.
     #[serde(rename = "selectors", skip_serializing_if = "Option::is_none")]
     pub selectors: Option<Vec<models::GetRateScheduleV1RequestSelectorsInner>>,
 }
 
 impl GetRateScheduleV1Request {
-    pub fn new(rate_card_id: uuid::Uuid, starting_at: String) -> GetRateScheduleV1Request {
+    pub fn new(rate_card_id: uuid::Uuid, starting_at: chrono::DateTime<chrono::FixedOffset>) -> GetRateScheduleV1Request {
         GetRateScheduleV1Request {
             rate_card_id,
             starting_at,

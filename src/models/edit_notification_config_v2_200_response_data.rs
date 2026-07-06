@@ -14,13 +14,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum EditNotificationConfigV2200ResponseData {
-    LifecycleEventSystemNotificationConfig(Box<models::LifecycleEventSystemNotificationConfig>),
-    LifecycleEventOffsetNotificationConfig(Box<models::LifecycleEventOffsetNotificationConfig>),
+    ListSystemNotificationConfigsV2200ResponseDataInner(Box<models::ListSystemNotificationConfigsV2200ResponseDataInner>),
+    CreateNotificationConfigV2200ResponseData(Box<models::CreateNotificationConfigV2200ResponseData>),
 }
 
 impl Default for EditNotificationConfigV2200ResponseData {
     fn default() -> Self {
-        Self::LifecycleEventSystemNotificationConfig(Default::default())
+        Self::ListSystemNotificationConfigsV2200ResponseDataInner(Default::default())
     }
 }
 

@@ -18,11 +18,11 @@ pub struct GetContractEditHistoryV2200ResponseDataInnerUpdateSubscriptionsInnerQ
     #[serde(rename = "quantity_delta", skip_serializing_if = "Option::is_none")]
     pub quantity_delta: Option<f64>,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl GetContractEditHistoryV2200ResponseDataInnerUpdateSubscriptionsInnerQuantityUpdatesInner {
-    pub fn new(starting_at: String) -> GetContractEditHistoryV2200ResponseDataInnerUpdateSubscriptionsInnerQuantityUpdatesInner {
+    pub fn new(starting_at: chrono::DateTime<chrono::FixedOffset>) -> GetContractEditHistoryV2200ResponseDataInnerUpdateSubscriptionsInnerQuantityUpdatesInner {
         GetContractEditHistoryV2200ResponseDataInnerUpdateSubscriptionsInnerQuantityUpdatesInner {
             quantity: None,
             quantity_delta: None,

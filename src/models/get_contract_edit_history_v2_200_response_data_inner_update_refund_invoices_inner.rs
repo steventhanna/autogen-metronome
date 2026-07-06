@@ -16,11 +16,11 @@ pub struct GetContractEditHistoryV2200ResponseDataInnerUpdateRefundInvoicesInner
     #[serde(rename = "invoice_id")]
     pub invoice_id: uuid::Uuid,
     #[serde(rename = "date")]
-    pub date: String,
+    pub date: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl GetContractEditHistoryV2200ResponseDataInnerUpdateRefundInvoicesInner {
-    pub fn new(invoice_id: uuid::Uuid, date: String) -> GetContractEditHistoryV2200ResponseDataInnerUpdateRefundInvoicesInner {
+    pub fn new(invoice_id: uuid::Uuid, date: chrono::DateTime<chrono::FixedOffset>) -> GetContractEditHistoryV2200ResponseDataInnerUpdateRefundInvoicesInner {
         GetContractEditHistoryV2200ResponseDataInnerUpdateRefundInvoicesInner {
             invoice_id,
             date,

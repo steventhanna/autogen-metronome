@@ -16,9 +16,9 @@ pub struct CreateHistoricalContractUsageInvoicesV1RequestInvoicesInnerUsageLineI
     #[serde(rename = "product_id")]
     pub product_id: uuid::Uuid,
     #[serde(rename = "inclusive_start_date")]
-    pub inclusive_start_date: String,
+    pub inclusive_start_date: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "exclusive_end_date")]
-    pub exclusive_end_date: String,
+    pub exclusive_end_date: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "quantity", skip_serializing_if = "Option::is_none")]
     pub quantity: Option<f64>,
     #[serde(rename = "pricing_group_values", skip_serializing_if = "Option::is_none")]
@@ -30,7 +30,7 @@ pub struct CreateHistoricalContractUsageInvoicesV1RequestInvoicesInnerUsageLineI
 }
 
 impl CreateHistoricalContractUsageInvoicesV1RequestInvoicesInnerUsageLineItemsInner {
-    pub fn new(product_id: uuid::Uuid, inclusive_start_date: String, exclusive_end_date: String) -> CreateHistoricalContractUsageInvoicesV1RequestInvoicesInnerUsageLineItemsInner {
+    pub fn new(product_id: uuid::Uuid, inclusive_start_date: chrono::DateTime<chrono::FixedOffset>, exclusive_end_date: chrono::DateTime<chrono::FixedOffset>) -> CreateHistoricalContractUsageInvoicesV1RequestInvoicesInnerUsageLineItemsInner {
         CreateHistoricalContractUsageInvoicesV1RequestInvoicesInnerUsageLineItemsInner {
             product_id,
             inclusive_start_date,

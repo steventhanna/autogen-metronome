@@ -19,10 +19,10 @@ pub struct GetContractEditHistoryV2200ResponseDataInnerUpdateCommitsInnerAccessS
     pub amount: Option<f64>,
     /// RFC 3339 timestamp (inclusive)
     #[serde(rename = "starting_at", skip_serializing_if = "Option::is_none")]
-    pub starting_at: Option<String>,
+    pub starting_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// RFC 3339 timestamp (exclusive)
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl GetContractEditHistoryV2200ResponseDataInnerUpdateCommitsInnerAccessScheduleUpdateScheduleItemsInner {

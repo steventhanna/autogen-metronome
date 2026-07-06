@@ -34,7 +34,7 @@ pub struct GetPackageV1200ResponseDataCreditsInner {
     #[serde(rename = "specifiers", skip_serializing_if = "Option::is_none")]
     pub specifiers: Option<Vec<models::GetContractV1200ResponseDataInitialCommitsInnerSpecifiersInner>>,
     #[serde(rename = "access_schedule", skip_serializing_if = "Option::is_none")]
-    pub access_schedule: Option<Box<models::GetPackageV1200ResponseDataCreditsInnerAccessSchedule>>,
+    pub access_schedule: Option<Box<models::GetPackageV1200ResponseDataCommitsInnerAccessSchedule>>,
     #[serde(rename = "rate_type", skip_serializing_if = "Option::is_none")]
     pub rate_type: Option<RateType>,
 }

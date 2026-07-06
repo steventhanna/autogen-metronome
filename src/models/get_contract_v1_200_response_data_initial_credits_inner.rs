@@ -27,14 +27,14 @@ pub struct GetContractV1200ResponseDataInitialCreditsInner {
     #[serde(rename = "product")]
     pub product: Box<models::GetContractV1200ResponseDataInitialCommitsInnerProduct>,
     #[serde(rename = "access_schedule", skip_serializing_if = "Option::is_none")]
-    pub access_schedule: Option<Box<models::GetContractV1200ResponseDataInitialCreditsInnerAccessSchedule>>,
+    pub access_schedule: Option<Box<models::GetContractV1200ResponseDataInitialCommitsInnerAccessSchedule>>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
     /// The ID of the recurring credit that this credit was generated from, if applicable.
     #[serde(rename = "recurring_credit_id", skip_serializing_if = "Option::is_none")]
     pub recurring_credit_id: Option<uuid::Uuid>,
     #[serde(rename = "subscription_config", skip_serializing_if = "Option::is_none")]
-    pub subscription_config: Option<Box<models::GetContractV1200ResponseDataInitialCreditsInnerSubscriptionConfig>>,
+    pub subscription_config: Option<Box<models::GetContractV1200ResponseDataInitialCommitsInnerSubscriptionConfig>>,
     #[serde(rename = "applicable_product_ids", skip_serializing_if = "Option::is_none")]
     pub applicable_product_ids: Option<Vec<uuid::Uuid>>,
     #[serde(rename = "applicable_product_tags", skip_serializing_if = "Option::is_none")]
@@ -65,9 +65,12 @@ pub struct GetContractV1200ResponseDataInitialCreditsInner {
     #[serde(rename = "uniqueness_key", skip_serializing_if = "Option::is_none")]
     pub uniqueness_key: Option<String>,
     #[serde(rename = "hierarchy_configuration", skip_serializing_if = "Option::is_none")]
-    pub hierarchy_configuration: Option<Box<models::GetContractV1200ResponseDataInitialCreditsInnerHierarchyConfiguration>>,
+    pub hierarchy_configuration: Option<Box<models::GetContractV1200ResponseDataInitialCommitsInnerHierarchyConfiguration>>,
     #[serde(rename = "rolled_over_from", skip_serializing_if = "Option::is_none")]
     pub rolled_over_from: Option<Box<models::GetContractV1200ResponseDataInitialCreditsInnerRolledOverFrom>>,
+    /// The actor who created this credit. Omitted for system-generated credits such as recurring credits.
+    #[serde(rename = "created_by", skip_serializing_if = "Option::is_none")]
+    pub created_by: Option<String>,
 }
 
 impl GetContractV1200ResponseDataInitialCreditsInner {
@@ -96,6 +99,7 @@ impl GetContractV1200ResponseDataInitialCreditsInner {
             uniqueness_key: None,
             hierarchy_configuration: None,
             rolled_over_from: None,
+            created_by: None,
         }
     }
 }

@@ -16,16 +16,16 @@ pub struct EditContractV2RequestUpdateSubscriptionsInner {
     #[serde(rename = "subscription_id")]
     pub subscription_id: uuid::Uuid,
     #[serde(rename = "ending_before", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<Option<String>>,
+    pub ending_before: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(rename = "quantity_management_mode_update", skip_serializing_if = "Option::is_none")]
     pub quantity_management_mode_update: Option<Box<models::EditContractV2RequestUpdateSubscriptionsInnerQuantityManagementModeUpdate>>,
     /// Quantity changes are applied on the effective date based on the order which they are sent. For example, if I scheduled the quantity to be 12 on May 21 and then scheduled a quantity delta change of -1, the result from that day would be 11.
     #[serde(rename = "quantity_updates", skip_serializing_if = "Option::is_none")]
-    pub quantity_updates: Option<Vec<models::EditContractV2RequestUpdateSubscriptionsInnerQuantityUpdatesInner>>,
+    pub quantity_updates: Option<Vec<models::GetContractEditHistoryV2200ResponseDataInnerUpdateSubscriptionsInnerQuantityUpdatesInner>>,
     #[serde(rename = "seat_updates", skip_serializing_if = "Option::is_none")]
-    pub seat_updates: Option<Box<models::EditContractV2RequestUpdateSubscriptionsInnerSeatUpdates>>,
+    pub seat_updates: Option<Box<models::GetContractEditHistoryV2200ResponseDataInnerUpdateSubscriptionsInnerSeatUpdates>>,
     #[serde(rename = "proration_rounding", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub proration_rounding: Option<Option<Box<models::EditContractV2RequestUpdateSubscriptionsInnerProrationRounding>>>,
+    pub proration_rounding: Option<Option<Box<models::EditContractV2RequestUpdateRecurringCommitsInnerProrationRoundingAccess>>>,
 }
 
 impl EditContractV2RequestUpdateSubscriptionsInner {

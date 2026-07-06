@@ -18,7 +18,7 @@ pub struct GetProductV1200ResponseData {
     #[serde(rename = "type")]
     pub r#type: Type,
     #[serde(rename = "archived_at", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub archived_at: Option<Option<String>>,
+    pub archived_at: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(rename = "initial")]
     pub initial: Box<models::GetProductV1200ResponseDataInitial>,
     #[serde(rename = "current")]

@@ -32,7 +32,7 @@ pub struct GetContractEditHistoryV2200ResponseDataInnerUpdateCommitsInner {
     pub applicable_product_ids: Option<Option<Vec<uuid::Uuid>>>,
     /// List of filters that determine what kind of customer usage draws down a commit or credit. A customer's usage needs to meet the condition of at least one of the specifiers to contribute to a commit's or credit's drawdown. This field cannot be used together with `applicable_product_ids` or `applicable_product_tags`. Instead, to target usage by product or product tag, pass those values in the body of `specifiers`.
     #[serde(rename = "specifiers", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub specifiers: Option<Option<Vec<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfSpecifiersInner>>>,
+    pub specifiers: Option<Option<Vec<models::GetContractV1200ResponseDataInitialCommitsInnerSpecifiersInner>>>,
     /// Which tags the commit applies to. If applicable_product_ids, applicable_product_tags or specifiers are not provided, the commit applies to all products.
     #[serde(rename = "applicable_product_tags", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub applicable_product_tags: Option<Option<Vec<String>>>,

@@ -18,7 +18,7 @@ pub struct GetContractV1200ResponseDataInitialScheduledChargesInner {
     #[serde(rename = "product")]
     pub product: Box<models::GetContractV1200ResponseDataInitialCommitsInnerProduct>,
     #[serde(rename = "schedule")]
-    pub schedule: Box<models::GetContractV1200ResponseDataInitialDiscountsInnerSchedule>,
+    pub schedule: Box<models::GetContractV1200ResponseDataInitialCommitsInnerInvoiceSchedule>,
     /// displayed on invoices
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
@@ -29,11 +29,11 @@ pub struct GetContractV1200ResponseDataInitialScheduledChargesInner {
     #[serde(rename = "custom_fields", skip_serializing_if = "Option::is_none")]
     pub custom_fields: Option<std::collections::HashMap<String, String>>,
     #[serde(rename = "archived_at", skip_serializing_if = "Option::is_none")]
-    pub archived_at: Option<String>,
+    pub archived_at: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl GetContractV1200ResponseDataInitialScheduledChargesInner {
-    pub fn new(id: uuid::Uuid, product: models::GetContractV1200ResponseDataInitialCommitsInnerProduct, schedule: models::GetContractV1200ResponseDataInitialDiscountsInnerSchedule) -> GetContractV1200ResponseDataInitialScheduledChargesInner {
+    pub fn new(id: uuid::Uuid, product: models::GetContractV1200ResponseDataInitialCommitsInnerProduct, schedule: models::GetContractV1200ResponseDataInitialCommitsInnerInvoiceSchedule) -> GetContractV1200ResponseDataInitialScheduledChargesInner {
         GetContractV1200ResponseDataInitialScheduledChargesInner {
             id,
             product: Box::new(product),

@@ -24,11 +24,11 @@ pub struct GetContractV1200ResponseDataInitialCommitsInnerInvoiceScheduleSchedul
     #[serde(rename = "quantity")]
     pub quantity: f64,
     #[serde(rename = "timestamp")]
-    pub timestamp: String,
+    pub timestamp: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl GetContractV1200ResponseDataInitialCommitsInnerInvoiceScheduleScheduleItemsInner {
-    pub fn new(id: uuid::Uuid, amount: f64, unit_price: f64, quantity: f64, timestamp: String) -> GetContractV1200ResponseDataInitialCommitsInnerInvoiceScheduleScheduleItemsInner {
+    pub fn new(id: uuid::Uuid, amount: f64, unit_price: f64, quantity: f64, timestamp: chrono::DateTime<chrono::FixedOffset>) -> GetContractV1200ResponseDataInitialCommitsInnerInvoiceScheduleScheduleItemsInner {
         GetContractV1200ResponseDataInitialCommitsInnerInvoiceScheduleScheduleItemsInner {
             id,
             invoice_id: None,

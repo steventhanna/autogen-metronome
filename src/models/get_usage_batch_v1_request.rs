@@ -23,13 +23,13 @@ pub struct GetUsageBatchV1Request {
     #[serde(rename = "window_size")]
     pub window_size: WindowSize,
     #[serde(rename = "starting_on")]
-    pub starting_on: String,
+    pub starting_on: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "ending_before")]
-    pub ending_before: String,
+    pub ending_before: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl GetUsageBatchV1Request {
-    pub fn new(window_size: WindowSize, starting_on: String, ending_before: String) -> GetUsageBatchV1Request {
+    pub fn new(window_size: WindowSize, starting_on: chrono::DateTime<chrono::FixedOffset>, ending_before: chrono::DateTime<chrono::FixedOffset>) -> GetUsageBatchV1Request {
         GetUsageBatchV1Request {
             customer_ids: None,
             billable_metrics: None,

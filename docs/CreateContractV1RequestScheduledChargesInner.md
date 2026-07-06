@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**product_id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
+**product_id** | **uuid::Uuid** |  | 
 **name** | Option<**String**> | displayed on invoices | [optional]
-**schedule** | [**models::CreateContractV1RequestDiscountsInnerSchedule**](createContract_v1_request_discounts_inner_schedule.md) |  | 
+**schedule** | [**models::CreateContractV1RequestCommitsInnerInvoiceSchedule**](CreateContractV1RequestCommitsInnerInvoiceSchedule.md) |  | 
 **netsuite_sales_order_id** | Option<**String**> | This field's availability is dependent on your client's configuration. | [optional]
 **custom_fields** | Option<**std::collections::HashMap<String, String>**> | Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" } | [optional]
 

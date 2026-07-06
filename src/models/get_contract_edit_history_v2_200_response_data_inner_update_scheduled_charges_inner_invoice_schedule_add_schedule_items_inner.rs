@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetContractEditHistoryV2200ResponseDataInnerUpdateScheduledChargesInnerInvoiceScheduleAddScheduleItemsInner {
     #[serde(rename = "timestamp")]
-    pub timestamp: String,
+    pub timestamp: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "amount", skip_serializing_if = "Option::is_none")]
     pub amount: Option<f64>,
     #[serde(rename = "quantity", skip_serializing_if = "Option::is_none")]
@@ -24,7 +24,7 @@ pub struct GetContractEditHistoryV2200ResponseDataInnerUpdateScheduledChargesInn
 }
 
 impl GetContractEditHistoryV2200ResponseDataInnerUpdateScheduledChargesInnerInvoiceScheduleAddScheduleItemsInner {
-    pub fn new(timestamp: String) -> GetContractEditHistoryV2200ResponseDataInnerUpdateScheduledChargesInnerInvoiceScheduleAddScheduleItemsInner {
+    pub fn new(timestamp: chrono::DateTime<chrono::FixedOffset>) -> GetContractEditHistoryV2200ResponseDataInnerUpdateScheduledChargesInnerInvoiceScheduleAddScheduleItemsInner {
         GetContractEditHistoryV2200ResponseDataInnerUpdateScheduledChargesInnerInvoiceScheduleAddScheduleItemsInner {
             timestamp,
             amount: None,

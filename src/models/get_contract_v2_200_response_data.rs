@@ -31,7 +31,7 @@ pub struct GetContractV2200ResponseData {
     #[serde(rename = "rate_card_id", skip_serializing_if = "Option::is_none")]
     pub rate_card_id: Option<uuid::Uuid>,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "commits")]
     pub commits: Vec<models::GetContractV2200ResponseDataCommitsInner>,
     #[serde(rename = "credits", skip_serializing_if = "Option::is_none")]
@@ -57,7 +57,7 @@ pub struct GetContractV2200ResponseData {
     #[serde(rename = "reseller_royalties", skip_serializing_if = "Option::is_none")]
     pub reseller_royalties: Option<Vec<models::GetContractV2200ResponseDataResellerRoyaltiesInner>>,
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "created_by")]
     pub created_by: String,
     /// This field's availability is dependent on your client's configuration.
@@ -66,13 +66,13 @@ pub struct GetContractV2200ResponseData {
     #[serde(rename = "net_payment_terms_days", skip_serializing_if = "Option::is_none")]
     pub net_payment_terms_days: Option<f64>,
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "archived_at", skip_serializing_if = "Option::is_none")]
-    pub archived_at: Option<String>,
+    pub archived_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "total_contract_value", skip_serializing_if = "Option::is_none")]
     pub total_contract_value: Option<f64>,
     #[serde(rename = "usage_filter")]
-    pub usage_filter: Vec<models::GetContractV2200ResponseDataUsageFilterInner>,
+    pub usage_filter: Vec<models::CreateContractV1200ResponseDataContractUsageFilterInner>,
     #[serde(rename = "usage_statement_schedule")]
     pub usage_statement_schedule: Box<models::GetContractV1200ResponseDataInitialUsageStatementSchedule>,
     /// Defaults to LOWEST_MULTIPLIER, which applies the greatest discount to list prices automatically. EXPLICIT prioritization requires specifying priorities for each multiplier; the one with the lowest priority value will be prioritized first.
@@ -82,30 +82,36 @@ pub struct GetContractV2200ResponseData {
     #[serde(rename = "custom_fields", skip_serializing_if = "Option::is_none")]
     pub custom_fields: Option<std::collections::HashMap<String, String>>,
     #[serde(rename = "customer_billing_provider_configuration", skip_serializing_if = "Option::is_none")]
-    pub customer_billing_provider_configuration: Option<Box<models::GetContractV2200ResponseDataCustomerBillingProviderConfiguration>>,
+    pub customer_billing_provider_configuration: Option<Box<models::GetCustomerBillingProviderConfigurationsV1200ResponseDataInner>>,
+    /// The schedule of billing provider configuration changes on the contract, ordered by effective_at ascending.
+    #[serde(rename = "billing_provider_configuration_schedule", skip_serializing_if = "Option::is_none")]
+    pub billing_provider_configuration_schedule: Option<Vec<models::GetContractV2200ResponseDataBillingProviderConfigurationScheduleInner>>,
+    /// The schedule of revenue system configuration changes on the contract, ordered by effective_at ascending.
+    #[serde(rename = "revenue_system_configuration_schedule", skip_serializing_if = "Option::is_none")]
+    pub revenue_system_configuration_schedule: Option<Vec<models::GetContractV2200ResponseDataRevenueSystemConfigurationScheduleInner>>,
     #[serde(rename = "recurring_commits", skip_serializing_if = "Option::is_none")]
     pub recurring_commits: Option<Vec<models::GetContractV2200ResponseDataRecurringCommitsInner>>,
     #[serde(rename = "recurring_credits", skip_serializing_if = "Option::is_none")]
     pub recurring_credits: Option<Vec<models::GetContractV2200ResponseDataRecurringCreditsInner>>,
     #[serde(rename = "spend_threshold_configuration", skip_serializing_if = "Option::is_none")]
-    pub spend_threshold_configuration: Option<Box<models::GetContractV2200ResponseDataSpendThresholdConfiguration>>,
+    pub spend_threshold_configuration: Option<Box<models::GetContractV1200ResponseDataInitialSpendThresholdConfiguration>>,
     #[serde(rename = "prepaid_balance_threshold_configuration", skip_serializing_if = "Option::is_none")]
-    pub prepaid_balance_threshold_configuration: Option<Box<models::GetContractV2200ResponseDataPrepaidBalanceThresholdConfiguration>>,
+    pub prepaid_balance_threshold_configuration: Option<Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfiguration>>,
     /// Spend trackers attached to this contract.
     #[serde(rename = "spend_trackers", skip_serializing_if = "Option::is_none")]
     pub spend_trackers: Option<Vec<models::GetContractV1200ResponseDataInitialSpendTrackersInner>>,
     /// List of subscriptions on the contract.
     #[serde(rename = "subscriptions", skip_serializing_if = "Option::is_none")]
-    pub subscriptions: Option<Vec<models::GetContractV2200ResponseDataSubscriptionsInner>>,
+    pub subscriptions: Option<Vec<models::GetContractV1200ResponseDataSubscriptionsInner>>,
     #[serde(rename = "hierarchy_configuration", skip_serializing_if = "Option::is_none")]
-    pub hierarchy_configuration: Option<Box<models::GetContractV2200ResponseDataHierarchyConfiguration>>,
+    pub hierarchy_configuration: Option<Box<models::GetContractV1200ResponseDataInitialHierarchyConfiguration>>,
     /// Priority of the contract.
     #[serde(rename = "priority", skip_serializing_if = "Option::is_none")]
     pub priority: Option<f64>,
 }
 
 impl GetContractV2200ResponseData {
-    pub fn new(id: uuid::Uuid, customer_id: uuid::Uuid, starting_at: String, commits: Vec<models::GetContractV2200ResponseDataCommitsInner>, overrides: Vec<models::GetContractV2200ResponseDataOverridesInner>, scheduled_charges: Vec<models::GetContractV1200ResponseDataInitialScheduledChargesInner>, transitions: Vec<models::GetContractV1200ResponseDataInitialTransitionsInner>, created_at: String, created_by: String, usage_filter: Vec<models::GetContractV2200ResponseDataUsageFilterInner>, usage_statement_schedule: models::GetContractV1200ResponseDataInitialUsageStatementSchedule) -> GetContractV2200ResponseData {
+    pub fn new(id: uuid::Uuid, customer_id: uuid::Uuid, starting_at: chrono::DateTime<chrono::FixedOffset>, commits: Vec<models::GetContractV2200ResponseDataCommitsInner>, overrides: Vec<models::GetContractV2200ResponseDataOverridesInner>, scheduled_charges: Vec<models::GetContractV1200ResponseDataInitialScheduledChargesInner>, transitions: Vec<models::GetContractV1200ResponseDataInitialTransitionsInner>, created_at: chrono::DateTime<chrono::FixedOffset>, created_by: String, usage_filter: Vec<models::CreateContractV1200ResponseDataContractUsageFilterInner>, usage_statement_schedule: models::GetContractV1200ResponseDataInitialUsageStatementSchedule) -> GetContractV2200ResponseData {
         GetContractV2200ResponseData {
             id,
             customer_id,
@@ -137,6 +143,8 @@ impl GetContractV2200ResponseData {
             multiplier_override_prioritization: None,
             custom_fields: None,
             customer_billing_provider_configuration: None,
+            billing_provider_configuration_schedule: None,
+            revenue_system_configuration_schedule: None,
             recurring_commits: None,
             recurring_credits: None,
             spend_threshold_configuration: None,

@@ -16,7 +16,7 @@ pub struct GetContractEditHistoryV2200ResponseDataInnerUpdateRecurringCommitsInn
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "access_amount", skip_serializing_if = "Option::is_none")]
     pub access_amount: Option<Box<models::GetContractEditHistoryV2200ResponseDataInnerUpdateRecurringCommitsInnerAllOfAccessAmount>>,
     #[serde(rename = "rate_type", skip_serializing_if = "Option::is_none")]
@@ -24,7 +24,7 @@ pub struct GetContractEditHistoryV2200ResponseDataInnerUpdateRecurringCommitsInn
     #[serde(rename = "invoice_amount", skip_serializing_if = "Option::is_none")]
     pub invoice_amount: Option<Box<models::GetContractEditHistoryV2200ResponseDataInnerUpdateRecurringCommitsInnerAllOfAccessAmount>>,
     #[serde(rename = "proration_rounding", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub proration_rounding: Option<Option<Box<models::GetContractV2200ResponseDataRecurringCommitsInnerAllOfProrationRounding>>>,
+    pub proration_rounding: Option<Option<Box<models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfProrationRounding>>>,
 }
 
 impl GetContractEditHistoryV2200ResponseDataInnerUpdateRecurringCommitsInner {

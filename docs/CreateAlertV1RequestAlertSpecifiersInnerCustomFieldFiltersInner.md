@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**entity** | **String** |  | 
+**entity** | **Entity** |  (enum: Contract, Commit, ContractCredit, ContractCreditOrCommit) | 
 **key** | **String** |  | 
 **value** | Option<**String**> |  | [optional]
 

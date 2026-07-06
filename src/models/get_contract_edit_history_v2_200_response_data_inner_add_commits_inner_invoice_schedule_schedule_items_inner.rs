@@ -24,11 +24,11 @@ pub struct GetContractEditHistoryV2200ResponseDataInnerAddCommitsInnerInvoiceSch
     #[serde(rename = "quantity", skip_serializing_if = "Option::is_none")]
     pub quantity: Option<f64>,
     #[serde(rename = "timestamp")]
-    pub timestamp: String,
+    pub timestamp: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl GetContractEditHistoryV2200ResponseDataInnerAddCommitsInnerInvoiceScheduleScheduleItemsInner {
-    pub fn new(id: uuid::Uuid, timestamp: String) -> GetContractEditHistoryV2200ResponseDataInnerAddCommitsInnerInvoiceScheduleScheduleItemsInner {
+    pub fn new(id: uuid::Uuid, timestamp: chrono::DateTime<chrono::FixedOffset>) -> GetContractEditHistoryV2200ResponseDataInnerAddCommitsInnerInvoiceScheduleScheduleItemsInner {
         GetContractEditHistoryV2200ResponseDataInnerAddCommitsInnerInvoiceScheduleScheduleItemsInner {
             id,
             invoice_id: None,

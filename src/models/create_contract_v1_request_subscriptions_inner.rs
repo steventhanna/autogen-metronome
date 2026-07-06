@@ -28,10 +28,10 @@ pub struct CreateContractV1RequestSubscriptionsInner {
     pub initial_quantity: Option<f64>,
     /// Inclusive start time for the subscription. If not provided, defaults to contract start date
     #[serde(rename = "starting_at", skip_serializing_if = "Option::is_none")]
-    pub starting_at: Option<String>,
+    pub starting_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Exclusive end time for the subscription. If not provided, subscription inherits contract end date.
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" }
     #[serde(rename = "custom_fields", skip_serializing_if = "Option::is_none")]
     pub custom_fields: Option<std::collections::HashMap<String, String>>,

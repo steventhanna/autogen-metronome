@@ -27,9 +27,9 @@ pub struct CreatePackageV1RequestSubscriptionsInner {
     #[serde(rename = "initial_quantity", skip_serializing_if = "Option::is_none")]
     pub initial_quantity: Option<f64>,
     #[serde(rename = "starting_at_offset", skip_serializing_if = "Option::is_none")]
-    pub starting_at_offset: Option<Box<models::CreatePackageV1RequestSubscriptionsInnerStartingAtOffset>>,
+    pub starting_at_offset: Option<Box<models::CreatePackageV1RequestDuration>>,
     #[serde(rename = "duration", skip_serializing_if = "Option::is_none")]
-    pub duration: Option<Box<models::CreatePackageV1RequestSubscriptionsInnerDuration>>,
+    pub duration: Option<Box<models::CreatePackageV1RequestDuration>>,
     /// A temporary ID used to reference the subscription in recurring commit/credit subscription configs created within the same payload.
     #[serde(rename = "temporary_id", skip_serializing_if = "Option::is_none")]
     pub temporary_id: Option<String>,

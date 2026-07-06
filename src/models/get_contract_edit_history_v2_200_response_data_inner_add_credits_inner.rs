@@ -25,7 +25,7 @@ pub struct GetContractEditHistoryV2200ResponseDataInnerAddCreditsInner {
     #[serde(rename = "product")]
     pub product: Box<models::GetContractV1200ResponseDataInitialCommitsInnerProduct>,
     #[serde(rename = "access_schedule", skip_serializing_if = "Option::is_none")]
-    pub access_schedule: Option<Box<models::GetContractV1200ResponseDataInitialCreditsInnerAccessSchedule>>,
+    pub access_schedule: Option<Box<models::GetContractV1200ResponseDataInitialCommitsInnerAccessSchedule>>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
     #[serde(rename = "rollover_fraction", skip_serializing_if = "Option::is_none")]
@@ -38,7 +38,7 @@ pub struct GetContractEditHistoryV2200ResponseDataInnerAddCreditsInner {
     pub applicable_product_tags: Option<Vec<String>>,
     /// List of filters that determine what kind of customer usage draws down a commit or credit. A customer's usage needs to meet the condition of at least one of the specifiers to contribute to a commit's or credit's drawdown. This field cannot be used together with `applicable_product_ids` or `applicable_product_tags`. Instead, to target usage by product or product tag, pass those values in the body of `specifiers`.
     #[serde(rename = "specifiers", skip_serializing_if = "Option::is_none")]
-    pub specifiers: Option<Vec<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfSpecifiersInner>>,
+    pub specifiers: Option<Vec<models::GetContractV1200ResponseDataInitialCommitsInnerSpecifiersInner>>,
     /// This field's availability is dependent on your client's configuration.
     #[serde(rename = "netsuite_sales_order_id", skip_serializing_if = "Option::is_none")]
     pub netsuite_sales_order_id: Option<String>,
@@ -46,7 +46,7 @@ pub struct GetContractEditHistoryV2200ResponseDataInnerAddCreditsInner {
     #[serde(rename = "salesforce_opportunity_id", skip_serializing_if = "Option::is_none")]
     pub salesforce_opportunity_id: Option<String>,
     #[serde(rename = "hierarchy_configuration", skip_serializing_if = "Option::is_none")]
-    pub hierarchy_configuration: Option<Box<models::GetContractV2200ResponseDataRecurringCommitsInnerAllOfHierarchyConfiguration>>,
+    pub hierarchy_configuration: Option<Box<models::GetContractV1200ResponseDataInitialCommitsInnerHierarchyConfiguration>>,
 }
 
 impl GetContractEditHistoryV2200ResponseDataInnerAddCreditsInner {

@@ -16,13 +16,13 @@ pub struct CreatePackageV1RequestCommitsInnerAccessScheduleScheduleItemsInner {
     #[serde(rename = "amount")]
     pub amount: f64,
     #[serde(rename = "starting_at_offset")]
-    pub starting_at_offset: Box<models::CreatePackageV1RequestCommitsInnerAccessScheduleScheduleItemsInnerStartingAtOffset>,
+    pub starting_at_offset: Box<models::CreatePackageV1RequestDuration>,
     #[serde(rename = "duration")]
-    pub duration: Box<models::CreatePackageV1RequestCommitsInnerAccessScheduleScheduleItemsInnerDuration>,
+    pub duration: Box<models::CreatePackageV1RequestDuration>,
 }
 
 impl CreatePackageV1RequestCommitsInnerAccessScheduleScheduleItemsInner {
-    pub fn new(amount: f64, starting_at_offset: models::CreatePackageV1RequestCommitsInnerAccessScheduleScheduleItemsInnerStartingAtOffset, duration: models::CreatePackageV1RequestCommitsInnerAccessScheduleScheduleItemsInnerDuration) -> CreatePackageV1RequestCommitsInnerAccessScheduleScheduleItemsInner {
+    pub fn new(amount: f64, starting_at_offset: models::CreatePackageV1RequestDuration, duration: models::CreatePackageV1RequestDuration) -> CreatePackageV1RequestCommitsInnerAccessScheduleScheduleItemsInner {
         CreatePackageV1RequestCommitsInnerAccessScheduleScheduleItemsInner {
             amount,
             starting_at_offset: Box::new(starting_at_offset),

@@ -5,19 +5,19 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **String** |  | 
-**starting_at** | Option<**String**> |  | [optional]
+**starting_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **netsuite_internal_item_id** | Option<**String**> | This field's availability is dependent on your client's configuration. | [optional]
-**created_at** | **String** |  | 
+**created_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **created_by** | **String** |  | 
 **netsuite_overage_item_id** | Option<**String**> | This field's availability is dependent on your client's configuration. | [optional]
 **billable_metric_id** | Option<**String**> |  | [optional]
-**composite_product_ids** | Option<[**Vec<uuid::Uuid>**](uuid::Uuid.md)> |  | [optional]
-**quantity_conversion** | Option<[**models::GetProductV1200ResponseDataInitialQuantityConversion**](getProduct_v1_200_response_data_initial_quantity_conversion.md)> |  | [optional]
-**quantity_rounding** | Option<[**models::GetProductV1200ResponseDataInitialQuantityRounding**](getProduct_v1_200_response_data_initial_quantity_rounding.md)> |  | [optional]
+**composite_product_ids** | Option<**Vec<uuid::Uuid>**> |  | [optional]
+**quantity_conversion** | Option<[**models::GetProductV1200ResponseDataInitialQuantityConversion**](GetProductV1200ResponseDataInitialQuantityConversion.md)> |  | [optional]
+**quantity_rounding** | Option<[**models::GetProductV1200ResponseDataInitialQuantityRounding**](GetProductV1200ResponseDataInitialQuantityRounding.md)> |  | [optional]
 **composite_tags** | Option<**Vec<String>**> |  | [optional]
 **is_refundable** | Option<**bool**> | This field's availability is dependent on your client's configuration. | [optional]
 **tags** | Option<**Vec<String>**> |  | [optional]
-**composite_scope** | Option<**String**> | Determines what spend contributes to calculating this charge. | [optional]
+**composite_scope** | Option<**CompositeScope**> | Determines what spend contributes to calculating this charge. (enum: CUSTOMER, CONTRACT) | [optional]
 **exclude_free_usage** | Option<**bool**> |  | [optional]
 **include_composite_spend** | Option<**bool**> | Only for composite products. If true, allows a composite to incorporate spend from other composite products. Defaults to false | [optional]
 **pricing_group_key** | Option<**Vec<String>**> | For USAGE products only. If set, pricing for this product will be determined for each pricing_group_key value, as opposed to the product as a whole. The superset of values in the pricing group key and presentation group key must be set as one compound group key on the billable metric. | [optional]

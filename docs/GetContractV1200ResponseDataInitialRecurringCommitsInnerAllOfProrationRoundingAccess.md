@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**rounding_method** | **String** |  | 
+**rounding_method** | **RoundingMethod** |  (enum: HALF_UP, FLOOR, CEILING, half_up, floor, ceiling) | 
 **decimal_places** | **f64** | Number of decimal places to round to. Applied directly to the stored monetary representation. Negative values round to powers of 10 (e.g., -2 rounds to nearest 100 in the stored unit. For USD, this means rounding to the nearest dollar). | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -21,11 +21,11 @@ pub struct CreateContractV1RequestSpendTrackersInner {
     #[serde(rename = "reset_frequency")]
     pub reset_frequency: ResetFrequency,
     #[serde(rename = "applicable_spend_specifiers")]
-    pub applicable_spend_specifiers: Vec<models::CreateContractV1RequestSpendTrackersInnerApplicableSpendSpecifiersInner>,
+    pub applicable_spend_specifiers: Vec<models::GetContractV1200ResponseDataInitialSpendTrackersInnerApplicableSpendSpecifiersInner>,
 }
 
 impl CreateContractV1RequestSpendTrackersInner {
-    pub fn new(alias: String, credit_type_id: uuid::Uuid, reset_frequency: ResetFrequency, applicable_spend_specifiers: Vec<models::CreateContractV1RequestSpendTrackersInnerApplicableSpendSpecifiersInner>) -> CreateContractV1RequestSpendTrackersInner {
+    pub fn new(alias: String, credit_type_id: uuid::Uuid, reset_frequency: ResetFrequency, applicable_spend_specifiers: Vec<models::GetContractV1200ResponseDataInitialSpendTrackersInnerApplicableSpendSpecifiersInner>) -> CreateContractV1RequestSpendTrackersInner {
         CreateContractV1RequestSpendTrackersInner {
             alias,
             credit_type_id,

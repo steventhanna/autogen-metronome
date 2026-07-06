@@ -22,7 +22,7 @@ pub struct GetContractEditHistoryV2200ResponseDataInnerUpdateSpendThresholdConfi
     #[serde(rename = "commit", skip_serializing_if = "Option::is_none")]
     pub commit: Option<Box<models::GetContractEditHistoryV2200ResponseDataInnerUpdateSpendThresholdConfigurationCommit>>,
     #[serde(rename = "payment_gate_config", skip_serializing_if = "Option::is_none")]
-    pub payment_gate_config: Option<Box<models::GetContractV2200ResponseDataSpendThresholdConfigurationPaymentGateConfig>>,
+    pub payment_gate_config: Option<Box<models::GetContractV1200ResponseDataInitialSpendThresholdConfigurationPaymentGateConfig>>,
     #[serde(rename = "discount_configuration", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub discount_configuration: Option<Option<Box<models::GetContractEditHistoryV2200ResponseDataInnerUpdatePrepaidBalanceThresholdConfigurationDiscountConfiguration>>>,
 }

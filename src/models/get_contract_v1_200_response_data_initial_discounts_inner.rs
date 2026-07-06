@@ -18,7 +18,7 @@ pub struct GetContractV1200ResponseDataInitialDiscountsInner {
     #[serde(rename = "product")]
     pub product: Box<models::GetContractV1200ResponseDataInitialCommitsInnerProduct>,
     #[serde(rename = "schedule")]
-    pub schedule: Box<models::GetContractV1200ResponseDataInitialDiscountsInnerSchedule>,
+    pub schedule: Box<models::GetContractV1200ResponseDataInitialCommitsInnerInvoiceSchedule>,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
     /// This field's availability is dependent on your client's configuration.
@@ -30,7 +30,7 @@ pub struct GetContractV1200ResponseDataInitialDiscountsInner {
 }
 
 impl GetContractV1200ResponseDataInitialDiscountsInner {
-    pub fn new(id: uuid::Uuid, product: models::GetContractV1200ResponseDataInitialCommitsInnerProduct, schedule: models::GetContractV1200ResponseDataInitialDiscountsInnerSchedule) -> GetContractV1200ResponseDataInitialDiscountsInner {
+    pub fn new(id: uuid::Uuid, product: models::GetContractV1200ResponseDataInitialCommitsInnerProduct, schedule: models::GetContractV1200ResponseDataInitialCommitsInnerInvoiceSchedule) -> GetContractV1200ResponseDataInitialDiscountsInner {
         GetContractV1200ResponseDataInitialDiscountsInner {
             id,
             product: Box::new(product),

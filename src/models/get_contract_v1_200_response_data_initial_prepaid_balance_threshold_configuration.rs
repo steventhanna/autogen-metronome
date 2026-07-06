@@ -31,6 +31,7 @@ pub struct GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurati
     pub payment_gate_config: Box<models::GetContractV1200ResponseDataInitialSpendThresholdConfigurationPaymentGateConfig>,
     #[serde(rename = "discount_configuration", skip_serializing_if = "Option::is_none")]
     pub discount_configuration: Option<Box<models::GetContractV1200ResponseDataInitialSpendThresholdConfigurationDiscountConfiguration>>,
+    /// Determines which balances are excluded from remaining balance calculation for threshold billing.
     #[serde(rename = "threshold_balance_specifiers", skip_serializing_if = "Option::is_none")]
     pub threshold_balance_specifiers: Option<Vec<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationThresholdBalanceSpecifiersInner>>,
 }

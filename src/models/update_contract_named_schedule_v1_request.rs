@@ -23,9 +23,9 @@ pub struct UpdateContractNamedScheduleV1Request {
     #[serde(rename = "schedule_name")]
     pub schedule_name: String,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// The value to set for the named schedule. The structure of this object is specific to the named schedule.
     #[serde(rename = "value", deserialize_with = "Option::deserialize")]
     pub value: Option<serde_json::Value>,
@@ -35,7 +35,7 @@ pub struct UpdateContractNamedScheduleV1Request {
 }
 
 impl UpdateContractNamedScheduleV1Request {
-    pub fn new(customer_id: uuid::Uuid, contract_id: uuid::Uuid, schedule_name: String, starting_at: String, value: Option<serde_json::Value>) -> UpdateContractNamedScheduleV1Request {
+    pub fn new(customer_id: uuid::Uuid, contract_id: uuid::Uuid, schedule_name: String, starting_at: chrono::DateTime<chrono::FixedOffset>, value: Option<serde_json::Value>) -> UpdateContractNamedScheduleV1Request {
         UpdateContractNamedScheduleV1Request {
             customer_id,
             contract_id,

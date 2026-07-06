@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**r#type** | **String** |  | 
-**timestamp** | **String** |  | 
+**r#type** | **Type** |  (enum: POSTPAID_COMMIT_MANUAL) | 
+**timestamp** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **amount** | **f64** |  | 
 **reason** | **String** |  | 
 

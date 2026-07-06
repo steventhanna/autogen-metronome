@@ -21,10 +21,10 @@ pub struct UpdateCommitEndDateV1Request {
     pub commit_id: uuid::Uuid,
     /// RFC 3339 timestamp indicating when access to the commit will end and it will no longer be possible to draw it down (exclusive). If not provided, the access will not be updated.
     #[serde(rename = "access_ending_before", skip_serializing_if = "Option::is_none")]
-    pub access_ending_before: Option<String>,
+    pub access_ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// RFC 3339 timestamp indicating when the commit will stop being invoiced (exclusive). If not provided, the invoice schedule will not be updated.
     #[serde(rename = "invoices_ending_before", skip_serializing_if = "Option::is_none")]
-    pub invoices_ending_before: Option<String>,
+    pub invoices_ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl UpdateCommitEndDateV1Request {

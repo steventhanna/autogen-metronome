@@ -27,7 +27,7 @@ pub struct GetContractV2200ResponseDataCreditsInner {
     #[serde(rename = "product")]
     pub product: Box<models::GetContractV1200ResponseDataInitialCommitsInnerProduct>,
     #[serde(rename = "access_schedule", skip_serializing_if = "Option::is_none")]
-    pub access_schedule: Option<Box<models::GetContractV1200ResponseDataInitialCreditsInnerAccessSchedule>>,
+    pub access_schedule: Option<Box<models::GetContractV1200ResponseDataInitialCommitsInnerAccessSchedule>>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
     #[serde(rename = "applicable_product_ids", skip_serializing_if = "Option::is_none")]
@@ -55,14 +55,17 @@ pub struct GetContractV2200ResponseDataCreditsInner {
     #[serde(rename = "custom_fields", skip_serializing_if = "Option::is_none")]
     pub custom_fields: Option<std::collections::HashMap<String, String>>,
     #[serde(rename = "archived_at", skip_serializing_if = "Option::is_none")]
-    pub archived_at: Option<String>,
+    pub archived_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "hierarchy_configuration", skip_serializing_if = "Option::is_none")]
-    pub hierarchy_configuration: Option<Box<models::GetContractV1200ResponseDataInitialCreditsInnerHierarchyConfiguration>>,
+    pub hierarchy_configuration: Option<Box<models::GetContractV1200ResponseDataInitialCommitsInnerHierarchyConfiguration>>,
     #[serde(rename = "rolled_over_from", skip_serializing_if = "Option::is_none")]
     pub rolled_over_from: Option<Box<models::GetContractV1200ResponseDataInitialCreditsInnerRolledOverFrom>>,
     /// Timestamp of when the credit was created. - Recurring credits: latter of credit service period date and parent credit start date 
     #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
-    pub created_at: Option<String>,
+    pub created_at: Option<chrono::DateTime<chrono::FixedOffset>>,
+    /// The actor who created this credit. Omitted for system-generated credits such as recurring credits.
+    #[serde(rename = "created_by", skip_serializing_if = "Option::is_none")]
+    pub created_by: Option<String>,
     /// The ID of the recurring credit that created this credit
     #[serde(rename = "recurring_credit_id", skip_serializing_if = "Option::is_none")]
     pub recurring_credit_id: Option<uuid::Uuid>,
@@ -94,6 +97,7 @@ impl GetContractV2200ResponseDataCreditsInner {
             hierarchy_configuration: None,
             rolled_over_from: None,
             created_at: None,
+            created_by: None,
             recurring_credit_id: None,
             subscription_config: None,
         }

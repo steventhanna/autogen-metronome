@@ -21,17 +21,17 @@ pub struct ListSeatBalancesV1200ResponseDataInnerCommitsInner {
     pub balance: f64,
     /// The datetime when the commit becomes active
     #[serde(rename = "start_date")]
-    pub start_date: String,
+    pub start_date: chrono::DateTime<chrono::FixedOffset>,
     /// The datetime when the commit expires
     #[serde(rename = "end_date", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub end_date: Option<Option<String>>,
+    pub end_date: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     /// Transaction history for this commit for this seat (only included if include_ledgers=true)
     #[serde(rename = "ledger_entries", skip_serializing_if = "Option::is_none")]
     pub ledger_entries: Option<Vec<models::ListSeatBalancesV1200ResponseDataInnerCommitsInnerLedgerEntriesInner>>,
 }
 
 impl ListSeatBalancesV1200ResponseDataInnerCommitsInner {
-    pub fn new(id: uuid::Uuid, balance: f64, start_date: String) -> ListSeatBalancesV1200ResponseDataInnerCommitsInner {
+    pub fn new(id: uuid::Uuid, balance: f64, start_date: chrono::DateTime<chrono::FixedOffset>) -> ListSeatBalancesV1200ResponseDataInnerCommitsInner {
         ListSeatBalancesV1200ResponseDataInnerCommitsInner {
             id,
             balance,

@@ -33,7 +33,7 @@ pub struct GetContractV2200ResponseDataCommitsInner {
     #[serde(rename = "invoice_schedule", skip_serializing_if = "Option::is_none")]
     pub invoice_schedule: Option<Box<models::GetContractV1200ResponseDataInitialCommitsInnerInvoiceSchedule>>,
     #[serde(rename = "invoice_contract", skip_serializing_if = "Option::is_none")]
-    pub invoice_contract: Option<Box<models::GetContractV1200ResponseDataInitialCommitsInnerInvoiceContract>>,
+    pub invoice_contract: Option<Box<models::ArchiveAlertV1200ResponseData>>,
     #[serde(rename = "rolled_over_from", skip_serializing_if = "Option::is_none")]
     pub rolled_over_from: Option<Box<models::GetContractV1200ResponseDataInitialCommitsInnerRolledOverFrom>>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
@@ -65,14 +65,17 @@ pub struct GetContractV2200ResponseDataCommitsInner {
     #[serde(rename = "custom_fields", skip_serializing_if = "Option::is_none")]
     pub custom_fields: Option<std::collections::HashMap<String, String>>,
     #[serde(rename = "archived_at", skip_serializing_if = "Option::is_none")]
-    pub archived_at: Option<String>,
+    pub archived_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "hierarchy_configuration", skip_serializing_if = "Option::is_none")]
     pub hierarchy_configuration: Option<Box<models::GetContractV1200ResponseDataInitialCommitsInnerHierarchyConfiguration>>,
     #[serde(rename = "spend_tracker_attributes", skip_serializing_if = "Option::is_none")]
     pub spend_tracker_attributes: Option<Box<models::GetContractV1200ResponseDataInitialCommitsInnerSpendTrackerAttributes>>,
     /// Timestamp of when the commit was created. - Recurring commits: latter of commit service period date and parent commit start date - Rollover commits: when the new contract started 
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
+    /// The actor who created this commit. Omitted for system-generated commits such as recurring commits, rollover commits, and threshold commits.
+    #[serde(rename = "created_by", skip_serializing_if = "Option::is_none")]
+    pub created_by: Option<String>,
     /// The ID of the recurring commit that created this commit
     #[serde(rename = "recurring_commit_id", skip_serializing_if = "Option::is_none")]
     pub recurring_commit_id: Option<uuid::Uuid>,
@@ -81,7 +84,7 @@ pub struct GetContractV2200ResponseDataCommitsInner {
 }
 
 impl GetContractV2200ResponseDataCommitsInner {
-    pub fn new(id: uuid::Uuid, r#type: Type, product: models::GetContractV1200ResponseDataInitialCommitsInnerProduct, created_at: String) -> GetContractV2200ResponseDataCommitsInner {
+    pub fn new(id: uuid::Uuid, r#type: Type, product: models::GetContractV1200ResponseDataInitialCommitsInnerProduct, created_at: chrono::DateTime<chrono::FixedOffset>) -> GetContractV2200ResponseDataCommitsInner {
         GetContractV2200ResponseDataCommitsInner {
             id,
             contract: None,
@@ -109,6 +112,7 @@ impl GetContractV2200ResponseDataCommitsInner {
             hierarchy_configuration: None,
             spend_tracker_attributes: None,
             created_at,
+            created_by: None,
             recurring_commit_id: None,
             subscription_config: None,
         }

@@ -15,13 +15,13 @@ use serde::{Deserialize, Serialize};
 pub struct GetContractV1200ResponseDataInitialHierarchyConfigurationOneOf {
     /// List of contracts that belong to this parent.
     #[serde(rename = "children")]
-    pub children: Vec<models::GetContractV1200ResponseDataInitialHierarchyConfigurationOneOfChildrenInner>,
+    pub children: Vec<models::ChargeSeatsV1200ResponsePayer>,
     #[serde(rename = "parent_behavior", skip_serializing_if = "Option::is_none")]
     pub parent_behavior: Option<Box<models::GetContractV1200ResponseDataInitialHierarchyConfigurationOneOfParentBehavior>>,
 }
 
 impl GetContractV1200ResponseDataInitialHierarchyConfigurationOneOf {
-    pub fn new(children: Vec<models::GetContractV1200ResponseDataInitialHierarchyConfigurationOneOfChildrenInner>) -> GetContractV1200ResponseDataInitialHierarchyConfigurationOneOf {
+    pub fn new(children: Vec<models::ChargeSeatsV1200ResponsePayer>) -> GetContractV1200ResponseDataInitialHierarchyConfigurationOneOf {
         GetContractV1200ResponseDataInitialHierarchyConfigurationOneOf {
             children,
             parent_behavior: None,

@@ -23,9 +23,9 @@ pub struct EditContractV2RequestAddCommitsInner {
     #[serde(rename = "product_id")]
     pub product_id: uuid::Uuid,
     #[serde(rename = "access_schedule", skip_serializing_if = "Option::is_none")]
-    pub access_schedule: Option<Box<models::EditContractV2RequestAddCommitsInnerAccessSchedule>>,
+    pub access_schedule: Option<Box<models::CreateContractV1RequestCommitsInnerAccessSchedule>>,
     #[serde(rename = "invoice_schedule", skip_serializing_if = "Option::is_none")]
-    pub invoice_schedule: Option<Box<models::EditContractV2RequestAddCommitsInnerInvoiceSchedule>>,
+    pub invoice_schedule: Option<Box<models::GetContractEditHistoryV2200ResponseDataInnerUpdateDiscountsInnerSchedule>>,
     /// (DEPRECATED) Use access_schedule and invoice_schedule instead.
     #[serde(rename = "amount", skip_serializing_if = "Option::is_none")]
     pub amount: Option<f64>,
@@ -46,7 +46,7 @@ pub struct EditContractV2RequestAddCommitsInner {
     pub applicable_product_tags: Option<Vec<String>>,
     /// List of filters that determine what kind of customer usage draws down a commit or credit. A customer's usage needs to meet the condition of at least one of the specifiers to contribute to a commit's or credit's drawdown. This field cannot be used together with `applicable_product_ids` or `applicable_product_tags`. Instead, to target usage by product or product tag, pass those values in the body of `specifiers`.
     #[serde(rename = "specifiers", skip_serializing_if = "Option::is_none")]
-    pub specifiers: Option<Vec<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfSpecifiersInner>>,
+    pub specifiers: Option<Vec<models::GetContractV1200ResponseDataInitialCommitsInnerSpecifiersInner>>,
     /// This field's availability is dependent on your client's configuration.
     #[serde(rename = "netsuite_sales_order_id", skip_serializing_if = "Option::is_none")]
     pub netsuite_sales_order_id: Option<String>,

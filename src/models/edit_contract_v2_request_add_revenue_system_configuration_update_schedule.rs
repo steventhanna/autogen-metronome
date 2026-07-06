@@ -30,6 +30,8 @@ impl EditContractV2RequestAddRevenueSystemConfigurationUpdateSchedule {
 pub enum EffectiveAt {
     #[serde(rename = "START_OF_CURRENT_PERIOD")]
     StartOfCurrentPeriod,
+    #[serde(rename = "START_OF_NEXT_PERIOD")]
+    StartOfNextPeriod,
 }
 
 impl Default for EffectiveAt {

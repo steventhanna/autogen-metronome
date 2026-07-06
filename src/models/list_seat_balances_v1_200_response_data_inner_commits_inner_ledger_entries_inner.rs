@@ -21,11 +21,11 @@ pub struct ListSeatBalancesV1200ResponseDataInnerCommitsInnerLedgerEntriesInner 
     pub amount: f64,
     /// The datetime when the ledger is created
     #[serde(rename = "timestamp")]
-    pub timestamp: String,
+    pub timestamp: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl ListSeatBalancesV1200ResponseDataInnerCommitsInnerLedgerEntriesInner {
-    pub fn new(r#type: Type, amount: f64, timestamp: String) -> ListSeatBalancesV1200ResponseDataInnerCommitsInnerLedgerEntriesInner {
+    pub fn new(r#type: Type, amount: f64, timestamp: chrono::DateTime<chrono::FixedOffset>) -> ListSeatBalancesV1200ResponseDataInnerCommitsInnerLedgerEntriesInner {
         ListSeatBalancesV1200ResponseDataInnerCommitsInnerLedgerEntriesInner {
             r#type,
             amount,

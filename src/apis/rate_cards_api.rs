@@ -19,8 +19,8 @@ use super::{Error, configuration, ContentType};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AddRateV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -28,8 +28,8 @@ pub enum AddRateV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AddRatesV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -37,7 +37,7 @@ pub enum AddRatesV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ArchiveRateCardV1Error {
-    Status404(models::Error),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -45,7 +45,7 @@ pub enum ArchiveRateCardV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateRateCardV1Error {
-    Status400(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -53,7 +53,7 @@ pub enum CreateRateCardV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetRateCardV1Error {
-    Status404(models::Error),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -82,8 +82,8 @@ pub enum ListRateCardsV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum MoveRateCardProductsV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -91,8 +91,8 @@ pub enum MoveRateCardProductsV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SetRateCardProductsOrderV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -100,16 +100,16 @@ pub enum SetRateCardProductsOrderV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateRateCardV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Add a new rate  This endpoint is heavily rate limited. For adding multiple rates, using the [addRates](https://docs.metronome.com/api-reference/rate-cards/add-rates) endpoint is strongly encouraged. 
-pub async fn add_rate_v1(configuration: &configuration::Configuration, add_rate_payload: Option<models::AddRatePayload>) -> Result<models::AddRateV1200Response, Error<AddRateV1Error>> {
+pub async fn add_rate_v1(configuration: &configuration::Configuration, add_rate_v1_request: Option<models::AddRateV1Request>) -> Result<models::AddRateV1200Response, Error<AddRateV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_add_rate_payload = add_rate_payload;
+    let p_body_add_rate_v1_request = add_rate_v1_request;
 
     let uri_str = format!("{}/v1/contract-pricing/rate-cards/addRate", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -120,7 +120,7 @@ pub async fn add_rate_v1(configuration: &configuration::Configuration, add_rate_
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_add_rate_payload);
+    req_builder = req_builder.json(&p_body_add_rate_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -189,9 +189,9 @@ pub async fn add_rates_v1(configuration: &configuration::Configuration, add_rate
 }
 
 /// Permanently disable a rate card by archiving it, preventing use in new contracts while preserving existing contract pricing. Use this when retiring old pricing models, consolidating rate cards, or removing outdated pricing structures. Returns the archived rate card ID and stops the rate card from appearing in contract creation workflows. 
-pub async fn archive_rate_card_v1(configuration: &configuration::Configuration, id: Option<models::Id>) -> Result<models::ArchiveAlertV1200Response, Error<ArchiveRateCardV1Error>> {
+pub async fn archive_rate_card_v1(configuration: &configuration::Configuration, archive_alert_v1200_response_data: Option<models::ArchiveAlertV1200ResponseData>) -> Result<models::ArchiveAlertV1200Response, Error<ArchiveRateCardV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_id = id;
+    let p_body_archive_alert_v1200_response_data = archive_alert_v1200_response_data;
 
     let uri_str = format!("{}/v1/contract-pricing/rate-cards/archive", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -202,7 +202,7 @@ pub async fn archive_rate_card_v1(configuration: &configuration::Configuration, 
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_id);
+    req_builder = req_builder.json(&p_body_archive_alert_v1200_response_data);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -230,9 +230,9 @@ pub async fn archive_rate_card_v1(configuration: &configuration::Configuration, 
 }
 
 /// In Metronome, the rate card is the central location for your pricing. Rate cards were built with new product launches and pricing changes in mind - you can update your products and pricing in one place, and that change will be automatically propagated across your customer cohorts. Most clients need only maintain one or a few rate cards within Metronome.  ### Use this endpoint to: - Create a rate card with a name and description - Define the rate card's single underlying fiat currency, and any number of conversion rates between that fiat currency and custom pricing units. You can then add products and associated rates in the fiat currency or custom pricing unit for which you have defined a conversion rate.  - Set aliases for the rate card. Aliases are human-readable names that you can use in the place of the id of the rate card when provisioning a customer's contract. By using an alias, you can easily create a contract and provision a customer by choosing the paygo rate card, without storing the rate card id in your internal systems. This is helpful when launching a new rate card for paygo customers, you can update the alias for paygo to be scheduled to be assigned to the new rate card without updating your code.  ### Key response fields: - The ID of the rate card you just created  ### Usage guidelines: - After creating a rate card, you can now use the addRate or addRates endpoints to add products and their prices to it - A rate card alias can only be used by one rate card at a time. If you create a contract with a rate card alias that is already in use by another rate card, the original rate card's alias schedule will be updated. The alias will reference the rate card to which it was most recently assigned. 
-pub async fn create_rate_card_v1(configuration: &configuration::Configuration, create_rate_card_payload: Option<models::CreateRateCardPayload>) -> Result<models::ArchiveAlertV1200Response, Error<CreateRateCardV1Error>> {
+pub async fn create_rate_card_v1(configuration: &configuration::Configuration, create_rate_card_v1_request: Option<models::CreateRateCardV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<CreateRateCardV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_create_rate_card_payload = create_rate_card_payload;
+    let p_body_create_rate_card_v1_request = create_rate_card_v1_request;
 
     let uri_str = format!("{}/v1/contract-pricing/rate-cards/create", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -243,7 +243,7 @@ pub async fn create_rate_card_v1(configuration: &configuration::Configuration, c
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_create_rate_card_payload);
+    req_builder = req_builder.json(&p_body_create_rate_card_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -271,9 +271,9 @@ pub async fn create_rate_card_v1(configuration: &configuration::Configuration, c
 }
 
 /// Return details for a specific rate card including name, description, and aliases. This endpoint does not return rates - use the dedicated getRates or getRateSchedule endpoints to understand the rates on a rate card. 
-pub async fn get_rate_card_v1(configuration: &configuration::Configuration, id: Option<models::Id>) -> Result<models::GetRateCardV1200Response, Error<GetRateCardV1Error>> {
+pub async fn get_rate_card_v1(configuration: &configuration::Configuration, archive_alert_v1200_response_data: Option<models::ArchiveAlertV1200ResponseData>) -> Result<models::GetRateCardV1200Response, Error<GetRateCardV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_id = id;
+    let p_body_archive_alert_v1200_response_data = archive_alert_v1200_response_data;
 
     let uri_str = format!("{}/v1/contract-pricing/rate-cards/get", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -284,7 +284,7 @@ pub async fn get_rate_card_v1(configuration: &configuration::Configuration, id: 
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_id);
+    req_builder = req_builder.json(&p_body_archive_alert_v1200_response_data);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -312,11 +312,11 @@ pub async fn get_rate_card_v1(configuration: &configuration::Configuration, id: 
 }
 
 /// A rate card defines the prices that you charge for your products. Rate cards support scheduled changes over time, to allow you to easily roll out pricing changes and new product launches across your customer base. Use this endpoint to understand the rate schedule `starting_at` a given date, optionally filtering the list of rates returned based on product id or pricing group values. For example, you may want to display a schedule of upcoming price changes for a given product in your product experience - use this endpoint to fetch that information from its source of truth in Metronome.   If you want to understand the rates for a specific customer's contract, inclusive of contract-level overrides, use the `getContractRateSchedule` endpoint. 
-pub async fn get_rate_schedule_v1(configuration: &configuration::Configuration, limit: Option<i32>, next_page: Option<&str>, get_rate_schedule_payload: Option<models::GetRateSchedulePayload>) -> Result<models::GetRateScheduleV1200Response, Error<GetRateScheduleV1Error>> {
+pub async fn get_rate_schedule_v1(configuration: &configuration::Configuration, limit: Option<i32>, next_page: Option<&str>, get_rate_schedule_v1_request: Option<models::GetRateScheduleV1Request>) -> Result<models::GetRateScheduleV1200Response, Error<GetRateScheduleV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_limit = limit;
     let p_query_next_page = next_page;
-    let p_body_get_rate_schedule_payload = get_rate_schedule_payload;
+    let p_body_get_rate_schedule_v1_request = get_rate_schedule_v1_request;
 
     let uri_str = format!("{}/v1/contract-pricing/rate-cards/getRateSchedule", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -333,7 +333,7 @@ pub async fn get_rate_schedule_v1(configuration: &configuration::Configuration, 
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_get_rate_schedule_payload);
+    req_builder = req_builder.json(&p_body_get_rate_schedule_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -361,11 +361,11 @@ pub async fn get_rate_schedule_v1(configuration: &configuration::Configuration, 
 }
 
 /// Understand the rate schedule at a given timestamp, optionally filtering the list of rates returned based on properties such as `product_id` and `pricing_group_values`. For example, you may want to display the current price for a given product in your product experience - use this endpoint to fetch that information from its source of truth in Metronome.   If you want to understand the rates for a specific customer's contract, inclusive of contract-level overrides, use the `getContractRateSchedule` endpoint. 
-pub async fn get_rates_v1(configuration: &configuration::Configuration, limit: Option<i32>, next_page: Option<&str>, get_rates_payload: Option<models::GetRatesPayload>) -> Result<models::GetRateScheduleV1200Response, Error<GetRatesV1Error>> {
+pub async fn get_rates_v1(configuration: &configuration::Configuration, limit: Option<i32>, next_page: Option<&str>, get_rates_v1_request: Option<models::GetRatesV1Request>) -> Result<models::GetRateScheduleV1200Response, Error<GetRatesV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_limit = limit;
     let p_query_next_page = next_page;
-    let p_body_get_rates_payload = get_rates_payload;
+    let p_body_get_rates_v1_request = get_rates_v1_request;
 
     let uri_str = format!("{}/v1/contract-pricing/rate-cards/getRates", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -382,7 +382,7 @@ pub async fn get_rates_v1(configuration: &configuration::Configuration, limit: O
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_get_rates_payload);
+    req_builder = req_builder.json(&p_body_get_rates_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -459,9 +459,9 @@ pub async fn list_rate_cards_v1(configuration: &configuration::Configuration, li
 }
 
 /// The ordering of products on a rate card determines the order in which the products will appear on customers' invoices. Use this endpoint to set the order of specific products on the rate card by moving them relative to their current location. 
-pub async fn move_rate_card_products_v1(configuration: &configuration::Configuration, move_rate_card_products_payload: Option<models::MoveRateCardProductsPayload>) -> Result<models::ArchiveAlertV1200Response, Error<MoveRateCardProductsV1Error>> {
+pub async fn move_rate_card_products_v1(configuration: &configuration::Configuration, move_rate_card_products_v1_request: Option<models::MoveRateCardProductsV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<MoveRateCardProductsV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_move_rate_card_products_payload = move_rate_card_products_payload;
+    let p_body_move_rate_card_products_v1_request = move_rate_card_products_v1_request;
 
     let uri_str = format!("{}/v1/contract-pricing/rate-cards/moveRateCardProducts", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -472,7 +472,7 @@ pub async fn move_rate_card_products_v1(configuration: &configuration::Configura
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_move_rate_card_products_payload);
+    req_builder = req_builder.json(&p_body_move_rate_card_products_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -500,9 +500,9 @@ pub async fn move_rate_card_products_v1(configuration: &configuration::Configura
 }
 
 /// The ordering of products on a rate card determines the order in which the products will appear on customers' invoices. Use this endpoint to set the order of products on the rate card. 
-pub async fn set_rate_card_products_order_v1(configuration: &configuration::Configuration, set_rate_card_products_order_payload: Option<models::SetRateCardProductsOrderPayload>) -> Result<models::ArchiveAlertV1200Response, Error<SetRateCardProductsOrderV1Error>> {
+pub async fn set_rate_card_products_order_v1(configuration: &configuration::Configuration, set_rate_card_products_order_v1_request: Option<models::SetRateCardProductsOrderV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<SetRateCardProductsOrderV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_set_rate_card_products_order_payload = set_rate_card_products_order_payload;
+    let p_body_set_rate_card_products_order_v1_request = set_rate_card_products_order_v1_request;
 
     let uri_str = format!("{}/v1/contract-pricing/rate-cards/setRateCardProductsOrder", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -513,7 +513,7 @@ pub async fn set_rate_card_products_order_v1(configuration: &configuration::Conf
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_set_rate_card_products_order_payload);
+    req_builder = req_builder.json(&p_body_set_rate_card_products_order_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -541,9 +541,9 @@ pub async fn set_rate_card_products_order_v1(configuration: &configuration::Conf
 }
 
 /// Update the metadata properties of an existing rate card, including its name, description, and aliases. This endpoint is designed for managing rate card identity and reference aliases rather than modifying pricing rates.  Modifies the descriptive properties and alias configuration of a rate card without affecting the underlying pricing rates or schedules. This allows you to update how a rate card is identified and referenced throughout your system.  ### Use this endpoint to: - Rate card renaming: Update display names or descriptions for organizational clarity - Alias management: Add, modify, or schedule alias transitions for seamless rate card migrations - Documentation updates: Keep rate card descriptions current with business context - Self-serve provisioning setup: Configure aliases to enable code-free rate card transitions  #### Active contract impact: - Alias changes: Already-created contracts continue using their originally assigned rate cards. - Other changes made using this endpoint will only impact the Metronome UI.  #### Grandfathering existing PLG customer pricing: - Rate card aliases support scheduled transitions, enabling seamless rate card migrations for new customers, allowing existing customers to be grandfathered into their existing prices without code. Note that there are multiple mechanisms to support grandfathering in Metronome.   #### How scheduled aliases work for PLG grandfathering: Initial setup: - Add alias to current rate card: Assign a stable alias (e.g., \"standard-pricing\") to your active rate card - Reference alias during contract creation: Configure your self-serve workflow to create contracts using `rate_card_alias` instead of direct `rate_card_id` - Automatic resolution: New contracts referencing the alias automatically resolve to the rate card associated with the alias at the point in time of provisioning  #### Grandfathering process: - Create new rate card: Build your new rate card with updated pricing structure - Schedule alias transition: Add the same alias to the new rate card with a `starting_at` timestamp - Automatic cutover: Starting at the scheduled time, new contracts created in your PLG workflow using that alias will automatically reference the new rate card 
-pub async fn update_rate_card_v1(configuration: &configuration::Configuration, update_rate_card_payload: Option<models::UpdateRateCardPayload>) -> Result<models::ArchiveAlertV1200Response, Error<UpdateRateCardV1Error>> {
+pub async fn update_rate_card_v1(configuration: &configuration::Configuration, update_rate_card_v1_request: Option<models::UpdateRateCardV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<UpdateRateCardV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_update_rate_card_payload = update_rate_card_payload;
+    let p_body_update_rate_card_v1_request = update_rate_card_v1_request;
 
     let uri_str = format!("{}/v1/contract-pricing/rate-cards/update", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -554,7 +554,7 @@ pub async fn update_rate_card_v1(configuration: &configuration::Configuration, u
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_update_rate_card_payload);
+    req_builder = req_builder.json(&p_body_update_rate_card_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

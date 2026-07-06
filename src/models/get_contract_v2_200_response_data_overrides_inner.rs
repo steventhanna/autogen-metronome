@@ -16,7 +16,7 @@ pub struct GetContractV2200ResponseDataOverridesInner {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "product", skip_serializing_if = "Option::is_none")]
     pub product: Option<Box<models::GetContractV1200ResponseDataInitialCommitsInnerProduct>>,
     #[serde(rename = "applicable_product_tags", skip_serializing_if = "Option::is_none")]
@@ -24,9 +24,9 @@ pub struct GetContractV2200ResponseDataOverridesInner {
     #[serde(rename = "override_specifiers", skip_serializing_if = "Option::is_none")]
     pub override_specifiers: Option<Vec<models::GetContractV2200ResponseDataOverridesInnerOverrideSpecifiersInner>>,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "entitled", skip_serializing_if = "Option::is_none")]
     pub entitled: Option<bool>,
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
@@ -46,7 +46,7 @@ pub struct GetContractV2200ResponseDataOverridesInner {
 }
 
 impl GetContractV2200ResponseDataOverridesInner {
-    pub fn new(id: uuid::Uuid, created_at: String, starting_at: String) -> GetContractV2200ResponseDataOverridesInner {
+    pub fn new(id: uuid::Uuid, created_at: chrono::DateTime<chrono::FixedOffset>, starting_at: chrono::DateTime<chrono::FixedOffset>) -> GetContractV2200ResponseDataOverridesInner {
         GetContractV2200ResponseDataOverridesInner {
             id,
             created_at,

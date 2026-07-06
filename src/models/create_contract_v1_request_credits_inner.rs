@@ -19,7 +19,7 @@ pub struct CreateContractV1RequestCreditsInner {
     #[serde(rename = "product_id")]
     pub product_id: uuid::Uuid,
     #[serde(rename = "access_schedule")]
-    pub access_schedule: Box<models::CreateContractV1RequestCreditsInnerAccessSchedule>,
+    pub access_schedule: Box<models::CreateContractV1RequestCommitsInnerAccessSchedule>,
     /// Used only in UI/API. It is not exposed to end customers.
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -31,7 +31,7 @@ pub struct CreateContractV1RequestCreditsInner {
     pub applicable_product_tags: Option<Vec<String>>,
     /// List of filters that determine what kind of customer usage draws down a commit or credit. A customer's usage needs to meet the condition of at least one of the specifiers to contribute to a commit's or credit's drawdown. This field cannot be used together with `applicable_product_ids` or `applicable_product_tags`.
     #[serde(rename = "specifiers", skip_serializing_if = "Option::is_none")]
-    pub specifiers: Option<Vec<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfSpecifiersInner>>,
+    pub specifiers: Option<Vec<models::GetContractV1200ResponseDataInitialCommitsInnerSpecifiersInner>>,
     /// This field's availability is dependent on your client's configuration.
     #[serde(rename = "netsuite_sales_order_id", skip_serializing_if = "Option::is_none")]
     pub netsuite_sales_order_id: Option<String>,
@@ -47,11 +47,11 @@ pub struct CreateContractV1RequestCreditsInner {
     #[serde(rename = "rate_type", skip_serializing_if = "Option::is_none")]
     pub rate_type: Option<RateType>,
     #[serde(rename = "hierarchy_configuration", skip_serializing_if = "Option::is_none")]
-    pub hierarchy_configuration: Option<Box<models::GetContractV1200ResponseDataInitialCreditsInnerHierarchyConfiguration>>,
+    pub hierarchy_configuration: Option<Box<models::GetContractV1200ResponseDataInitialCommitsInnerHierarchyConfiguration>>,
 }
 
 impl CreateContractV1RequestCreditsInner {
-    pub fn new(product_id: uuid::Uuid, access_schedule: models::CreateContractV1RequestCreditsInnerAccessSchedule) -> CreateContractV1RequestCreditsInner {
+    pub fn new(product_id: uuid::Uuid, access_schedule: models::CreateContractV1RequestCommitsInnerAccessSchedule) -> CreateContractV1RequestCreditsInner {
         CreateContractV1RequestCreditsInner {
             name: None,
             product_id,

@@ -25,13 +25,13 @@ pub struct GetRateScheduleV1200ResponseDataInner {
     #[serde(rename = "pricing_group_values", skip_serializing_if = "Option::is_none")]
     pub pricing_group_values: Option<std::collections::HashMap<String, String>>,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "entitled")]
     pub entitled: bool,
     #[serde(rename = "rate")]
-    pub rate: Box<models::GetRateScheduleV1200ResponseDataInnerRate>,
+    pub rate: Box<models::ChargeSeatsV1200ResponseLineItemsInnerListPrice>,
     #[serde(rename = "commit_rate", skip_serializing_if = "Option::is_none")]
     pub commit_rate: Option<Box<models::GetRateScheduleV1200ResponseDataInnerCommitRate>>,
     #[serde(rename = "billing_frequency", skip_serializing_if = "Option::is_none")]
@@ -39,7 +39,7 @@ pub struct GetRateScheduleV1200ResponseDataInner {
 }
 
 impl GetRateScheduleV1200ResponseDataInner {
-    pub fn new(product_id: uuid::Uuid, product_name: String, product_tags: Vec<String>, product_custom_fields: std::collections::HashMap<String, String>, starting_at: String, entitled: bool, rate: models::GetRateScheduleV1200ResponseDataInnerRate) -> GetRateScheduleV1200ResponseDataInner {
+    pub fn new(product_id: uuid::Uuid, product_name: String, product_tags: Vec<String>, product_custom_fields: std::collections::HashMap<String, String>, starting_at: chrono::DateTime<chrono::FixedOffset>, entitled: bool, rate: models::ChargeSeatsV1200ResponseLineItemsInnerListPrice) -> GetRateScheduleV1200ResponseDataInner {
         GetRateScheduleV1200ResponseDataInner {
             product_id,
             product_name,

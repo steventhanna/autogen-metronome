@@ -26,7 +26,7 @@ pub struct EditCreditV2Request {
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
     #[serde(rename = "access_schedule", skip_serializing_if = "Option::is_none")]
-    pub access_schedule: Option<Box<models::EditContractV2RequestUpdateCommitsInnerAccessSchedule>>,
+    pub access_schedule: Option<Box<models::GetContractEditHistoryV2200ResponseDataInnerUpdateCommitsInnerAccessSchedule>>,
     /// Which products the credit applies to. If both applicable_product_ids and applicable_product_tags are not provided, the credit applies to all products.
     #[serde(rename = "applicable_product_ids", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub applicable_product_ids: Option<Option<Vec<uuid::Uuid>>>,
@@ -35,7 +35,7 @@ pub struct EditCreditV2Request {
     pub applicable_product_tags: Option<Option<Vec<String>>>,
     /// List of filters that determine what kind of customer usage draws down a commit or credit. A customer's usage needs to meet the condition of at least one of the specifiers to contribute to a commit's or credit's drawdown. This field cannot be used together with `applicable_product_ids` or `applicable_product_tags`. Instead, to target usage by product or product tag, pass those values in the body of `specifiers`.
     #[serde(rename = "specifiers", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub specifiers: Option<Option<Vec<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfSpecifiersInner>>>,
+    pub specifiers: Option<Option<Vec<models::GetContractV1200ResponseDataInitialCommitsInnerSpecifiersInner>>>,
     #[serde(rename = "product_id", skip_serializing_if = "Option::is_none")]
     pub product_id: Option<uuid::Uuid>,
     /// If multiple commits are applicable, the one with the lower priority will apply first.
@@ -45,7 +45,7 @@ pub struct EditCreditV2Request {
     #[serde(rename = "rate_type", skip_serializing_if = "Option::is_none")]
     pub rate_type: Option<RateType>,
     #[serde(rename = "hierarchy_configuration", skip_serializing_if = "Option::is_none")]
-    pub hierarchy_configuration: Option<Box<models::GetContractV1200ResponseDataInitialCreditsInnerHierarchyConfiguration>>,
+    pub hierarchy_configuration: Option<Box<models::GetContractV1200ResponseDataInitialCommitsInnerHierarchyConfiguration>>,
 }
 
 impl EditCreditV2Request {

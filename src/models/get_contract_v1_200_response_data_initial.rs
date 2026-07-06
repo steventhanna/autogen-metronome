@@ -21,7 +21,7 @@ pub struct GetContractV1200ResponseDataInitial {
     #[serde(rename = "rate_card_id", skip_serializing_if = "Option::is_none")]
     pub rate_card_id: Option<uuid::Uuid>,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "commits")]
     pub commits: Vec<models::GetContractV1200ResponseDataInitialCommitsInner>,
     #[serde(rename = "credits", skip_serializing_if = "Option::is_none")]
@@ -49,7 +49,7 @@ pub struct GetContractV1200ResponseDataInitial {
     #[serde(rename = "reseller_royalties", skip_serializing_if = "Option::is_none")]
     pub reseller_royalties: Option<Vec<models::GetContractV1200ResponseDataInitialResellerRoyaltiesInner>>,
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "created_by")]
     pub created_by: String,
     /// This field's availability is dependent on your client's configuration.
@@ -58,7 +58,7 @@ pub struct GetContractV1200ResponseDataInitial {
     #[serde(rename = "net_payment_terms_days", skip_serializing_if = "Option::is_none")]
     pub net_payment_terms_days: Option<f64>,
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// This field's availability is dependent on your client's configuration.
     #[serde(rename = "total_contract_value", skip_serializing_if = "Option::is_none")]
     pub total_contract_value: Option<f64>,
@@ -78,7 +78,7 @@ pub struct GetContractV1200ResponseDataInitial {
 }
 
 impl GetContractV1200ResponseDataInitial {
-    pub fn new(starting_at: String, commits: Vec<models::GetContractV1200ResponseDataInitialCommitsInner>, overrides: Vec<models::GetContractV1200ResponseDataInitialOverridesInner>, scheduled_charges: Vec<models::GetContractV1200ResponseDataInitialScheduledChargesInner>, transitions: Vec<models::GetContractV1200ResponseDataInitialTransitionsInner>, created_at: String, created_by: String, usage_statement_schedule: models::GetContractV1200ResponseDataInitialUsageStatementSchedule) -> GetContractV1200ResponseDataInitial {
+    pub fn new(starting_at: chrono::DateTime<chrono::FixedOffset>, commits: Vec<models::GetContractV1200ResponseDataInitialCommitsInner>, overrides: Vec<models::GetContractV1200ResponseDataInitialOverridesInner>, scheduled_charges: Vec<models::GetContractV1200ResponseDataInitialScheduledChargesInner>, transitions: Vec<models::GetContractV1200ResponseDataInitialTransitionsInner>, created_at: chrono::DateTime<chrono::FixedOffset>, created_by: String, usage_statement_schedule: models::GetContractV1200ResponseDataInitialUsageStatementSchedule) -> GetContractV1200ResponseDataInitial {
         GetContractV1200ResponseDataInitial {
             name: None,
             salesforce_opportunity_id: None,

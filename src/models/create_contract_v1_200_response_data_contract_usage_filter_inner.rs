@@ -18,13 +18,13 @@ pub struct CreateContractV1200ResponseDataContractUsageFilterInner {
     #[serde(rename = "group_values")]
     pub group_values: Vec<String>,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl CreateContractV1200ResponseDataContractUsageFilterInner {
-    pub fn new(group_key: String, group_values: Vec<String>, starting_at: String) -> CreateContractV1200ResponseDataContractUsageFilterInner {
+    pub fn new(group_key: String, group_values: Vec<String>, starting_at: chrono::DateTime<chrono::FixedOffset>) -> CreateContractV1200ResponseDataContractUsageFilterInner {
         CreateContractV1200ResponseDataContractUsageFilterInner {
             group_key,
             group_values,

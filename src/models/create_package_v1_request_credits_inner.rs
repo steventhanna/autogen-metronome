@@ -19,7 +19,7 @@ pub struct CreatePackageV1RequestCreditsInner {
     #[serde(rename = "product_id")]
     pub product_id: uuid::Uuid,
     #[serde(rename = "access_schedule")]
-    pub access_schedule: Box<models::CreatePackageV1RequestCreditsInnerAccessSchedule>,
+    pub access_schedule: Box<models::CreatePackageV1RequestCommitsInnerAccessSchedule>,
     /// Used only in UI/API. It is not exposed to end customers.
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -31,7 +31,7 @@ pub struct CreatePackageV1RequestCreditsInner {
     pub applicable_product_tags: Option<Vec<String>>,
     /// List of filters that determine what kind of customer usage draws down a commit or credit. A customer's usage needs to meet the condition of at least one of the specifiers to contribute to a commit's or credit's drawdown. This field cannot be used together with `applicable_product_ids` or `applicable_product_tags`.
     #[serde(rename = "specifiers", skip_serializing_if = "Option::is_none")]
-    pub specifiers: Option<Vec<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfSpecifiersInner>>,
+    pub specifiers: Option<Vec<models::GetContractV1200ResponseDataInitialCommitsInnerSpecifiersInner>>,
     /// If multiple credits are applicable, the one with the lower priority will apply first.
     #[serde(rename = "priority", skip_serializing_if = "Option::is_none")]
     pub priority: Option<f64>,
@@ -43,7 +43,7 @@ pub struct CreatePackageV1RequestCreditsInner {
 }
 
 impl CreatePackageV1RequestCreditsInner {
-    pub fn new(product_id: uuid::Uuid, access_schedule: models::CreatePackageV1RequestCreditsInnerAccessSchedule) -> CreatePackageV1RequestCreditsInner {
+    pub fn new(product_id: uuid::Uuid, access_schedule: models::CreatePackageV1RequestCommitsInnerAccessSchedule) -> CreatePackageV1RequestCreditsInner {
         CreatePackageV1RequestCreditsInner {
             name: None,
             product_id,

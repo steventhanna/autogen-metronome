@@ -17,7 +17,7 @@ pub struct GetCustomerV1200ResponseDataCurrentBillableStatus {
     #[serde(rename = "value")]
     pub value: Value,
     #[serde(rename = "effective_at", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub effective_at: Option<Option<String>>,
+    pub effective_at: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
 }
 
 impl GetCustomerV1200ResponseDataCurrentBillableStatus {

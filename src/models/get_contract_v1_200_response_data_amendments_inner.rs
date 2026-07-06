@@ -19,7 +19,7 @@ pub struct GetContractV1200ResponseDataAmendmentsInner {
     #[serde(rename = "salesforce_opportunity_id", skip_serializing_if = "Option::is_none")]
     pub salesforce_opportunity_id: Option<String>,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "commits")]
     pub commits: Vec<models::GetContractV1200ResponseDataInitialCommitsInner>,
     #[serde(rename = "credits", skip_serializing_if = "Option::is_none")]
@@ -38,7 +38,7 @@ pub struct GetContractV1200ResponseDataAmendmentsInner {
     #[serde(rename = "reseller_royalties", skip_serializing_if = "Option::is_none")]
     pub reseller_royalties: Option<Vec<models::GetContractV1200ResponseDataAmendmentsInnerResellerRoyaltiesInner>>,
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "created_by")]
     pub created_by: String,
     /// This field's availability is dependent on your client's configuration.
@@ -47,7 +47,7 @@ pub struct GetContractV1200ResponseDataAmendmentsInner {
 }
 
 impl GetContractV1200ResponseDataAmendmentsInner {
-    pub fn new(id: uuid::Uuid, starting_at: String, commits: Vec<models::GetContractV1200ResponseDataInitialCommitsInner>, overrides: Vec<models::GetContractV1200ResponseDataInitialOverridesInner>, scheduled_charges: Vec<models::GetContractV1200ResponseDataInitialScheduledChargesInner>, created_at: String, created_by: String) -> GetContractV1200ResponseDataAmendmentsInner {
+    pub fn new(id: uuid::Uuid, starting_at: chrono::DateTime<chrono::FixedOffset>, commits: Vec<models::GetContractV1200ResponseDataInitialCommitsInner>, overrides: Vec<models::GetContractV1200ResponseDataInitialOverridesInner>, scheduled_charges: Vec<models::GetContractV1200ResponseDataInitialScheduledChargesInner>, created_at: chrono::DateTime<chrono::FixedOffset>, created_by: String) -> GetContractV1200ResponseDataAmendmentsInner {
         GetContractV1200ResponseDataAmendmentsInner {
             id,
             salesforce_opportunity_id: None,

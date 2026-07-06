@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetContractV1200ResponseDataInitialHierarchyConfigurationOneOf1 {
     #[serde(rename = "parent")]
-    pub parent: Box<models::GetContractV1200ResponseDataInitialHierarchyConfigurationOneOf1Parent>,
+    pub parent: Box<models::ChargeSeatsV1200ResponsePayer>,
     /// Indicates which customer should pay for the child's invoice charges  **SELF**: The child pays for its own invoice charges  **PARENT**: The parent pays for the child's invoice charges
     #[serde(rename = "payer", skip_serializing_if = "Option::is_none")]
     pub payer: Option<Payer>,
@@ -24,7 +24,7 @@ pub struct GetContractV1200ResponseDataInitialHierarchyConfigurationOneOf1 {
 }
 
 impl GetContractV1200ResponseDataInitialHierarchyConfigurationOneOf1 {
-    pub fn new(parent: models::GetContractV1200ResponseDataInitialHierarchyConfigurationOneOf1Parent) -> GetContractV1200ResponseDataInitialHierarchyConfigurationOneOf1 {
+    pub fn new(parent: models::ChargeSeatsV1200ResponsePayer) -> GetContractV1200ResponseDataInitialHierarchyConfigurationOneOf1 {
         GetContractV1200ResponseDataInitialHierarchyConfigurationOneOf1 {
             parent: Box::new(parent),
             payer: None,

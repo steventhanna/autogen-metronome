@@ -36,9 +36,9 @@ pub struct GetContractV1200ResponseDataSubscriptionsInner {
     #[serde(rename = "seat_config", skip_serializing_if = "Option::is_none")]
     pub seat_config: Option<Box<models::GetContractV1200ResponseDataSubscriptionsInnerSeatConfig>>,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "fiat_credit_type_id", skip_serializing_if = "Option::is_none")]
     pub fiat_credit_type_id: Option<uuid::Uuid>,
     #[serde(rename = "billing_cycle_config", skip_serializing_if = "Option::is_none")]
@@ -49,7 +49,7 @@ pub struct GetContractV1200ResponseDataSubscriptionsInner {
 }
 
 impl GetContractV1200ResponseDataSubscriptionsInner {
-    pub fn new(subscription_rate: models::GetContractV1200ResponseDataSubscriptionsInnerSubscriptionRate, collection_schedule: CollectionSchedule, proration: models::GetContractV1200ResponseDataSubscriptionsInnerProration, quantity_schedule: Vec<models::GetContractV1200ResponseDataSubscriptionsInnerQuantityScheduleInner>, billing_periods: models::GetContractV1200ResponseDataSubscriptionsInnerBillingPeriods, quantity_management_mode: QuantityManagementMode, starting_at: String) -> GetContractV1200ResponseDataSubscriptionsInner {
+    pub fn new(subscription_rate: models::GetContractV1200ResponseDataSubscriptionsInnerSubscriptionRate, collection_schedule: CollectionSchedule, proration: models::GetContractV1200ResponseDataSubscriptionsInnerProration, quantity_schedule: Vec<models::GetContractV1200ResponseDataSubscriptionsInnerQuantityScheduleInner>, billing_periods: models::GetContractV1200ResponseDataSubscriptionsInnerBillingPeriods, quantity_management_mode: QuantityManagementMode, starting_at: chrono::DateTime<chrono::FixedOffset>) -> GetContractV1200ResponseDataSubscriptionsInner {
         GetContractV1200ResponseDataSubscriptionsInner {
             id: None,
             subscription_rate: Box::new(subscription_rate),

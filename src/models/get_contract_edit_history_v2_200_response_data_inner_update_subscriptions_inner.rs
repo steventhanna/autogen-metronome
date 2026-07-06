@@ -16,7 +16,7 @@ pub struct GetContractEditHistoryV2200ResponseDataInnerUpdateSubscriptionsInner 
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "quantity_updates", skip_serializing_if = "Option::is_none")]
     pub quantity_updates: Option<Vec<models::GetContractEditHistoryV2200ResponseDataInnerUpdateSubscriptionsInnerQuantityUpdatesInner>>,
     #[serde(rename = "seat_updates", skip_serializing_if = "Option::is_none")]

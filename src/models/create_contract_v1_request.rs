@@ -44,10 +44,10 @@ pub struct CreateContractV1Request {
     pub total_contract_value: Option<f64>,
     /// inclusive contract start time
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     /// exclusive contract end time
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "commits", skip_serializing_if = "Option::is_none")]
     pub commits: Option<Vec<models::CreateContractV1RequestCommitsInner>>,
     #[serde(rename = "credits", skip_serializing_if = "Option::is_none")]
@@ -103,7 +103,7 @@ pub struct CreateContractV1Request {
 }
 
 impl CreateContractV1Request {
-    pub fn new(customer_id: uuid::Uuid, starting_at: String) -> CreateContractV1Request {
+    pub fn new(customer_id: uuid::Uuid, starting_at: chrono::DateTime<chrono::FixedOffset>) -> CreateContractV1Request {
         CreateContractV1Request {
             customer_id,
             package_id: None,

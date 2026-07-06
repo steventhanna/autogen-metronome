@@ -16,13 +16,13 @@ pub struct GetContractV1200ResponseDataInitialSpendTrackersInnerAccumulatedSpend
     #[serde(rename = "amount")]
     pub amount: f64,
     #[serde(rename = "period_starting_at")]
-    pub period_starting_at: String,
+    pub period_starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "period_ending_before")]
-    pub period_ending_before: String,
+    pub period_ending_before: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl GetContractV1200ResponseDataInitialSpendTrackersInnerAccumulatedSpend {
-    pub fn new(amount: f64, period_starting_at: String, period_ending_before: String) -> GetContractV1200ResponseDataInitialSpendTrackersInnerAccumulatedSpend {
+    pub fn new(amount: f64, period_starting_at: chrono::DateTime<chrono::FixedOffset>, period_ending_before: chrono::DateTime<chrono::FixedOffset>) -> GetContractV1200ResponseDataInitialSpendTrackersInnerAccumulatedSpend {
         GetContractV1200ResponseDataInitialSpendTrackersInnerAccumulatedSpend {
             amount,
             period_starting_at,
