@@ -20,11 +20,11 @@ pub struct CreateHistoricalContractUsageInvoicesV1RequestInvoicesInner {
     #[serde(rename = "credit_type_id")]
     pub credit_type_id: uuid::Uuid,
     #[serde(rename = "inclusive_start_date")]
-    pub inclusive_start_date: String,
+    pub inclusive_start_date: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "exclusive_end_date")]
-    pub exclusive_end_date: String,
+    pub exclusive_end_date: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "issue_date")]
-    pub issue_date: String,
+    pub issue_date: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "breakdown_granularity", skip_serializing_if = "Option::is_none")]
     pub breakdown_granularity: Option<BreakdownGranularity>,
     #[serde(rename = "usage_line_items")]
@@ -38,7 +38,7 @@ pub struct CreateHistoricalContractUsageInvoicesV1RequestInvoicesInner {
 }
 
 impl CreateHistoricalContractUsageInvoicesV1RequestInvoicesInner {
-    pub fn new(customer_id: uuid::Uuid, contract_id: uuid::Uuid, credit_type_id: uuid::Uuid, inclusive_start_date: String, exclusive_end_date: String, issue_date: String, usage_line_items: Vec<models::CreateHistoricalContractUsageInvoicesV1RequestInvoicesInnerUsageLineItemsInner>) -> CreateHistoricalContractUsageInvoicesV1RequestInvoicesInner {
+    pub fn new(customer_id: uuid::Uuid, contract_id: uuid::Uuid, credit_type_id: uuid::Uuid, inclusive_start_date: chrono::DateTime<chrono::FixedOffset>, exclusive_end_date: chrono::DateTime<chrono::FixedOffset>, issue_date: chrono::DateTime<chrono::FixedOffset>, usage_line_items: Vec<models::CreateHistoricalContractUsageInvoicesV1RequestInvoicesInnerUsageLineItemsInner>) -> CreateHistoricalContractUsageInvoicesV1RequestInvoicesInner {
         CreateHistoricalContractUsageInvoicesV1RequestInvoicesInner {
             customer_id,
             contract_id,

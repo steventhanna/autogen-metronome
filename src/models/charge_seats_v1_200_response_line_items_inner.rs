@@ -49,10 +49,10 @@ pub struct ChargeSeatsV1200ResponseLineItemsInner {
     pub credit_type: Box<models::ChargeSeatsV1200ResponseCreditType>,
     /// The line item's start date (inclusive).
     #[serde(rename = "starting_at", skip_serializing_if = "Option::is_none")]
-    pub starting_at: Option<String>,
+    pub starting_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// The line item's end date (exclusive).
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// For line items with product of `USAGE`, `SUBSCRIPTION`, or `COMPOSITE` types, the ID of the credit or commit that was applied to this line item. For line items with product type of `FIXED`, the ID of the prepaid or postpaid commit that is being paid for.
     #[serde(rename = "commit_id", skip_serializing_if = "Option::is_none")]
     pub commit_id: Option<uuid::Uuid>,
@@ -71,7 +71,7 @@ pub struct ChargeSeatsV1200ResponseLineItemsInner {
     #[serde(rename = "commit_netsuite_item_id", skip_serializing_if = "Option::is_none")]
     pub commit_netsuite_item_id: Option<String>,
     #[serde(rename = "postpaid_commit", skip_serializing_if = "Option::is_none")]
-    pub postpaid_commit: Option<Box<models::ChargeSeatsV1200ResponseLineItemsInnerPostpaidCommit>>,
+    pub postpaid_commit: Option<Box<models::ArchiveAlertV1200ResponseData>>,
     #[serde(rename = "reseller_type", skip_serializing_if = "Option::is_none")]
     pub reseller_type: Option<ResellerType>,
     /// Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" }
@@ -87,10 +87,10 @@ pub struct ChargeSeatsV1200ResponseLineItemsInner {
     pub metadata: Option<String>,
     /// The start date for the billing period on the invoice.
     #[serde(rename = "netsuite_invoice_billing_start", skip_serializing_if = "Option::is_none")]
-    pub netsuite_invoice_billing_start: Option<String>,
+    pub netsuite_invoice_billing_start: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// The end date for the billing period on the invoice.
     #[serde(rename = "netsuite_invoice_billing_end", skip_serializing_if = "Option::is_none")]
-    pub netsuite_invoice_billing_end: Option<String>,
+    pub netsuite_invoice_billing_end: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "professional_service_id", skip_serializing_if = "Option::is_none")]
     pub professional_service_id: Option<uuid::Uuid>,
     /// Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" }

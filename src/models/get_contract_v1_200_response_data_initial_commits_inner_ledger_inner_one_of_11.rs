@@ -16,7 +16,7 @@ pub struct GetContractV1200ResponseDataInitialCommitsInnerLedgerInnerOneOf11 {
     #[serde(rename = "type")]
     pub r#type: Type,
     #[serde(rename = "timestamp")]
-    pub timestamp: String,
+    pub timestamp: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "amount")]
     pub amount: f64,
     #[serde(rename = "reason")]
@@ -24,7 +24,7 @@ pub struct GetContractV1200ResponseDataInitialCommitsInnerLedgerInnerOneOf11 {
 }
 
 impl GetContractV1200ResponseDataInitialCommitsInnerLedgerInnerOneOf11 {
-    pub fn new(r#type: Type, timestamp: String, amount: f64, reason: String) -> GetContractV1200ResponseDataInitialCommitsInnerLedgerInnerOneOf11 {
+    pub fn new(r#type: Type, timestamp: chrono::DateTime<chrono::FixedOffset>, amount: f64, reason: String) -> GetContractV1200ResponseDataInitialCommitsInnerLedgerInnerOneOf11 {
         GetContractV1200ResponseDataInitialCommitsInnerLedgerInnerOneOf11 {
             r#type,
             timestamp,

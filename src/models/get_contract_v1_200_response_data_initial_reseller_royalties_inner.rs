@@ -24,9 +24,9 @@ pub struct GetContractV1200ResponseDataInitialResellerRoyaltiesInner {
     #[serde(rename = "netsuite_reseller_id")]
     pub netsuite_reseller_id: String,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "reseller_contract_value", skip_serializing_if = "Option::is_none")]
     pub reseller_contract_value: Option<f64>,
     #[serde(rename = "aws_account_number", skip_serializing_if = "Option::is_none")]
@@ -42,7 +42,7 @@ pub struct GetContractV1200ResponseDataInitialResellerRoyaltiesInner {
 }
 
 impl GetContractV1200ResponseDataInitialResellerRoyaltiesInner {
-    pub fn new(reseller_type: ResellerType, fraction: f64, netsuite_reseller_id: String, starting_at: String) -> GetContractV1200ResponseDataInitialResellerRoyaltiesInner {
+    pub fn new(reseller_type: ResellerType, fraction: f64, netsuite_reseller_id: String, starting_at: chrono::DateTime<chrono::FixedOffset>) -> GetContractV1200ResponseDataInitialResellerRoyaltiesInner {
         GetContractV1200ResponseDataInitialResellerRoyaltiesInner {
             reseller_type,
             fraction,

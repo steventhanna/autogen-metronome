@@ -20,9 +20,9 @@ pub struct GetContractV1200ResponseDataAmendmentsInnerResellerRoyaltiesInner {
     #[serde(rename = "netsuite_reseller_id", skip_serializing_if = "Option::is_none")]
     pub netsuite_reseller_id: Option<String>,
     #[serde(rename = "starting_at", skip_serializing_if = "Option::is_none")]
-    pub starting_at: Option<String>,
+    pub starting_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "ending_before", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<Option<String>>,
+    pub ending_before: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(rename = "reseller_contract_value", skip_serializing_if = "Option::is_none")]
     pub reseller_contract_value: Option<f64>,
     #[serde(rename = "aws_account_number", skip_serializing_if = "Option::is_none")]

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**rate_card_id** | [**uuid::Uuid**](uuid::Uuid.md) | ID of the rate card to update | 
-**product_moves** | [**Vec<models::MoveRateCardProductsV1RequestProductMovesInner>**](moveRateCardProducts_v1_request_product_moves_inner.md) |  | 
+**rate_card_id** | **uuid::Uuid** | ID of the rate card to update | 
+**product_moves** | [**Vec<models::MoveRateCardProductsV1RequestProductMovesInner>**](MoveRateCardProductsV1RequestProductMovesInner.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

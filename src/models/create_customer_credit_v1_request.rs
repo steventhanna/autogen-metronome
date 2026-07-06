@@ -27,7 +27,7 @@ pub struct CreateCustomerCreditV1Request {
     #[serde(rename = "product_id")]
     pub product_id: uuid::Uuid,
     #[serde(rename = "access_schedule")]
-    pub access_schedule: Box<models::CreateContractV1RequestCreditsInnerAccessSchedule>,
+    pub access_schedule: Box<models::CreateContractV1RequestCommitsInnerAccessSchedule>,
     /// Which products the credit applies to. If both applicable_product_ids and applicable_product_tags are not provided, the credit applies to all products.
     #[serde(rename = "applicable_product_ids", skip_serializing_if = "Option::is_none")]
     pub applicable_product_ids: Option<Vec<uuid::Uuid>>,
@@ -36,7 +36,7 @@ pub struct CreateCustomerCreditV1Request {
     pub applicable_product_tags: Option<Vec<String>>,
     /// List of filters that determine what kind of customer usage draws down a commit or credit. A customer's usage needs to meet the condition of at least one of the specifiers to contribute to a commit's or credit's drawdown. This field cannot be used together with `applicable_product_ids` or `applicable_product_tags`.
     #[serde(rename = "specifiers", skip_serializing_if = "Option::is_none")]
-    pub specifiers: Option<Vec<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfSpecifiersInner>>,
+    pub specifiers: Option<Vec<models::GetContractV1200ResponseDataInitialCommitsInnerSpecifiersInner>>,
     /// Which contract the credit applies to. If not provided, the credit applies to all contracts.
     #[serde(rename = "applicable_contract_ids", skip_serializing_if = "Option::is_none")]
     pub applicable_contract_ids: Option<Vec<String>>,
@@ -57,7 +57,7 @@ pub struct CreateCustomerCreditV1Request {
 }
 
 impl CreateCustomerCreditV1Request {
-    pub fn new(customer_id: uuid::Uuid, priority: f64, product_id: uuid::Uuid, access_schedule: models::CreateContractV1RequestCreditsInnerAccessSchedule) -> CreateCustomerCreditV1Request {
+    pub fn new(customer_id: uuid::Uuid, priority: f64, product_id: uuid::Uuid, access_schedule: models::CreateContractV1RequestCommitsInnerAccessSchedule) -> CreateCustomerCreditV1Request {
         CreateCustomerCreditV1Request {
             customer_id,
             name: None,

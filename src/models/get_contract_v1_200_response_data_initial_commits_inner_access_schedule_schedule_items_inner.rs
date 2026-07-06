@@ -18,13 +18,13 @@ pub struct GetContractV1200ResponseDataInitialCommitsInnerAccessScheduleSchedule
     #[serde(rename = "amount")]
     pub amount: f64,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "ending_before")]
-    pub ending_before: String,
+    pub ending_before: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl GetContractV1200ResponseDataInitialCommitsInnerAccessScheduleScheduleItemsInner {
-    pub fn new(id: uuid::Uuid, amount: f64, starting_at: String, ending_before: String) -> GetContractV1200ResponseDataInitialCommitsInnerAccessScheduleScheduleItemsInner {
+    pub fn new(id: uuid::Uuid, amount: f64, starting_at: chrono::DateTime<chrono::FixedOffset>, ending_before: chrono::DateTime<chrono::FixedOffset>) -> GetContractV1200ResponseDataInitialCommitsInnerAccessScheduleScheduleItemsInner {
         GetContractV1200ResponseDataInitialCommitsInnerAccessScheduleScheduleItemsInner {
             id,
             amount,

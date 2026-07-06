@@ -24,10 +24,10 @@ pub struct AddRatesV1RequestRatesInner {
     pub billing_frequency: Option<BillingFrequency>,
     /// inclusive effective date
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     /// exclusive end date
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "entitled")]
     pub entitled: bool,
     #[serde(rename = "rate_type")]
@@ -57,7 +57,7 @@ pub struct AddRatesV1RequestRatesInner {
 }
 
 impl AddRatesV1RequestRatesInner {
-    pub fn new(product_id: uuid::Uuid, starting_at: String, entitled: bool, rate_type: RateType) -> AddRatesV1RequestRatesInner {
+    pub fn new(product_id: uuid::Uuid, starting_at: chrono::DateTime<chrono::FixedOffset>, entitled: bool, rate_type: RateType) -> AddRatesV1RequestRatesInner {
         AddRatesV1RequestRatesInner {
             product_id,
             pricing_group_values: None,

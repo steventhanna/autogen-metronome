@@ -20,7 +20,7 @@ pub struct EditContractV2RequestUpdateCreditsInner {
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
     #[serde(rename = "access_schedule", skip_serializing_if = "Option::is_none")]
-    pub access_schedule: Option<Box<models::EditContractV2RequestUpdateCommitsInnerAccessSchedule>>,
+    pub access_schedule: Option<Box<models::GetContractEditHistoryV2200ResponseDataInnerUpdateCommitsInnerAccessSchedule>>,
     #[serde(rename = "rollover_fraction", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub rollover_fraction: Option<Option<f64>>,
     #[serde(rename = "netsuite_sales_order_id", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]

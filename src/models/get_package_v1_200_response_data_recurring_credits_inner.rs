@@ -41,12 +41,12 @@ pub struct GetPackageV1200ResponseDataRecurringCreditsInner {
     #[serde(rename = "rate_type")]
     pub rate_type: RateType,
     #[serde(rename = "starting_at_offset")]
-    pub starting_at_offset: Box<models::CreatePackageV1RequestRecurringCommitsInnerAllOfStartingAtOffset>,
+    pub starting_at_offset: Box<models::CreatePackageV1RequestDuration>,
     #[serde(rename = "duration", skip_serializing_if = "Option::is_none")]
-    pub duration: Option<Box<models::CreatePackageV1RequestRecurringCommitsInnerAllOfDuration>>,
+    pub duration: Option<Box<models::CreatePackageV1RequestDuration>>,
     #[serde(rename = "commit_duration")]
     pub commit_duration: Box<models::GetPackageV1200ResponseDataRecurringCommitsInnerAllOfCommitDuration>,
-    /// The frequency at which the recurring commits will be created.  If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
+    /// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
     #[serde(rename = "recurrence_frequency", skip_serializing_if = "Option::is_none")]
     pub recurrence_frequency: Option<RecurrenceFrequency>,
     /// Determines whether the first and last commit will be prorated.  If not provided, the default is FIRST_AND_LAST (i.e. prorate both the first and last commits).
@@ -59,7 +59,7 @@ pub struct GetPackageV1200ResponseDataRecurringCreditsInner {
 }
 
 impl GetPackageV1200ResponseDataRecurringCreditsInner {
-    pub fn new(id: uuid::Uuid, product: models::GetContractV1200ResponseDataInitialCommitsInnerProduct, access_amount: models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfAccessAmount, priority: f64, rate_type: RateType, starting_at_offset: models::CreatePackageV1RequestRecurringCommitsInnerAllOfStartingAtOffset, commit_duration: models::GetPackageV1200ResponseDataRecurringCommitsInnerAllOfCommitDuration) -> GetPackageV1200ResponseDataRecurringCreditsInner {
+    pub fn new(id: uuid::Uuid, product: models::GetContractV1200ResponseDataInitialCommitsInnerProduct, access_amount: models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfAccessAmount, priority: f64, rate_type: RateType, starting_at_offset: models::CreatePackageV1RequestDuration, commit_duration: models::GetPackageV1200ResponseDataRecurringCommitsInnerAllOfCommitDuration) -> GetPackageV1200ResponseDataRecurringCreditsInner {
         GetPackageV1200ResponseDataRecurringCreditsInner {
             id,
             name: None,
@@ -96,7 +96,7 @@ impl Default for RateType {
         Self::CommitRate
     }
 }
-/// The frequency at which the recurring commits will be created.  If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
+/// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum RecurrenceFrequency {
     #[serde(rename = "MONTHLY")]
@@ -107,6 +107,8 @@ pub enum RecurrenceFrequency {
     Annual,
     #[serde(rename = "WEEKLY")]
     Weekly,
+    #[serde(rename = "DAILY")]
+    Daily,
 }
 
 impl Default for RecurrenceFrequency {

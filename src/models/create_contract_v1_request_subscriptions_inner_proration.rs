@@ -20,7 +20,7 @@ pub struct CreateContractV1RequestSubscriptionsInnerProration {
     #[serde(rename = "invoice_behavior", skip_serializing_if = "Option::is_none")]
     pub invoice_behavior: Option<InvoiceBehavior>,
     #[serde(rename = "rounding", skip_serializing_if = "Option::is_none")]
-    pub rounding: Option<Box<models::GetContractV1200ResponseDataSubscriptionsInnerProrationRounding>>,
+    pub rounding: Option<Box<models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfProrationRoundingAccess>>,
 }
 
 impl CreateContractV1RequestSubscriptionsInnerProration {

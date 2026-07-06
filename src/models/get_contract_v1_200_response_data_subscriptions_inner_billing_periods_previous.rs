@@ -14,13 +14,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetContractV1200ResponseDataSubscriptionsInnerBillingPeriodsPrevious {
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "ending_before")]
-    pub ending_before: String,
+    pub ending_before: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl GetContractV1200ResponseDataSubscriptionsInnerBillingPeriodsPrevious {
-    pub fn new(starting_at: String, ending_before: String) -> GetContractV1200ResponseDataSubscriptionsInnerBillingPeriodsPrevious {
+    pub fn new(starting_at: chrono::DateTime<chrono::FixedOffset>, ending_before: chrono::DateTime<chrono::FixedOffset>) -> GetContractV1200ResponseDataSubscriptionsInnerBillingPeriodsPrevious {
         GetContractV1200ResponseDataSubscriptionsInnerBillingPeriodsPrevious {
             starting_at,
             ending_before,

@@ -19,7 +19,7 @@ pub struct EditContractV2RequestAddRecurringCommitsInner {
     #[serde(rename = "product_id")]
     pub product_id: uuid::Uuid,
     #[serde(rename = "access_amount")]
-    pub access_amount: Box<models::CreateContractV1RequestRecurringCommitsInnerAllOfAccessAmount>,
+    pub access_amount: Box<models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfAccessAmount>,
     /// Will be passed down to the individual commits
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -37,7 +37,7 @@ pub struct EditContractV2RequestAddRecurringCommitsInner {
     pub applicable_product_tags: Option<Vec<String>>,
     /// List of filters that determine what kind of customer usage draws down a commit or credit. A customer's usage needs to meet the condition of at least one of the specifiers to contribute to a commit's or credit's drawdown. This field cannot be used together with `applicable_product_ids` or `applicable_product_tags`. Instead, to target usage by product or product tag, pass those values in the body of `specifiers`.
     #[serde(rename = "specifiers", skip_serializing_if = "Option::is_none")]
-    pub specifiers: Option<Vec<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfSpecifiersInner>>,
+    pub specifiers: Option<Vec<models::GetContractV1200ResponseDataInitialCommitsInnerSpecifiersInner>>,
     /// Will be passed down to the individual commits
     #[serde(rename = "netsuite_sales_order_id", skip_serializing_if = "Option::is_none")]
     pub netsuite_sales_order_id: Option<String>,
@@ -49,12 +49,12 @@ pub struct EditContractV2RequestAddRecurringCommitsInner {
     pub rate_type: Option<RateType>,
     /// determines the start time for the first commit
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     /// Determines when the contract will stop creating recurring commits. optional
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "commit_duration")]
-    pub commit_duration: Box<models::CreateContractV1RequestRecurringCommitsInnerAllOfCommitDuration>,
+    pub commit_duration: Box<models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfCommitDuration>,
     /// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
     #[serde(rename = "recurrence_frequency", skip_serializing_if = "Option::is_none")]
     pub recurrence_frequency: Option<RecurrenceFrequency>,
@@ -62,17 +62,17 @@ pub struct EditContractV2RequestAddRecurringCommitsInner {
     #[serde(rename = "proration", skip_serializing_if = "Option::is_none")]
     pub proration: Option<Proration>,
     #[serde(rename = "hierarchy_configuration", skip_serializing_if = "Option::is_none")]
-    pub hierarchy_configuration: Option<Box<models::GetContractV2200ResponseDataRecurringCommitsInnerAllOfHierarchyConfiguration>>,
+    pub hierarchy_configuration: Option<Box<models::GetContractV1200ResponseDataInitialCommitsInnerHierarchyConfiguration>>,
     #[serde(rename = "subscription_config", skip_serializing_if = "Option::is_none")]
     pub subscription_config: Option<Box<models::EditContractV2RequestAddRecurringCommitsInnerAllOfSubscriptionConfig>>,
     #[serde(rename = "invoice_amount", skip_serializing_if = "Option::is_none")]
     pub invoice_amount: Option<Box<models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfInvoiceAmount>>,
     #[serde(rename = "proration_rounding", skip_serializing_if = "Option::is_none")]
-    pub proration_rounding: Option<Box<models::EditContractV2RequestAddRecurringCommitsInnerAllOfProrationRounding>>,
+    pub proration_rounding: Option<Box<models::CreateContractV1RequestRecurringCommitsInnerAllOfProrationRounding>>,
 }
 
 impl EditContractV2RequestAddRecurringCommitsInner {
-    pub fn new(product_id: uuid::Uuid, access_amount: models::CreateContractV1RequestRecurringCommitsInnerAllOfAccessAmount, priority: f64, starting_at: String, commit_duration: models::CreateContractV1RequestRecurringCommitsInnerAllOfCommitDuration) -> EditContractV2RequestAddRecurringCommitsInner {
+    pub fn new(product_id: uuid::Uuid, access_amount: models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfAccessAmount, priority: f64, starting_at: chrono::DateTime<chrono::FixedOffset>, commit_duration: models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfCommitDuration) -> EditContractV2RequestAddRecurringCommitsInner {
         EditContractV2RequestAddRecurringCommitsInner {
             name: None,
             product_id,
@@ -135,6 +135,10 @@ pub enum RecurrenceFrequency {
     Weekly,
     #[serde(rename = "weekly")]
     Weekly2,
+    #[serde(rename = "DAILY")]
+    Daily,
+    #[serde(rename = "daily")]
+    Daily2,
 }
 
 impl Default for RecurrenceFrequency {

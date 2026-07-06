@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**r#type** | **String** |  | 
-**timestamp** | **String** |  | 
+**r#type** | **Type** |  (enum: CREDIT_MANUAL) | 
+**timestamp** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **amount** | **f64** |  | 
 **reason** | **String** |  | 
 

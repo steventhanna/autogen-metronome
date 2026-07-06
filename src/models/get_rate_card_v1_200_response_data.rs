@@ -18,7 +18,7 @@ pub struct GetRateCardV1200ResponseData {
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "created_by")]
     pub created_by: String,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
@@ -35,7 +35,7 @@ pub struct GetRateCardV1200ResponseData {
 }
 
 impl GetRateCardV1200ResponseData {
-    pub fn new(id: uuid::Uuid, name: String, created_at: String, created_by: String) -> GetRateCardV1200ResponseData {
+    pub fn new(id: uuid::Uuid, name: String, created_at: chrono::DateTime<chrono::FixedOffset>, created_by: String) -> GetRateCardV1200ResponseData {
         GetRateCardV1200ResponseData {
             id,
             name,

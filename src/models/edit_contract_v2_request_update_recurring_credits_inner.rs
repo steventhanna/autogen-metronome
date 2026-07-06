@@ -18,7 +18,7 @@ pub struct EditContractV2RequestUpdateRecurringCreditsInner {
     #[serde(rename = "access_amount", skip_serializing_if = "Option::is_none")]
     pub access_amount: Option<Box<models::GetContractEditHistoryV2200ResponseDataInnerUpdateRecurringCommitsInnerAllOfAccessAmount>>,
     #[serde(rename = "ending_before", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<Option<String>>,
+    pub ending_before: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     /// If provided, updates the recurring credit to use the specified rate type when generating future credits.
     #[serde(rename = "rate_type", skip_serializing_if = "Option::is_none")]
     pub rate_type: Option<RateType>,

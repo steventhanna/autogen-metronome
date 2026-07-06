@@ -16,7 +16,7 @@ pub struct GetAuditLogsV1200ResponseDataInner {
     #[serde(rename = "id")]
     pub id: String,
     #[serde(rename = "timestamp")]
-    pub timestamp: String,
+    pub timestamp: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "actor", skip_serializing_if = "Option::is_none")]
     pub actor: Option<Box<models::GetAuditLogsV1200ResponseDataInnerActor>>,
     #[serde(rename = "request")]
@@ -34,7 +34,7 @@ pub struct GetAuditLogsV1200ResponseDataInner {
 }
 
 impl GetAuditLogsV1200ResponseDataInner {
-    pub fn new(id: String, timestamp: String, request: models::GetAuditLogsV1200ResponseDataInnerRequest) -> GetAuditLogsV1200ResponseDataInner {
+    pub fn new(id: String, timestamp: chrono::DateTime<chrono::FixedOffset>, request: models::GetAuditLogsV1200ResponseDataInnerRequest) -> GetAuditLogsV1200ResponseDataInner {
         GetAuditLogsV1200ResponseDataInner {
             id,
             timestamp,

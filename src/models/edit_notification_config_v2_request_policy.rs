@@ -16,13 +16,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum EditNotificationConfigV2RequestPolicy {
-    CreateNotificationConfigV2200ResponseDataPolicy(Box<models::CreateNotificationConfigV2200ResponseDataPolicy>),
+    CreateNotificationConfigV2RequestPolicy(Box<models::CreateNotificationConfigV2RequestPolicy>),
     ListSystemNotificationConfigsV2200ResponseDataInnerPolicy(Box<models::ListSystemNotificationConfigsV2200ResponseDataInnerPolicy>),
 }
 
 impl Default for EditNotificationConfigV2RequestPolicy {
     fn default() -> Self {
-        Self::CreateNotificationConfigV2200ResponseDataPolicy(Default::default())
+        Self::CreateNotificationConfigV2RequestPolicy(Default::default())
     }
 }
 

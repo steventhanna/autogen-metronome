@@ -23,7 +23,7 @@ pub struct EditContractV2RequestAddCommitsInnerPaymentGateConfig {
     #[serde(rename = "stripe_config", skip_serializing_if = "Option::is_none")]
     pub stripe_config: Option<Box<models::EditContractV2RequestAddCommitsInnerPaymentGateConfigStripeConfig>>,
     #[serde(rename = "precalculated_tax_config", skip_serializing_if = "Option::is_none")]
-    pub precalculated_tax_config: Option<Box<models::EditContractV2RequestAddCommitsInnerPaymentGateConfigPrecalculatedTaxConfig>>,
+    pub precalculated_tax_config: Option<Box<models::GetContractV1200ResponseDataInitialSpendThresholdConfigurationPaymentGateConfigPrecalculatedTaxConfig>>,
 }
 
 impl EditContractV2RequestAddCommitsInnerPaymentGateConfig {

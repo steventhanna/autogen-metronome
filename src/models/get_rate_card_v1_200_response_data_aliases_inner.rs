@@ -16,9 +16,9 @@ pub struct GetRateCardV1200ResponseDataAliasesInner {
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "starting_at", skip_serializing_if = "Option::is_none")]
-    pub starting_at: Option<String>,
+    pub starting_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl GetRateCardV1200ResponseDataAliasesInner {

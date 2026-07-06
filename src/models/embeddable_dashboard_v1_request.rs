@@ -20,7 +20,7 @@ pub struct EmbeddableDashboardV1Request {
     pub dashboard: Dashboard,
     /// Optional dashboard specific options
     #[serde(rename = "dashboard_options", skip_serializing_if = "Option::is_none")]
-    pub dashboard_options: Option<Vec<models::EmbeddableDashboardV1RequestDashboardOptionsInner>>,
+    pub dashboard_options: Option<Vec<models::GetCustomerAlertV1RequestGroupValuesInner>>,
     /// Optional list of colors to override
     #[serde(rename = "color_overrides", skip_serializing_if = "Option::is_none")]
     pub color_overrides: Option<Vec<models::EmbeddableDashboardV1RequestColorOverridesInner>>,

@@ -17,7 +17,7 @@ pub struct GetContractV1200ResponseData {
     pub id: uuid::Uuid,
     /// RFC 3339 timestamp indicating when the contract was archived. If not returned, the contract is not archived.
     #[serde(rename = "archived_at", skip_serializing_if = "Option::is_none")]
-    pub archived_at: Option<String>,
+    pub archived_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "customer_id")]
     pub customer_id: uuid::Uuid,
     /// ID of the package this contract was created from, if applicable.
@@ -36,7 +36,7 @@ pub struct GetContractV1200ResponseData {
     #[serde(rename = "custom_fields", skip_serializing_if = "Option::is_none")]
     pub custom_fields: Option<std::collections::HashMap<String, String>>,
     #[serde(rename = "customer_billing_provider_configuration", skip_serializing_if = "Option::is_none")]
-    pub customer_billing_provider_configuration: Option<Box<models::GetContractV1200ResponseDataCustomerBillingProviderConfiguration>>,
+    pub customer_billing_provider_configuration: Option<Box<models::GetCustomerBillingProviderConfigurationsV1200ResponseDataInner>>,
     /// Determines which scheduled and commit charges to consolidate onto the Contract's usage invoice. The charge's `timestamp` must match the usage invoice's `ending_before` date for consolidation to occur. This field cannot be modified after a Contract has been created. If this field is omitted, charges will appear on a separate invoice from usage charges.
     #[serde(rename = "scheduled_charges_on_usage_invoices", skip_serializing_if = "Option::is_none")]
     pub scheduled_charges_on_usage_invoices: Option<ScheduledChargesOnUsageInvoices>,

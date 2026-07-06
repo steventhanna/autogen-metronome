@@ -34,11 +34,11 @@ pub struct GetCustomerBillingProviderConfigurationsV1200ResponseDataInner {
     #[serde(rename = "delivery_method_configuration")]
     pub delivery_method_configuration: std::collections::HashMap<String, serde_json::Value>,
     #[serde(rename = "archived_at", deserialize_with = "Option::deserialize")]
-    pub archived_at: Option<String>,
+    pub archived_at: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl GetCustomerBillingProviderConfigurationsV1200ResponseDataInner {
-    pub fn new(id: uuid::Uuid, billing_provider: BillingProvider, customer_id: uuid::Uuid, configuration: std::collections::HashMap<String, serde_json::Value>, delivery_method_id: uuid::Uuid, delivery_method: DeliveryMethod, delivery_method_configuration: std::collections::HashMap<String, serde_json::Value>, archived_at: Option<String>) -> GetCustomerBillingProviderConfigurationsV1200ResponseDataInner {
+    pub fn new(id: uuid::Uuid, billing_provider: BillingProvider, customer_id: uuid::Uuid, configuration: std::collections::HashMap<String, serde_json::Value>, delivery_method_id: uuid::Uuid, delivery_method: DeliveryMethod, delivery_method_configuration: std::collections::HashMap<String, serde_json::Value>, archived_at: Option<chrono::DateTime<chrono::FixedOffset>>) -> GetCustomerBillingProviderConfigurationsV1200ResponseDataInner {
         GetCustomerBillingProviderConfigurationsV1200ResponseDataInner {
             id,
             billing_provider,

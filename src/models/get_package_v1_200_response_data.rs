@@ -38,7 +38,7 @@ pub struct GetPackageV1200ResponseData {
     #[serde(rename = "scheduled_charges_on_usage_invoices", skip_serializing_if = "Option::is_none")]
     pub scheduled_charges_on_usage_invoices: Option<ScheduledChargesOnUsageInvoices>,
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "created_by")]
     pub created_by: String,
     #[serde(rename = "net_payment_terms_days", skip_serializing_if = "Option::is_none")]
@@ -61,18 +61,18 @@ pub struct GetPackageV1200ResponseData {
     #[serde(rename = "prepaid_balance_threshold_configuration", skip_serializing_if = "Option::is_none")]
     pub prepaid_balance_threshold_configuration: Option<Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfiguration>>,
     #[serde(rename = "spend_trackers", skip_serializing_if = "Option::is_none")]
-    pub spend_trackers: Option<Vec<models::GetPackageV1200ResponseDataSpendTrackersInner>>,
+    pub spend_trackers: Option<Vec<models::CreateContractV1RequestSpendTrackersInner>>,
     #[serde(rename = "subscriptions", skip_serializing_if = "Option::is_none")]
     pub subscriptions: Option<Vec<models::GetPackageV1200ResponseDataSubscriptionsInner>>,
     /// The name to use for contracts created from this package.
     #[serde(rename = "contract_name", skip_serializing_if = "Option::is_none")]
     pub contract_name: Option<String>,
     #[serde(rename = "archived_at", skip_serializing_if = "Option::is_none")]
-    pub archived_at: Option<String>,
+    pub archived_at: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl GetPackageV1200ResponseData {
-    pub fn new(id: uuid::Uuid, commits: Vec<models::GetPackageV1200ResponseDataCommitsInner>, overrides: Vec<models::GetPackageV1200ResponseDataOverridesInner>, scheduled_charges: Vec<models::GetPackageV1200ResponseDataScheduledChargesInner>, created_at: String, created_by: String, usage_statement_schedule: models::GetPackageV1200ResponseDataUsageStatementSchedule) -> GetPackageV1200ResponseData {
+    pub fn new(id: uuid::Uuid, commits: Vec<models::GetPackageV1200ResponseDataCommitsInner>, overrides: Vec<models::GetPackageV1200ResponseDataOverridesInner>, scheduled_charges: Vec<models::GetPackageV1200ResponseDataScheduledChargesInner>, created_at: chrono::DateTime<chrono::FixedOffset>, created_by: String, usage_statement_schedule: models::GetPackageV1200ResponseDataUsageStatementSchedule) -> GetPackageV1200ResponseData {
         GetPackageV1200ResponseData {
             id,
             uniqueness_key: None,

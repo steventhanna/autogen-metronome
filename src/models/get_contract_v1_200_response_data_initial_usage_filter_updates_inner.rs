@@ -18,11 +18,11 @@ pub struct GetContractV1200ResponseDataInitialUsageFilterUpdatesInner {
     #[serde(rename = "group_values")]
     pub group_values: Vec<String>,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl GetContractV1200ResponseDataInitialUsageFilterUpdatesInner {
-    pub fn new(group_key: String, group_values: Vec<String>, starting_at: String) -> GetContractV1200ResponseDataInitialUsageFilterUpdatesInner {
+    pub fn new(group_key: String, group_values: Vec<String>, starting_at: chrono::DateTime<chrono::FixedOffset>) -> GetContractV1200ResponseDataInitialUsageFilterUpdatesInner {
         GetContractV1200ResponseDataInitialUsageFilterUpdatesInner {
             group_key,
             group_values,

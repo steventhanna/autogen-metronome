@@ -48,7 +48,7 @@ pub struct SearchEventsV1200ResponseInnerMatchedBillableMetricsInner {
     pub sql: Option<String>,
     /// RFC 3339 timestamp indicating when the billable metric was archived. If not provided, the billable metric is not archived.
     #[serde(rename = "archived_at", skip_serializing_if = "Option::is_none")]
-    pub archived_at: Option<String>,
+    pub archived_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Specifies the type of aggregation performed on matching events. Includes \"custom_sql\" for events search endpoint responses.
     #[serde(rename = "aggregation_type", skip_serializing_if = "Option::is_none")]
     pub aggregation_type: Option<AggregationType>,

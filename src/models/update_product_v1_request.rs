@@ -21,7 +21,7 @@ pub struct UpdateProductV1Request {
     pub name: Option<String>,
     /// Timestamp representing when the update should go into effect. It must be on an hour boundary (e.g. 1:00, not 1:30).
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     /// Defaults to product's current refundability status. This field's availability is dependent on your client's configuration.
     #[serde(rename = "is_refundable", skip_serializing_if = "Option::is_none")]
     pub is_refundable: Option<bool>,
@@ -65,7 +65,7 @@ pub struct UpdateProductV1Request {
 }
 
 impl UpdateProductV1Request {
-    pub fn new(product_id: uuid::Uuid, starting_at: String) -> UpdateProductV1Request {
+    pub fn new(product_id: uuid::Uuid, starting_at: chrono::DateTime<chrono::FixedOffset>) -> UpdateProductV1Request {
         UpdateProductV1Request {
             product_id,
             name: None,

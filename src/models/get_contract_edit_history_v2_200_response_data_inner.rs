@@ -16,7 +16,7 @@ pub struct GetContractEditHistoryV2200ResponseDataInner {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
     #[serde(rename = "timestamp", skip_serializing_if = "Option::is_none")]
-    pub timestamp: Option<String>,
+    pub timestamp: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Prevents the creation of duplicates. If a request to create a record is made with a previously used uniqueness key, a new record will not be created and the request will fail with a 409 error.
     #[serde(rename = "uniqueness_key", skip_serializing_if = "Option::is_none")]
     pub uniqueness_key: Option<String>,
@@ -39,14 +39,14 @@ pub struct GetContractEditHistoryV2200ResponseDataInner {
     #[serde(rename = "add_recurring_credits", skip_serializing_if = "Option::is_none")]
     pub add_recurring_credits: Option<Vec<models::GetContractV2200ResponseDataRecurringCreditsInner>>,
     #[serde(rename = "add_usage_filters", skip_serializing_if = "Option::is_none")]
-    pub add_usage_filters: Option<Vec<models::GetContractV2200ResponseDataUsageFilterInner>>,
+    pub add_usage_filters: Option<Vec<models::CreateContractV1200ResponseDataContractUsageFilterInner>>,
     /// List of subscriptions on the contract.
     #[serde(rename = "add_subscriptions", skip_serializing_if = "Option::is_none")]
-    pub add_subscriptions: Option<Vec<models::GetContractV2200ResponseDataSubscriptionsInner>>,
+    pub add_subscriptions: Option<Vec<models::GetContractV1200ResponseDataSubscriptionsInner>>,
     #[serde(rename = "add_prepaid_balance_threshold_configuration", skip_serializing_if = "Option::is_none")]
-    pub add_prepaid_balance_threshold_configuration: Option<Box<models::GetContractV2200ResponseDataPrepaidBalanceThresholdConfiguration>>,
+    pub add_prepaid_balance_threshold_configuration: Option<Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfiguration>>,
     #[serde(rename = "add_spend_threshold_configuration", skip_serializing_if = "Option::is_none")]
-    pub add_spend_threshold_configuration: Option<Box<models::GetContractV2200ResponseDataSpendThresholdConfiguration>>,
+    pub add_spend_threshold_configuration: Option<Box<models::GetContractV1200ResponseDataInitialSpendThresholdConfiguration>>,
     /// Value to update the contract name to. If not provided, the contract name will remain unchanged.
     #[serde(rename = "update_contract_name", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub update_contract_name: Option<Option<String>>,
@@ -63,7 +63,7 @@ pub struct GetContractEditHistoryV2200ResponseDataInner {
     #[serde(rename = "update_recurring_credits", skip_serializing_if = "Option::is_none")]
     pub update_recurring_credits: Option<Vec<models::GetContractEditHistoryV2200ResponseDataInnerUpdateRecurringCreditsInner>>,
     #[serde(rename = "update_contract_end_date", skip_serializing_if = "Option::is_none")]
-    pub update_contract_end_date: Option<String>,
+    pub update_contract_end_date: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "update_refund_invoices", skip_serializing_if = "Option::is_none")]
     pub update_refund_invoices: Option<Vec<models::GetContractEditHistoryV2200ResponseDataInnerUpdateRefundInvoicesInner>>,
     /// Optional list of subscriptions to update.

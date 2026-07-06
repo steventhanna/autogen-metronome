@@ -19,7 +19,7 @@ pub struct CreateContractV1RequestRecurringCreditsInner {
     #[serde(rename = "product_id")]
     pub product_id: uuid::Uuid,
     #[serde(rename = "access_amount")]
-    pub access_amount: Box<models::CreateContractV1RequestRecurringCommitsInnerAllOfAccessAmount>,
+    pub access_amount: Box<models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfAccessAmount>,
     /// Will be passed down to the individual commits
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -37,7 +37,7 @@ pub struct CreateContractV1RequestRecurringCreditsInner {
     pub applicable_product_tags: Option<Vec<String>>,
     /// List of filters that determine what kind of customer usage draws down a commit or credit. A customer's usage needs to meet the condition of at least one of the specifiers to contribute to a commit's or credit's drawdown. This field cannot be used together with `applicable_product_ids` or `applicable_product_tags`.
     #[serde(rename = "specifiers", skip_serializing_if = "Option::is_none")]
-    pub specifiers: Option<Vec<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfSpecifiersInner>>,
+    pub specifiers: Option<Vec<models::GetContractV1200ResponseDataInitialCommitsInnerSpecifiersInner>>,
     /// Will be passed down to the individual commits
     #[serde(rename = "netsuite_sales_order_id", skip_serializing_if = "Option::is_none")]
     pub netsuite_sales_order_id: Option<String>,
@@ -49,13 +49,13 @@ pub struct CreateContractV1RequestRecurringCreditsInner {
     pub rate_type: Option<RateType>,
     /// determines the start time for the first commit
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     /// Determines when the contract will stop creating recurring commits. optional
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "commit_duration")]
-    pub commit_duration: Box<models::CreateContractV1RequestRecurringCommitsInnerAllOfCommitDuration>,
-    /// The frequency at which the recurring commits will be created.  If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
+    pub commit_duration: Box<models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfCommitDuration>,
+    /// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
     #[serde(rename = "recurrence_frequency", skip_serializing_if = "Option::is_none")]
     pub recurrence_frequency: Option<RecurrenceFrequency>,
     /// Determines whether the first and last commit will be prorated.  If not provided, the default is FIRST_AND_LAST (i.e. prorate both the first and last commits).
@@ -64,13 +64,13 @@ pub struct CreateContractV1RequestRecurringCreditsInner {
     #[serde(rename = "subscription_config", skip_serializing_if = "Option::is_none")]
     pub subscription_config: Option<Box<models::CreateContractV1RequestRecurringCommitsInnerAllOfSubscriptionConfig>>,
     #[serde(rename = "hierarchy_configuration", skip_serializing_if = "Option::is_none")]
-    pub hierarchy_configuration: Option<Box<models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfHierarchyConfiguration>>,
+    pub hierarchy_configuration: Option<Box<models::GetContractV1200ResponseDataInitialCommitsInnerHierarchyConfiguration>>,
     #[serde(rename = "proration_rounding", skip_serializing_if = "Option::is_none")]
     pub proration_rounding: Option<Box<models::CreateContractV1RequestRecurringCreditsInnerAllOfProrationRounding>>,
 }
 
 impl CreateContractV1RequestRecurringCreditsInner {
-    pub fn new(product_id: uuid::Uuid, access_amount: models::CreateContractV1RequestRecurringCommitsInnerAllOfAccessAmount, priority: f64, starting_at: String, commit_duration: models::CreateContractV1RequestRecurringCommitsInnerAllOfCommitDuration) -> CreateContractV1RequestRecurringCreditsInner {
+    pub fn new(product_id: uuid::Uuid, access_amount: models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfAccessAmount, priority: f64, starting_at: chrono::DateTime<chrono::FixedOffset>, commit_duration: models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfCommitDuration) -> CreateContractV1RequestRecurringCreditsInner {
         CreateContractV1RequestRecurringCreditsInner {
             name: None,
             product_id,
@@ -113,7 +113,7 @@ impl Default for RateType {
         Self::CommitRate
     }
 }
-/// The frequency at which the recurring commits will be created.  If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
+/// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum RecurrenceFrequency {
     #[serde(rename = "MONTHLY")]
@@ -132,6 +132,10 @@ pub enum RecurrenceFrequency {
     Weekly,
     #[serde(rename = "weekly")]
     Weekly2,
+    #[serde(rename = "DAILY")]
+    Daily,
+    #[serde(rename = "daily")]
+    Daily2,
 }
 
 impl Default for RecurrenceFrequency {

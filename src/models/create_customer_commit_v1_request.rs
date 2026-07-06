@@ -32,9 +32,9 @@ pub struct CreateCustomerCommitV1Request {
     #[serde(rename = "product_id")]
     pub product_id: uuid::Uuid,
     #[serde(rename = "access_schedule")]
-    pub access_schedule: Box<models::CreateCustomerCommitV1RequestAccessSchedule>,
+    pub access_schedule: Box<models::CreateContractV1RequestCommitsInnerAccessSchedule>,
     #[serde(rename = "invoice_schedule", skip_serializing_if = "Option::is_none")]
-    pub invoice_schedule: Option<Box<models::CreateCustomerCommitV1RequestInvoiceSchedule>>,
+    pub invoice_schedule: Option<Box<models::CreateContractV1RequestCommitsInnerInvoiceSchedule>>,
     /// The contract that this commit will be billed on. This is required for \"POSTPAID\" commits and for \"PREPAID\" commits unless there is no invoice schedule above (i.e., the commit is 'free'), or if do_not_invoice is set to true.
     #[serde(rename = "invoice_contract_id", skip_serializing_if = "Option::is_none")]
     pub invoice_contract_id: Option<uuid::Uuid>,
@@ -49,7 +49,7 @@ pub struct CreateCustomerCommitV1Request {
     pub applicable_contract_ids: Option<Vec<String>>,
     /// List of filters that determine what kind of customer usage draws down a commit or credit. A customer's usage needs to meet the condition of at least one of the specifiers to contribute to a commit's or credit's drawdown. This field cannot be used together with `applicable_product_ids` or `applicable_product_tags`.
     #[serde(rename = "specifiers", skip_serializing_if = "Option::is_none")]
-    pub specifiers: Option<Vec<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfSpecifiersInner>>,
+    pub specifiers: Option<Vec<models::GetContractV1200ResponseDataInitialCommitsInnerSpecifiersInner>>,
     /// This field's availability is dependent on your client's configuration.
     #[serde(rename = "netsuite_sales_order_id", skip_serializing_if = "Option::is_none")]
     pub netsuite_sales_order_id: Option<String>,
@@ -65,7 +65,7 @@ pub struct CreateCustomerCommitV1Request {
 }
 
 impl CreateCustomerCommitV1Request {
-    pub fn new(customer_id: uuid::Uuid, r#type: Type, priority: f64, product_id: uuid::Uuid, access_schedule: models::CreateCustomerCommitV1RequestAccessSchedule) -> CreateCustomerCommitV1Request {
+    pub fn new(customer_id: uuid::Uuid, r#type: Type, priority: f64, product_id: uuid::Uuid, access_schedule: models::CreateContractV1RequestCommitsInnerAccessSchedule) -> CreateCustomerCommitV1Request {
         CreateCustomerCommitV1Request {
             customer_id,
             r#type,

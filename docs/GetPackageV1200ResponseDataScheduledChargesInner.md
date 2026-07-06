@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | [**uuid::Uuid**](uuid::Uuid.md) |  | 
+**id** | **uuid::Uuid** |  | 
 **custom_fields** | Option<**std::collections::HashMap<String, String>**> | Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" } | [optional]
-**product** | [**models::GetContractV1200ResponseDataInitialCommitsInnerProduct**](getContract_v1_200_response_data_initial_commits_inner_product.md) |  | 
-**schedule** | [**models::GetPackageV1200ResponseDataScheduledChargesInnerSchedule**](getPackage_v1_200_response_data_scheduled_charges_inner_schedule.md) |  | 
+**product** | [**models::GetContractV1200ResponseDataInitialCommitsInnerProduct**](GetContractV1200ResponseDataInitialCommitsInnerProduct.md) |  | 
+**schedule** | [**models::GetPackageV1200ResponseDataScheduledChargesInnerSchedule**](GetPackageV1200ResponseDataScheduledChargesInnerSchedule.md) |  | 
 **name** | Option<**String**> |  | [optional]
 **description** | Option<**String**> |  | [optional]
 

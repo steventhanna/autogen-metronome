@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**starting_at_offset** | [**models::CreatePackageV1RequestOverridesInnerStartingAtOffset**](createPackage_v1_request_overrides_inner_starting_at_offset.md) |  | 
-**duration** | Option<[**models::CreatePackageV1RequestOverridesInnerDuration**](createPackage_v1_request_overrides_inner_duration.md)> |  | [optional]
+**starting_at_offset** | [**models::CreatePackageV1RequestDuration**](CreatePackageV1RequestDuration.md) |  | 
+**duration** | Option<[**models::CreatePackageV1RequestDuration**](CreatePackageV1RequestDuration.md)> |  | [optional]
 **entitled** | Option<**bool**> |  | [optional]
-**r#type** | Option<**String**> | Overwrites are prioritized over multipliers and tiered overrides. | [optional]
+**r#type** | Option<**Type**> | Overwrites are prioritized over multipliers and tiered overrides. (enum: OVERWRITE, overwrite, MULTIPLIER, multiplier, TIERED, tiered) | [optional]
 **multiplier** | Option<**f64**> | Required for MULTIPLIER type. Must be >=0. | [optional]
 **priority** | Option<**f64**> | Required for EXPLICIT multiplier prioritization scheme and all TIERED overrides. Under EXPLICIT prioritization, overwrites are prioritized first, and then tiered and multiplier overrides are prioritized by their priority value (lowest first). Must be > 0. | [optional]
-**overwrite_rate** | Option<[**models::CreateContractV1RequestOverridesInnerOverwriteRate**](createContract_v1_request_overrides_inner_overwrite_rate.md)> |  | [optional]
-**override_specifiers** | [**Vec<models::CreateContractV1RequestOverridesInnerOverrideSpecifiersInner>**](createContract_v1_request_overrides_inner_override_specifiers_inner.md) | Specifies which products the override will apply to. | 
-**tiers** | Option<[**Vec<models::GetContractV1200ResponseDataInitialOverridesInnerOverrideTiersInner>**](getContract_v1_200_response_data_initial_overrides_inner_override_tiers_inner.md)> | Required for TIERED type. Must have at least one tier. | [optional]
-**is_commit_specific** | Option<**bool**> | Indicates whether the override should only apply to commits. Defaults to `false`. If `true`, you can specify relevant commits in `override_specifiers` by passing `commit_ids`. if you do not specify `commit_ids`, then the override will apply when consuming any prepaid or postpaid commit. | [optional]
-**target** | Option<**String**> | Indicates whether the override applies to commit rates or list rates. Can only be used for overrides that have `is_commit_specific` set to `true`. Defaults to `\"LIST_RATE\"`. | [optional]
+**overwrite_rate** | Option<[**models::CreateContractV1RequestOverridesInnerOverwriteRate**](CreateContractV1RequestOverridesInnerOverwriteRate.md)> |  | [optional]
+**override_specifiers** | [**Vec<models::CreateContractV1RequestOverridesInnerOverrideSpecifiersInner>**](CreateContractV1RequestOverridesInnerOverrideSpecifiersInner.md) | Specifies which products the override will apply to. | 
+**tiers** | Option<[**Vec<models::GetContractV1200ResponseDataInitialOverridesInnerOverrideTiersInner>**](GetContractV1200ResponseDataInitialOverridesInnerOverrideTiersInner.md)> | Required for TIERED type. Must have at least one tier. | [optional]
+**is_commit_specific** | Option<**bool**> | Indicates whether the override should only apply to commits. Defaults to `false`. If `true` you can specify relevant commits in `override_specifiers` by passing `commit_ids`, `recurring_commit_ids`, or `any_commit_or_credit_ids`.  If you do not specify any of these fields, the override will apply when consuming any prepaid commit, postpaid commit, or credit | [optional]
+**target** | Option<**Target**> | Indicates whether the override applies to commit rates or list rates. Can only be used for overrides that have `is_commit_specific` set to `true`. Defaults to `\"LIST_RATE\"`. (enum: COMMIT_RATE, commit_rate, LIST_RATE, list_rate) | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -17,11 +17,11 @@ pub struct GetContractEditHistoryV2200ResponseDataInnerUpdateSubscriptionsInnerS
     pub seat_ids: Vec<String>,
     /// Assigned seats will be added/removed starting at this date.
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl GetContractEditHistoryV2200ResponseDataInnerUpdateSubscriptionsInnerSeatUpdatesAddSeatIdsInner {
-    pub fn new(seat_ids: Vec<String>, starting_at: String) -> GetContractEditHistoryV2200ResponseDataInnerUpdateSubscriptionsInnerSeatUpdatesAddSeatIdsInner {
+    pub fn new(seat_ids: Vec<String>, starting_at: chrono::DateTime<chrono::FixedOffset>) -> GetContractEditHistoryV2200ResponseDataInnerUpdateSubscriptionsInnerSeatUpdatesAddSeatIdsInner {
         GetContractEditHistoryV2200ResponseDataInnerUpdateSubscriptionsInnerSeatUpdatesAddSeatIdsInner {
             seat_ids,
             starting_at,

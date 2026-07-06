@@ -33,9 +33,9 @@ pub struct GetCustomerAlertV1200ResponseDataAlert {
     /// Threshold value of the notification policy
     #[serde(rename = "threshold")]
     pub threshold: f64,
-    /// Timestamp for when the threshold notification was last updated
+    /// Timestamp for when the threshold notification's customer status was last updated
     #[serde(rename = "updated_at")]
-    pub updated_at: String,
+    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
     /// An array of strings, representing a way to filter the credit grant this threshold notification applies to, by looking at the credit_grant_type field on the credit grant. This field is only defined for CreditPercentage and CreditBalance notifications
     #[serde(rename = "credit_grant_type_filters", skip_serializing_if = "Option::is_none")]
     pub credit_grant_type_filters: Option<Vec<String>>,
@@ -51,14 +51,14 @@ pub struct GetCustomerAlertV1200ResponseDataAlert {
     #[serde(rename = "group_values", skip_serializing_if = "Option::is_none")]
     pub group_values: Option<Vec<models::CreateAlertV1RequestGroupValuesInner>>,
     #[serde(rename = "seat_filter", skip_serializing_if = "Option::is_none")]
-    pub seat_filter: Option<Box<models::GetCustomerAlertV1200ResponseDataAlertSeatFilter>>,
+    pub seat_filter: Option<Box<models::CreateAlertV1RequestSeatFilter>>,
     /// Present for `low_remaining_contract_credit_and_commit_balance_reached` notifications. The filters that define the balances that are considered when evaluating the alert.
     #[serde(rename = "alert_specifiers", skip_serializing_if = "Option::is_none")]
     pub alert_specifiers: Option<Vec<models::CreateAlertV1RequestAlertSpecifiersInner>>,
 }
 
 impl GetCustomerAlertV1200ResponseDataAlert {
-    pub fn new(id: String, name: String, r#type: Type, status: Status, threshold: f64, updated_at: String) -> GetCustomerAlertV1200ResponseDataAlert {
+    pub fn new(id: String, name: String, r#type: Type, status: Status, threshold: f64, updated_at: chrono::DateTime<chrono::FixedOffset>) -> GetCustomerAlertV1200ResponseDataAlert {
         GetCustomerAlertV1200ResponseDataAlert {
             id,
             name,

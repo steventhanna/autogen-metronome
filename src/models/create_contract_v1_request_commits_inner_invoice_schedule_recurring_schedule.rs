@@ -16,10 +16,10 @@ use serde::{Deserialize, Serialize};
 pub struct CreateContractV1RequestCommitsInnerInvoiceScheduleRecurringSchedule {
     /// RFC 3339 timestamp (inclusive).
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     /// RFC 3339 timestamp (exclusive).
     #[serde(rename = "ending_before")]
-    pub ending_before: String,
+    pub ending_before: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "frequency")]
     pub frequency: Frequency,
     /// Unit price for the charge. Will be multiplied by quantity to determine the amount and must be specified with quantity. If specified amount cannot be provided.
@@ -37,7 +37,7 @@ pub struct CreateContractV1RequestCommitsInnerInvoiceScheduleRecurringSchedule {
 
 impl CreateContractV1RequestCommitsInnerInvoiceScheduleRecurringSchedule {
     /// Enter the unit price and quantity for the charge or instead only send the amount. If amount is sent, the unit price is assumed to be the amount and quantity is inferred to be 1.
-    pub fn new(starting_at: String, ending_before: String, frequency: Frequency, amount_distribution: AmountDistribution) -> CreateContractV1RequestCommitsInnerInvoiceScheduleRecurringSchedule {
+    pub fn new(starting_at: chrono::DateTime<chrono::FixedOffset>, ending_before: chrono::DateTime<chrono::FixedOffset>, frequency: Frequency, amount_distribution: AmountDistribution) -> CreateContractV1RequestCommitsInnerInvoiceScheduleRecurringSchedule {
         CreateContractV1RequestCommitsInnerInvoiceScheduleRecurringSchedule {
             starting_at,
             ending_before,

@@ -30,7 +30,7 @@ pub struct AmendContractV1Request {
     pub total_contract_value: Option<f64>,
     /// inclusive start time for the amendment
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "commits", skip_serializing_if = "Option::is_none")]
     pub commits: Option<Vec<models::CreateContractV1RequestCommitsInner>>,
     #[serde(rename = "credits", skip_serializing_if = "Option::is_none")]
@@ -54,7 +54,7 @@ pub struct AmendContractV1Request {
 }
 
 impl AmendContractV1Request {
-    pub fn new(customer_id: uuid::Uuid, contract_id: uuid::Uuid, starting_at: String) -> AmendContractV1Request {
+    pub fn new(customer_id: uuid::Uuid, contract_id: uuid::Uuid, starting_at: chrono::DateTime<chrono::FixedOffset>) -> AmendContractV1Request {
         AmendContractV1Request {
             customer_id,
             contract_id,

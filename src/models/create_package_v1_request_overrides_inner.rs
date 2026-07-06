@@ -14,9 +14,9 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreatePackageV1RequestOverridesInner {
     #[serde(rename = "starting_at_offset")]
-    pub starting_at_offset: Box<models::CreatePackageV1RequestOverridesInnerStartingAtOffset>,
+    pub starting_at_offset: Box<models::CreatePackageV1RequestDuration>,
     #[serde(rename = "duration", skip_serializing_if = "Option::is_none")]
-    pub duration: Option<Box<models::CreatePackageV1RequestOverridesInnerDuration>>,
+    pub duration: Option<Box<models::CreatePackageV1RequestDuration>>,
     #[serde(rename = "entitled", skip_serializing_if = "Option::is_none")]
     pub entitled: Option<bool>,
     /// Overwrites are prioritized over multipliers and tiered overrides.
@@ -36,7 +36,7 @@ pub struct CreatePackageV1RequestOverridesInner {
     /// Required for TIERED type. Must have at least one tier.
     #[serde(rename = "tiers", skip_serializing_if = "Option::is_none")]
     pub tiers: Option<Vec<models::GetContractV1200ResponseDataInitialOverridesInnerOverrideTiersInner>>,
-    /// Indicates whether the override should only apply to commits. Defaults to `false`. If `true`, you can specify relevant commits in `override_specifiers` by passing `commit_ids`. if you do not specify `commit_ids`, then the override will apply when consuming any prepaid or postpaid commit.
+    /// Indicates whether the override should only apply to commits. Defaults to `false`. If `true` you can specify relevant commits in `override_specifiers` by passing `commit_ids`, `recurring_commit_ids`, or `any_commit_or_credit_ids`.  If you do not specify any of these fields, the override will apply when consuming any prepaid commit, postpaid commit, or credit
     #[serde(rename = "is_commit_specific", skip_serializing_if = "Option::is_none")]
     pub is_commit_specific: Option<bool>,
     /// Indicates whether the override applies to commit rates or list rates. Can only be used for overrides that have `is_commit_specific` set to `true`. Defaults to `\"LIST_RATE\"`.
@@ -45,7 +45,7 @@ pub struct CreatePackageV1RequestOverridesInner {
 }
 
 impl CreatePackageV1RequestOverridesInner {
-    pub fn new(starting_at_offset: models::CreatePackageV1RequestOverridesInnerStartingAtOffset, override_specifiers: Vec<models::CreateContractV1RequestOverridesInnerOverrideSpecifiersInner>) -> CreatePackageV1RequestOverridesInner {
+    pub fn new(starting_at_offset: models::CreatePackageV1RequestDuration, override_specifiers: Vec<models::CreateContractV1RequestOverridesInnerOverrideSpecifiersInner>) -> CreatePackageV1RequestOverridesInner {
         CreatePackageV1RequestOverridesInner {
             starting_at_offset: Box::new(starting_at_offset),
             duration: None,

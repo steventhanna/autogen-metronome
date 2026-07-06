@@ -16,13 +16,13 @@ pub struct GetContractV1200ResponseDataSubscriptionsInnerQuantityScheduleInner {
     #[serde(rename = "quantity")]
     pub quantity: f64,
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl GetContractV1200ResponseDataSubscriptionsInnerQuantityScheduleInner {
-    pub fn new(quantity: f64, starting_at: String) -> GetContractV1200ResponseDataSubscriptionsInnerQuantityScheduleInner {
+    pub fn new(quantity: f64, starting_at: chrono::DateTime<chrono::FixedOffset>) -> GetContractV1200ResponseDataSubscriptionsInnerQuantityScheduleInner {
         GetContractV1200ResponseDataSubscriptionsInnerQuantityScheduleInner {
             quantity,
             starting_at,

@@ -25,7 +25,7 @@ pub struct EditContractV2Request {
     #[serde(rename = "add_commits", skip_serializing_if = "Option::is_none")]
     pub add_commits: Option<Vec<models::EditContractV2RequestAddCommitsInner>>,
     #[serde(rename = "add_credits", skip_serializing_if = "Option::is_none")]
-    pub add_credits: Option<Vec<models::EditContractV2RequestAddCreditsInner>>,
+    pub add_credits: Option<Vec<models::CreateContractV1RequestCreditsInner>>,
     #[serde(rename = "add_recurring_commits", skip_serializing_if = "Option::is_none")]
     pub add_recurring_commits: Option<Vec<models::EditContractV2RequestAddRecurringCommitsInner>>,
     #[serde(rename = "add_recurring_credits", skip_serializing_if = "Option::is_none")]
@@ -43,11 +43,11 @@ pub struct EditContractV2Request {
     pub add_reseller_royalties: Option<Vec<models::AmendContractV1RequestResellerRoyaltiesInner>>,
     /// Optional list of [subscriptions](https://docs.metronome.com/manage-product-access/create-subscription/) to add to the contract.
     #[serde(rename = "add_subscriptions", skip_serializing_if = "Option::is_none")]
-    pub add_subscriptions: Option<Vec<models::EditContractV2RequestAddSubscriptionsInner>>,
+    pub add_subscriptions: Option<Vec<models::CreateContractV1RequestSubscriptionsInner>>,
     #[serde(rename = "add_spend_threshold_configuration", skip_serializing_if = "Option::is_none")]
-    pub add_spend_threshold_configuration: Option<Box<models::GetContractV2200ResponseDataSpendThresholdConfiguration>>,
+    pub add_spend_threshold_configuration: Option<Box<models::GetContractV1200ResponseDataInitialSpendThresholdConfiguration>>,
     #[serde(rename = "add_prepaid_balance_threshold_configuration", skip_serializing_if = "Option::is_none")]
-    pub add_prepaid_balance_threshold_configuration: Option<Box<models::GetContractV2200ResponseDataPrepaidBalanceThresholdConfiguration>>,
+    pub add_prepaid_balance_threshold_configuration: Option<Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfiguration>>,
     #[serde(rename = "add_billing_provider_configuration_update", skip_serializing_if = "Option::is_none")]
     pub add_billing_provider_configuration_update: Option<Box<models::EditContractV2RequestAddBillingProviderConfigurationUpdate>>,
     #[serde(rename = "add_revenue_system_configuration_update", skip_serializing_if = "Option::is_none")]
@@ -79,7 +79,7 @@ pub struct EditContractV2Request {
     pub update_prepaid_balance_threshold_configuration: Option<Box<models::GetContractEditHistoryV2200ResponseDataInnerUpdatePrepaidBalanceThresholdConfiguration>>,
     /// RFC 3339 timestamp indicating when the contract will end (exclusive).
     #[serde(rename = "update_contract_end_date", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub update_contract_end_date: Option<Option<String>>,
+    pub update_contract_end_date: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     /// Number of days after issuance of invoice after which the invoice is due (e.g. Net 30).
     #[serde(rename = "update_net_payment_terms_days", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub update_net_payment_terms_days: Option<Option<f64>>,

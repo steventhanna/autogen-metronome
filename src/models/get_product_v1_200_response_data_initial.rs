@@ -16,12 +16,12 @@ pub struct GetProductV1200ResponseDataInitial {
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "starting_at", skip_serializing_if = "Option::is_none")]
-    pub starting_at: Option<String>,
+    pub starting_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// This field's availability is dependent on your client's configuration.
     #[serde(rename = "netsuite_internal_item_id", skip_serializing_if = "Option::is_none")]
     pub netsuite_internal_item_id: Option<String>,
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "created_by")]
     pub created_by: String,
     /// This field's availability is dependent on your client's configuration.
@@ -59,7 +59,7 @@ pub struct GetProductV1200ResponseDataInitial {
 }
 
 impl GetProductV1200ResponseDataInitial {
-    pub fn new(name: String, created_at: String, created_by: String) -> GetProductV1200ResponseDataInitial {
+    pub fn new(name: String, created_at: chrono::DateTime<chrono::FixedOffset>, created_by: String) -> GetProductV1200ResponseDataInitial {
         GetProductV1200ResponseDataInitial {
             name,
             starting_at: None,

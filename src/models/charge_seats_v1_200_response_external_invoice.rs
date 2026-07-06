@@ -18,7 +18,7 @@ pub struct ChargeSeatsV1200ResponseExternalInvoice {
     #[serde(rename = "invoice_id", skip_serializing_if = "Option::is_none")]
     pub invoice_id: Option<String>,
     #[serde(rename = "issued_at_timestamp", skip_serializing_if = "Option::is_none")]
-    pub issued_at_timestamp: Option<String>,
+    pub issued_at_timestamp: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "external_status", skip_serializing_if = "Option::is_none")]
     pub external_status: Option<ExternalStatus>,
     /// A URL to the PDF of the invoice, if available from the billing provider.

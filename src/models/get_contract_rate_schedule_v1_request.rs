@@ -21,7 +21,7 @@ pub struct GetContractRateScheduleV1Request {
     pub contract_id: uuid::Uuid,
     /// optional timestamp which overlaps with the returned rate schedule segments. When not specified, the current timestamp will be used.
     #[serde(rename = "at", skip_serializing_if = "Option::is_none")]
-    pub at: Option<String>,
+    pub at: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// List of rate selectors, rates matching ANY of the selectors will be included in the response. Passing no selectors will result in all rates being returned.
     #[serde(rename = "selectors", skip_serializing_if = "Option::is_none")]
     pub selectors: Option<Vec<models::GetRatesV1RequestSelectorsInner>>,

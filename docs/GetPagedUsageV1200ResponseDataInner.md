@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**starting_on** | **String** |  | 
-**ending_before** | **String** |  | 
+**starting_on** | **chrono::DateTime<chrono::FixedOffset>** |  | 
+**ending_before** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **group_key** | Option<**String**> | Use `group` instead. The group key for single-key grouping. | 
 **group_value** | Option<**String**> | Use `group` instead. The group value for single-key grouping. | 
 **group** | Option<**std::collections::HashMap<String, String>**> | Map of group key to their value for this usage aggregate. For simple group keys, this should be a single key e.g. `{\"region\": \"US-East\"}` For compound group keys, this should contain the values of each group key that forms the compound e.g. `{\"region\": \"US-East\", \"team\": \"engineering\"}`  | [optional]

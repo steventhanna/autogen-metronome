@@ -15,10 +15,10 @@ use serde::{Deserialize, Serialize};
 pub struct EditContractV2RequestAddOverridesInner {
     /// RFC 3339 timestamp indicating when the override will start applying (inclusive)
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     /// RFC 3339 timestamp indicating when the override will stop applying (exclusive)
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "entitled", skip_serializing_if = "Option::is_none")]
     pub entitled: Option<bool>,
     /// Overwrites are prioritized over multipliers and tiered overrides.
@@ -53,7 +53,7 @@ pub struct EditContractV2RequestAddOverridesInner {
 }
 
 impl EditContractV2RequestAddOverridesInner {
-    pub fn new(starting_at: String) -> EditContractV2RequestAddOverridesInner {
+    pub fn new(starting_at: chrono::DateTime<chrono::FixedOffset>) -> EditContractV2RequestAddOverridesInner {
         EditContractV2RequestAddOverridesInner {
             starting_at,
             ending_before: None,

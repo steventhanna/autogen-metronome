@@ -50,13 +50,13 @@ pub struct GetContractV1200ResponseDataInitialRecurringCreditsInner {
     pub rate_type: RateType,
     /// Determines the start time for the first commit
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     /// Determines when the contract will stop creating recurring commits. Optional
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
-    pub ending_before: Option<String>,
+    pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "commit_duration")]
     pub commit_duration: Box<models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfCommitDuration>,
-    /// The frequency at which the recurring commits will be created.  If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
+    /// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
     #[serde(rename = "recurrence_frequency", skip_serializing_if = "Option::is_none")]
     pub recurrence_frequency: Option<RecurrenceFrequency>,
     /// Determines whether the first and last commit will be prorated.  If not provided, the default is FIRST_AND_LAST (i.e. prorate both the first and last commits).
@@ -65,13 +65,13 @@ pub struct GetContractV1200ResponseDataInitialRecurringCreditsInner {
     #[serde(rename = "subscription_config", skip_serializing_if = "Option::is_none")]
     pub subscription_config: Option<Box<models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfSubscriptionConfig>>,
     #[serde(rename = "hierarchy_configuration", skip_serializing_if = "Option::is_none")]
-    pub hierarchy_configuration: Option<Box<models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfHierarchyConfiguration>>,
+    pub hierarchy_configuration: Option<Box<models::GetContractV1200ResponseDataInitialCommitsInnerHierarchyConfiguration>>,
     #[serde(rename = "proration_rounding", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub proration_rounding: Option<Option<Box<models::GetContractV1200ResponseDataInitialRecurringCreditsInnerAllOfProrationRounding>>>,
 }
 
 impl GetContractV1200ResponseDataInitialRecurringCreditsInner {
-    pub fn new(id: uuid::Uuid, product: models::GetContractV1200ResponseDataInitialCommitsInnerProduct, access_amount: models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfAccessAmount, priority: f64, rate_type: RateType, starting_at: String, commit_duration: models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfCommitDuration) -> GetContractV1200ResponseDataInitialRecurringCreditsInner {
+    pub fn new(id: uuid::Uuid, product: models::GetContractV1200ResponseDataInitialCommitsInnerProduct, access_amount: models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfAccessAmount, priority: f64, rate_type: RateType, starting_at: chrono::DateTime<chrono::FixedOffset>, commit_duration: models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfCommitDuration) -> GetContractV1200ResponseDataInitialRecurringCreditsInner {
         GetContractV1200ResponseDataInitialRecurringCreditsInner {
             id,
             contract: None,
@@ -115,7 +115,7 @@ impl Default for RateType {
         Self::CommitRate
     }
 }
-/// The frequency at which the recurring commits will be created.  If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
+/// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum RecurrenceFrequency {
     #[serde(rename = "MONTHLY")]
@@ -134,6 +134,10 @@ pub enum RecurrenceFrequency {
     Weekly,
     #[serde(rename = "weekly")]
     Weekly2,
+    #[serde(rename = "DAILY")]
+    Daily,
+    #[serde(rename = "daily")]
+    Daily2,
 }
 
 impl Default for RecurrenceFrequency {

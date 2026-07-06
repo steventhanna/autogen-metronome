@@ -24,11 +24,11 @@ pub struct CreateContractV1RequestCommitsInnerInvoiceScheduleScheduleItemsInner 
     pub amount: Option<f64>,
     /// timestamp of the scheduled event
     #[serde(rename = "timestamp")]
-    pub timestamp: String,
+    pub timestamp: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl CreateContractV1RequestCommitsInnerInvoiceScheduleScheduleItemsInner {
-    pub fn new(timestamp: String) -> CreateContractV1RequestCommitsInnerInvoiceScheduleScheduleItemsInner {
+    pub fn new(timestamp: chrono::DateTime<chrono::FixedOffset>) -> CreateContractV1RequestCommitsInnerInvoiceScheduleScheduleItemsInner {
         CreateContractV1RequestCommitsInnerInvoiceScheduleScheduleItemsInner {
             unit_price: None,
             quantity: None,

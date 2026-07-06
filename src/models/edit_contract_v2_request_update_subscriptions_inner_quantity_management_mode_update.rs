@@ -17,12 +17,12 @@ pub struct EditContractV2RequestUpdateSubscriptionsInnerQuantityManagementModeUp
     #[serde(rename = "quantity_management_mode")]
     pub quantity_management_mode: QuantityManagementMode,
     #[serde(rename = "seat_config")]
-    pub seat_config: Box<models::EditContractV2RequestUpdateSubscriptionsInnerQuantityManagementModeUpdateSeatConfig>,
+    pub seat_config: Box<models::GetContractV1200ResponseDataSubscriptionsInnerSeatConfig>,
 }
 
 impl EditContractV2RequestUpdateSubscriptionsInnerQuantityManagementModeUpdate {
     /// Update the subscription's quantity management mode from QUANTITY_ONLY to SEAT_BASED with the provided seat_group_key.
-    pub fn new(quantity_management_mode: QuantityManagementMode, seat_config: models::EditContractV2RequestUpdateSubscriptionsInnerQuantityManagementModeUpdateSeatConfig) -> EditContractV2RequestUpdateSubscriptionsInnerQuantityManagementModeUpdate {
+    pub fn new(quantity_management_mode: QuantityManagementMode, seat_config: models::GetContractV1200ResponseDataSubscriptionsInnerSeatConfig) -> EditContractV2RequestUpdateSubscriptionsInnerQuantityManagementModeUpdate {
         EditContractV2RequestUpdateSubscriptionsInnerQuantityManagementModeUpdate {
             quantity_management_mode,
             seat_config: Box::new(seat_config),

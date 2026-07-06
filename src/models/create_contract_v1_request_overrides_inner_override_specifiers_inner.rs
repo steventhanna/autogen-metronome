@@ -19,6 +19,9 @@ pub struct CreateContractV1RequestOverridesInnerOverrideSpecifiersInner {
     /// Can only be used for commit specific overrides. Must be used in conjunction with one of `product_id`, `product_tags`, `pricing_group_values`, or `presentation_group_values`. If provided, the override will only apply to commits created by the specified recurring commit ids.
     #[serde(rename = "recurring_commit_ids", skip_serializing_if = "Option::is_none")]
     pub recurring_commit_ids: Option<Vec<String>>,
+    /// Can only be used for commit specific overrides. Must be used in conjunction with one of `product_id`, `product_tags`, `pricing_group_values`, or `presentation_group_values`. Must be used instead of both `commit_ids` and `recurring_commit_ids` If provided, the override will apply to any specified commit, credit, recurring commit or recurring credit IDs.
+    #[serde(rename = "any_commit_or_credit_ids", skip_serializing_if = "Option::is_none")]
+    pub any_commit_or_credit_ids: Option<Vec<String>>,
     /// If provided, the override will only apply to the product with the specified ID.
     #[serde(rename = "product_id", skip_serializing_if = "Option::is_none")]
     pub product_id: Option<uuid::Uuid>,
@@ -43,6 +46,7 @@ impl CreateContractV1RequestOverridesInnerOverrideSpecifiersInner {
         CreateContractV1RequestOverridesInnerOverrideSpecifiersInner {
             commit_ids: None,
             recurring_commit_ids: None,
+            any_commit_or_credit_ids: None,
             product_id: None,
             product_tags: None,
             pricing_group_values: None,

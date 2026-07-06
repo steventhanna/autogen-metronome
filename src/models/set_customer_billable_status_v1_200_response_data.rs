@@ -16,15 +16,29 @@ pub struct SetCustomerBillableStatusV1200ResponseData {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
     #[serde(rename = "current_billable_status")]
-    pub current_billable_status: models::BillableStatus,
+    pub current_billable_status: CurrentBillableStatus,
 }
 
 impl SetCustomerBillableStatusV1200ResponseData {
-    pub fn new(id: uuid::Uuid, current_billable_status: models::BillableStatus) -> SetCustomerBillableStatusV1200ResponseData {
+    pub fn new(id: uuid::Uuid, current_billable_status: CurrentBillableStatus) -> SetCustomerBillableStatusV1200ResponseData {
         SetCustomerBillableStatusV1200ResponseData {
             id,
             current_billable_status,
         }
+    }
+}
+/// 
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum CurrentBillableStatus {
+    #[serde(rename = "billable")]
+    Billable,
+    #[serde(rename = "unbillable")]
+    Unbillable,
+}
+
+impl Default for CurrentBillableStatus {
+    fn default() -> CurrentBillableStatus {
+        Self::Billable
     }
 }
 

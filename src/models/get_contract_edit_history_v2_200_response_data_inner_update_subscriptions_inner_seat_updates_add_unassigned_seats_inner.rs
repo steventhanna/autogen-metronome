@@ -18,11 +18,11 @@ pub struct GetContractEditHistoryV2200ResponseDataInnerUpdateSubscriptionsInnerS
     pub quantity: f64,
     /// Unassigned seats will be updated starting at this date.
     #[serde(rename = "starting_at")]
-    pub starting_at: String,
+    pub starting_at: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl GetContractEditHistoryV2200ResponseDataInnerUpdateSubscriptionsInnerSeatUpdatesAddUnassignedSeatsInner {
-    pub fn new(quantity: f64, starting_at: String) -> GetContractEditHistoryV2200ResponseDataInnerUpdateSubscriptionsInnerSeatUpdatesAddUnassignedSeatsInner {
+    pub fn new(quantity: f64, starting_at: chrono::DateTime<chrono::FixedOffset>) -> GetContractEditHistoryV2200ResponseDataInnerUpdateSubscriptionsInnerSeatUpdatesAddUnassignedSeatsInner {
         GetContractEditHistoryV2200ResponseDataInnerUpdateSubscriptionsInnerSeatUpdatesAddUnassignedSeatsInner {
             quantity,
             starting_at,
