@@ -4,8 +4,8 @@
 
 | Name | Description |
 |---- | -----|
-| GetContractV1200ResponseDataInitialCommitsInner |  |
-| GetContractV1200ResponseDataInitialCreditsInner |  |
+| Commit |  |
+| Credit |  |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

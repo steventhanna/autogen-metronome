@@ -15,9 +15,8 @@ use serde::{Deserialize, Serialize};
 pub struct GetCustomerRevenueSystemConfigurationsV1Request {
     #[serde(rename = "customer_id")]
     pub customer_id: uuid::Uuid,
-    /// Filter configurations by revenue system provider
     #[serde(rename = "provider", skip_serializing_if = "Option::is_none")]
-    pub provider: Option<Provider>,
+    pub provider: Option<models::RevenueSystemProviderType>,
     /// Whether to include archived configurations
     #[serde(rename = "include_archived", skip_serializing_if = "Option::is_none")]
     pub include_archived: Option<bool>,
@@ -30,18 +29,6 @@ impl GetCustomerRevenueSystemConfigurationsV1Request {
             provider: None,
             include_archived: None,
         }
-    }
-}
-/// Filter configurations by revenue system provider
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum Provider {
-    #[serde(rename = "netsuite")]
-    Netsuite,
-}
-
-impl Default for Provider {
-    fn default() -> Provider {
-        Self::Netsuite
     }
 }
 

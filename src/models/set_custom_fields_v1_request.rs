@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SetCustomFieldsV1Request {
     #[serde(rename = "entity")]
-    pub entity: Entity,
+    pub entity: models::ManagedEntity,
     #[serde(rename = "entity_id")]
     pub entity_id: uuid::Uuid,
     /// Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" }
@@ -23,60 +23,12 @@ pub struct SetCustomFieldsV1Request {
 }
 
 impl SetCustomFieldsV1Request {
-    pub fn new(entity: Entity, entity_id: uuid::Uuid, custom_fields: std::collections::HashMap<String, String>) -> SetCustomFieldsV1Request {
+    pub fn new(entity: models::ManagedEntity, entity_id: uuid::Uuid, custom_fields: std::collections::HashMap<String, String>) -> SetCustomFieldsV1Request {
         SetCustomFieldsV1Request {
             entity,
             entity_id,
             custom_fields,
         }
-    }
-}
-/// 
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum Entity {
-    #[serde(rename = "alert")]
-    Alert,
-    #[serde(rename = "billable_metric")]
-    BillableMetric,
-    #[serde(rename = "charge")]
-    Charge,
-    #[serde(rename = "commit")]
-    Commit,
-    #[serde(rename = "contract_credit")]
-    ContractCredit,
-    #[serde(rename = "contract_product")]
-    ContractProduct,
-    #[serde(rename = "contract")]
-    Contract,
-    #[serde(rename = "customer")]
-    Customer,
-    #[serde(rename = "discount")]
-    Discount,
-    #[serde(rename = "invoice")]
-    Invoice,
-    #[serde(rename = "professional_service")]
-    ProfessionalService,
-    #[serde(rename = "product")]
-    Product,
-    #[serde(rename = "rate_card")]
-    RateCard,
-    #[serde(rename = "scheduled_charge")]
-    ScheduledCharge,
-    #[serde(rename = "subscription")]
-    Subscription,
-    #[serde(rename = "package_commit")]
-    PackageCommit,
-    #[serde(rename = "package_credit")]
-    PackageCredit,
-    #[serde(rename = "package_subscription")]
-    PackageSubscription,
-    #[serde(rename = "package_scheduled_charge")]
-    PackageScheduledCharge,
-}
-
-impl Default for Entity {
-    fn default() -> Entity {
-        Self::Alert
     }
 }
 

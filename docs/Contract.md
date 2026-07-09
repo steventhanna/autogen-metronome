@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **current** | [**models::ContractWithoutAmendments**](ContractWithoutAmendments.md) |  | 
 **amendments** | [**Vec<models::ContractAmendment>**](ContractAmendment.md) |  | 
 **custom_fields** | Option<**std::collections::HashMap<String, String>**> | Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" } | [optional]
-**customer_billing_provider_configuration** | Option<[**models::ContractCustomerBillingProviderConfiguration**](ContractCustomerBillingProviderConfiguration.md)> |  | [optional]
+**customer_billing_provider_configuration** | Option<[**models::CustomerBillingProviderConfiguration**](CustomerBillingProviderConfiguration.md)> |  | [optional]
 **scheduled_charges_on_usage_invoices** | Option<[**models::ScheduledChargesOnUsageInvoices**](ScheduledChargesOnUsageInvoices.md)> |  | [optional]
 **subscriptions** | Option<[**Vec<models::Subscription>**](Subscription.md)> | List of subscriptions on the contract. | [optional]
 **spend_threshold_configuration** | Option<[**models::SpendThresholdConfiguration**](SpendThresholdConfiguration.md)> |  | [optional]

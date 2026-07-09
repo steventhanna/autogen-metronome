@@ -4,8 +4,8 @@
 
 | Name | Description |
 |---- | -----|
-| CreateNotificationConfigV2200ResponseData |  |
-| ListSystemNotificationConfigsV2200ResponseDataInner |  |
+| LifecycleEventOffsetNotificationConfig |  |
+| LifecycleEventSystemNotificationConfig |  |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
