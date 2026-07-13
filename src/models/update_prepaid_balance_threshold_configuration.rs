@@ -31,6 +31,7 @@ pub struct UpdatePrepaidBalanceThresholdConfiguration {
     pub payment_gate_config: Option<Box<models::PaymentGateConfigV2>>,
     #[serde(rename = "discount_configuration", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub discount_configuration: Option<Option<Box<models::UpdateDiscountConfiguration>>>,
+    /// Determines which balances are excluded from remaining balance calculation for threshold billing.
     #[serde(rename = "threshold_balance_specifiers", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub threshold_balance_specifiers: Option<Option<Vec<models::ThresholdBalanceSpecifierV2>>>,
 }

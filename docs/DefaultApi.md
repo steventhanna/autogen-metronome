@@ -20,7 +20,7 @@ Lists all packages with details including name, aliases, duration, and terms. To
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**limit** | Option<**i32**> | The maximum number of packages to return. Defaults to 10. |  |
+**limit** | Option<**i32**> | Max number of results that should be returned |  |
 **next_page** | Option<**String**> | Cursor that indicates where the next page of results should start. |  |
 **list_packages_v1_request** | Option<[**ListPackagesV1Request**](ListPackagesV1Request.md)> |  |  |
 

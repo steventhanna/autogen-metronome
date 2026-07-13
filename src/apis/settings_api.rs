@@ -19,7 +19,7 @@ use super::{Error, configuration, ContentType};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListConfiguredBillingProvidersV1Error {
-    Status400(models::ArchiveAlertV1404Response),
+    Status400(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -34,8 +34,8 @@ pub enum ListCreditTypesV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SetUpBillingProviderV1Error {
-    Status400(models::ArchiveAlertV1404Response),
-    Status409(models::ArchiveAlertV1404Response),
+    Status400(models::Error),
+    Status409(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -43,8 +43,8 @@ pub enum SetUpBillingProviderV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpsertAnrokApiTokenV1Error {
-    Status400(models::ArchiveAlertV1404Response),
-    Status404(models::ArchiveAlertV1404Response),
+    Status400(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -52,8 +52,8 @@ pub enum UpsertAnrokApiTokenV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpsertAvalaraCredentialsV1Error {
-    Status400(models::ArchiveAlertV1404Response),
-    Status404(models::ArchiveAlertV1404Response),
+    Status400(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 

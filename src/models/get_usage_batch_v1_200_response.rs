@@ -14,13 +14,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetUsageBatchV1200Response {
     #[serde(rename = "data")]
-    pub data: Vec<models::GetUsageBatchV1200ResponseDataInner>,
+    pub data: Vec<models::UsageBatchAggregate>,
     #[serde(rename = "next_page", deserialize_with = "Option::deserialize")]
     pub next_page: Option<String>,
 }
 
 impl GetUsageBatchV1200Response {
-    pub fn new(data: Vec<models::GetUsageBatchV1200ResponseDataInner>, next_page: Option<String>) -> GetUsageBatchV1200Response {
+    pub fn new(data: Vec<models::UsageBatchAggregate>, next_page: Option<String>) -> GetUsageBatchV1200Response {
         GetUsageBatchV1200Response {
             data,
             next_page,

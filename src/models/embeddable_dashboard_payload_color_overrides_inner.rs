@@ -74,6 +74,10 @@ pub enum Name {
     ProgressBar,
     #[serde(rename = "Progress_bar_background")]
     ProgressBarBackground,
+    #[serde(rename = "Action")]
+    Action,
+    #[serde(rename = "Action_hover")]
+    ActionHover,
 }
 
 impl Default for Name {

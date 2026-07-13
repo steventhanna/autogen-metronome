@@ -14,13 +14,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ListRateCardsV1200Response {
     #[serde(rename = "data")]
-    pub data: Vec<models::GetRateCardV1200ResponseData>,
+    pub data: Vec<models::RateCard>,
     #[serde(rename = "next_page", deserialize_with = "Option::deserialize")]
     pub next_page: Option<String>,
 }
 
 impl ListRateCardsV1200Response {
-    pub fn new(data: Vec<models::GetRateCardV1200ResponseData>, next_page: Option<String>) -> ListRateCardsV1200Response {
+    pub fn new(data: Vec<models::RateCard>, next_page: Option<String>) -> ListRateCardsV1200Response {
         ListRateCardsV1200Response {
             data,
             next_page,

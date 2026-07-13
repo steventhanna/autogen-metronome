@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 **scheduled_charges** | [**Vec<models::ScheduledCharge>**](ScheduledCharge.md) |  | 
 **transitions** | [**Vec<models::ContractTransition>**](ContractTransition.md) |  | 
 **subscriptions** | Option<[**Vec<models::Subscription>**](Subscription.md)> | List of subscriptions on the contract. | [optional]
-**customer_billing_provider_configuration** | Option<[**models::CreateContractResponseContractCustomerBillingProviderConfiguration**](CreateContractResponseContractCustomerBillingProviderConfiguration.md)> |  | [optional]
+**customer_billing_provider_configuration** | Option<[**models::CustomerBillingProviderConfiguration**](CustomerBillingProviderConfiguration.md)> |  | [optional]
 **spend_threshold_configuration** | Option<[**models::SpendThresholdConfiguration**](SpendThresholdConfiguration.md)> |  | [optional]
 **prepaid_balance_threshold_configuration** | Option<[**models::PrepaidBalanceThresholdConfiguration**](PrepaidBalanceThresholdConfiguration.md)> |  | [optional]
 **hierarchy_configuration** | Option<[**models::HierarchyConfiguration**](HierarchyConfiguration.md)> |  | [optional]

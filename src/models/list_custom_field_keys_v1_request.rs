@@ -15,7 +15,7 @@ use serde::{Deserialize, Serialize};
 pub struct ListCustomFieldKeysV1Request {
     /// Optional list of entity types to return keys for
     #[serde(rename = "entities", skip_serializing_if = "Option::is_none")]
-    pub entities: Option<Vec<Entities>>,
+    pub entities: Option<Vec<models::ManagedEntity>>,
 }
 
 impl ListCustomFieldKeysV1Request {
@@ -23,54 +23,6 @@ impl ListCustomFieldKeysV1Request {
         ListCustomFieldKeysV1Request {
             entities: None,
         }
-    }
-}
-/// Optional list of entity types to return keys for
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum Entities {
-    #[serde(rename = "alert")]
-    Alert,
-    #[serde(rename = "billable_metric")]
-    BillableMetric,
-    #[serde(rename = "charge")]
-    Charge,
-    #[serde(rename = "commit")]
-    Commit,
-    #[serde(rename = "contract_credit")]
-    ContractCredit,
-    #[serde(rename = "contract_product")]
-    ContractProduct,
-    #[serde(rename = "contract")]
-    Contract,
-    #[serde(rename = "customer")]
-    Customer,
-    #[serde(rename = "discount")]
-    Discount,
-    #[serde(rename = "invoice")]
-    Invoice,
-    #[serde(rename = "professional_service")]
-    ProfessionalService,
-    #[serde(rename = "product")]
-    Product,
-    #[serde(rename = "rate_card")]
-    RateCard,
-    #[serde(rename = "scheduled_charge")]
-    ScheduledCharge,
-    #[serde(rename = "subscription")]
-    Subscription,
-    #[serde(rename = "package_commit")]
-    PackageCommit,
-    #[serde(rename = "package_credit")]
-    PackageCredit,
-    #[serde(rename = "package_subscription")]
-    PackageSubscription,
-    #[serde(rename = "package_scheduled_charge")]
-    PackageScheduledCharge,
-}
-
-impl Default for Entities {
-    fn default() -> Entities {
-        Self::Alert
     }
 }
 
