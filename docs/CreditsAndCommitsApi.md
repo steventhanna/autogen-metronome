@@ -18,6 +18,7 @@ Method | HTTP request | Description
 [**list_customer_credits_v1**](CreditsAndCommitsApi.md#list_customer_credits_v1) | **POST** /v1/contracts/customerCredits/list | List credits
 [**list_seat_balances_v1**](CreditsAndCommitsApi.md#list_seat_balances_v1) | **POST** /v1/contracts/seatBalances/list | List seat balances
 [**release_external_payment_gate_threshold_commit_v1**](CreditsAndCommitsApi.md#release_external_payment_gate_threshold_commit_v1) | **POST** /v1/contracts/commits/threshold-billing/release | Release external payment gate threshold commit
+[**retire_commits_v2**](CreditsAndCommitsApi.md#retire_commits_v2) | **POST** /v2/contracts/commits/retire | Retire commits
 [**update_commit_end_date_v1**](CreditsAndCommitsApi.md#update_commit_end_date_v1) | **POST** /v1/contracts/customerCommits/updateEndDate | Update the commit end date
 [**update_credit_end_date_v1**](CreditsAndCommitsApi.md#update_credit_end_date_v1) | **POST** /v1/contracts/customerCredits/updateEndDate | Update the credit end date
 
@@ -439,6 +440,36 @@ Name | Type | Description  | Required | Notes
 
 - **Content-Type**: application/json
 - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## retire_commits_v2
+
+> models::RetireCommitsV2200Response retire_commits_v2(retire_commits_v2_request)
+Retire commits
+
+Retire one or more commits on a contract. Retirement moves fully-depleted, immutable commits into cold storage, making future computations on this customer faster. Retired commits are removed from active code paths but remain retrievable through a dedicated historical view. Set `dry_run` to `true` to preview the result without making changes. 
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**retire_commits_v2_request** | Option<[**RetireCommitsV2Request**](RetireCommitsV2Request.md)> | Customer, contract, and commit IDs to retire |  |
+
+### Return type
+
+[**models::RetireCommitsV2200Response**](retireCommits_v2_200_response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

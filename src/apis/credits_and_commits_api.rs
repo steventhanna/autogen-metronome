@@ -127,6 +127,14 @@ pub enum ReleaseExternalPaymentGateThresholdCommitV1Error {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`retire_commits_v2`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum RetireCommitsV2Error {
+    Status400(models::RetireCommitsV2400Response),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`update_commit_end_date_v1`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -694,6 +702,47 @@ pub async fn release_external_payment_gate_threshold_commit_v1(configuration: &c
     } else {
         let content = resp.text().await?;
         let entity: Option<ReleaseExternalPaymentGateThresholdCommitV1Error> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent { status, content, entity }))
+    }
+}
+
+/// Retire one or more commits on a contract. Retirement moves fully-depleted, immutable commits into cold storage, making future computations on this customer faster. Retired commits are removed from active code paths but remain retrievable through a dedicated historical view. Set `dry_run` to `true` to preview the result without making changes. 
+pub async fn retire_commits_v2(configuration: &configuration::Configuration, retire_commits_v2_request: Option<models::RetireCommitsV2Request>) -> Result<models::RetireCommitsV2200Response, Error<RetireCommitsV2Error>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_body_retire_commits_v2_request = retire_commits_v2_request;
+
+    let uri_str = format!("{}/v2/contracts/commits/retire", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+    req_builder = req_builder.json(&p_body_retire_commits_v2_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RetireCommitsV2200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RetireCommitsV2200Response`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<RetireCommitsV2Error> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }

@@ -1,12 +1,10 @@
-# GetContractV1200ResponseDataInitialTransitionsInner
+# RetireCommitsV2200Response
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**r#type** | **Type** |  (enum: RENEWAL) | 
-**from_contract_id** | **uuid::Uuid** |  | 
-**to_contract_id** | **uuid::Uuid** |  | 
+**data** | [**models::RetireCommitsV2200ResponseData**](RetireCommitsV2200ResponseData.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
