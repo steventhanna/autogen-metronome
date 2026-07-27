@@ -81,7 +81,13 @@ pub struct ContractV2 {
     #[serde(rename = "custom_fields", skip_serializing_if = "Option::is_none")]
     pub custom_fields: Option<std::collections::HashMap<String, String>>,
     #[serde(rename = "customer_billing_provider_configuration", skip_serializing_if = "Option::is_none")]
-    pub customer_billing_provider_configuration: Option<Box<models::ContractV2CustomerBillingProviderConfiguration>>,
+    pub customer_billing_provider_configuration: Option<Box<models::CustomerBillingProviderConfiguration>>,
+    /// The schedule of billing provider configuration changes on the contract, ordered by effective_at ascending.
+    #[serde(rename = "billing_provider_configuration_schedule", skip_serializing_if = "Option::is_none")]
+    pub billing_provider_configuration_schedule: Option<Vec<models::ContractV2BillingProviderConfigurationScheduleInner>>,
+    /// The schedule of revenue system configuration changes on the contract, ordered by effective_at ascending.
+    #[serde(rename = "revenue_system_configuration_schedule", skip_serializing_if = "Option::is_none")]
+    pub revenue_system_configuration_schedule: Option<Vec<models::ContractV2RevenueSystemConfigurationScheduleInner>>,
     #[serde(rename = "recurring_commits", skip_serializing_if = "Option::is_none")]
     pub recurring_commits: Option<Vec<models::RecurringCommitV2>>,
     #[serde(rename = "recurring_credits", skip_serializing_if = "Option::is_none")]
@@ -136,6 +142,8 @@ impl ContractV2 {
             multiplier_override_prioritization: None,
             custom_fields: None,
             customer_billing_provider_configuration: None,
+            billing_provider_configuration_schedule: None,
+            revenue_system_configuration_schedule: None,
             recurring_commits: None,
             recurring_credits: None,
             spend_threshold_configuration: None,

@@ -17,6 +17,9 @@ pub struct SubmitApprovalRequestsV1Request {
     pub name: String,
     #[serde(rename = "description")]
     pub description: String,
+    /// The HTTP method of the operation being requested.
+    #[serde(rename = "method")]
+    pub method: Method,
     /// The API path of the operation being requested (e.g. /v1/contracts/create).
     #[serde(rename = "request_type")]
     pub request_type: String,
@@ -26,13 +29,32 @@ pub struct SubmitApprovalRequestsV1Request {
 }
 
 impl SubmitApprovalRequestsV1Request {
-    pub fn new(name: String, description: String, request_type: String, request_payload: std::collections::HashMap<String, serde_json::Value>) -> SubmitApprovalRequestsV1Request {
+    pub fn new(name: String, description: String, method: Method, request_type: String, request_payload: std::collections::HashMap<String, serde_json::Value>) -> SubmitApprovalRequestsV1Request {
         SubmitApprovalRequestsV1Request {
             name,
             description,
+            method,
             request_type,
             request_payload,
         }
+    }
+}
+/// The HTTP method of the operation being requested.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum Method {
+    #[serde(rename = "POST")]
+    Post,
+    #[serde(rename = "PUT")]
+    Put,
+    #[serde(rename = "PATCH")]
+    Patch,
+    #[serde(rename = "DELETE")]
+    Delete,
+}
+
+impl Default for Method {
+    fn default() -> Method {
+        Self::Post
     }
 }
 

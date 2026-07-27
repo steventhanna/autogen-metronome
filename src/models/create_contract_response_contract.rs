@@ -70,7 +70,7 @@ pub struct CreateContractResponseContract {
     #[serde(rename = "subscriptions", skip_serializing_if = "Option::is_none")]
     pub subscriptions: Option<Vec<models::Subscription>>,
     #[serde(rename = "customer_billing_provider_configuration", skip_serializing_if = "Option::is_none")]
-    pub customer_billing_provider_configuration: Option<Box<models::CreateContractResponseContractCustomerBillingProviderConfiguration>>,
+    pub customer_billing_provider_configuration: Option<Box<models::CustomerBillingProviderConfiguration>>,
     #[serde(rename = "spend_threshold_configuration", skip_serializing_if = "Option::is_none")]
     pub spend_threshold_configuration: Option<Box<models::SpendThresholdConfiguration>>,
     #[serde(rename = "prepaid_balance_threshold_configuration", skip_serializing_if = "Option::is_none")]

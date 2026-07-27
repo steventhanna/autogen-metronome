@@ -13,8 +13,8 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct BillingProviderConfigurationUpdateBillingProviderConfiguration {
-    #[serde(rename = "billing_provider_configuration_id", skip_serializing_if = "Option::is_none")]
-    pub billing_provider_configuration_id: Option<uuid::Uuid>,
+    #[serde(rename = "billing_provider_configuration_id", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub billing_provider_configuration_id: Option<Option<uuid::Uuid>>,
     #[serde(rename = "billing_provider", skip_serializing_if = "Option::is_none")]
     pub billing_provider: Option<models::BillingProviderType>,
     #[serde(rename = "delivery_method", skip_serializing_if = "Option::is_none")]

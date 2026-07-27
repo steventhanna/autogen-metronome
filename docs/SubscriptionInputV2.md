@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **quantity_management_mode** | Option<**QuantityManagementMode**> | Determines how the subscription's quantity is controlled. Defaults to QUANTITY_ONLY. **QUANTITY_ONLY**: The subscription quantity is specified directly on the subscription. `initial_quantity` must be provided with this option. Compatible with recurring commits/credits that use POOLED allocation. **SEAT_BASED**: Use when you want to pass specific seat identifiers (e.g. add user_123) to increment and decrement a subscription quantity, rather than directly providing the quantity. You must use a **SEAT_BASED** subscription to use a linked recurring credit with an allocation per seat. `seat_config` must be provided with this option. (enum: SEAT_BASED, seat_based, QUANTITY_ONLY, quantity_only) | [optional]
 **seat_config** | Option<[**models::SubscriptionSeatConfigInput**](SubscriptionSeatConfigInput.md)> |  | [optional]
 **billing_cycle_config** | Option<[**models::SubscriptionBillingCycleConfigInput**](SubscriptionBillingCycleConfigInput.md)> |  | [optional]
+**payment_gate_config** | Option<[**models::SubscriptionPaymentGateConfigInput**](SubscriptionPaymentGateConfigInput.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

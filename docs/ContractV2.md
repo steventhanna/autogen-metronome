@@ -33,7 +33,9 @@ Name | Type | Description | Notes
 **usage_statement_schedule** | [**models::UsageStatementSchedule**](UsageStatementSchedule.md) |  | 
 **multiplier_override_prioritization** | Option<**MultiplierOverridePrioritization**> | Defaults to LOWEST_MULTIPLIER, which applies the greatest discount to list prices automatically. EXPLICIT prioritization requires specifying priorities for each multiplier; the one with the lowest priority value will be prioritized first. (enum: LOWEST_MULTIPLIER, lowest_multiplier, EXPLICIT, explicit) | [optional]
 **custom_fields** | Option<**std::collections::HashMap<String, String>**> | Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" } | [optional]
-**customer_billing_provider_configuration** | Option<[**models::ContractV2CustomerBillingProviderConfiguration**](ContractV2CustomerBillingProviderConfiguration.md)> |  | [optional]
+**customer_billing_provider_configuration** | Option<[**models::CustomerBillingProviderConfiguration**](CustomerBillingProviderConfiguration.md)> |  | [optional]
+**billing_provider_configuration_schedule** | Option<[**Vec<models::ContractV2BillingProviderConfigurationScheduleInner>**](ContractV2BillingProviderConfigurationScheduleInner.md)> | The schedule of billing provider configuration changes on the contract, ordered by effective_at ascending. | [optional]
+**revenue_system_configuration_schedule** | Option<[**Vec<models::ContractV2RevenueSystemConfigurationScheduleInner>**](ContractV2RevenueSystemConfigurationScheduleInner.md)> | The schedule of revenue system configuration changes on the contract, ordered by effective_at ascending. | [optional]
 **recurring_commits** | Option<[**Vec<models::RecurringCommitV2>**](RecurringCommitV2.md)> |  | [optional]
 **recurring_credits** | Option<[**Vec<models::RecurringCreditV2>**](RecurringCreditV2.md)> |  | [optional]
 **spend_threshold_configuration** | Option<[**models::SpendThresholdConfigurationV2**](SpendThresholdConfigurationV2.md)> |  | [optional]

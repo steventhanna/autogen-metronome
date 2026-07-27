@@ -24,9 +24,6 @@ pub struct EmbeddableDashboardPayload {
     /// Optional list of colors to override
     #[serde(rename = "color_overrides", skip_serializing_if = "Option::is_none")]
     pub color_overrides: Option<Vec<models::EmbeddableDashboardPayloadColorOverridesInner>>,
-    /// Optional list of billable metric group key overrides
-    #[serde(rename = "bm_group_key_overrides", skip_serializing_if = "Option::is_none")]
-    pub bm_group_key_overrides: Option<Vec<models::EmbeddableDashboardPayloadBmGroupKeyOverridesInner>>,
 }
 
 impl EmbeddableDashboardPayload {
@@ -36,7 +33,6 @@ impl EmbeddableDashboardPayload {
             dashboard,
             dashboard_options: None,
             color_overrides: None,
-            bm_group_key_overrides: None,
         }
     }
 }

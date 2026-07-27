@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct VoidInvoiceV1200Response {
     #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
-    pub data: Option<Box<models::ArchiveAlertV1200ResponseData>>,
+    pub data: Option<Box<models::VoidInvoiceV1Request>>,
 }
 
 impl VoidInvoiceV1200Response {

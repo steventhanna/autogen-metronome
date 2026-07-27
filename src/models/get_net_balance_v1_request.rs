@@ -21,7 +21,7 @@ pub struct GetNetBalanceV1Request {
     pub credit_type_id: Option<uuid::Uuid>,
     /// Balance filters are OR'd together, so if a given commit or credit matches any of the filters, it will be included in the net balance.
     #[serde(rename = "filters", skip_serializing_if = "Option::is_none")]
-    pub filters: Option<Vec<models::GetNetBalanceV1RequestFiltersInner>>,
+    pub filters: Option<Vec<models::BalanceFilter>>,
     /// Controls which invoices are considered when calculating the remaining balance. `FINALIZED` considers only deductions from finalized invoices. `FINALIZED_AND_DRAFT` also includes deductions from pending draft invoices.
     #[serde(rename = "invoice_inclusion_mode", skip_serializing_if = "Option::is_none")]
     pub invoice_inclusion_mode: Option<InvoiceInclusionMode>,

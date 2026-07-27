@@ -45,6 +45,8 @@ pub struct SubscriptionInputV2 {
     pub seat_config: Option<Box<models::SubscriptionSeatConfigInput>>,
     #[serde(rename = "billing_cycle_config", skip_serializing_if = "Option::is_none")]
     pub billing_cycle_config: Option<Box<models::SubscriptionBillingCycleConfigInput>>,
+    #[serde(rename = "payment_gate_config", skip_serializing_if = "Option::is_none")]
+    pub payment_gate_config: Option<Box<models::SubscriptionPaymentGateConfigInput>>,
 }
 
 impl SubscriptionInputV2 {
@@ -63,6 +65,7 @@ impl SubscriptionInputV2 {
             quantity_management_mode: None,
             seat_config: None,
             billing_cycle_config: None,
+            payment_gate_config: None,
         }
     }
 }
