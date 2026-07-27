@@ -36,7 +36,7 @@ pub struct Contract {
     #[serde(rename = "custom_fields", skip_serializing_if = "Option::is_none")]
     pub custom_fields: Option<std::collections::HashMap<String, String>>,
     #[serde(rename = "customer_billing_provider_configuration", skip_serializing_if = "Option::is_none")]
-    pub customer_billing_provider_configuration: Option<Box<models::ContractCustomerBillingProviderConfiguration>>,
+    pub customer_billing_provider_configuration: Option<Box<models::CustomerBillingProviderConfiguration>>,
     #[serde(rename = "scheduled_charges_on_usage_invoices", skip_serializing_if = "Option::is_none")]
     pub scheduled_charges_on_usage_invoices: Option<models::ScheduledChargesOnUsageInvoices>,
     /// List of subscriptions on the contract.

@@ -16,6 +16,8 @@ use serde::{Deserialize, Serialize};
 pub enum BillingProviderConfigurationUpdateEffectiveAtType {
     #[serde(rename = "START_OF_CURRENT_PERIOD")]
     StartOfCurrentPeriod,
+    #[serde(rename = "START_OF_NEXT_PERIOD")]
+    StartOfNextPeriod,
 
 }
 
@@ -23,6 +25,7 @@ impl std::fmt::Display for BillingProviderConfigurationUpdateEffectiveAtType {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
             Self::StartOfCurrentPeriod => write!(f, "START_OF_CURRENT_PERIOD"),
+            Self::StartOfNextPeriod => write!(f, "START_OF_NEXT_PERIOD"),
         }
     }
 }

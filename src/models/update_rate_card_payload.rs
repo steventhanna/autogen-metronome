@@ -24,6 +24,9 @@ pub struct UpdateRateCardPayload {
     /// Reference this alias when creating a contract. If the same alias is assigned to multiple rate cards, it will reference the rate card to which it was most recently assigned. It is not exposed to end customers.
     #[serde(rename = "aliases", skip_serializing_if = "Option::is_none")]
     pub aliases: Option<Vec<models::RateCardAlias>>,
+    /// Add credit type conversions for using custom pricing units in rates. Existing conversions cannot be modified.
+    #[serde(rename = "add_credit_type_conversions", skip_serializing_if = "Option::is_none")]
+    pub add_credit_type_conversions: Option<Vec<models::CreditTypeConversionInput>>,
 }
 
 impl UpdateRateCardPayload {
@@ -33,6 +36,7 @@ impl UpdateRateCardPayload {
             name: None,
             description: None,
             aliases: None,
+            add_credit_type_conversions: None,
         }
     }
 }

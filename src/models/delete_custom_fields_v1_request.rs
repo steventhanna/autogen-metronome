@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DeleteCustomFieldsV1Request {
     #[serde(rename = "entity")]
-    pub entity: Entity,
+    pub entity: models::ManagedEntity,
     #[serde(rename = "entity_id")]
     pub entity_id: uuid::Uuid,
     #[serde(rename = "keys")]
@@ -22,60 +22,12 @@ pub struct DeleteCustomFieldsV1Request {
 }
 
 impl DeleteCustomFieldsV1Request {
-    pub fn new(entity: Entity, entity_id: uuid::Uuid, keys: Vec<String>) -> DeleteCustomFieldsV1Request {
+    pub fn new(entity: models::ManagedEntity, entity_id: uuid::Uuid, keys: Vec<String>) -> DeleteCustomFieldsV1Request {
         DeleteCustomFieldsV1Request {
             entity,
             entity_id,
             keys,
         }
-    }
-}
-/// 
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum Entity {
-    #[serde(rename = "alert")]
-    Alert,
-    #[serde(rename = "billable_metric")]
-    BillableMetric,
-    #[serde(rename = "charge")]
-    Charge,
-    #[serde(rename = "commit")]
-    Commit,
-    #[serde(rename = "contract_credit")]
-    ContractCredit,
-    #[serde(rename = "contract_product")]
-    ContractProduct,
-    #[serde(rename = "contract")]
-    Contract,
-    #[serde(rename = "customer")]
-    Customer,
-    #[serde(rename = "discount")]
-    Discount,
-    #[serde(rename = "invoice")]
-    Invoice,
-    #[serde(rename = "professional_service")]
-    ProfessionalService,
-    #[serde(rename = "product")]
-    Product,
-    #[serde(rename = "rate_card")]
-    RateCard,
-    #[serde(rename = "scheduled_charge")]
-    ScheduledCharge,
-    #[serde(rename = "subscription")]
-    Subscription,
-    #[serde(rename = "package_commit")]
-    PackageCommit,
-    #[serde(rename = "package_credit")]
-    PackageCredit,
-    #[serde(rename = "package_subscription")]
-    PackageSubscription,
-    #[serde(rename = "package_scheduled_charge")]
-    PackageScheduledCharge,
-}
-
-impl Default for Entity {
-    fn default() -> Entity {
-        Self::Alert
     }
 }
 

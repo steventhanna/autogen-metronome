@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **commit** | Option<[**models::UpdatePrepaidBalanceThresholdCommit**](UpdatePrepaidBalanceThresholdCommit.md)> |  | [optional]
 **payment_gate_config** | Option<[**models::PaymentGateConfigV2**](PaymentGateConfigV2.md)> |  | [optional]
 **discount_configuration** | Option<[**models::UpdateDiscountConfiguration**](UpdateDiscountConfiguration.md)> |  | [optional]
-**threshold_balance_specifiers** | Option<[**Vec<models::ThresholdBalanceSpecifierV2>**](ThresholdBalanceSpecifierV2.md)> |  | [optional]
+**threshold_balance_specifiers** | Option<[**Vec<models::ThresholdBalanceSpecifierV2>**](ThresholdBalanceSpecifierV2.md)> | Determines which balances are excluded from remaining balance calculation for threshold billing. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

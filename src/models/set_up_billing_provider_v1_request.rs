@@ -13,56 +13,22 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SetUpBillingProviderV1Request {
-    /// The billing provider set for this configuration.
     #[serde(rename = "billing_provider")]
-    pub billing_provider: BillingProvider,
-    /// The method to use for delivering invoices for this configuration.
+    pub billing_provider: models::GaBillingProviderType,
     #[serde(rename = "delivery_method")]
-    pub delivery_method: DeliveryMethod,
+    pub delivery_method: models::GaBillingProviderDeliveryMethodType,
     /// Account-level configuration for the billing provider. The structure of this object is specific to the billing provider and delivery provider combination. See examples below.
     #[serde(rename = "configuration")]
     pub configuration: std::collections::HashMap<String, serde_json::Value>,
 }
 
 impl SetUpBillingProviderV1Request {
-    pub fn new(billing_provider: BillingProvider, delivery_method: DeliveryMethod, configuration: std::collections::HashMap<String, serde_json::Value>) -> SetUpBillingProviderV1Request {
+    pub fn new(billing_provider: models::GaBillingProviderType, delivery_method: models::GaBillingProviderDeliveryMethodType, configuration: std::collections::HashMap<String, serde_json::Value>) -> SetUpBillingProviderV1Request {
         SetUpBillingProviderV1Request {
             billing_provider,
             delivery_method,
             configuration,
         }
-    }
-}
-/// The billing provider set for this configuration.
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum BillingProvider {
-    #[serde(rename = "aws_marketplace")]
-    AwsMarketplace,
-    #[serde(rename = "azure_marketplace")]
-    AzureMarketplace,
-    #[serde(rename = "gcp_marketplace")]
-    GcpMarketplace,
-}
-
-impl Default for BillingProvider {
-    fn default() -> BillingProvider {
-        Self::AwsMarketplace
-    }
-}
-/// The method to use for delivering invoices for this configuration.
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum DeliveryMethod {
-    #[serde(rename = "direct_to_billing_provider")]
-    DirectToBillingProvider,
-    #[serde(rename = "aws_sqs")]
-    AwsSqs,
-    #[serde(rename = "aws_sns")]
-    AwsSns,
-}
-
-impl Default for DeliveryMethod {
-    fn default() -> DeliveryMethod {
-        Self::DirectToBillingProvider
     }
 }
 

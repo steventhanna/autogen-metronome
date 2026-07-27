@@ -14,11 +14,11 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateNotificationConfigV2200Response {
     #[serde(rename = "data")]
-    pub data: Box<models::CreateNotificationConfigV2200ResponseData>,
+    pub data: Box<models::LifecycleEventOffsetNotificationConfig>,
 }
 
 impl CreateNotificationConfigV2200Response {
-    pub fn new(data: models::CreateNotificationConfigV2200ResponseData) -> CreateNotificationConfigV2200Response {
+    pub fn new(data: models::LifecycleEventOffsetNotificationConfig) -> CreateNotificationConfigV2200Response {
         CreateNotificationConfigV2200Response {
             data: Box::new(data),
         }

@@ -16,11 +16,11 @@ pub struct AddRatesV1Request {
     #[serde(rename = "rate_card_id")]
     pub rate_card_id: uuid::Uuid,
     #[serde(rename = "rates")]
-    pub rates: Vec<models::AddRatesV1RequestRatesInner>,
+    pub rates: Vec<models::RatePayload>,
 }
 
 impl AddRatesV1Request {
-    pub fn new(rate_card_id: uuid::Uuid, rates: Vec<models::AddRatesV1RequestRatesInner>) -> AddRatesV1Request {
+    pub fn new(rate_card_id: uuid::Uuid, rates: Vec<models::RatePayload>) -> AddRatesV1Request {
         AddRatesV1Request {
             rate_card_id,
             rates,

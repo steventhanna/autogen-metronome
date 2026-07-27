@@ -38,6 +38,9 @@ pub struct EditCommitPayload {
     /// Which tags the commit applies to. If applicable_product_ids, applicable_product_tags or specifiers are not provided, the commit applies to all products.
     #[serde(rename = "applicable_product_tags", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub applicable_product_tags: Option<Option<Vec<String>>>,
+    /// Which contracts the customer-level commit applies to. If set to null, the commit applies to all of the customer's contracts. This field cannot be edited for POSTPAID commits or contract-level commits.
+    #[serde(rename = "applicable_contract_ids", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub applicable_contract_ids: Option<Option<Vec<uuid::Uuid>>>,
     /// List of filters that determine what kind of customer usage draws down a commit or credit. A customer's usage needs to meet the condition of at least one of the specifiers to contribute to a commit's or credit's drawdown. This field cannot be used together with `applicable_product_ids` or `applicable_product_tags`. Instead, to target usage by product or product tag, pass those values in the body of `specifiers`.
     #[serde(rename = "specifiers", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub specifiers: Option<Option<Vec<models::CommitSpecifierInput>>>,
@@ -65,6 +68,7 @@ impl EditCommitPayload {
             invoice_contract_id: None,
             applicable_product_ids: None,
             applicable_product_tags: None,
+            applicable_contract_ids: None,
             specifiers: None,
             product_id: None,
             priority: None,

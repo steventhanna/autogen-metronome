@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**r#type** | **Type** |  (enum: SUPERSEDE, RENEWAL) | 
+**r#type** | **Type** |  (enum: RENEWAL) | 
 **from_contract_id** | **uuid::Uuid** |  | 
 **to_contract_id** | **uuid::Uuid** |  | 
 

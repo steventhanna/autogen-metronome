@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**entity** | **Entity** |  (enum: alert, billable_metric, charge, commit, contract_credit, contract_product, contract, customer, discount, invoice, professional_service, product, rate_card, scheduled_charge, subscription, package_commit, package_credit, package_subscription, package_scheduled_charge) | 
+**entity** | [**models::ManagedEntity**](ManagedEntity.md) |  | 
 **key** | **String** |  | 
 **enforce_uniqueness** | **bool** |  | 
 

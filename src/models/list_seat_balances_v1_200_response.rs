@@ -14,13 +14,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ListSeatBalancesV1200Response {
     #[serde(rename = "data")]
-    pub data: Vec<models::ListSeatBalancesV1200ResponseDataInner>,
+    pub data: Vec<models::SeatBalance>,
     #[serde(rename = "pagination")]
     pub pagination: Box<models::ListSeatBalancesV1200ResponsePagination>,
 }
 
 impl ListSeatBalancesV1200Response {
-    pub fn new(data: Vec<models::ListSeatBalancesV1200ResponseDataInner>, pagination: models::ListSeatBalancesV1200ResponsePagination) -> ListSeatBalancesV1200Response {
+    pub fn new(data: Vec<models::SeatBalance>, pagination: models::ListSeatBalancesV1200ResponsePagination) -> ListSeatBalancesV1200Response {
         ListSeatBalancesV1200Response {
             data,
             pagination: Box::new(pagination),

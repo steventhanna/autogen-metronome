@@ -13,6 +13,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ThresholdBalanceSpecifier {
+    /// If any of the exclude specifier is met, the balance is not considered when evaluating threshold billing
     #[serde(rename = "exclude")]
     pub exclude: Vec<models::ExcludeThresholdBalanceSpecifier>,
 }

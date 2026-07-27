@@ -66,9 +66,9 @@ pub enum UpdateRateCardNamedScheduleV1Error {
 
 
 /// Get a named schedule for the given contract. This endpoint's availability is dependent on your client's configuration.
-pub async fn get_contract_named_schedule_v1(configuration: &configuration::Configuration, get_contract_named_schedule_v1_request: Option<models::GetContractNamedScheduleV1Request>) -> Result<models::GetCustomerNamedScheduleV1200Response, Error<GetContractNamedScheduleV1Error>> {
+pub async fn get_contract_named_schedule_v1(configuration: &configuration::Configuration, get_contract_named_schedule_payload: Option<models::GetContractNamedSchedulePayload>) -> Result<models::NamedSchedule, Error<GetContractNamedScheduleV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_get_contract_named_schedule_v1_request = get_contract_named_schedule_v1_request;
+    let p_body_get_contract_named_schedule_payload = get_contract_named_schedule_payload;
 
     let uri_str = format!("{}/v1/contracts/getNamedSchedule", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -79,7 +79,7 @@ pub async fn get_contract_named_schedule_v1(configuration: &configuration::Confi
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_get_contract_named_schedule_v1_request);
+    req_builder = req_builder.json(&p_body_get_contract_named_schedule_payload);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -96,8 +96,8 @@ pub async fn get_contract_named_schedule_v1(configuration: &configuration::Confi
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GetCustomerNamedScheduleV1200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GetCustomerNamedScheduleV1200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NamedSchedule`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::NamedSchedule`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -107,9 +107,9 @@ pub async fn get_contract_named_schedule_v1(configuration: &configuration::Confi
 }
 
 /// Get a named schedule for the given customer. This endpoint's availability is dependent on your client's configuration.
-pub async fn get_customer_named_schedule_v1(configuration: &configuration::Configuration, get_customer_named_schedule_v1_request: Option<models::GetCustomerNamedScheduleV1Request>) -> Result<models::GetCustomerNamedScheduleV1200Response, Error<GetCustomerNamedScheduleV1Error>> {
+pub async fn get_customer_named_schedule_v1(configuration: &configuration::Configuration, get_customer_named_schedule_payload: Option<models::GetCustomerNamedSchedulePayload>) -> Result<models::NamedSchedule, Error<GetCustomerNamedScheduleV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_get_customer_named_schedule_v1_request = get_customer_named_schedule_v1_request;
+    let p_body_get_customer_named_schedule_payload = get_customer_named_schedule_payload;
 
     let uri_str = format!("{}/v1/customers/getNamedSchedule", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -120,7 +120,7 @@ pub async fn get_customer_named_schedule_v1(configuration: &configuration::Confi
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_get_customer_named_schedule_v1_request);
+    req_builder = req_builder.json(&p_body_get_customer_named_schedule_payload);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -137,8 +137,8 @@ pub async fn get_customer_named_schedule_v1(configuration: &configuration::Confi
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GetCustomerNamedScheduleV1200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GetCustomerNamedScheduleV1200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NamedSchedule`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::NamedSchedule`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -148,9 +148,9 @@ pub async fn get_customer_named_schedule_v1(configuration: &configuration::Confi
 }
 
 /// Get a named schedule for the given rate card. This endpoint's availability is dependent on your client's configuration.
-pub async fn get_rate_card_named_schedule_v1(configuration: &configuration::Configuration, get_rate_card_named_schedule_v1_request: Option<models::GetRateCardNamedScheduleV1Request>) -> Result<models::GetCustomerNamedScheduleV1200Response, Error<GetRateCardNamedScheduleV1Error>> {
+pub async fn get_rate_card_named_schedule_v1(configuration: &configuration::Configuration, get_rate_card_named_schedule_payload: Option<models::GetRateCardNamedSchedulePayload>) -> Result<models::NamedSchedule, Error<GetRateCardNamedScheduleV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_get_rate_card_named_schedule_v1_request = get_rate_card_named_schedule_v1_request;
+    let p_body_get_rate_card_named_schedule_payload = get_rate_card_named_schedule_payload;
 
     let uri_str = format!("{}/v1/contract-pricing/rate-cards/getNamedSchedule", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -161,7 +161,7 @@ pub async fn get_rate_card_named_schedule_v1(configuration: &configuration::Conf
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_get_rate_card_named_schedule_v1_request);
+    req_builder = req_builder.json(&p_body_get_rate_card_named_schedule_payload);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -178,8 +178,8 @@ pub async fn get_rate_card_named_schedule_v1(configuration: &configuration::Conf
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GetCustomerNamedScheduleV1200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GetCustomerNamedScheduleV1200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NamedSchedule`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::NamedSchedule`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -189,9 +189,9 @@ pub async fn get_rate_card_named_schedule_v1(configuration: &configuration::Conf
 }
 
 /// List contract-level named schedules for a customer, optionally scoped to a single contract.
-pub async fn list_contracts_named_schedules_v1(configuration: &configuration::Configuration, list_contracts_named_schedules_v1_request: Option<models::ListContractsNamedSchedulesV1Request>) -> Result<models::ListContractsNamedSchedulesV1200Response, Error<ListContractsNamedSchedulesV1Error>> {
+pub async fn list_contracts_named_schedules_v1(configuration: &configuration::Configuration, list_contracts_named_schedules_payload: Option<models::ListContractsNamedSchedulesPayload>) -> Result<models::ListContractsNamedSchedulesPage, Error<ListContractsNamedSchedulesV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_list_contracts_named_schedules_v1_request = list_contracts_named_schedules_v1_request;
+    let p_body_list_contracts_named_schedules_payload = list_contracts_named_schedules_payload;
 
     let uri_str = format!("{}/v1/contracts/listNamedSchedules", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -202,7 +202,7 @@ pub async fn list_contracts_named_schedules_v1(configuration: &configuration::Co
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_list_contracts_named_schedules_v1_request);
+    req_builder = req_builder.json(&p_body_list_contracts_named_schedules_payload);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -219,8 +219,8 @@ pub async fn list_contracts_named_schedules_v1(configuration: &configuration::Co
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ListContractsNamedSchedulesV1200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ListContractsNamedSchedulesV1200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ListContractsNamedSchedulesPage`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ListContractsNamedSchedulesPage`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -230,9 +230,9 @@ pub async fn list_contracts_named_schedules_v1(configuration: &configuration::Co
 }
 
 /// Update a named schedule for the given contract. This endpoint's availability is dependent on your client's configuration.
-pub async fn update_contract_named_schedule_v1(configuration: &configuration::Configuration, update_contract_named_schedule_v1_request: Option<models::UpdateContractNamedScheduleV1Request>) -> Result<(), Error<UpdateContractNamedScheduleV1Error>> {
+pub async fn update_contract_named_schedule_v1(configuration: &configuration::Configuration, update_contract_named_schedule_payload: Option<models::UpdateContractNamedSchedulePayload>) -> Result<(), Error<UpdateContractNamedScheduleV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_update_contract_named_schedule_v1_request = update_contract_named_schedule_v1_request;
+    let p_body_update_contract_named_schedule_payload = update_contract_named_schedule_payload;
 
     let uri_str = format!("{}/v1/contracts/updateNamedSchedule", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -243,7 +243,7 @@ pub async fn update_contract_named_schedule_v1(configuration: &configuration::Co
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_update_contract_named_schedule_v1_request);
+    req_builder = req_builder.json(&p_body_update_contract_named_schedule_payload);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -260,9 +260,9 @@ pub async fn update_contract_named_schedule_v1(configuration: &configuration::Co
 }
 
 /// Update a named schedule for the given customer. This endpoint's availability is dependent on your client's configuration.
-pub async fn update_customer_named_schedule_v1(configuration: &configuration::Configuration, update_customer_named_schedule_v1_request: Option<models::UpdateCustomerNamedScheduleV1Request>) -> Result<(), Error<UpdateCustomerNamedScheduleV1Error>> {
+pub async fn update_customer_named_schedule_v1(configuration: &configuration::Configuration, update_customer_named_schedule_payload: Option<models::UpdateCustomerNamedSchedulePayload>) -> Result<(), Error<UpdateCustomerNamedScheduleV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_update_customer_named_schedule_v1_request = update_customer_named_schedule_v1_request;
+    let p_body_update_customer_named_schedule_payload = update_customer_named_schedule_payload;
 
     let uri_str = format!("{}/v1/customers/updateNamedSchedule", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -273,7 +273,7 @@ pub async fn update_customer_named_schedule_v1(configuration: &configuration::Co
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_update_customer_named_schedule_v1_request);
+    req_builder = req_builder.json(&p_body_update_customer_named_schedule_payload);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -290,9 +290,9 @@ pub async fn update_customer_named_schedule_v1(configuration: &configuration::Co
 }
 
 /// Update a named schedule for the given rate card. This endpoint's availability is dependent on your client's configuration.
-pub async fn update_rate_card_named_schedule_v1(configuration: &configuration::Configuration, update_rate_card_named_schedule_v1_request: Option<models::UpdateRateCardNamedScheduleV1Request>) -> Result<(), Error<UpdateRateCardNamedScheduleV1Error>> {
+pub async fn update_rate_card_named_schedule_v1(configuration: &configuration::Configuration, update_rate_card_named_schedule_payload: Option<models::UpdateRateCardNamedSchedulePayload>) -> Result<(), Error<UpdateRateCardNamedScheduleV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_update_rate_card_named_schedule_v1_request = update_rate_card_named_schedule_v1_request;
+    let p_body_update_rate_card_named_schedule_payload = update_rate_card_named_schedule_payload;
 
     let uri_str = format!("{}/v1/contract-pricing/rate-cards/updateNamedSchedule", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -303,7 +303,7 @@ pub async fn update_rate_card_named_schedule_v1(configuration: &configuration::C
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_update_rate_card_named_schedule_v1_request);
+    req_builder = req_builder.json(&p_body_update_rate_card_named_schedule_payload);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

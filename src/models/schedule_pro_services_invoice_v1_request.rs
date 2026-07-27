@@ -28,11 +28,11 @@ pub struct ScheduleProServicesInvoiceV1Request {
     pub netsuite_invoice_header_end: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Each line requires an amount or both unit_price and quantity.
     #[serde(rename = "line_items")]
-    pub line_items: Vec<models::ScheduleProServicesInvoiceV1RequestLineItemsInner>,
+    pub line_items: Vec<models::ProServiceInvoiceLineItem>,
 }
 
 impl ScheduleProServicesInvoiceV1Request {
-    pub fn new(customer_id: uuid::Uuid, contract_id: uuid::Uuid, issued_at: chrono::DateTime<chrono::FixedOffset>, line_items: Vec<models::ScheduleProServicesInvoiceV1RequestLineItemsInner>) -> ScheduleProServicesInvoiceV1Request {
+    pub fn new(customer_id: uuid::Uuid, contract_id: uuid::Uuid, issued_at: chrono::DateTime<chrono::FixedOffset>, line_items: Vec<models::ProServiceInvoiceLineItem>) -> ScheduleProServicesInvoiceV1Request {
         ScheduleProServicesInvoiceV1Request {
             customer_id,
             contract_id,
