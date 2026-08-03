@@ -19,8 +19,8 @@ use super::{Error, configuration, ContentType};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AddManualBalanceLedgerEntryV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -44,8 +44,8 @@ pub enum ArchiveCreditV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateCustomerCommitV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -53,8 +53,8 @@ pub enum CreateCustomerCommitV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateCustomerCreditV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -62,8 +62,8 @@ pub enum CreateCustomerCreditV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DisableCommitTrueupV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -87,7 +87,7 @@ pub enum EditCreditV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetNetBalanceV1Error {
-    Status400(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -116,7 +116,7 @@ pub enum ListCustomerCreditsV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListSeatBalancesV1Error {
-    Status404(models::Error),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -139,8 +139,8 @@ pub enum RetireCommitsV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateCommitEndDateV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -148,16 +148,16 @@ pub enum UpdateCommitEndDateV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateCreditEndDateV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Manually adjust the available balance on a commit or credit. This entry is appended to the commit ledger as a new event. Optionally include a description that provides the reasoning for the entry.  ### Use this endpoint to: - Address incorrect usage burn-down caused by malformed usage or invalid config - Decrease available balance to account for outages where usage may have not been tracked or sent to Metronome - Issue credits to customers in the form of increased balance on existing commit or credit  ### Usage guidelines: Manual ledger entries can be extremely useful for resolving discrepancies in Metronome. However, most corrections to inaccurate billings can be modified upstream of the commit, whether that is via contract editing, rate editing, or other actions that cause an invoice to be recalculated. 
-pub async fn add_manual_balance_ledger_entry_v1(configuration: &configuration::Configuration, add_manual_balance_ledger_entry_payload: Option<models::AddManualBalanceLedgerEntryPayload>) -> Result<(), Error<AddManualBalanceLedgerEntryV1Error>> {
+pub async fn add_manual_balance_ledger_entry_v1(configuration: &configuration::Configuration, add_manual_balance_ledger_entry_v1_request: Option<models::AddManualBalanceLedgerEntryV1Request>) -> Result<(), Error<AddManualBalanceLedgerEntryV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_add_manual_balance_ledger_entry_payload = add_manual_balance_ledger_entry_payload;
+    let p_body_add_manual_balance_ledger_entry_v1_request = add_manual_balance_ledger_entry_v1_request;
 
     let uri_str = format!("{}/v1/contracts/addManualBalanceLedgerEntry", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -168,7 +168,7 @@ pub async fn add_manual_balance_ledger_entry_v1(configuration: &configuration::C
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_add_manual_balance_ledger_entry_payload);
+    req_builder = req_builder.json(&p_body_add_manual_balance_ledger_entry_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -185,9 +185,9 @@ pub async fn add_manual_balance_ledger_entry_v1(configuration: &configuration::C
 }
 
 /// Archive a contract-level or customer-level commit. Use this endpoint to deactivate a commit while preserving historical records. You will not be able to archive a commit until all of the finalized usage invoices the commit has been applied to are voided, and all of the finalized invoices for commit payment have been voided.   Example workflow:  The customer was provisioned a prepaid commit erroneously. It was applied to their most recent finalized usage invoice. - First, void the finalized invoice that the commit was applied to. Also, void the finalized invoice associated with the commit payment.  - Then, use the archiveCommit endpoint to deactivate the commit. - Finally, regenerate the voided invoice. The invoice will be regenerated without the application of the commit, which has now been archived.   ### Usage guidelines: - Once a commit has been archived, it will no longer appear by default on the endpoints `listCustomerCommits` or `listCustomerBalances`. Use the `include_archived` parameter to choose to fetch the details.  - Once a commit has been archived, it has a null ledger and 0 remaining balance.  - Archiving a commit fully deactivates the entire access schedule. If you want to reduce the amount granted in a commit, consider editing the access schedule using the `editCommit` endpoint, or adding a manual ledger entry using the `addManualBalanceLedgerEntry` endpoint. 
-pub async fn archive_commit_v2(configuration: &configuration::Configuration, archive_commit_payload: Option<models::ArchiveCommitPayload>) -> Result<models::ArchiveAlertV1200Response, Error<ArchiveCommitV2Error>> {
+pub async fn archive_commit_v2(configuration: &configuration::Configuration, archive_commit_v2_request: Option<models::ArchiveCommitV2Request>) -> Result<models::ArchiveAlertV1200Response, Error<ArchiveCommitV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_archive_commit_payload = archive_commit_payload;
+    let p_body_archive_commit_v2_request = archive_commit_v2_request;
 
     let uri_str = format!("{}/v2/contracts/commits/archive", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -198,7 +198,7 @@ pub async fn archive_commit_v2(configuration: &configuration::Configuration, arc
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_archive_commit_payload);
+    req_builder = req_builder.json(&p_body_archive_commit_v2_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -226,9 +226,9 @@ pub async fn archive_commit_v2(configuration: &configuration::Configuration, arc
 }
 
 /// Archive a contract-level or customer-level credit. Use this endpoint to deactivate a credit while preserving historical records. You will not be able to archive a credit until all of the finalized invoices the credit has been applied to are voided.   Example workflow:  The customer was granted a free credit erroneously. It was applied to their most recent finalized invoice. - First, void the finalized invoice that the credit was applied to.  - Then, use the archiveCredit endpoint to deactivate the credit.  - Finally, regenerate the voided invoice. The invoice will be regenerated without the application of the credit, which has now been archived.   ### Usage guidelines: - Once a credit has been archived, it will no longer appear by default on the endpoints `listCustomerCredits` or `listCustomerBalances`. Use the `include_archived` parameter to choose to fetch the details.  - Once a credit has been archived, it has a null ledger and 0 remaining balance.  - Archiving a credit fully deactivates the entire access schedule. If you want to reduce the amount granted in a credit, consider editing the access schedule using the `editCredit` endpoint, or adding a manual ledger entry using the `addManualBalanceLedgerEntry` endpoint. 
-pub async fn archive_credit_v2(configuration: &configuration::Configuration, archive_credit_payload: Option<models::ArchiveCreditPayload>) -> Result<models::ArchiveAlertV1200Response, Error<ArchiveCreditV2Error>> {
+pub async fn archive_credit_v2(configuration: &configuration::Configuration, archive_credit_v2_request: Option<models::ArchiveCreditV2Request>) -> Result<models::ArchiveAlertV1200Response, Error<ArchiveCreditV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_archive_credit_payload = archive_credit_payload;
+    let p_body_archive_credit_v2_request = archive_credit_v2_request;
 
     let uri_str = format!("{}/v2/contracts/credits/archive", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -239,7 +239,7 @@ pub async fn archive_credit_v2(configuration: &configuration::Configuration, arc
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_archive_credit_payload);
+    req_builder = req_builder.json(&p_body_archive_credit_v2_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -266,10 +266,10 @@ pub async fn archive_credit_v2(configuration: &configuration::Configuration, arc
     }
 }
 
-/// Creates customer-level commits that establish spending commitments for customers across their Metronome usage. Commits represent contracted spending obligations that can be either prepaid (paid upfront) or postpaid (billed later).   Note: In most cases, you should add commitments directly to customer contracts using the contract/create or contract/edit APIs.  ### Use this endpoint to: Use this endpoint when you need to establish customer-level spending commitments that can be applied across multiple contracts or scoped to specific contracts. Customer-level commits are ideal for: - Enterprise-wide minimum spending agreements that span multiple contracts - Multi-contract volume commitments with shared spending pools - Cross-contract discount tiers based on aggregate usage  #### Commit type Requirements:  - You must specify either \"prepaid\" or \"postpaid\" as the commit type: - Prepaid commits: Customer pays upfront; invoice_schedule is optional (if omitted, creates a commit without an invoice) - Postpaid commits: Customer pays when the commitment expires (the end of the access_schedule); invoice_schedule is required and must match access_schedule totals.   #### Billing configuration: - invoice_contract_id is required for postpaid commits and for prepaid commits with billing (only optional for free prepaid commits) unless do_not_invoice is set to true - For postpaid commits: access_schedule and invoice_schedule must have matching amounts - For postpaid commits: only one schedule item is allowed in both schedules.  #### Scoping flexibility: Customer-level commits can be configured in a few ways: - Contract-specific: Use the `applicable_contract_ids` field to limit the commit to specific contracts - Cross-contract: Leave `applicable_contract_ids` empty to allow the commit to be used across all of the customer's contracts  #### Product targeting: Commits can be scoped to specific products using applicable_product_ids, applicable_product_tags, or specifiers, or left unrestricted to apply to all products.  #### Priority considerations: When multiple commits are applicable, the one with the lower priority value will be consumed first. If there is a tie, contract level commits and credits will be applied before customer level commits and credits. Plan your priority scheme carefully to ensure commits are applied in the desired order.  ### Usage guidelines: ⚠️ Preferred Alternative: In most cases, you should add commits directly to contracts using the create contract or edit contract APIs instead of creating customer-level commits. Contract-level commits provide better organization and are the recommended approach for standard use cases. 
-pub async fn create_customer_commit_v1(configuration: &configuration::Configuration, create_customer_commit_payload: Option<models::CreateCustomerCommitPayload>) -> Result<models::ArchiveAlertV1200Response, Error<CreateCustomerCommitV1Error>> {
+/// ⚠️ For most contract amendments, use `contracts/edit` directly. Use this endpoint only for cross-contract or enterprise-wide commits.  Creates customer-level commits that establish spending commitments for customers across their Metronome usage. Commits represent contracted spending obligations that can be either prepaid (paid upfront) or postpaid (billed later).  Note: In most cases, you should add commitments directly to customer contracts using the contract/create or contract/edit APIs.  ### Use this endpoint to: Use this endpoint when you need to establish customer-level spending commitments that can be applied across multiple contracts or scoped to specific contracts. Customer-level commits are ideal for: - Enterprise-wide minimum spending agreements that span multiple contracts - Multi-contract volume commitments with shared spending pools - Cross-contract discount tiers based on aggregate usage  #### Commit type Requirements:  - You must specify either \"prepaid\" or \"postpaid\" as the commit type: - Prepaid commits: Customer pays upfront; invoice_schedule is optional (if omitted, creates a commit without an invoice) - Postpaid commits: Customer pays when the commitment expires (the end of the access_schedule); invoice_schedule is required and must match access_schedule totals.   #### Billing configuration: - invoice_contract_id is required for postpaid commits and for prepaid commits with billing (only optional for free prepaid commits) unless do_not_invoice is set to true - For postpaid commits: access_schedule and invoice_schedule must have matching amounts - For postpaid commits: only one schedule item is allowed in both schedules.  #### Scoping flexibility: Customer-level commits can be configured in a few ways: - Contract-specific: Use the `applicable_contract_ids` field to limit the commit to specific contracts - Cross-contract: Leave `applicable_contract_ids` empty to allow the commit to be used across all of the customer's contracts  #### Product targeting: Commits can be scoped to specific products using applicable_product_ids, applicable_product_tags, or specifiers, or left unrestricted to apply to all products.  #### Priority considerations: When multiple commits are applicable, the one with the lower priority value will be consumed first. If there is a tie, contract level commits and credits will be applied before customer level commits and credits. Plan your priority scheme carefully to ensure commits are applied in the desired order.  ### Usage guidelines: ⚠️ Preferred Alternative: In most cases, you should add commits directly to contracts using the create contract or edit contract APIs instead of creating customer-level commits. Contract-level commits provide better organization and are the recommended approach for standard use cases. 
+pub async fn create_customer_commit_v1(configuration: &configuration::Configuration, create_customer_commit_v1_request: Option<models::CreateCustomerCommitV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<CreateCustomerCommitV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_create_customer_commit_payload = create_customer_commit_payload;
+    let p_body_create_customer_commit_v1_request = create_customer_commit_v1_request;
 
     let uri_str = format!("{}/v1/contracts/customerCommits/create", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -280,7 +280,7 @@ pub async fn create_customer_commit_v1(configuration: &configuration::Configurat
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_create_customer_commit_payload);
+    req_builder = req_builder.json(&p_body_create_customer_commit_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -307,10 +307,10 @@ pub async fn create_customer_commit_v1(configuration: &configuration::Configurat
     }
 }
 
-/// Creates customer-level credits that provide spending allowances or free credit balances for customers across their Metronome usage. Note: In most cases, you should add credits directly to customer contracts using the contract/create or contract/edit APIs.  ### Use this endpoint to: Use this endpoint when you need to provision credits directly at the customer level that can be applied across multiple contracts or scoped to specific contracts. Customer-level credits are ideal for: - Customer onboarding incentives that apply globally - Flexible spending allowances that aren't tied to a single contract - Migration scenarios where you need to preserve existing customer balances  #### Scoping flexibility:  Customer-level credits can be configured in two ways: - Contract-specific: Use the applicable_contract_ids field to limit the credit to specific contracts - Cross-contract: Leave applicable_contract_ids empty to allow the credit to be used across all of the customer's contracts  #### Product Targeting:  Credits can be scoped to specific products using `applicable_product_ids` or `applicable_product_tags`, or left unrestricted to apply to all products.  #### Priority considerations:  When multiple credits are applicable, the one with the lower priority value will be consumed first. If there is a tie, contract level commits and credits will be applied before customer level commits and credits. Plan your priority scheme carefully to ensure credits are applied in the desired order.  #### Access Schedule Required:  You must provide an `access_schedule` that defines when and how much credit becomes available to the customer over time. This usually is aligned to the contract schedule or starts immediately and is set to expire in the future.  ### Usage Guidelines: ⚠️ Preferred Alternative: In most cases, you should add credits directly to contracts using the contract/create or contract/edit APIs instead of creating customer-level credits. Contract-level credits provide better organization, and are easier for finance teams to recognize revenue, and are the recommended approach for most use cases. 
-pub async fn create_customer_credit_v1(configuration: &configuration::Configuration, create_customer_credit_payload: Option<models::CreateCustomerCreditPayload>) -> Result<models::ArchiveAlertV1200Response, Error<CreateCustomerCreditV1Error>> {
+/// ⚠️ For most contract amendments, use `contracts/edit` directly. Use this endpoint only for cross-contract or enterprise-wide commits.  Creates customer-level credits that provide spending allowances or free credit balances for customers across their Metronome usage. Note: In most cases, you should add credits directly to customer contracts using the contract/create or contract/edit APIs.  ### Use this endpoint to: Use this endpoint when you need to provision credits directly at the customer level that can be applied across multiple contracts or scoped to specific contracts. Customer-level credits are ideal for: - Customer onboarding incentives that apply globally - Flexible spending allowances that aren't tied to a single contract - Migration scenarios where you need to preserve existing customer balances  #### Scoping flexibility:  Customer-level credits can be configured in two ways: - Contract-specific: Use the applicable_contract_ids field to limit the credit to specific contracts - Cross-contract: Leave applicable_contract_ids empty to allow the credit to be used across all of the customer's contracts  #### Product Targeting:  Credits can be scoped to specific products using `applicable_product_ids` or `applicable_product_tags`, or left unrestricted to apply to all products.  #### Priority considerations:  When multiple credits are applicable, the one with the lower priority value will be consumed first. If there is a tie, contract level commits and credits will be applied before customer level commits and credits. Plan your priority scheme carefully to ensure credits are applied in the desired order.  #### Access Schedule Required:  You must provide an `access_schedule` that defines when and how much credit becomes available to the customer over time. This usually is aligned to the contract schedule or starts immediately and is set to expire in the future.  ### Usage Guidelines: ⚠️ Preferred Alternative: In most cases, you should add credits directly to contracts using the contract/create or contract/edit APIs instead of creating customer-level credits. Contract-level credits provide better organization, and are easier for finance teams to recognize revenue, and are the recommended approach for most use cases. 
+pub async fn create_customer_credit_v1(configuration: &configuration::Configuration, create_customer_credit_v1_request: Option<models::CreateCustomerCreditV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<CreateCustomerCreditV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_create_customer_credit_payload = create_customer_credit_payload;
+    let p_body_create_customer_credit_v1_request = create_customer_credit_v1_request;
 
     let uri_str = format!("{}/v1/contracts/customerCredits/create", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -321,7 +321,7 @@ pub async fn create_customer_credit_v1(configuration: &configuration::Configurat
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_create_customer_credit_payload);
+    req_builder = req_builder.json(&p_body_create_customer_credit_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -349,9 +349,9 @@ pub async fn create_customer_credit_v1(configuration: &configuration::Configurat
 }
 
 /// Disable the true-up invoice for a postpaid commit. If used, the true-up invoice will not be generated.  For postpaid commits, usage during the access period is paid for in arrears. If the total amount paid during the access period is less than the committed amount, there's a final true-up invoice on the invoice_date. 
-pub async fn disable_commit_trueup_v1(configuration: &configuration::Configuration, disable_commit_trueup_payload: Option<models::DisableCommitTrueupPayload>) -> Result<models::ArchiveAlertV1200Response, Error<DisableCommitTrueupV1Error>> {
+pub async fn disable_commit_trueup_v1(configuration: &configuration::Configuration, disable_commit_trueup_v1_request: Option<models::DisableCommitTrueupV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<DisableCommitTrueupV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_disable_commit_trueup_payload = disable_commit_trueup_payload;
+    let p_body_disable_commit_trueup_v1_request = disable_commit_trueup_v1_request;
 
     let uri_str = format!("{}/v1/contracts/commits/disableTrueup", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -362,7 +362,7 @@ pub async fn disable_commit_trueup_v1(configuration: &configuration::Configurati
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_disable_commit_trueup_payload);
+    req_builder = req_builder.json(&p_body_disable_commit_trueup_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -390,9 +390,9 @@ pub async fn disable_commit_trueup_v1(configuration: &configuration::Configurati
 }
 
 /// Edit specific details for a contract-level or customer-level commit. Use this endpoint to modify individual commit access schedules, invoice schedules, applicable products, invoicing contracts, or other fields.   ### Usage guidelines: - As with all edits in Metronome, draft invoices will reflect the edit immediately, while finalized invoices are untouched unless voided and regenerated. - If a commit's invoice schedule item is associated with a finalized invoice, you cannot remove or update the invoice schedule item. - If a commit's invoice schedule item is associated with a voided invoice, you cannot remove the invoice schedule item. - You cannot remove an commit access schedule segment that was applied to a finalized invoice. You can void the invoice beforehand and then remove the access schedule segment. 
-pub async fn edit_commit_v2(configuration: &configuration::Configuration, edit_commit_payload: Option<models::EditCommitPayload>) -> Result<models::ArchiveAlertV1200Response, Error<EditCommitV2Error>> {
+pub async fn edit_commit_v2(configuration: &configuration::Configuration, edit_commit_v2_request: Option<models::EditCommitV2Request>) -> Result<models::ArchiveAlertV1200Response, Error<EditCommitV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_edit_commit_payload = edit_commit_payload;
+    let p_body_edit_commit_v2_request = edit_commit_v2_request;
 
     let uri_str = format!("{}/v2/contracts/commits/edit", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -403,7 +403,7 @@ pub async fn edit_commit_v2(configuration: &configuration::Configuration, edit_c
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_edit_commit_payload);
+    req_builder = req_builder.json(&p_body_edit_commit_v2_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -431,9 +431,9 @@ pub async fn edit_commit_v2(configuration: &configuration::Configuration, edit_c
 }
 
 /// Edit details for a contract-level or customer-level credit.   ### Use this endpoint to:  - Extend the duration or the amount of an existing free credit like a trial  - Modify individual credit access schedules, applicable products, priority, or other fields.   ### Usage guidelines: - As with all edits in Metronome, draft invoices will reflect the edit immediately, while finalized invoices are untouched unless voided and regenerated.  - You cannot remove an access schedule segment that was applied to a finalized invoice. You can void the invoice beforehand and then remove the access schedule segment. 
-pub async fn edit_credit_v2(configuration: &configuration::Configuration, edit_credit_payload: Option<models::EditCreditPayload>) -> Result<models::ArchiveAlertV1200Response, Error<EditCreditV2Error>> {
+pub async fn edit_credit_v2(configuration: &configuration::Configuration, edit_credit_v2_request: Option<models::EditCreditV2Request>) -> Result<models::ArchiveAlertV1200Response, Error<EditCreditV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_edit_credit_payload = edit_credit_payload;
+    let p_body_edit_credit_v2_request = edit_credit_v2_request;
 
     let uri_str = format!("{}/v2/contracts/credits/edit", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -444,7 +444,7 @@ pub async fn edit_credit_v2(configuration: &configuration::Configuration, edit_c
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_edit_credit_payload);
+    req_builder = req_builder.json(&p_body_edit_credit_v2_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -677,9 +677,9 @@ pub async fn list_seat_balances_v1(configuration: &configuration::Configuration,
 }
 
 /// If using threshold billing with an external payment gateway, Metronome does not facilitate the payment gating process on behalf of the client. As a result, clients must facilitate the transaction themselves. This end-point is used to either release or cancel the commit pending on the outcome of the external payment attempt.  To release the commit, you must pass the `workflow_id` provided in the `payment_gate.external_initiate` webhook.  ### Use this endpoint to: Facilitate payment gating workflows for threshold billing if using a payment gateway Metronome does not support today.  ### Usage guidelines: Ensure that you are set up to consume the `payment_gate.external_initiate` webhook and save the `workflow_id`. 
-pub async fn release_external_payment_gate_threshold_commit_v1(configuration: &configuration::Configuration, external_payment_gate_threshold_commit_payload: Option<models::ExternalPaymentGateThresholdCommitPayload>) -> Result<(), Error<ReleaseExternalPaymentGateThresholdCommitV1Error>> {
+pub async fn release_external_payment_gate_threshold_commit_v1(configuration: &configuration::Configuration, release_external_payment_gate_threshold_commit_v1_request: Option<models::ReleaseExternalPaymentGateThresholdCommitV1Request>) -> Result<(), Error<ReleaseExternalPaymentGateThresholdCommitV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_external_payment_gate_threshold_commit_payload = external_payment_gate_threshold_commit_payload;
+    let p_body_release_external_payment_gate_threshold_commit_v1_request = release_external_payment_gate_threshold_commit_v1_request;
 
     let uri_str = format!("{}/v1/contracts/commits/threshold-billing/release", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -690,7 +690,7 @@ pub async fn release_external_payment_gate_threshold_commit_v1(configuration: &c
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_external_payment_gate_threshold_commit_payload);
+    req_builder = req_builder.json(&p_body_release_external_payment_gate_threshold_commit_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -707,9 +707,9 @@ pub async fn release_external_payment_gate_threshold_commit_v1(configuration: &c
 }
 
 /// Retire one or more commits on a contract. Retirement moves fully-depleted, immutable commits into cold storage, making future computations on this customer faster. Retired commits are removed from active code paths but remain retrievable through a dedicated historical view. Set `dry_run` to `true` to preview the result without making changes. 
-pub async fn retire_commits_v2(configuration: &configuration::Configuration, retire_commits_payload: Option<models::RetireCommitsPayload>) -> Result<models::RetireCommitsV2200Response, Error<RetireCommitsV2Error>> {
+pub async fn retire_commits_v2(configuration: &configuration::Configuration, retire_commits_v2_request: Option<models::RetireCommitsV2Request>) -> Result<models::RetireCommitsV2200Response, Error<RetireCommitsV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_retire_commits_payload = retire_commits_payload;
+    let p_body_retire_commits_v2_request = retire_commits_v2_request;
 
     let uri_str = format!("{}/v2/contracts/commits/retire", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -720,7 +720,7 @@ pub async fn retire_commits_v2(configuration: &configuration::Configuration, ret
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_retire_commits_payload);
+    req_builder = req_builder.json(&p_body_retire_commits_v2_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -748,9 +748,9 @@ pub async fn retire_commits_v2(configuration: &configuration::Configuration, ret
 }
 
 /// Shortens the end date of a prepaid commit to terminate it earlier than originally scheduled. Use this endpoint when you need to cancel or reduce the duration of an existing prepaid commit. Only works with prepaid commit types and can only move the end date forward (earlier), not extend it.   ### Usage guidelines: To extend commit end dates or make other comprehensive edits, use the 'edit commit' endpoint instead. 
-pub async fn update_commit_end_date_v1(configuration: &configuration::Configuration, update_commit_end_date_payload: Option<models::UpdateCommitEndDatePayload>) -> Result<models::ArchiveAlertV1200Response, Error<UpdateCommitEndDateV1Error>> {
+pub async fn update_commit_end_date_v1(configuration: &configuration::Configuration, update_commit_end_date_v1_request: Option<models::UpdateCommitEndDateV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<UpdateCommitEndDateV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_update_commit_end_date_payload = update_commit_end_date_payload;
+    let p_body_update_commit_end_date_v1_request = update_commit_end_date_v1_request;
 
     let uri_str = format!("{}/v1/contracts/customerCommits/updateEndDate", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -761,7 +761,7 @@ pub async fn update_commit_end_date_v1(configuration: &configuration::Configurat
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_update_commit_end_date_payload);
+    req_builder = req_builder.json(&p_body_update_commit_end_date_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -789,9 +789,9 @@ pub async fn update_commit_end_date_v1(configuration: &configuration::Configurat
 }
 
 /// Shortens the end date of an existing customer credit to terminate it earlier than originally scheduled. Only allows moving end dates forward (earlier), not extending them.   Note: To extend credit end dates or make comprehensive edits, use the 'edit credit' endpoint instead. 
-pub async fn update_credit_end_date_v1(configuration: &configuration::Configuration, update_credit_end_date_payload: Option<models::UpdateCreditEndDatePayload>) -> Result<models::ArchiveAlertV1200Response, Error<UpdateCreditEndDateV1Error>> {
+pub async fn update_credit_end_date_v1(configuration: &configuration::Configuration, update_credit_end_date_v1_request: Option<models::UpdateCreditEndDateV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<UpdateCreditEndDateV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_update_credit_end_date_payload = update_credit_end_date_payload;
+    let p_body_update_credit_end_date_v1_request = update_credit_end_date_v1_request;
 
     let uri_str = format!("{}/v1/contracts/customerCredits/updateEndDate", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -802,7 +802,7 @@ pub async fn update_credit_end_date_v1(configuration: &configuration::Configurat
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_update_credit_end_date_payload);
+    req_builder = req_builder.json(&p_body_update_credit_end_date_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

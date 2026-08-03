@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 ## charge_seats_v1
 
-> models::Invoice charge_seats_v1(customer_id, charge_seats_v1_request)
+> models::ChargeSeatsV1200Response charge_seats_v1(customer_id, charge_seats_v1_request)
 Invoice seats
 
 Creates an prorated invoice for a seat addition. As an alternative to this endpoint, you can elect to use automatic seat invoicing feature. Metronome will check for new seat usage every hour and automatically invoice for any new seats. For newly created active customer plans, there will be up to 4 hour delay before the first automatic seat invoice is generated. 
@@ -33,7 +33,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::Invoice**](Invoice.md)
+[**models::ChargeSeatsV1200Response**](chargeSeats_v1_200_response.md)
 
 ### Authorization
 
@@ -192,7 +192,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_spend_breakdown_invoices_v1
 
-> models::ListSpendBreakdownInvoicesV1200Response list_spend_breakdown_invoices_v1(customer_id, include_list_prices, spend_breakdown_invoices_query_payload)
+> models::ListSpendBreakdownInvoicesV1200Response list_spend_breakdown_invoices_v1(customer_id, include_list_prices, list_spend_breakdown_invoices_v1_request)
 List spend invoice breakdowns
 
 Granularly analyze customer spend patterns by dynamically slicing and dicing costs across any dimension. This endpoint empowers you to break down spending by granular properties like user, organization, model, region, or any custom event property—even if these aren't the default groupings on your invoices. Unlike standard invoice breakdowns, this endpoint focuses purely on spend analysis, making helpful for building powerful cost analytics dashboards that show spend before credit/commit application.  ### Use this endpoint to: - Identify cost drivers: Pinpoint which users, teams, or resources are driving the most spend - Build usage analytics dashboards: Let customers explore their costs by any event property (user_id, org_id, model_id, region, etc.) - Enable showback/chargeback: Allocate costs to specific departments, projects, or cost centers - Detect anomalies: Find unexpected spending patterns by analyzing costs across different dimensions - Optimize resource usage: Help customers identify underutilized or over-provisioned resources - Support multi-tenancy: Show spending breakdowns for specific organizations within a single account - Create custom reports: Generate executive dashboards with spending by any business-relevant dimension  ### Key response fields: Spend-focused invoice data with: - Pure spend information: No commits or credits—just raw spending data for cleaner analysis - Dynamic grouping: Line items grouped by your specified group_keys (overriding default presentation groups) - Filtered results: Only line items matching your group_filters criteria - Flexible time windows: Daily, hourly, or full-period (none) breakdowns - Complete line item details: Including quantities, unit prices, and custom presentation group values  ### Usage guidelines: - Group key setup: All keys used in group_keys, group_filters, and pricing groups must exist in the same compound group key on the billable metric - Supported window sizes: hour, day, or none (for full period analysis) - Filtering power: Use group_filters to focus on specific values (e.g., only show data for specific user_ids) - Override flexibility: Change how costs are grouped without affecting actual invoicing  Limitations: - Cannot override group keys when using:   - MAX aggregation billable metrics   - Tiered pricing   - Quantity rounding   - Commit-specific overrides   - Overrides on presentation group values
@@ -204,7 +204,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **customer_id** | **uuid::Uuid** |  | [required] |
 **include_list_prices** | Option<**bool**> | If set, list prices will be returned for each contract usage and subscription line item. |  |
-**spend_breakdown_invoices_query_payload** | Option<[**SpendBreakdownInvoicesQueryPayload**](SpendBreakdownInvoicesQueryPayload.md)> |  |  |
+**list_spend_breakdown_invoices_v1_request** | Option<[**ListSpendBreakdownInvoicesV1Request**](ListSpendBreakdownInvoicesV1Request.md)> |  |  |
 
 ### Return type
 
@@ -224,7 +224,7 @@ Name | Type | Description  | Required | Notes
 
 ## preview_customer_events_v1
 
-> models::PreviewCustomerEventsV1200Response preview_customer_events_v1(customer_id, preview_events_payload)
+> models::PreviewCustomerEventsV1200Response preview_customer_events_v1(customer_id, preview_customer_events_v1_request)
 Preview events
 
 Preview how a set of events will affect a customer's invoices. Generates draft invoices for a customer using their current contract configuration and the provided events.  This is useful for testing how new events will affect the customer's invoices before they are actually processed. Customers on contracts with SQL billable metrics are not supported. 
@@ -235,7 +235,7 @@ Preview how a set of events will affect a customer's invoices. Generates draft i
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **customer_id** | **uuid::Uuid** |  | [required] |
-**preview_events_payload** | Option<[**PreviewEventsPayload**](PreviewEventsPayload.md)> | The events to preview |  |
+**preview_customer_events_v1_request** | Option<[**PreviewCustomerEventsV1Request**](PreviewCustomerEventsV1Request.md)> | The events to preview |  |
 
 ### Return type
 
@@ -255,7 +255,7 @@ Name | Type | Description  | Required | Notes
 
 ## regenerate_invoice_v1
 
-> models::VoidInvoiceV1200Response regenerate_invoice_v1(void_invoice_v1_request)
+> models::VoidInvoiceV1200Response regenerate_invoice_v1(archive_alert_v1200_response_data)
 Regenerate an invoice
 
 This endpoint regenerates a voided invoice and recalculates the invoice based on up-to-date rates, available balances, and other fees regardless of the billing period.  ### Use this endpoint to: Recalculate an invoice with updated rate terms, available balance, and fees to correct billing disputes or discrepancies  ### Key response fields: The regenerated invoice id, which is distinct from the previously voided invoice.  ### Usage guidelines: If an invoice is attached to a contract with a billing provider on it, the regenerated invoice will be distributed based on the configuration. 
@@ -265,7 +265,7 @@ This endpoint regenerates a voided invoice and recalculates the invoice based on
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**void_invoice_v1_request** | Option<[**VoidInvoiceV1Request**](VoidInvoiceV1Request.md)> | The invoice id to regenerate |  |
+**archive_alert_v1200_response_data** | Option<[**ArchiveAlertV1200ResponseData**](ArchiveAlertV1200ResponseData.md)> | The invoice id to regenerate |  |
 
 ### Return type
 
@@ -285,7 +285,7 @@ Name | Type | Description  | Required | Notes
 
 ## void_invoice_v1
 
-> models::VoidInvoiceV1200Response void_invoice_v1(void_invoice_v1_request)
+> models::VoidInvoiceV1200Response void_invoice_v1(archive_alert_v1200_response_data)
 Void an invoice
 
 Permanently cancels an invoice by setting its status to voided, preventing collection and removing it from customer billing. Use this to correct billing errors, cancel incorrect charges, or handle disputed invoices that should not be collected. Returns the voided invoice ID with the status change applied immediately to stop any payment processing. 
@@ -295,7 +295,7 @@ Permanently cancels an invoice by setting its status to voided, preventing colle
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**void_invoice_v1_request** | Option<[**VoidInvoiceV1Request**](VoidInvoiceV1Request.md)> | The invoice id to void |  |
+**archive_alert_v1200_response_data** | Option<[**ArchiveAlertV1200ResponseData**](ArchiveAlertV1200ResponseData.md)> | The invoice id to void |  |
 
 ### Return type
 
