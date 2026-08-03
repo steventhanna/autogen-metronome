@@ -19,8 +19,8 @@ use super::{Error, configuration, ContentType};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AmendContractV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -28,8 +28,8 @@ pub enum AmendContractV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ArchiveContractV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -37,8 +37,8 @@ pub enum ArchiveContractV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateContractV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -46,8 +46,8 @@ pub enum CreateContractV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateCustomerWithContractV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -55,7 +55,7 @@ pub enum CreateCustomerWithContractV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateHistoricalContractUsageInvoicesV1Error {
-    Status400(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -63,8 +63,8 @@ pub enum CreateHistoricalContractUsageInvoicesV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreatePackageV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -95,7 +95,7 @@ pub enum GetContractRateScheduleV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetContractV1Error {
-    Status404(models::Error),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -135,7 +135,7 @@ pub enum ListContractsOnPackageV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListContractsV1Error {
-    Status404(models::Error),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -151,7 +151,7 @@ pub enum ListContractsV2Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ScheduleProServicesInvoiceV1Error {
-    Status404(models::Error),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -159,8 +159,8 @@ pub enum ScheduleProServicesInvoiceV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SetUsageFilterV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -168,8 +168,8 @@ pub enum SetUsageFilterV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateContractEndDateV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -177,16 +177,16 @@ pub enum UpdateContractEndDateV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateInvoiceIssueDateV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Amendments will be replaced by Contract editing. New clients should implement using the `editContract` endpoint. Read more about the migration to contract editing [here](/guides/implement-metronome/migrate-amendments-to-edits/) and reach out to your Metronome representative for more details. Once contract editing is enabled, access to this endpoint will be removed. 
-pub async fn amend_contract_v1(configuration: &configuration::Configuration, amend_contract_payload: Option<models::AmendContractPayload>) -> Result<models::ArchiveAlertV1200Response, Error<AmendContractV1Error>> {
+pub async fn amend_contract_v1(configuration: &configuration::Configuration, amend_contract_v1_request: Option<models::AmendContractV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<AmendContractV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_amend_contract_payload = amend_contract_payload;
+    let p_body_amend_contract_v1_request = amend_contract_v1_request;
 
     let uri_str = format!("{}/v1/contracts/amend", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -197,7 +197,7 @@ pub async fn amend_contract_v1(configuration: &configuration::Configuration, ame
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_amend_contract_payload);
+    req_builder = req_builder.json(&p_body_amend_contract_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -225,9 +225,9 @@ pub async fn amend_contract_v1(configuration: &configuration::Configuration, ame
 }
 
 /// Permanently end and archive a contract along with all its terms. Any draft invoices will be canceled, and all upcoming scheduled invoices will be voided–also all finalized invoices can optionally be voided. Use this in the event a contract was incorrectly created and needed to be removed from a customer.  #### Impact on commits and credits: When archiving a contract, all associated commits and credits are also archived. For prepaid commits with active segments, Metronome automatically generates expiration ledger entries to close out any remaining balances, ensuring accurate accounting of unused prepaid amounts. These ledger entries will appear in the commit's transaction history with type `PREPAID_COMMIT_EXPIRATION`.  #### Archived contract visibility:  Archived contracts remain accessible for historical reporting and audit purposes. They can be retrieved using the `ListContracts` endpoint by setting the `include_archived` parameter to `true` or in the Metronome UI when the \"Show archived\" option is enabled. 
-pub async fn archive_contract_v1(configuration: &configuration::Configuration, archive_contract_payload: Option<models::ArchiveContractPayload>) -> Result<models::ArchiveAlertV1200Response, Error<ArchiveContractV1Error>> {
+pub async fn archive_contract_v1(configuration: &configuration::Configuration, archive_contract_v1_request: Option<models::ArchiveContractV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<ArchiveContractV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_archive_contract_payload = archive_contract_payload;
+    let p_body_archive_contract_v1_request = archive_contract_v1_request;
 
     let uri_str = format!("{}/v1/contracts/archive", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -238,7 +238,7 @@ pub async fn archive_contract_v1(configuration: &configuration::Configuration, a
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_archive_contract_payload);
+    req_builder = req_builder.json(&p_body_archive_contract_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -266,9 +266,9 @@ pub async fn archive_contract_v1(configuration: &configuration::Configuration, a
 }
 
 /// Contracts define a customer's products, pricing, discounts, access duration, and billing configuration. Contracts serve as the central billing agreement for both PLG and Enterprise customers. You can automatically grant customers access to your products and services directly from your product or CRM.  ### Use this endpoint to: - PLG onboarding: Automatically provision new self-serve customers with contracts when they sign up. - Enterprise sales: Push negotiated contracts from Salesforce with custom pricing and commitments - Promotional pricing: Implement time-limited discounts and free trials through overrides  ### Key components: #### Contract Term and Billing Schedule - Set contract duration using `starting_at` and `ending_before` fields. PLG contracts typically use perpetual agreements (no end date), while Enterprise contracts have fixed end dates which can be edited over time in the case of co-term upsells.  #### Rate Card If you are offering usage based pricing, you can set a rate card for the contract to reference through `rate_card_id` or `rate_card_alias`. The rate card is a store of all of your usage based products and their centralized pricing. Any new products or price changes on the rate card can be set to automatically propagate to all associated contracts - this ensures consistent pricing and product launches flow to contracts without manual updates and migrations. The `usage_statement_schedule` determines the cadence on which Metronome will finalize a usage invoice for the customer. This defaults to monthly on the 1st, with options for custom dates, quarterly, or annual cadences. Note: Most usage based billing companies align usage statements to be evaluated aligned to the first of the month. Read more about [Rate Cards](https://docs.metronome.com/pricing-packaging/create-manage-rate-cards/).  #### Overrides and discounts Customize pricing on the contract through time-bounded overrides that can target specific products, product families, or complex usage scenarios. Overrides enable two key capabilities: - Discounts: Apply percentage discounts, fixed rate reductions, or quantity-based pricing tiers - Entitlements: Provide special pricing or access to specific products for negotiated deals  Read more about [Contract Overrides](https://docs.metronome.com/manage-product-access/add-contract-override/).  #### Commits and Credits Using commits, configure prepaid or postpaid spending commitments where customers promise to spend a certain amount over the contract period paid in advance or in arrears. Use credits to provide free spending allowances. Under the hood these are the same mechanisms, however, credits are typically offered for free (SLA or promotional) or as a part of an allotment associated with a Subscription.  In Metronome, you can set commits and credits to only be applicable for a subset of usage. Use `applicable_product_ids` or `applicable_product_tags` to create product or product-family specific commits or credits, or you can build complex boolean logic specifiers to target usage based on pricing  and presentation group values using `override_specifiers`.  These objects can also also be configured to have a recurrence schedule to easily model customer packaging which includes recurring monthly or quarterly allotments.  Commits support rollover settings (`rollover_fraction`) to transfer unused balances between contract periods, either entirely or as a percentage.  Read more about [Credits and Commits](https://docs.metronome.com/pricing-packaging/apply-credits-commits/).  #### Subscriptions You can add a fixed recurring charge to a contract, like monthly licenses or seat-based fees, using the subscription charge. Subscription charges are defined on your rate card and you can select which subscription is applicable to add to each contract.         When you add a subscription to a contract you need to: - Define whether the subscription is paid for in-advance or in-arrears (`collection_schedule`) - Define the proration behavior (`proration`) - Specify an initial quantity (`initial_quantity`) - Define which subscription rate on the rate card should be used (`subscription_rate`)  Read more about [Subscriptions](https://docs.metronome.com/manage-product-access/create-subscription/).  #### Scheduled Charges Set up one-time, recurring, or entirely custom charges that occur on specific dates, separate from usage-based billing or commitments. These can be used to model non-recurring platform charges or professional services.  #### Threshold Billing Metronome allows you to configure automatic billing triggers when customers reach spending thresholds to prevent fraud and manage risk. You can use `spend_threshold_configuration` to trigger an invoice to cover current charges whenever the threshold is reached or you can ensure the customer maintains a minimum prepaid balance using the `prepaid_balance_configuration`.  Read more about [Spend Threshold](https://docs.metronome.com/manage-product-access/spend-thresholds/) and [Prepaid Balance Thresholds](https://docs.metronome.com/manage-product-access/prepaid-balance-thresholds/).  ### Usage guidelines: - You can always [Edit Contracts](https://docs.metronome.com/manage-product-access/edit-contract/) after it has been created, using the `editContract` endpoint. Metronome keeps track of all edits, both in the audit log and over the `getEditHistory` endpoint. - Customers in Metronome can have multiple concurrent contracts at one time. Use `usage_filters` to route the correct usage to each contract. [Read more about usage filters](https://docs.metronome.com/manage-product-access/provision-customer/#create-a-usage-filter). 
-pub async fn create_contract_v1(configuration: &configuration::Configuration, create_contract_payload: Option<models::CreateContractPayload>) -> Result<models::CreateContractV1200Response, Error<CreateContractV1Error>> {
+pub async fn create_contract_v1(configuration: &configuration::Configuration, create_contract_v1_request: Option<models::CreateContractV1Request>) -> Result<models::CreateContractV1200Response, Error<CreateContractV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_create_contract_payload = create_contract_payload;
+    let p_body_create_contract_v1_request = create_contract_v1_request;
 
     let uri_str = format!("{}/v1/contracts/create", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -279,7 +279,7 @@ pub async fn create_contract_v1(configuration: &configuration::Configuration, cr
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_create_contract_payload);
+    req_builder = req_builder.json(&p_body_create_contract_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -307,9 +307,9 @@ pub async fn create_contract_v1(configuration: &configuration::Configuration, cr
 }
 
 /// Create a new customer and provision a contract. This endpoint's availability is dependent on your client's configuration.
-pub async fn create_customer_with_contract_v1(configuration: &configuration::Configuration, create_customer_with_contract_payload: Option<models::CreateCustomerWithContractPayload>) -> Result<models::CreateCustomerWithContractV1200Response, Error<CreateCustomerWithContractV1Error>> {
+pub async fn create_customer_with_contract_v1(configuration: &configuration::Configuration, create_customer_with_contract_v1_request: Option<models::CreateCustomerWithContractV1Request>) -> Result<models::CreateCustomerWithContractV1200Response, Error<CreateCustomerWithContractV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_create_customer_with_contract_payload = create_customer_with_contract_payload;
+    let p_body_create_customer_with_contract_v1_request = create_customer_with_contract_v1_request;
 
     let uri_str = format!("{}/v1/composite/createCustomerWithContract", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -320,7 +320,7 @@ pub async fn create_customer_with_contract_v1(configuration: &configuration::Con
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_create_customer_with_contract_payload);
+    req_builder = req_builder.json(&p_body_create_customer_with_contract_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -348,9 +348,9 @@ pub async fn create_customer_with_contract_v1(configuration: &configuration::Con
 }
 
 /// Create historical usage invoices for past billing periods on specific contracts. Use this endpoint to generate retroactive invoices with custom usage line items, quantities, and date ranges. Supports preview mode to validate invoice data before creation. Ideal for billing migrations or correcting past billing periods. 
-pub async fn create_historical_contract_usage_invoices_v1(configuration: &configuration::Configuration, create_historical_contract_usage_invoice_request_payload: Option<models::CreateHistoricalContractUsageInvoiceRequestPayload>) -> Result<models::PreviewCustomerEventsV1200Response, Error<CreateHistoricalContractUsageInvoicesV1Error>> {
+pub async fn create_historical_contract_usage_invoices_v1(configuration: &configuration::Configuration, create_historical_contract_usage_invoices_v1_request: Option<models::CreateHistoricalContractUsageInvoicesV1Request>) -> Result<models::PreviewCustomerEventsV1200Response, Error<CreateHistoricalContractUsageInvoicesV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_create_historical_contract_usage_invoice_request_payload = create_historical_contract_usage_invoice_request_payload;
+    let p_body_create_historical_contract_usage_invoices_v1_request = create_historical_contract_usage_invoices_v1_request;
 
     let uri_str = format!("{}/v1/contracts/createHistoricalInvoices", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -361,7 +361,7 @@ pub async fn create_historical_contract_usage_invoices_v1(configuration: &config
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_create_historical_contract_usage_invoice_request_payload);
+    req_builder = req_builder.json(&p_body_create_historical_contract_usage_invoices_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -389,9 +389,9 @@ pub async fn create_historical_contract_usage_invoices_v1(configuration: &config
 }
 
 /// Create a package that defines a set of reusable, time-relative contract terms that can be used across cohorts of customers. Packages provide an abstraction layer on top of rate cards to provide an easy way to provision customers with standard pricing.   ### **Use this endpoint to:** - Model standard pay-as-you-go pricing packages that can be easily reused across customers - Define standardized contract terms and discounting for sales-led motions - Set aliases for the package to facilitate easy package transition. Aliases are human-readable names that you can use in the place of the id of the package when provisioning a customer’s contract. By using an alias, you can easily create a contract and provision a customer by choosing the “Starter Plan” package, without storing the package ID in your internal systems. This is helpful when launching terms for a package, as you can create a new package with the “Starter Plan” alias scheduled to be assigned without updating your provisioning code.  ### Key input fields: - `starting_at_offset`: Starting date relative to contract start. Generates the `starting_at` date when a contract is provisioned using a package. - `duration`: Duration starting from `starting_at_offset`. Generates the `ending_before` date when a contract is provisioned using a package. - `date_offset`: Date relative to contract start. Used for point-in-time dates without a duration. - `aliases`: Human-readable name to use when provisioning contracts with a package.  ### Usage guidelines: - Use packages for standard self-serve use cases where customers have consistent terms. For customers with negotiated custom contract terms, use the `createContract` endpoint for maximum flexibility. - Billing provider configuration can be set when creating a package by using `billing_provider` and `delivery_method`. To provision a customer successfully with a package, the customer must have one and only one billing provider configuration that matches the billing provider configuration set on the package. - A package alias can only be used by one package at a time. If you create a new package with an alias that is already in use by another package, the original package’s alias schedule will be updated. The alias will reference the package to which it was most recently assigned. - Terms can only be specified using times relative to the contract start date. Supported granularities are: `days`, `weeks`, `months`, `years` - Packages cannot be edited once created. Use the rate card to easily add new rates across all of your customers or make direct edits to a contract after provisioning with a package. Edited contracts will still be associated with the package used during provisioning. 
-pub async fn create_package_v1(configuration: &configuration::Configuration, create_package_payload: Option<models::CreatePackagePayload>) -> Result<models::ArchiveAlertV1200Response, Error<CreatePackageV1Error>> {
+pub async fn create_package_v1(configuration: &configuration::Configuration, create_package_v1_request: Option<models::CreatePackageV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<CreatePackageV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_create_package_payload = create_package_payload;
+    let p_body_create_package_v1_request = create_package_v1_request;
 
     let uri_str = format!("{}/v1/packages/create", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -402,7 +402,7 @@ pub async fn create_package_v1(configuration: &configuration::Configuration, cre
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_create_package_payload);
+    req_builder = req_builder.json(&p_body_create_package_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -430,9 +430,9 @@ pub async fn create_package_v1(configuration: &configuration::Configuration, cre
 }
 
 /// The ability to edit a contract helps you react quickly to the needs of your customers and your business.  ### Use this endpoint to: - Encode mid-term commitment and discount changes - Fix configuration mistakes and easily roll back packaging changes  ### Key response fields: - The `id` of the edit - Complete edit details. For example, if you edited the contract to add new overrides and credits, you will receive the IDs of those overrides and credits in the response.  ### Usage guidelines: - When you edit a contract, any draft invoices update immediately to reflect that edit. Finalized invoices remain unchanged - you must void and regenerate them in the UI or API to reflect the edit. - Contract editing must be enabled to use this endpoint. Reach out to your Metronome representative to learn more. 
-pub async fn edit_contract_v2(configuration: &configuration::Configuration, edit_contract_payload: Option<models::EditContractPayload>) -> Result<models::EditContractV2200Response, Error<EditContractV2Error>> {
+pub async fn edit_contract_v2(configuration: &configuration::Configuration, edit_contract_v2_request: Option<models::EditContractV2Request>) -> Result<models::EditContractV2200Response, Error<EditContractV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_edit_contract_payload = edit_contract_payload;
+    let p_body_edit_contract_v2_request = edit_contract_v2_request;
 
     let uri_str = format!("{}/v2/contracts/edit", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -443,7 +443,7 @@ pub async fn edit_contract_v2(configuration: &configuration::Configuration, edit
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_edit_contract_payload);
+    req_builder = req_builder.json(&p_body_edit_contract_v2_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -512,11 +512,11 @@ pub async fn get_contract_edit_history_v2(configuration: &configuration::Configu
 }
 
 /// For a specific customer and contract, get the rates at a specific point in time. This endpoint takes the contract's rate card into consideration, including scheduled changes. It also takes into account overrides on the contract.   For example, if you want to show your customer a summary of the prices they are paying, inclusive of any negotiated discounts or promotions, use this endpoint. This endpoint only returns rates that are entitled. 
-pub async fn get_contract_rate_schedule_v1(configuration: &configuration::Configuration, limit: Option<i32>, next_page: Option<&str>, get_contract_rate_schedule_payload: Option<models::GetContractRateSchedulePayload>) -> Result<models::GetContractRateScheduleV1200Response, Error<GetContractRateScheduleV1Error>> {
+pub async fn get_contract_rate_schedule_v1(configuration: &configuration::Configuration, limit: Option<i32>, next_page: Option<&str>, get_contract_rate_schedule_v1_request: Option<models::GetContractRateScheduleV1Request>) -> Result<models::GetContractRateScheduleV1200Response, Error<GetContractRateScheduleV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_limit = limit;
     let p_query_next_page = next_page;
-    let p_body_get_contract_rate_schedule_payload = get_contract_rate_schedule_payload;
+    let p_body_get_contract_rate_schedule_v1_request = get_contract_rate_schedule_v1_request;
 
     let uri_str = format!("{}/v1/contracts/getContractRateSchedule", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -533,7 +533,7 @@ pub async fn get_contract_rate_schedule_v1(configuration: &configuration::Config
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_get_contract_rate_schedule_payload);
+    req_builder = req_builder.json(&p_body_get_contract_rate_schedule_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -897,9 +897,9 @@ pub async fn schedule_pro_services_invoice_v1(configuration: &configuration::Con
 }
 
 /// If a customer has multiple contracts with overlapping rates, the usage filter routes usage to the appropriate contract based on a predefined group key.   As an example, imagine you have a customer associated with two projects. Each project is associated with its own contract. You can create a usage filter with group key `project_id` on each contract, and route usage for `project_1` to the first contract and `project_2` to the second contract.   ### Use this endpoint to: - Support enterprise contracting scenarios where multiple contracts are associated to the same customer with the same rates. - Update the usage filter associated with the contract over time.   ### Usage guidelines: To use usage filters, the `group_key` must be defined on the billable metrics underlying the rate card on the contracts. 
-pub async fn set_usage_filter_v1(configuration: &configuration::Configuration, set_usage_filter_payload: Option<models::SetUsageFilterPayload>) -> Result<(), Error<SetUsageFilterV1Error>> {
+pub async fn set_usage_filter_v1(configuration: &configuration::Configuration, set_usage_filter_v1_request: Option<models::SetUsageFilterV1Request>) -> Result<(), Error<SetUsageFilterV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_set_usage_filter_payload = set_usage_filter_payload;
+    let p_body_set_usage_filter_v1_request = set_usage_filter_v1_request;
 
     let uri_str = format!("{}/v1/contracts/setUsageFilter", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -910,7 +910,7 @@ pub async fn set_usage_filter_v1(configuration: &configuration::Configuration, s
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_set_usage_filter_payload);
+    req_builder = req_builder.json(&p_body_set_usage_filter_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -927,9 +927,9 @@ pub async fn set_usage_filter_v1(configuration: &configuration::Configuration, s
 }
 
 /// Update or add an end date to a contract. Ending a contract early will impact draft usage statements, truncate any terms, and remove upcoming scheduled invoices. Moving the date into the future will only extend the contract length. Terms and scheduled invoices are not extended. In-advance subscriptions will not be extended. Use this if a contract's end date has changed or if a perpetual contract ends. 
-pub async fn update_contract_end_date_v1(configuration: &configuration::Configuration, update_contract_end_date_payload: Option<models::UpdateContractEndDatePayload>) -> Result<models::ArchiveAlertV1200Response, Error<UpdateContractEndDateV1Error>> {
+pub async fn update_contract_end_date_v1(configuration: &configuration::Configuration, update_contract_end_date_v1_request: Option<models::UpdateContractEndDateV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<UpdateContractEndDateV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_update_contract_end_date_payload = update_contract_end_date_payload;
+    let p_body_update_contract_end_date_v1_request = update_contract_end_date_v1_request;
 
     let uri_str = format!("{}/v1/contracts/updateEndDate", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -940,7 +940,7 @@ pub async fn update_contract_end_date_v1(configuration: &configuration::Configur
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_update_contract_end_date_payload);
+    req_builder = req_builder.json(&p_body_update_contract_end_date_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -968,9 +968,9 @@ pub async fn update_contract_end_date_v1(configuration: &configuration::Configur
 }
 
 /// Updates the issue date of a specific DRAFT invoice within a contract. Use this endpoint to reschedule when an invoice should be issued without affecting future billing cycles or the underlying contract terms. Only works with invoices still in DRAFT status, and the new issue date cannot be later than the contract's end date.   ### Usage guidelines: This only changes the individual invoice's issue date - it does not modify the recurring invoice schedule of associated charges or commits. To update both the issue date and future billing schedule, use the 'edit contract' or 'edit commit' endpoints instead. 
-pub async fn update_invoice_issue_date_v1(configuration: &configuration::Configuration, update_invoice_issue_date_payload: Option<models::UpdateInvoiceIssueDatePayload>) -> Result<models::ArchiveAlertV1200Response, Error<UpdateInvoiceIssueDateV1Error>> {
+pub async fn update_invoice_issue_date_v1(configuration: &configuration::Configuration, update_invoice_issue_date_v1_request: Option<models::UpdateInvoiceIssueDateV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<UpdateInvoiceIssueDateV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_update_invoice_issue_date_payload = update_invoice_issue_date_payload;
+    let p_body_update_invoice_issue_date_v1_request = update_invoice_issue_date_v1_request;
 
     let uri_str = format!("{}/v1/contracts/updateInvoiceIssueDate", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -981,7 +981,7 @@ pub async fn update_invoice_issue_date_v1(configuration: &configuration::Configu
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_update_invoice_issue_date_payload);
+    req_builder = req_builder.json(&p_body_update_invoice_issue_date_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

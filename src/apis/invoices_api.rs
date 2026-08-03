@@ -19,7 +19,7 @@ use super::{Error, configuration, ContentType};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ChargeSeatsV1Error {
-    Status404(models::Error),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -27,7 +27,7 @@ pub enum ChargeSeatsV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetInvoicePdfV1Error {
-    Status404(models::Error),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -35,7 +35,7 @@ pub enum GetInvoicePdfV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetInvoiceV1Error {
-    Status404(models::Error),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -43,7 +43,7 @@ pub enum GetInvoiceV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListBreakdownInvoicesV1Error {
-    Status404(models::Error),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -51,7 +51,7 @@ pub enum ListBreakdownInvoicesV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListInvoicesV1Error {
-    Status404(models::Error),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -59,7 +59,7 @@ pub enum ListInvoicesV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListSpendBreakdownInvoicesV1Error {
-    Status404(models::Error),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -67,8 +67,8 @@ pub enum ListSpendBreakdownInvoicesV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum PreviewCustomerEventsV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -88,7 +88,7 @@ pub enum VoidInvoiceV1Error {
 
 
 /// Creates an prorated invoice for a seat addition. As an alternative to this endpoint, you can elect to use automatic seat invoicing feature. Metronome will check for new seat usage every hour and automatically invoice for any new seats. For newly created active customer plans, there will be up to 4 hour delay before the first automatic seat invoice is generated. 
-pub async fn charge_seats_v1(configuration: &configuration::Configuration, customer_id: &str, charge_seats_v1_request: Option<models::ChargeSeatsV1Request>) -> Result<models::Invoice, Error<ChargeSeatsV1Error>> {
+pub async fn charge_seats_v1(configuration: &configuration::Configuration, customer_id: &str, charge_seats_v1_request: Option<models::ChargeSeatsV1Request>) -> Result<models::ChargeSeatsV1200Response, Error<ChargeSeatsV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_customer_id = customer_id;
     let p_body_charge_seats_v1_request = charge_seats_v1_request;
@@ -119,8 +119,8 @@ pub async fn charge_seats_v1(configuration: &configuration::Configuration, custo
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Invoice`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::Invoice`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ChargeSeatsV1200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ChargeSeatsV1200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -372,11 +372,11 @@ pub async fn list_invoices_v1(configuration: &configuration::Configuration, cust
 }
 
 /// Granularly analyze customer spend patterns by dynamically slicing and dicing costs across any dimension. This endpoint empowers you to break down spending by granular properties like user, organization, model, region, or any custom event property—even if these aren't the default groupings on your invoices. Unlike standard invoice breakdowns, this endpoint focuses purely on spend analysis, making helpful for building powerful cost analytics dashboards that show spend before credit/commit application.  ### Use this endpoint to: - Identify cost drivers: Pinpoint which users, teams, or resources are driving the most spend - Build usage analytics dashboards: Let customers explore their costs by any event property (user_id, org_id, model_id, region, etc.) - Enable showback/chargeback: Allocate costs to specific departments, projects, or cost centers - Detect anomalies: Find unexpected spending patterns by analyzing costs across different dimensions - Optimize resource usage: Help customers identify underutilized or over-provisioned resources - Support multi-tenancy: Show spending breakdowns for specific organizations within a single account - Create custom reports: Generate executive dashboards with spending by any business-relevant dimension  ### Key response fields: Spend-focused invoice data with: - Pure spend information: No commits or credits—just raw spending data for cleaner analysis - Dynamic grouping: Line items grouped by your specified group_keys (overriding default presentation groups) - Filtered results: Only line items matching your group_filters criteria - Flexible time windows: Daily, hourly, or full-period (none) breakdowns - Complete line item details: Including quantities, unit prices, and custom presentation group values  ### Usage guidelines: - Group key setup: All keys used in group_keys, group_filters, and pricing groups must exist in the same compound group key on the billable metric - Supported window sizes: hour, day, or none (for full period analysis) - Filtering power: Use group_filters to focus on specific values (e.g., only show data for specific user_ids) - Override flexibility: Change how costs are grouped without affecting actual invoicing  Limitations: - Cannot override group keys when using:   - MAX aggregation billable metrics   - Tiered pricing   - Quantity rounding   - Commit-specific overrides   - Overrides on presentation group values
-pub async fn list_spend_breakdown_invoices_v1(configuration: &configuration::Configuration, customer_id: &str, include_list_prices: Option<bool>, spend_breakdown_invoices_query_payload: Option<models::SpendBreakdownInvoicesQueryPayload>) -> Result<models::ListSpendBreakdownInvoicesV1200Response, Error<ListSpendBreakdownInvoicesV1Error>> {
+pub async fn list_spend_breakdown_invoices_v1(configuration: &configuration::Configuration, customer_id: &str, include_list_prices: Option<bool>, list_spend_breakdown_invoices_v1_request: Option<models::ListSpendBreakdownInvoicesV1Request>) -> Result<models::ListSpendBreakdownInvoicesV1200Response, Error<ListSpendBreakdownInvoicesV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_customer_id = customer_id;
     let p_query_include_list_prices = include_list_prices;
-    let p_body_spend_breakdown_invoices_query_payload = spend_breakdown_invoices_query_payload;
+    let p_body_list_spend_breakdown_invoices_v1_request = list_spend_breakdown_invoices_v1_request;
 
     let uri_str = format!("{}/v1/customers/{customer_id}/invoices/spend-breakdowns", configuration.base_path, customer_id=crate::apis::urlencode(p_path_customer_id));
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -390,7 +390,7 @@ pub async fn list_spend_breakdown_invoices_v1(configuration: &configuration::Con
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_spend_breakdown_invoices_query_payload);
+    req_builder = req_builder.json(&p_body_list_spend_breakdown_invoices_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -418,10 +418,10 @@ pub async fn list_spend_breakdown_invoices_v1(configuration: &configuration::Con
 }
 
 /// Preview how a set of events will affect a customer's invoices. Generates draft invoices for a customer using their current contract configuration and the provided events.  This is useful for testing how new events will affect the customer's invoices before they are actually processed. Customers on contracts with SQL billable metrics are not supported. 
-pub async fn preview_customer_events_v1(configuration: &configuration::Configuration, customer_id: &str, preview_events_payload: Option<models::PreviewEventsPayload>) -> Result<models::PreviewCustomerEventsV1200Response, Error<PreviewCustomerEventsV1Error>> {
+pub async fn preview_customer_events_v1(configuration: &configuration::Configuration, customer_id: &str, preview_customer_events_v1_request: Option<models::PreviewCustomerEventsV1Request>) -> Result<models::PreviewCustomerEventsV1200Response, Error<PreviewCustomerEventsV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_customer_id = customer_id;
-    let p_body_preview_events_payload = preview_events_payload;
+    let p_body_preview_customer_events_v1_request = preview_customer_events_v1_request;
 
     let uri_str = format!("{}/v1/customers/{customer_id}/previewEvents", configuration.base_path, customer_id=crate::apis::urlencode(p_path_customer_id));
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -432,7 +432,7 @@ pub async fn preview_customer_events_v1(configuration: &configuration::Configura
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_preview_events_payload);
+    req_builder = req_builder.json(&p_body_preview_customer_events_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -460,9 +460,9 @@ pub async fn preview_customer_events_v1(configuration: &configuration::Configura
 }
 
 /// This endpoint regenerates a voided invoice and recalculates the invoice based on up-to-date rates, available balances, and other fees regardless of the billing period.  ### Use this endpoint to: Recalculate an invoice with updated rate terms, available balance, and fees to correct billing disputes or discrepancies  ### Key response fields: The regenerated invoice id, which is distinct from the previously voided invoice.  ### Usage guidelines: If an invoice is attached to a contract with a billing provider on it, the regenerated invoice will be distributed based on the configuration. 
-pub async fn regenerate_invoice_v1(configuration: &configuration::Configuration, void_invoice_v1_request: Option<models::VoidInvoiceV1Request>) -> Result<models::VoidInvoiceV1200Response, Error<RegenerateInvoiceV1Error>> {
+pub async fn regenerate_invoice_v1(configuration: &configuration::Configuration, archive_alert_v1200_response_data: Option<models::ArchiveAlertV1200ResponseData>) -> Result<models::VoidInvoiceV1200Response, Error<RegenerateInvoiceV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_void_invoice_v1_request = void_invoice_v1_request;
+    let p_body_archive_alert_v1200_response_data = archive_alert_v1200_response_data;
 
     let uri_str = format!("{}/v1/invoices/regenerate", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -473,7 +473,7 @@ pub async fn regenerate_invoice_v1(configuration: &configuration::Configuration,
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_void_invoice_v1_request);
+    req_builder = req_builder.json(&p_body_archive_alert_v1200_response_data);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -501,9 +501,9 @@ pub async fn regenerate_invoice_v1(configuration: &configuration::Configuration,
 }
 
 /// Permanently cancels an invoice by setting its status to voided, preventing collection and removing it from customer billing. Use this to correct billing errors, cancel incorrect charges, or handle disputed invoices that should not be collected. Returns the voided invoice ID with the status change applied immediately to stop any payment processing. 
-pub async fn void_invoice_v1(configuration: &configuration::Configuration, void_invoice_v1_request: Option<models::VoidInvoiceV1Request>) -> Result<models::VoidInvoiceV1200Response, Error<VoidInvoiceV1Error>> {
+pub async fn void_invoice_v1(configuration: &configuration::Configuration, archive_alert_v1200_response_data: Option<models::ArchiveAlertV1200ResponseData>) -> Result<models::VoidInvoiceV1200Response, Error<VoidInvoiceV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_void_invoice_v1_request = void_invoice_v1_request;
+    let p_body_archive_alert_v1200_response_data = archive_alert_v1200_response_data;
 
     let uri_str = format!("{}/v1/invoices/void", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -514,7 +514,7 @@ pub async fn void_invoice_v1(configuration: &configuration::Configuration, void_
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_void_invoice_v1_request);
+    req_builder = req_builder.json(&p_body_archive_alert_v1200_response_data);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

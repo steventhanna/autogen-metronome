@@ -13,8 +13,8 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetContractV2200ResponseDataRevenueSystemConfigurationScheduleInner {
-    #[serde(rename = "revenue_system_configuration")]
-    pub revenue_system_configuration: Box<models::GetContractV2200ResponseDataRevenueSystemConfigurationScheduleInnerRevenueSystemConfiguration>,
+    #[serde(rename = "revenue_system_configuration", deserialize_with = "Option::deserialize")]
+    pub revenue_system_configuration: Option<Box<models::GetContractV2200ResponseDataRevenueSystemConfigurationScheduleInnerRevenueSystemConfiguration>>,
     /// The date this revenue system configuration became or becomes active.
     #[serde(rename = "effective_at")]
     pub effective_at: chrono::DateTime<chrono::FixedOffset>,
@@ -24,9 +24,9 @@ pub struct GetContractV2200ResponseDataRevenueSystemConfigurationScheduleInner {
 }
 
 impl GetContractV2200ResponseDataRevenueSystemConfigurationScheduleInner {
-    pub fn new(revenue_system_configuration: models::GetContractV2200ResponseDataRevenueSystemConfigurationScheduleInnerRevenueSystemConfiguration, effective_at: chrono::DateTime<chrono::FixedOffset>) -> GetContractV2200ResponseDataRevenueSystemConfigurationScheduleInner {
+    pub fn new(revenue_system_configuration: Option<models::GetContractV2200ResponseDataRevenueSystemConfigurationScheduleInnerRevenueSystemConfiguration>, effective_at: chrono::DateTime<chrono::FixedOffset>) -> GetContractV2200ResponseDataRevenueSystemConfigurationScheduleInner {
         GetContractV2200ResponseDataRevenueSystemConfigurationScheduleInner {
-            revenue_system_configuration: Box::new(revenue_system_configuration),
+            revenue_system_configuration: if let Some(x) = revenue_system_configuration {Some(Box::new(x))} else {None},
             effective_at,
             effective_until: None,
         }

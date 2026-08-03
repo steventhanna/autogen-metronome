@@ -13,8 +13,8 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetContractV2200ResponseDataBillingProviderConfigurationScheduleInner {
-    #[serde(rename = "billing_provider_configuration")]
-    pub billing_provider_configuration: Box<models::GetCustomerBillingProviderConfigurationsV1200ResponseDataInner>,
+    #[serde(rename = "billing_provider_configuration", deserialize_with = "Option::deserialize")]
+    pub billing_provider_configuration: Option<Box<models::GetContractV2200ResponseDataBillingProviderConfigurationScheduleInnerBillingProviderConfiguration>>,
     /// The date this billing provider configuration became or becomes active.
     #[serde(rename = "effective_at")]
     pub effective_at: chrono::DateTime<chrono::FixedOffset>,
@@ -24,9 +24,9 @@ pub struct GetContractV2200ResponseDataBillingProviderConfigurationScheduleInner
 }
 
 impl GetContractV2200ResponseDataBillingProviderConfigurationScheduleInner {
-    pub fn new(billing_provider_configuration: models::GetCustomerBillingProviderConfigurationsV1200ResponseDataInner, effective_at: chrono::DateTime<chrono::FixedOffset>) -> GetContractV2200ResponseDataBillingProviderConfigurationScheduleInner {
+    pub fn new(billing_provider_configuration: Option<models::GetContractV2200ResponseDataBillingProviderConfigurationScheduleInnerBillingProviderConfiguration>, effective_at: chrono::DateTime<chrono::FixedOffset>) -> GetContractV2200ResponseDataBillingProviderConfigurationScheduleInner {
         GetContractV2200ResponseDataBillingProviderConfigurationScheduleInner {
-            billing_provider_configuration: Box::new(billing_provider_configuration),
+            billing_provider_configuration: if let Some(x) = billing_provider_configuration {Some(Box::new(x))} else {None},
             effective_at,
             effective_until: None,
         }
