@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **customer_id** | **uuid::Uuid** |  | 
 **commit_id** | Option<**uuid::Uuid**> |  | [optional]
+**access_type** | Option<**AccessType**> | Filters commits by how their balances are drawn down. `SPEND` deducts the dollar cost of usage. `QUANTITY` deducts the number of units used. (enum: SPEND, spend, QUANTITY, quantity) | [optional]
 **covering_date** | Option<**chrono::DateTime<chrono::FixedOffset>**> | Include only commits that have access schedules that \"cover\" the provided date | [optional]
 **starting_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> | Include only commits that have any access on or after the provided date | [optional]
 **effective_before** | Option<**chrono::DateTime<chrono::FixedOffset>**> | Include only commits that have any access before the provided date (exclusive) | [optional]

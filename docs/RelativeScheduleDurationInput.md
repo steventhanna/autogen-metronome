@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**access_type** | Option<**AccessType**> | Determines how the balance is drawn down. `SPEND` deducts the dollar cost of usage. `QUANTITY` deducts the number of units used. Defaults to `SPEND` if omitted. (enum: SPEND, spend, QUANTITY, quantity) | [optional]
 **credit_type_id** | Option<**uuid::Uuid**> | Defaults to USD (cents) if not passed | [optional]
 **schedule_items** | [**Vec<models::RelativeScheduleDurationInputScheduleItemsInner>**](RelativeScheduleDurationInputScheduleItemsInner.md) |  | 
 

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 > models::SubmitApprovalRequestsV1200Response submit_approval_requests_v1(submit_approval_requests_v1_request)
 Submit a write operation for human approval
 
-Queues a write operation for human review when an agentic token is in use.  When an agent attempts a write operation (e.g. `POST /v1/contracts/create`) using an agentic token, the server returns a `403 Agentic Restricted` error with a pointer to this endpoint. The agent should then call this endpoint with the original request details so a human can review and approve the action.  On success, a pending approval request is created and the response includes an `approval_url` linking to the Approval Dashboard where a human can review, approve, or reject the request. Once approved, the original operation is executed automatically and the dashboard reflects the completed status. 
+Queues a write operation for human review when an agentic token is in use.  When an agent attempts a write operation (e.g. `POST /v1/contracts/create`) using an agentic token, the server returns a `403 AgenticMutationBlocked` error with a pointer to this endpoint. The agent should then call this endpoint with the original request details so a human can review and approve the action.  On success, a pending approval request is created and the response includes an `approval_url` linking to the Approval Dashboard where a human can review, approve, or reject the request. Once approved, the original operation is executed automatically and the dashboard reflects the completed status. 
 
 ### Parameters
 

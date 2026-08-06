@@ -13,6 +13,9 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ScheduleDurationInputV2 {
+    /// Determines how the balance is drawn down. `SPEND` deducts the dollar cost of usage. `QUANTITY` deducts the number of units used. Defaults to `SPEND` if omitted.
+    #[serde(rename = "access_type", skip_serializing_if = "Option::is_none")]
+    pub access_type: Option<AccessType>,
     #[serde(rename = "credit_type_id", skip_serializing_if = "Option::is_none")]
     pub credit_type_id: Option<uuid::Uuid>,
     #[serde(rename = "schedule_items")]
@@ -22,9 +25,28 @@ pub struct ScheduleDurationInputV2 {
 impl ScheduleDurationInputV2 {
     pub fn new(schedule_items: Vec<models::ScheduleDurationInputScheduleItemsInner>) -> ScheduleDurationInputV2 {
         ScheduleDurationInputV2 {
+            access_type: None,
             credit_type_id: None,
             schedule_items,
         }
+    }
+}
+/// Determines how the balance is drawn down. `SPEND` deducts the dollar cost of usage. `QUANTITY` deducts the number of units used. Defaults to `SPEND` if omitted.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum AccessType {
+    #[serde(rename = "SPEND")]
+    Spend,
+    #[serde(rename = "spend")]
+    Spend2,
+    #[serde(rename = "QUANTITY")]
+    Quantity,
+    #[serde(rename = "quantity")]
+    Quantity2,
+}
+
+impl Default for AccessType {
+    fn default() -> AccessType {
+        Self::Spend
     }
 }
 

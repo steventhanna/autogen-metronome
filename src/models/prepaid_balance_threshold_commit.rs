@@ -24,6 +24,14 @@ pub struct PrepaidBalanceThresholdCommit {
     /// The priority of the commit, used to determine drawdown order. Lower priority commits are consumed first. Defaults to 100 if not specified.
     #[serde(rename = "priority", skip_serializing_if = "Option::is_none")]
     pub priority: Option<f64>,
+    #[serde(rename = "duration", skip_serializing_if = "Option::is_none")]
+    pub duration: Option<Box<models::RelativeDate>>,
+    /// Fraction of the created commit's unused balance that will roll over. Must be between 0 and 1.
+    #[serde(rename = "rollover_fraction", skip_serializing_if = "Option::is_none")]
+    pub rollover_fraction: Option<f64>,
+    /// Whether the created commits will be charged at commit rate or list rate.
+    #[serde(rename = "rate_type", skip_serializing_if = "Option::is_none")]
+    pub rate_type: Option<RateType>,
     /// Which products the threshold commit applies to. If applicable_product_ids, applicable_product_tags or specifiers are not provided, the commit applies to all products.
     #[serde(rename = "applicable_product_ids", skip_serializing_if = "Option::is_none")]
     pub applicable_product_ids: Option<Vec<uuid::Uuid>>,
@@ -42,10 +50,31 @@ impl PrepaidBalanceThresholdCommit {
             name: None,
             description: None,
             priority: None,
+            duration: None,
+            rollover_fraction: None,
+            rate_type: None,
             applicable_product_ids: None,
             applicable_product_tags: None,
             specifiers: None,
         }
+    }
+}
+/// Whether the created commits will be charged at commit rate or list rate.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum RateType {
+    #[serde(rename = "COMMIT_RATE")]
+    CommitRate,
+    #[serde(rename = "commit_rate")]
+    CommitRate2,
+    #[serde(rename = "LIST_RATE")]
+    ListRate,
+    #[serde(rename = "list_rate")]
+    ListRate2,
+}
+
+impl Default for RateType {
+    fn default() -> RateType {
+        Self::CommitRate
     }
 }
 
