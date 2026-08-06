@@ -17,6 +17,9 @@ pub struct ListCustomerBalancesV1Request {
     pub customer_id: uuid::Uuid,
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<uuid::Uuid>,
+    /// Filters balances by how they are drawn down. `SPEND` deducts the dollar cost of usage. `QUANTITY` deducts the number of units used.
+    #[serde(rename = "access_type", skip_serializing_if = "Option::is_none")]
+    pub access_type: Option<AccessType>,
     /// Return only balances that have access schedules that \"cover\" the provided date
     #[serde(rename = "covering_date", skip_serializing_if = "Option::is_none")]
     pub covering_date: Option<chrono::DateTime<chrono::FixedOffset>>,
@@ -57,6 +60,7 @@ impl ListCustomerBalancesV1Request {
         ListCustomerBalancesV1Request {
             customer_id,
             id: None,
+            access_type: None,
             covering_date: None,
             starting_at: None,
             effective_before: None,
@@ -69,6 +73,24 @@ impl ListCustomerBalancesV1Request {
             exclude_zero_balances: None,
             webhook_notification_id: None,
         }
+    }
+}
+/// Filters balances by how they are drawn down. `SPEND` deducts the dollar cost of usage. `QUANTITY` deducts the number of units used.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum AccessType {
+    #[serde(rename = "SPEND")]
+    Spend,
+    #[serde(rename = "spend")]
+    Spend2,
+    #[serde(rename = "QUANTITY")]
+    Quantity,
+    #[serde(rename = "quantity")]
+    Quantity2,
+}
+
+impl Default for AccessType {
+    fn default() -> AccessType {
+        Self::Spend
     }
 }
 

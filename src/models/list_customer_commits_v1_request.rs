@@ -17,6 +17,9 @@ pub struct ListCustomerCommitsV1Request {
     pub customer_id: uuid::Uuid,
     #[serde(rename = "commit_id", skip_serializing_if = "Option::is_none")]
     pub commit_id: Option<uuid::Uuid>,
+    /// Filters commits by how their balances are drawn down. `SPEND` deducts the dollar cost of usage. `QUANTITY` deducts the number of units used.
+    #[serde(rename = "access_type", skip_serializing_if = "Option::is_none")]
+    pub access_type: Option<AccessType>,
     /// Include only commits that have access schedules that \"cover\" the provided date
     #[serde(rename = "covering_date", skip_serializing_if = "Option::is_none")]
     pub covering_date: Option<chrono::DateTime<chrono::FixedOffset>>,
@@ -51,6 +54,7 @@ impl ListCustomerCommitsV1Request {
         ListCustomerCommitsV1Request {
             customer_id,
             commit_id: None,
+            access_type: None,
             covering_date: None,
             starting_at: None,
             effective_before: None,
@@ -61,6 +65,24 @@ impl ListCustomerCommitsV1Request {
             next_page: None,
             limit: None,
         }
+    }
+}
+/// Filters commits by how their balances are drawn down. `SPEND` deducts the dollar cost of usage. `QUANTITY` deducts the number of units used.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum AccessType {
+    #[serde(rename = "SPEND")]
+    Spend,
+    #[serde(rename = "spend")]
+    Spend2,
+    #[serde(rename = "QUANTITY")]
+    Quantity,
+    #[serde(rename = "quantity")]
+    Quantity2,
+}
+
+impl Default for AccessType {
+    fn default() -> AccessType {
+        Self::Spend
     }
 }
 
