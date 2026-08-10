@@ -13,8 +13,8 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct EditContractV2RequestAddRevenueSystemConfigurationUpdateRevenueSystemConfiguration {
-    #[serde(rename = "revenue_system_configuration_id", skip_serializing_if = "Option::is_none")]
-    pub revenue_system_configuration_id: Option<uuid::Uuid>,
+    #[serde(rename = "revenue_system_configuration_id", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub revenue_system_configuration_id: Option<Option<uuid::Uuid>>,
     /// The revenue system provider type.
     #[serde(rename = "provider", skip_serializing_if = "Option::is_none")]
     pub provider: Option<Provider>,

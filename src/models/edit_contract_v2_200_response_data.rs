@@ -16,7 +16,7 @@ pub struct EditContractV2200ResponseData {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
     #[serde(rename = "edit", skip_serializing_if = "Option::is_none")]
-    pub edit: Option<Box<models::ContractEdit>>,
+    pub edit: Option<Box<models::GetContractEditHistoryV2200ResponseDataInner>>,
 }
 
 impl EditContractV2200ResponseData {

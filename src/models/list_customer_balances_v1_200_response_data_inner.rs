@@ -14,13 +14,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListCustomerBalancesV1200ResponseDataInner {
-    Commit(Box<models::Commit>),
-    Credit(Box<models::Credit>),
+    GetContractV1200ResponseDataInitialCommitsInner(Box<models::GetContractV1200ResponseDataInitialCommitsInner>),
+    GetContractV1200ResponseDataInitialCreditsInner(Box<models::GetContractV1200ResponseDataInitialCreditsInner>),
 }
 
 impl Default for ListCustomerBalancesV1200ResponseDataInner {
     fn default() -> Self {
-        Self::Commit(Default::default())
+        Self::GetContractV1200ResponseDataInitialCommitsInner(Default::default())
     }
 }
 /// 
