@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**r#type** | **Type** | This field's available values may vary based on your client's configuration. (enum: SUPERSEDE, RENEWAL, supersede, renewal) | 
+**r#type** | **Type** | This field's available values may vary based on your client's configuration. (enum: RENEWAL, renewal) | 
 **from_contract_id** | **uuid::Uuid** |  | 
 **future_invoice_behavior** | Option<[**models::CreateContractV1RequestTransitionFutureInvoiceBehavior**](CreateContractV1RequestTransitionFutureInvoiceBehavior.md)> |  | [optional]
 

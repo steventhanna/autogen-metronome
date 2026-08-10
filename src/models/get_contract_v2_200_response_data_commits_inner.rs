@@ -26,6 +26,9 @@ pub struct GetContractV2200ResponseDataCommitsInner {
     /// If multiple credits or commits are applicable, the one with the lower priority will apply first.
     #[serde(rename = "priority", skip_serializing_if = "Option::is_none")]
     pub priority: Option<f64>,
+    /// The ratio of the amount paid for the commit to the amount of credit granted.
+    #[serde(rename = "cost_basis", skip_serializing_if = "Option::is_none")]
+    pub cost_basis: Option<f64>,
     #[serde(rename = "product")]
     pub product: Box<models::GetContractV1200ResponseDataInitialCommitsInnerProduct>,
     #[serde(rename = "access_schedule", skip_serializing_if = "Option::is_none")]
@@ -92,6 +95,7 @@ impl GetContractV2200ResponseDataCommitsInner {
             rate_type: None,
             name: None,
             priority: None,
+            cost_basis: None,
             product: Box::new(product),
             access_schedule: None,
             invoice_schedule: None,

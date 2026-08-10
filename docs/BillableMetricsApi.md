@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## archive_billable_metric_v1
 
-> models::ArchiveAlertV1200Response archive_billable_metric_v1(id)
+> models::ArchiveAlertV1200Response archive_billable_metric_v1(archive_alert_v1200_response_data)
 Archive a billable metric
 
 Use this endpoint to retire billable metrics that are no longer used. After a billable metric is archived, that billable metric can no longer be used in any new Products to define how that product should be metered. If you archive a billable metric that is already associated with a Product, the Product will continue to function as usual, metering based on the definition of the archived billable metric.   Archived billable metrics will be returned on the `getBillableMetric` and `listBillableMetrics` endpoints with a populated `archived_at` field. 
@@ -25,7 +25,7 @@ Use this endpoint to retire billable metrics that are no longer used. After a bi
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**id** | Option<[**Id**](Id.md)> | The ID of the billable metric to archive |  |
+**archive_alert_v1200_response_data** | Option<[**ArchiveAlertV1200ResponseData**](ArchiveAlertV1200ResponseData.md)> | The ID of the billable metric to archive |  |
 
 ### Return type
 
@@ -45,7 +45,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_billable_metric_v1_v1
 
-> models::ArchiveAlertV1200Response create_billable_metric_v1_v1(create_billable_metric_v1_payload)
+> models::ArchiveAlertV1200Response create_billable_metric_v1_v1(create_billable_metric_v1_v1_request)
 Create a billable metric
 
 Create billable metrics programmatically with this endpoint—an essential step in configuring your pricing and packaging in Metronome.  A billable metric is a customizable query that filters and aggregates events from your event stream. These metrics are continuously tracked as usage data enters Metronome through the ingestion pipeline. The ingestion process transforms raw usage data into actionable pricing metrics, enabling accurate metering and billing for your products.  ### Use this endpoint to:  - Create individual or multiple billable metrics as part of a setup workflow. - Automate the entire pricing configuration process, from metric creation to customer contract setup. - Define metrics using either standard filtering/aggregation or a custom SQL query.  ### Key response fields:  - The ID of the billable metric that was created - The created billable metric will be available to be used in Products, usage endpoints, and alerts.   ### Usage guidelines:  - Metrics defined using standard filtering and aggregation are Streaming billable metrics, which have been optimized for ultra low latency and high throughput workflows.  - Use SQL billable metrics if you require more flexible aggregation options. 
@@ -55,7 +55,7 @@ Create billable metrics programmatically with this endpoint—an essential step 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**create_billable_metric_v1_payload** | Option<[**CreateBillableMetricV1Payload**](CreateBillableMetricV1Payload.md)> | The details of the billable metric to create. |  |
+**create_billable_metric_v1_v1_request** | Option<[**CreateBillableMetricV1V1Request**](CreateBillableMetricV1V1Request.md)> | The details of the billable metric to create. |  |
 
 ### Return type
 
