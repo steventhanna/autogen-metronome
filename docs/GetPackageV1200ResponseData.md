@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **name** | Option<**String**> |  | [optional]
 **rate_card_id** | Option<**uuid::Uuid**> |  | [optional]
 **aliases** | Option<[**Vec<models::GetRateCardV1200ResponseDataAliasesInner>**](GetRateCardV1200ResponseDataAliasesInner.md)> |  | [optional]
-**duration** | Option<[**models::CreatePackageV1RequestDuration**](CreatePackageV1RequestDuration.md)> |  | [optional]
+**duration** | Option<[**models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration**](GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration.md)> |  | [optional]
 **commits** | [**Vec<models::GetPackageV1200ResponseDataCommitsInner>**](GetPackageV1200ResponseDataCommitsInner.md) |  | 
 **credits** | Option<[**Vec<models::GetPackageV1200ResponseDataCreditsInner>**](GetPackageV1200ResponseDataCreditsInner.md)> |  | [optional]
 **overrides** | [**Vec<models::GetPackageV1200ResponseDataOverridesInner>**](GetPackageV1200ResponseDataOverridesInner.md) |  | 

@@ -19,7 +19,7 @@ pub struct CreatePackageV1RequestUsageStatementSchedule {
     #[serde(rename = "day", skip_serializing_if = "Option::is_none")]
     pub day: Option<Day>,
     #[serde(rename = "invoice_generation_starting_at_offset", skip_serializing_if = "Option::is_none")]
-    pub invoice_generation_starting_at_offset: Option<Box<models::CreatePackageV1RequestDuration>>,
+    pub invoice_generation_starting_at_offset: Option<Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration>>,
 }
 
 impl CreatePackageV1RequestUsageStatementSchedule {

@@ -19,8 +19,8 @@ use super::{Error, configuration, ContentType};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ArchiveCustomerBillingProviderConfigurationsV1Error {
-    Status400(models::Error),
-    Status500(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status500(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -28,8 +28,8 @@ pub enum ArchiveCustomerBillingProviderConfigurationsV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ArchiveCustomerRevenueSystemConfigurationsV1Error {
-    Status400(models::Error),
-    Status500(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status500(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -37,8 +37,8 @@ pub enum ArchiveCustomerRevenueSystemConfigurationsV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ArchiveCustomerV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -54,7 +54,7 @@ pub enum CreateCustomerV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum EmbeddableDashboardV1Error {
-    Status400(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -62,7 +62,7 @@ pub enum EmbeddableDashboardV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetCustomerBillingProviderConfigurationsV1Error {
-    Status400(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -70,7 +70,7 @@ pub enum GetCustomerBillingProviderConfigurationsV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetCustomerRevenueSystemConfigurationsV1Error {
-    Status400(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -92,8 +92,8 @@ pub enum ListCustomersV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SetCustomerBillableStatusV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -101,8 +101,8 @@ pub enum SetCustomerBillableStatusV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SetCustomerBillingProviderConfigurationsV1Error {
-    Status400(models::Error),
-    Status500(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status500(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -117,8 +117,8 @@ pub enum SetCustomerNameV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SetCustomerRevenueSystemConfigurationsV1Error {
-    Status400(models::Error),
-    Status500(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status500(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -133,16 +133,16 @@ pub enum SetIngestAliasesV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateCustomerConfigV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::ArchiveAlertV1404Response),
+    Status404(models::ArchiveAlertV1404Response),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Deprecate an existing billing configuration for a customer to handle churn or billing and collection preference changes. Archiving a billing configuration takes effect immediately. If there are active contracts using the configuration, Metronome will archive the configuration on the contract and immediately stop metering to downstream systems.  ### Use this endpoint to: - Remove billing provider customer data and configurations when no longer needed - Clean up test or deprecated billing provider configurations - Free up uniqueness keys for reuse with new billing provider configurations - Disable threshold recharge configurations associated with archived billing providers  ### Key response fields: A successful response returns: - `success`: Boolean indicating the operation completed successfully - `error`: Null on success, error message on failure  ### Usage guidelines: - Archiving a contract configuration during a grace period will result in the invoice not being sent to the customer - Automatically disables both spend-based and credit-based threshold recharge configurations for contracts using the archived billing provider         - You can archive multiple configurations for a single customer in a single request, but any validation failures for an individual configuration will prevent the entire operation from succeeding 
-pub async fn archive_customer_billing_provider_configurations_v1(configuration: &configuration::Configuration, customer_billing_provider_archive_payload: Option<models::CustomerBillingProviderArchivePayload>) -> Result<models::ArchiveCustomerBillingProviderConfigurationsV1200Response, Error<ArchiveCustomerBillingProviderConfigurationsV1Error>> {
+pub async fn archive_customer_billing_provider_configurations_v1(configuration: &configuration::Configuration, archive_customer_billing_provider_configurations_v1_request: Option<models::ArchiveCustomerBillingProviderConfigurationsV1Request>) -> Result<models::ArchiveCustomerBillingProviderConfigurationsV1200Response, Error<ArchiveCustomerBillingProviderConfigurationsV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_customer_billing_provider_archive_payload = customer_billing_provider_archive_payload;
+    let p_body_archive_customer_billing_provider_configurations_v1_request = archive_customer_billing_provider_configurations_v1_request;
 
     let uri_str = format!("{}/v1/archiveCustomerBillingProviderConfigurations", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -153,7 +153,7 @@ pub async fn archive_customer_billing_provider_configurations_v1(configuration: 
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_customer_billing_provider_archive_payload);
+    req_builder = req_builder.json(&p_body_archive_customer_billing_provider_configurations_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -181,9 +181,9 @@ pub async fn archive_customer_billing_provider_configurations_v1(configuration: 
 }
 
 /// Archive existing revenue system configurations for a customer. Archiving a revenue system configuration takes effect immediately.  ### Use this endpoint to: - Remove revenue system configurations when no longer needed - Clean up test or deprecated revenue system configurations  ### Key response fields: A successful response returns: - `customer_id`: The customer ID the configurations belong to - `customer_revenue_system_configuration_ids`: The archived configuration IDs 
-pub async fn archive_customer_revenue_system_configurations_v1(configuration: &configuration::Configuration, customer_revenue_system_archive_payload: Option<models::CustomerRevenueSystemArchivePayload>) -> Result<models::ArchiveCustomerRevenueSystemConfigurationsV1200Response, Error<ArchiveCustomerRevenueSystemConfigurationsV1Error>> {
+pub async fn archive_customer_revenue_system_configurations_v1(configuration: &configuration::Configuration, archive_customer_revenue_system_configurations_v1_request: Option<models::ArchiveCustomerRevenueSystemConfigurationsV1Request>) -> Result<models::ArchiveCustomerRevenueSystemConfigurationsV1200Response, Error<ArchiveCustomerRevenueSystemConfigurationsV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_customer_revenue_system_archive_payload = customer_revenue_system_archive_payload;
+    let p_body_archive_customer_revenue_system_configurations_v1_request = archive_customer_revenue_system_configurations_v1_request;
 
     let uri_str = format!("{}/v1/archiveCustomerRevenueSystemConfigurations", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -194,7 +194,7 @@ pub async fn archive_customer_revenue_system_configurations_v1(configuration: &c
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_customer_revenue_system_archive_payload);
+    req_builder = req_builder.json(&p_body_archive_customer_revenue_system_configurations_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -222,9 +222,9 @@ pub async fn archive_customer_revenue_system_configurations_v1(configuration: &c
 }
 
 /// Use this endpoint to archive a customer while preserving auditability. Archiving a customer will automatically archive all contracts as of the current date and void all corresponding invoices. Use this endpoint if a customer is onboarded by mistake.  ### Usage guidelines: - Once a customer is archived, it cannot be unarchived. - Archived customers can still be viewed through the API or the UI for audit purposes.  - Ingest aliases remain idempotent for archived customers. In order to reuse an ingest alias, first remove the ingest alias from the customer prior to archiving. - Any notifications associated with the customer will no longer be triggered. 
-pub async fn archive_customer_v1(configuration: &configuration::Configuration, id: Option<models::Id>) -> Result<models::ArchiveAlertV1200Response, Error<ArchiveCustomerV1Error>> {
+pub async fn archive_customer_v1(configuration: &configuration::Configuration, archive_alert_v1200_response_data: Option<models::ArchiveAlertV1200ResponseData>) -> Result<models::ArchiveAlertV1200Response, Error<ArchiveCustomerV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_id = id;
+    let p_body_archive_alert_v1200_response_data = archive_alert_v1200_response_data;
 
     let uri_str = format!("{}/v1/customers/archive", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -235,7 +235,7 @@ pub async fn archive_customer_v1(configuration: &configuration::Configuration, i
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_id);
+    req_builder = req_builder.json(&p_body_archive_alert_v1200_response_data);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -263,9 +263,9 @@ pub async fn archive_customer_v1(configuration: &configuration::Configuration, i
 }
 
 /// Create a new customer in Metronome and optionally the billing configuration (recommended) which dictates where invoices for the customer will be sent or where payment will be collected.   ### Use this endpoint to: Execute your customer provisioning workflows for either PLG motions, where customers originate in your platform, or SLG motions, where customers originate in your sales system.  ### Key response fields:  This end-point returns the `customer_id` created by the request. This id can be used to fetch relevant billing configurations and create contracts.  ### Example workflow: - Generally, Metronome recommends first creating the customer in the downstream payment / ERP system when payment method is collected and then creating the customer in Metronome using the response (i.e. `customer_id`) from the downstream system. If you do not create a billing configuration on customer creation, you can add it later.         - Once a customer is created, you can then create a contract for the customer. In the contract creation process, you will need to add the customer billing configuration to the contract to ensure Metronome invoices the customer correctly. This is because a customer can have multiple configurations. - As part of the customer creation process, set the ingest alias for the customer which will ensure usage is accurately mapped to the customer. Ingest aliases can be added or changed after the creation process as well.  ### Usage guidelines: For details on different billing configurations for different systems, review the `/setCustomerBillingConfiguration` end-point. 
-pub async fn create_customer_v1(configuration: &configuration::Configuration, legacy_create_customer_payload: Option<models::LegacyCreateCustomerPayload>) -> Result<models::CreateCustomerV1200Response, Error<CreateCustomerV1Error>> {
+pub async fn create_customer_v1(configuration: &configuration::Configuration, create_customer_v1_request: Option<models::CreateCustomerV1Request>) -> Result<models::CreateCustomerV1200Response, Error<CreateCustomerV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_legacy_create_customer_payload = legacy_create_customer_payload;
+    let p_body_create_customer_v1_request = create_customer_v1_request;
 
     let uri_str = format!("{}/v1/customers", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -276,7 +276,7 @@ pub async fn create_customer_v1(configuration: &configuration::Configuration, le
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_legacy_create_customer_payload);
+    req_builder = req_builder.json(&p_body_create_customer_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -304,9 +304,9 @@ pub async fn create_customer_v1(configuration: &configuration::Configuration, le
 }
 
 /// Generate secure, embeddable dashboard URLs that allow you to seamlessly integrate Metronome's billing visualizations directly into your application. This endpoint creates authenticated iframe-ready URLs for customer-specific dashboards, providing a white-labeled billing experience without building custom UI.  ### Use this endpoint to: - Embed billing dashboards directly in your customer portal or admin interface - Provide self-service access to invoices, usage data, and credit balances - Build white-labeled billing experiences with minimal development effort  ### Key response fields: - A secure, time-limited URL that can be embedded in an iframe - The URL includes authentication tokens and configuration parameters - URLs are customer-specific and respect your security settings  ### Usage guidelines: - Dashboard types: Choose from `invoices`, `usage`, or `commits_and_credits` - Customization options:     - `dashboard_options`: Configure dashboard behavior. Supported for the invoices dashboard only. Available keys include: `show_zero_usage_line_items` (\"true\"/\"false\"), `contract_id` (UUID, filters invoices by contract), `invoice_type` (\"USAGE\" or \"SCHEDULED\", filters by invoice type), and `invoice_status_filter` (\"VOID\", \"FINALIZED\", \"DRAFT\", \"FINALIZED_AND_DRAFT\", or \"ALL\")     - `color_overrides`: Match your brand's color palette - Iframe implementation: Embed the returned URL directly in an iframe element - Responsive design: Dashboards automatically adapt to container dimensions 
-pub async fn embeddable_dashboard_v1(configuration: &configuration::Configuration, embeddable_dashboard_payload: Option<models::EmbeddableDashboardPayload>) -> Result<models::EmbeddableDashboardV1200Response, Error<EmbeddableDashboardV1Error>> {
+pub async fn embeddable_dashboard_v1(configuration: &configuration::Configuration, embeddable_dashboard_v1_request: Option<models::EmbeddableDashboardV1Request>) -> Result<models::EmbeddableDashboardV1200Response, Error<EmbeddableDashboardV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_embeddable_dashboard_payload = embeddable_dashboard_payload;
+    let p_body_embeddable_dashboard_v1_request = embeddable_dashboard_v1_request;
 
     let uri_str = format!("{}/v1/dashboards/getEmbeddableUrl", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -317,7 +317,7 @@ pub async fn embeddable_dashboard_v1(configuration: &configuration::Configuratio
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_embeddable_dashboard_payload);
+    req_builder = req_builder.json(&p_body_embeddable_dashboard_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -536,9 +536,9 @@ pub async fn list_customers_v1(configuration: &configuration::Configuration, lim
 }
 
 /// Set a customer's billable status. This endpoint's availability is dependent on your client's configuration. Metronome 1.0 plan invoices are not supported.
-pub async fn set_customer_billable_status_v1(configuration: &configuration::Configuration, set_customer_billable_status_payload: Option<models::SetCustomerBillableStatusPayload>) -> Result<models::SetCustomerBillableStatusV1200Response, Error<SetCustomerBillableStatusV1Error>> {
+pub async fn set_customer_billable_status_v1(configuration: &configuration::Configuration, set_customer_billable_status_v1_request: Option<models::SetCustomerBillableStatusV1Request>) -> Result<models::SetCustomerBillableStatusV1200Response, Error<SetCustomerBillableStatusV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_set_customer_billable_status_payload = set_customer_billable_status_payload;
+    let p_body_set_customer_billable_status_v1_request = set_customer_billable_status_v1_request;
 
     let uri_str = format!("{}/v1/customers/setBillableStatus", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -549,7 +549,7 @@ pub async fn set_customer_billable_status_v1(configuration: &configuration::Conf
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_set_customer_billable_status_payload);
+    req_builder = req_builder.json(&p_body_set_customer_billable_status_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -618,10 +618,10 @@ pub async fn set_customer_billing_provider_configurations_v1(configuration: &con
 }
 
 /// Updates the display name for a customer record. Use this to correct customer names, update business names after rebranding, or maintain accurate customer information for invoicing and reporting. Returns the updated customer object with the new name applied immediately across all billing documents and interfaces. 
-pub async fn set_customer_name_v1(configuration: &configuration::Configuration, customer_id: &str, set_customer_name_payload: Option<models::SetCustomerNamePayload>) -> Result<models::CreateCustomerV1200Response, Error<SetCustomerNameV1Error>> {
+pub async fn set_customer_name_v1(configuration: &configuration::Configuration, customer_id: &str, update_billable_metric_v1_request: Option<models::UpdateBillableMetricV1Request>) -> Result<models::CreateCustomerV1200Response, Error<SetCustomerNameV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_customer_id = customer_id;
-    let p_body_set_customer_name_payload = set_customer_name_payload;
+    let p_body_update_billable_metric_v1_request = update_billable_metric_v1_request;
 
     let uri_str = format!("{}/v1/customers/{customer_id}/setName", configuration.base_path, customer_id=crate::apis::urlencode(p_path_customer_id));
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -632,7 +632,7 @@ pub async fn set_customer_name_v1(configuration: &configuration::Configuration, 
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_set_customer_name_payload);
+    req_builder = req_builder.json(&p_body_update_billable_metric_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -701,10 +701,10 @@ pub async fn set_customer_revenue_system_configurations_v1(configuration: &confi
 }
 
 /// Sets the ingest aliases for a customer. Use this endpoint to associate a Metronome customer with an internal ID for easier tracking between systems. Ingest aliases can be used in the `customer_id` field when sending usage events to Metronome.   ### Usage guidelines: - This call is idempotent and fully replaces the set of ingest aliases for the given customer. - Switching an ingest alias from one customer to another will associate all corresponding usage to the new customer. - Use multiple ingest aliases to model child organizations within a single Metronome customer. 
-pub async fn set_ingest_aliases_v1(configuration: &configuration::Configuration, customer_id: &str, set_ingest_aliases_payload: Option<models::SetIngestAliasesPayload>) -> Result<(), Error<SetIngestAliasesV1Error>> {
+pub async fn set_ingest_aliases_v1(configuration: &configuration::Configuration, customer_id: &str, set_ingest_aliases_v1_request: Option<models::SetIngestAliasesV1Request>) -> Result<(), Error<SetIngestAliasesV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_customer_id = customer_id;
-    let p_body_set_ingest_aliases_payload = set_ingest_aliases_payload;
+    let p_body_set_ingest_aliases_v1_request = set_ingest_aliases_v1_request;
 
     let uri_str = format!("{}/v1/customers/{customer_id}/setIngestAliases", configuration.base_path, customer_id=crate::apis::urlencode(p_path_customer_id));
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -715,7 +715,7 @@ pub async fn set_ingest_aliases_v1(configuration: &configuration::Configuration,
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_set_ingest_aliases_payload);
+    req_builder = req_builder.json(&p_body_set_ingest_aliases_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -732,10 +732,10 @@ pub async fn set_ingest_aliases_v1(configuration: &configuration::Configuration,
 }
 
 /// Update configuration settings for a specific customer, such as external system integrations (e.g., Salesforce account ID) and other customer-specific billing parameters. Use this endpoint to modify customer configurations without affecting core customer data like name or ingest aliases. 
-pub async fn update_customer_config_v1(configuration: &configuration::Configuration, customer_id: &str, customer_config_payload: Option<models::CustomerConfigPayload>) -> Result<(), Error<UpdateCustomerConfigV1Error>> {
+pub async fn update_customer_config_v1(configuration: &configuration::Configuration, customer_id: &str, update_customer_config_v1_request: Option<models::UpdateCustomerConfigV1Request>) -> Result<(), Error<UpdateCustomerConfigV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_customer_id = customer_id;
-    let p_body_customer_config_payload = customer_config_payload;
+    let p_body_update_customer_config_v1_request = update_customer_config_v1_request;
 
     let uri_str = format!("{}/v1/customers/{customer_id}/updateConfig", configuration.base_path, customer_id=crate::apis::urlencode(p_path_customer_id));
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -746,7 +746,7 @@ pub async fn update_customer_config_v1(configuration: &configuration::Configurat
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_customer_config_payload);
+    req_builder = req_builder.json(&p_body_update_customer_config_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

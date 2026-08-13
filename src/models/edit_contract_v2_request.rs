@@ -47,7 +47,7 @@ pub struct EditContractV2Request {
     #[serde(rename = "add_spend_threshold_configuration", skip_serializing_if = "Option::is_none")]
     pub add_spend_threshold_configuration: Option<Box<models::GetContractV1200ResponseDataInitialSpendThresholdConfiguration>>,
     #[serde(rename = "add_prepaid_balance_threshold_configuration", skip_serializing_if = "Option::is_none")]
-    pub add_prepaid_balance_threshold_configuration: Option<Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfiguration>>,
+    pub add_prepaid_balance_threshold_configuration: Option<Box<models::GetContractV2200ResponseDataPrepaidBalanceThresholdConfiguration>>,
     #[serde(rename = "add_billing_provider_configuration_update", skip_serializing_if = "Option::is_none")]
     pub add_billing_provider_configuration_update: Option<Box<models::EditContractV2RequestAddBillingProviderConfigurationUpdate>>,
     #[serde(rename = "add_revenue_system_configuration_update", skip_serializing_if = "Option::is_none")]
