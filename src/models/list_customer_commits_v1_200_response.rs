@@ -14,13 +14,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ListCustomerCommitsV1200Response {
     #[serde(rename = "data")]
-    pub data: Vec<models::Commit>,
+    pub data: Vec<models::GetContractV1200ResponseDataInitialCommitsInner>,
     #[serde(rename = "next_page", deserialize_with = "Option::deserialize")]
     pub next_page: Option<String>,
 }
 
 impl ListCustomerCommitsV1200Response {
-    pub fn new(data: Vec<models::Commit>, next_page: Option<String>) -> ListCustomerCommitsV1200Response {
+    pub fn new(data: Vec<models::GetContractV1200ResponseDataInitialCommitsInner>, next_page: Option<String>) -> ListCustomerCommitsV1200Response {
         ListCustomerCommitsV1200Response {
             data,
             next_page,

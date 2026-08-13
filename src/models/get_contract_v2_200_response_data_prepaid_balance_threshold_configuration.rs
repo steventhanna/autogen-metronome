@@ -28,15 +28,16 @@ pub struct GetContractV2200ResponseDataPrepaidBalanceThresholdConfiguration {
     #[serde(rename = "commit")]
     pub commit: Box<models::GetContractV2200ResponseDataPrepaidBalanceThresholdConfigurationCommit>,
     #[serde(rename = "payment_gate_config")]
-    pub payment_gate_config: Box<models::GetContractV2200ResponseDataSpendThresholdConfigurationPaymentGateConfig>,
+    pub payment_gate_config: Box<models::GetContractV1200ResponseDataInitialSpendThresholdConfigurationPaymentGateConfig>,
     #[serde(rename = "discount_configuration", skip_serializing_if = "Option::is_none")]
     pub discount_configuration: Option<Box<models::GetContractV1200ResponseDataInitialSpendThresholdConfigurationDiscountConfiguration>>,
+    /// Determines which balances are excluded from remaining balance calculation for threshold billing.
     #[serde(rename = "threshold_balance_specifiers", skip_serializing_if = "Option::is_none")]
-    pub threshold_balance_specifiers: Option<Vec<models::GetContractV2200ResponseDataPrepaidBalanceThresholdConfigurationThresholdBalanceSpecifiersInner>>,
+    pub threshold_balance_specifiers: Option<Vec<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationThresholdBalanceSpecifiersInner>>,
 }
 
 impl GetContractV2200ResponseDataPrepaidBalanceThresholdConfiguration {
-    pub fn new(is_enabled: bool, threshold_amount: f64, recharge_to_amount: f64, commit: models::GetContractV2200ResponseDataPrepaidBalanceThresholdConfigurationCommit, payment_gate_config: models::GetContractV2200ResponseDataSpendThresholdConfigurationPaymentGateConfig) -> GetContractV2200ResponseDataPrepaidBalanceThresholdConfiguration {
+    pub fn new(is_enabled: bool, threshold_amount: f64, recharge_to_amount: f64, commit: models::GetContractV2200ResponseDataPrepaidBalanceThresholdConfigurationCommit, payment_gate_config: models::GetContractV1200ResponseDataInitialSpendThresholdConfigurationPaymentGateConfig) -> GetContractV2200ResponseDataPrepaidBalanceThresholdConfiguration {
         GetContractV2200ResponseDataPrepaidBalanceThresholdConfiguration {
             is_enabled,
             threshold_amount,

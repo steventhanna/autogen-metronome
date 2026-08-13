@@ -36,9 +36,9 @@ pub struct GetPackageV1200ResponseDataSubscriptionsInner {
     #[serde(rename = "seat_config", skip_serializing_if = "Option::is_none")]
     pub seat_config: Option<Box<models::GetContractV1200ResponseDataSubscriptionsInnerSeatConfig>>,
     #[serde(rename = "starting_at_offset", skip_serializing_if = "Option::is_none")]
-    pub starting_at_offset: Option<Box<models::CreatePackageV1RequestDuration>>,
+    pub starting_at_offset: Option<Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration>>,
     #[serde(rename = "duration", skip_serializing_if = "Option::is_none")]
-    pub duration: Option<Box<models::CreatePackageV1RequestDuration>>,
+    pub duration: Option<Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration>>,
     #[serde(rename = "fiat_credit_type_id", skip_serializing_if = "Option::is_none")]
     pub fiat_credit_type_id: Option<uuid::Uuid>,
     #[serde(rename = "billing_cycle_config", skip_serializing_if = "Option::is_none")]
