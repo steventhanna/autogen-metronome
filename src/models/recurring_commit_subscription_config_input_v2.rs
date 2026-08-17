@@ -20,6 +20,9 @@ pub struct RecurringCommitSubscriptionConfigInputV2 {
     /// ID of the subscription to configure on the recurring commit/credit.
     #[serde(rename = "subscription_id")]
     pub subscription_id: String,
+    /// Controls when a customer can access recurring commit or credit child balances when the attached subscription is payment-gated. `BILLING_PERIOD_PAID` releases each balance after payment for its billing period. `INITIAL_BILLING_PERIOD_PAID_ONLY` releases all balances after the first payment.
+    #[serde(rename = "access_policy", skip_serializing_if = "Option::is_none")]
+    pub access_policy: Option<AccessPolicy>,
 }
 
 impl RecurringCommitSubscriptionConfigInputV2 {
@@ -28,7 +31,22 @@ impl RecurringCommitSubscriptionConfigInputV2 {
             allocation: None,
             apply_seat_increase_config: Box::new(apply_seat_increase_config),
             subscription_id,
+            access_policy: None,
         }
+    }
+}
+/// Controls when a customer can access recurring commit or credit child balances when the attached subscription is payment-gated. `BILLING_PERIOD_PAID` releases each balance after payment for its billing period. `INITIAL_BILLING_PERIOD_PAID_ONLY` releases all balances after the first payment.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum AccessPolicy {
+    #[serde(rename = "BILLING_PERIOD_PAID")]
+    BillingPeriodPaid,
+    #[serde(rename = "INITIAL_BILLING_PERIOD_PAID_ONLY")]
+    InitialBillingPeriodPaidOnly,
+}
+
+impl Default for AccessPolicy {
+    fn default() -> AccessPolicy {
+        Self::BillingPeriodPaid
     }
 }
 
