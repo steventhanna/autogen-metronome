@@ -13,6 +13,9 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct RelativeScheduleDuration {
+    /// Indicates how the balance is drawn down. `SPEND` deducts the dollar cost of usage. `QUANTITY` deducts the number of units used.
+    #[serde(rename = "access_type", skip_serializing_if = "Option::is_none")]
+    pub access_type: Option<AccessType>,
     #[serde(rename = "credit_type")]
     pub credit_type: Box<models::CreditType>,
     #[serde(rename = "schedule_items")]
@@ -22,9 +25,24 @@ pub struct RelativeScheduleDuration {
 impl RelativeScheduleDuration {
     pub fn new(credit_type: models::CreditType, schedule_items: Vec<models::RelativeScheduleDurationScheduleItemsInner>) -> RelativeScheduleDuration {
         RelativeScheduleDuration {
+            access_type: None,
             credit_type: Box::new(credit_type),
             schedule_items,
         }
+    }
+}
+/// Indicates how the balance is drawn down. `SPEND` deducts the dollar cost of usage. `QUANTITY` deducts the number of units used.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum AccessType {
+    #[serde(rename = "SPEND")]
+    Spend,
+    #[serde(rename = "QUANTITY")]
+    Quantity,
+}
+
+impl Default for AccessType {
+    fn default() -> AccessType {
+        Self::Spend
     }
 }
 

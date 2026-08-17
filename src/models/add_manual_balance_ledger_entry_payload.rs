@@ -37,6 +37,9 @@ pub struct AddManualBalanceLedgerEntryPayload {
     /// RFC 3339 timestamp indicating when the manual adjustment takes place. If not provided, it will default to the start of the segment.
     #[serde(rename = "timestamp", skip_serializing_if = "Option::is_none")]
     pub timestamp: Option<chrono::DateTime<chrono::FixedOffset>>,
+    /// Prevents the creation of duplicates. If a request to create a record is made with a previously used uniqueness key, a new record will not be created and the request will fail with a 409 error.
+    #[serde(rename = "uniqueness_key", skip_serializing_if = "Option::is_none")]
+    pub uniqueness_key: Option<String>,
 }
 
 impl AddManualBalanceLedgerEntryPayload {
@@ -50,6 +53,7 @@ impl AddManualBalanceLedgerEntryPayload {
             per_group_amounts: None,
             reason,
             timestamp: None,
+            uniqueness_key: None,
         }
     }
 }
