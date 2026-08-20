@@ -13,6 +13,9 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AppliedCommitOrCredit {
+    /// Indicates how the balance is drawn down. `SPEND` deducts the dollar cost of usage. `QUANTITY` deducts the number of units used.
+    #[serde(rename = "access_type", skip_serializing_if = "Option::is_none")]
+    pub access_type: Option<AccessType>,
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
     #[serde(rename = "type")]
@@ -22,9 +25,24 @@ pub struct AppliedCommitOrCredit {
 impl AppliedCommitOrCredit {
     pub fn new(id: uuid::Uuid, r#type: Type) -> AppliedCommitOrCredit {
         AppliedCommitOrCredit {
+            access_type: None,
             id,
             r#type,
         }
+    }
+}
+/// Indicates how the balance is drawn down. `SPEND` deducts the dollar cost of usage. `QUANTITY` deducts the number of units used.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum AccessType {
+    #[serde(rename = "SPEND")]
+    Spend,
+    #[serde(rename = "QUANTITY")]
+    Quantity,
+}
+
+impl Default for AccessType {
+    fn default() -> AccessType {
+        Self::Spend
     }
 }
 /// 

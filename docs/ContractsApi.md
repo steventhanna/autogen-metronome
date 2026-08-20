@@ -32,7 +32,7 @@ Method | HTTP request | Description
 > models::ArchiveAlertV1200Response amend_contract_v1(amend_contract_payload)
 Amend a contract
 
-Amendments will be replaced by Contract editing. New clients should implement using the `editContract` endpoint. Read more about the migration to contract editing [here](/guides/implement-metronome/migrate-amendments-to-edits/) and reach out to your Metronome representative for more details. Once contract editing is enabled, access to this endpoint will be removed. 
+Amendments will be replaced by Contract editing. New clients should implement using the `editContract` endpoint. Read more about the migration to contract editing [here](/guides/implement-metronome/migrate-amendments-to-edits/) and contact us via the [Metronome support portal](https://support.metronome.com/) for more details. Once contract editing is enabled, access to this endpoint will be removed. 
 
 ### Parameters
 
@@ -212,7 +212,7 @@ Name | Type | Description  | Required | Notes
 > models::EditContractV2200Response edit_contract_v2(edit_contract_payload)
 Edit a contract
 
-The ability to edit a contract helps you react quickly to the needs of your customers and your business.  ### Use this endpoint to: - Encode mid-term commitment and discount changes - Fix configuration mistakes and easily roll back packaging changes  ### Key response fields: - The `id` of the edit - Complete edit details. For example, if you edited the contract to add new overrides and credits, you will receive the IDs of those overrides and credits in the response.  ### Usage guidelines: - When you edit a contract, any draft invoices update immediately to reflect that edit. Finalized invoices remain unchanged - you must void and regenerate them in the UI or API to reflect the edit. - Contract editing must be enabled to use this endpoint. Reach out to your Metronome representative to learn more. 
+The ability to edit a contract helps you react quickly to the needs of your customers and your business.  ### Use this endpoint to: - Encode mid-term commitment and discount changes - Fix configuration mistakes and easily roll back packaging changes  ### Key response fields: - The `id` of the edit - Complete edit details. For example, if you edited the contract to add new overrides and credits, you will receive the IDs of those overrides and credits in the response.  ### Usage guidelines: - When you edit a contract, any draft invoices update immediately to reflect that edit. Finalized invoices remain unchanged - you must void and regenerate them in the UI or API to reflect the edit. - Contract editing must be enabled to use this endpoint. Contact us via the [Metronome support portal](https://support.metronome.com/) to learn more. 
 
 ### Parameters
 
