@@ -117,6 +117,9 @@ pub struct InvoiceLineItem {
     pub discount_custom_fields: Option<std::collections::HashMap<String, String>>,
     #[serde(rename = "origin", skip_serializing_if = "Option::is_none")]
     pub origin: Option<Box<models::InvoiceLineItemOrigin>>,
+    /// Present on applied commit line items for quantity-based commits. Represents the unit quantity deducted the commit.
+    #[serde(rename = "quantity_consumed", skip_serializing_if = "Option::is_none")]
+    pub quantity_consumed: Option<f64>,
 }
 
 impl InvoiceLineItem {
@@ -162,6 +165,7 @@ impl InvoiceLineItem {
             discount_id: None,
             discount_custom_fields: None,
             origin: None,
+            quantity_consumed: None,
         }
     }
 }

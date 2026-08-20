@@ -16,6 +16,9 @@ docs/AlertsApi.md
 docs/AmendContractPayload.md
 docs/AppliedCommitOrCredit.md
 docs/ApplySeatIncreaseConfigForRecurringCommit.md
+docs/ApprovalRequest.md
+docs/ApprovalRequestApprovalRequestPayload.md
+docs/ApprovalRequestResponse.md
 docs/ApprovalRequestsApi.md
 docs/ArchiveAlertPayload.md
 docs/ArchiveAlertV1200Response.md
@@ -289,6 +292,7 @@ docs/LifecycleEventSystemNotificationConfig.md
 docs/LifecycleEventSystemPolicy.md
 docs/LineItemBreakdown.md
 docs/ListAllBillableMetricsV1200Response.md
+docs/ListApprovalRequestsV1200Response.md
 docs/ListBillableMetricsV1200Response.md
 docs/ListBreakdownInvoicesV1200Response.md
 docs/ListConfiguredBillingProvidersV1200Response.md
@@ -556,7 +560,6 @@ docs/SpendTrackerAttributesInput.md
 docs/SpendTrackerInput.md
 docs/SpendTrackerTemplate.md
 docs/SubmitApprovalRequestsV1200Response.md
-docs/SubmitApprovalRequestsV1200ResponseData.md
 docs/SubmitApprovalRequestsV1Request.md
 docs/Subscription.md
 docs/SubscriptionBillingCycleConfig.md
@@ -683,6 +686,9 @@ src/models/alert_specifier_inclusive_custom_field_filter.rs
 src/models/amend_contract_payload.rs
 src/models/applied_commit_or_credit.rs
 src/models/apply_seat_increase_config_for_recurring_commit.rs
+src/models/approval_request.rs
+src/models/approval_request_approval_request_payload.rs
+src/models/approval_request_response.rs
 src/models/archive_alert_payload.rs
 src/models/archive_alert_v1_200_response.rs
 src/models/archive_commit_payload.rs
@@ -948,6 +954,7 @@ src/models/lifecycle_event_system_notification_config.rs
 src/models/lifecycle_event_system_policy.rs
 src/models/line_item_breakdown.rs
 src/models/list_all_billable_metrics_v1_200_response.rs
+src/models/list_approval_requests_v1_200_response.rs
 src/models/list_billable_metrics_v1_200_response.rs
 src/models/list_breakdown_invoices_v1_200_response.rs
 src/models/list_configured_billing_providers_v1_200_response.rs
@@ -1209,7 +1216,6 @@ src/models/spend_tracker_attributes_input.rs
 src/models/spend_tracker_input.rs
 src/models/spend_tracker_template.rs
 src/models/submit_approval_requests_v1_200_response.rs
-src/models/submit_approval_requests_v1_200_response_data.rs
 src/models/submit_approval_requests_v1_request.rs
 src/models/subscription.rs
 src/models/subscription_billing_cycle_config.rs

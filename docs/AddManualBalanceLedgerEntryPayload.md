@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **per_group_amounts** | Option<**std::collections::HashMap<String, f64>**> | If using individually configured commits/credits attached to seat managed subscriptions, the amount to add for each seat. Must sum to total amount. | [optional]
 **reason** | **String** | Reason for the manual adjustment. This will be displayed in the ledger. | 
 **timestamp** | Option<**chrono::DateTime<chrono::FixedOffset>**> | RFC 3339 timestamp indicating when the manual adjustment takes place. If not provided, it will default to the start of the segment. | [optional]
+**uniqueness_key** | Option<**String**> | Prevents the creation of duplicates. If a request to create a record is made with a previously used uniqueness key, a new record will not be created and the request will fail with a 409 error. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

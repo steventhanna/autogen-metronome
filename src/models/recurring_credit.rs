@@ -59,6 +59,9 @@ pub struct RecurringCredit {
     /// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates. - Daily recurring commits have a limit of one per contract, and are unable to be created with seat-based subscriptions
     #[serde(rename = "recurrence_frequency", skip_serializing_if = "Option::is_none")]
     pub recurrence_frequency: Option<RecurrenceFrequency>,
+    /// The date this recurring commit's billing periods are anchored to.
+    #[serde(rename = "anchor_date")]
+    pub anchor_date: chrono::DateTime<chrono::FixedOffset>,
     /// Determines whether the first and last commit will be prorated.  If not provided, the default is FIRST_AND_LAST (i.e. prorate both the first and last commits).
     #[serde(rename = "proration", skip_serializing_if = "Option::is_none")]
     pub proration: Option<Proration>,
@@ -71,7 +74,7 @@ pub struct RecurringCredit {
 }
 
 impl RecurringCredit {
-    pub fn new(id: uuid::Uuid, product: models::SubscriptionRateProduct, access_amount: models::RecurringCommitOrCreditInputBaseAccessAmount, priority: f64, rate_type: RateType, starting_at: chrono::DateTime<chrono::FixedOffset>, commit_duration: models::RecurringCommitOrCreditInputBaseCommitDuration) -> RecurringCredit {
+    pub fn new(id: uuid::Uuid, product: models::SubscriptionRateProduct, access_amount: models::RecurringCommitOrCreditInputBaseAccessAmount, priority: f64, rate_type: RateType, starting_at: chrono::DateTime<chrono::FixedOffset>, commit_duration: models::RecurringCommitOrCreditInputBaseCommitDuration, anchor_date: chrono::DateTime<chrono::FixedOffset>) -> RecurringCredit {
         RecurringCredit {
             id,
             contract: None,
@@ -90,6 +93,7 @@ impl RecurringCredit {
             ending_before: None,
             commit_duration: Box::new(commit_duration),
             recurrence_frequency: None,
+            anchor_date,
             proration: None,
             subscription_config: None,
             hierarchy_configuration: None,
