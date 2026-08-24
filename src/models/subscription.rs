@@ -46,6 +46,9 @@ pub struct Subscription {
     /// Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" }
     #[serde(rename = "custom_fields", skip_serializing_if = "Option::is_none")]
     pub custom_fields: Option<std::collections::HashMap<String, String>>,
+    /// Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" }
+    #[serde(rename = "product_custom_fields", skip_serializing_if = "Option::is_none")]
+    pub product_custom_fields: Option<std::collections::HashMap<String, String>>,
 }
 
 impl Subscription {
@@ -66,6 +69,7 @@ impl Subscription {
             fiat_credit_type_id: None,
             billing_cycle_config: None,
             custom_fields: None,
+            product_custom_fields: None,
         }
     }
 }

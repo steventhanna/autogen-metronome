@@ -19,6 +19,9 @@ pub struct GetNetBalanceV1Request {
     /// The ID of the credit type (can be fiat or a custom pricing unit) to get the balance for. Defaults to USD (cents) if not specified.
     #[serde(rename = "credit_type_id", skip_serializing_if = "Option::is_none")]
     pub credit_type_id: Option<uuid::Uuid>,
+    /// Filters balances by how they are drawn down. Defaults to `SPEND`. If set to `QUANTITY`, `credit_type_id` must not be provided.
+    #[serde(rename = "access_type", skip_serializing_if = "Option::is_none")]
+    pub access_type: Option<AccessType>,
     /// Balance filters are OR'd together, so if a given commit or credit matches any of the filters, it will be included in the net balance.
     #[serde(rename = "filters", skip_serializing_if = "Option::is_none")]
     pub filters: Option<Vec<models::BalanceFilter>>,
@@ -32,9 +35,28 @@ impl GetNetBalanceV1Request {
         GetNetBalanceV1Request {
             customer_id,
             credit_type_id: None,
+            access_type: None,
             filters: None,
             invoice_inclusion_mode: None,
         }
+    }
+}
+/// Filters balances by how they are drawn down. Defaults to `SPEND`. If set to `QUANTITY`, `credit_type_id` must not be provided.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum AccessType {
+    #[serde(rename = "SPEND")]
+    Spend,
+    #[serde(rename = "spend")]
+    Spend2,
+    #[serde(rename = "QUANTITY")]
+    Quantity,
+    #[serde(rename = "quantity")]
+    Quantity2,
+}
+
+impl Default for AccessType {
+    fn default() -> AccessType {
+        Self::Spend
     }
 }
 /// Controls which invoices are considered when calculating the remaining balance. `FINALIZED` considers only deductions from finalized invoices. `FINALIZED_AND_DRAFT` also includes deductions from pending draft invoices.
