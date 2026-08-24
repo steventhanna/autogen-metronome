@@ -21,21 +21,21 @@ pub struct SubmitApprovalRequestsV1Request {
     #[serde(rename = "method")]
     pub method: Method,
     /// The API path of the operation being requested (e.g. /v1/contracts/create).
-    #[serde(rename = "request_type")]
-    pub request_type: String,
+    #[serde(rename = "path")]
+    pub path: String,
     /// The full request body of the operation being requested.
-    #[serde(rename = "request_payload")]
-    pub request_payload: std::collections::HashMap<String, serde_json::Value>,
+    #[serde(rename = "body")]
+    pub body: std::collections::HashMap<String, serde_json::Value>,
 }
 
 impl SubmitApprovalRequestsV1Request {
-    pub fn new(name: String, description: String, method: Method, request_type: String, request_payload: std::collections::HashMap<String, serde_json::Value>) -> SubmitApprovalRequestsV1Request {
+    pub fn new(name: String, description: String, method: Method, path: String, body: std::collections::HashMap<String, serde_json::Value>) -> SubmitApprovalRequestsV1Request {
         SubmitApprovalRequestsV1Request {
             name,
             description,
             method,
-            request_type,
-            request_payload,
+            path,
+            body,
         }
     }
 }

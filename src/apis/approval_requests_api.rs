@@ -15,6 +15,37 @@ use crate::{apis::ResponseContent, models};
 use super::{Error, configuration, ContentType};
 
 
+/// struct for typed errors of method [`approve_approval_request_v1`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ApproveApprovalRequestV1Error {
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`deny_approval_request_v1`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DenyApprovalRequestV1Error {
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_approval_request_v1`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetApprovalRequestV1Error {
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`list_approval_requests_v1`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ListApprovalRequestsV1Error {
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`submit_approval_requests_v1`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -23,12 +54,191 @@ pub enum SubmitApprovalRequestsV1Error {
 }
 
 
-/// Queues a write operation for human review when an agentic token is in use.  When an agent attempts a write operation (e.g. `POST /v1/contracts/create`) using an agentic token, the server returns a `403 AgenticMutationBlocked` error with a pointer to this endpoint. The agent should then call this endpoint with the original request details so a human can review and approve the action.  On success, a pending approval request is created and the response includes an `approval_url` linking to the Approval Dashboard where a human can review, approve, or reject the request. Once approved, the original operation is executed automatically and the dashboard reflects the completed status. 
+/// Approves a pending approval request, allowing the queued operation to proceed.  Once approved, the original write operation will be executed automatically and the approval request status will transition to reflect the execution result. 
+pub async fn approve_approval_request_v1(configuration: &configuration::Configuration, id: &str) -> Result<models::SubmitApprovalRequestsV1200Response, Error<ApproveApprovalRequestV1Error>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_id = id;
+
+    let uri_str = format!("{}/v1/approval_requests/{id}/approve", configuration.base_path, id=crate::apis::urlencode(p_path_id));
+    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SubmitApprovalRequestsV1200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SubmitApprovalRequestsV1200Response`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<ApproveApprovalRequestV1Error> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent { status, content, entity }))
+    }
+}
+
+/// Denies a pending approval request, preventing the queued operation from executing.  Once denied, the approval request is closed and the original write operation will not be performed. 
+pub async fn deny_approval_request_v1(configuration: &configuration::Configuration, id: &str) -> Result<models::SubmitApprovalRequestsV1200Response, Error<DenyApprovalRequestV1Error>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_id = id;
+
+    let uri_str = format!("{}/v1/approval_requests/{id}/deny", configuration.base_path, id=crate::apis::urlencode(p_path_id));
+    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SubmitApprovalRequestsV1200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SubmitApprovalRequestsV1200Response`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<DenyApprovalRequestV1Error> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent { status, content, entity }))
+    }
+}
+
+/// Retrieves the details of a single approval request by its ID. 
+pub async fn get_approval_request_v1(configuration: &configuration::Configuration, id: &str) -> Result<models::SubmitApprovalRequestsV1200Response, Error<GetApprovalRequestV1Error>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_id = id;
+
+    let uri_str = format!("{}/v1/approval_requests/{id}", configuration.base_path, id=crate::apis::urlencode(p_path_id));
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SubmitApprovalRequestsV1200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SubmitApprovalRequestsV1200Response`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetApprovalRequestV1Error> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent { status, content, entity }))
+    }
+}
+
+/// Lists all approval requests submitted by agentic tokens for your account. Returns request details including status, token name, approval URL, and the original request payload. Use status and date filters to narrow results. 
+pub async fn list_approval_requests_v1(configuration: &configuration::Configuration, status: Option<&str>, limit: Option<i32>, next_page: Option<&str>, created_before: Option<chrono::DateTime<chrono::FixedOffset>>, created_after: Option<chrono::DateTime<chrono::FixedOffset>>) -> Result<models::ListApprovalRequestsV1200Response, Error<ListApprovalRequestsV1Error>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_query_status = status;
+    let p_query_limit = limit;
+    let p_query_next_page = next_page;
+    let p_query_created_before = created_before;
+    let p_query_created_after = created_after;
+
+    let uri_str = format!("{}/v1/approval_requests", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = p_query_status {
+        req_builder = req_builder.query(&[("status", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_limit {
+        req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_next_page {
+        req_builder = req_builder.query(&[("next_page", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_created_before {
+        req_builder = req_builder.query(&[("created_before", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_created_after {
+        req_builder = req_builder.query(&[("created_after", &param_value.to_string())]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ListApprovalRequestsV1200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ListApprovalRequestsV1200Response`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<ListApprovalRequestsV1Error> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent { status, content, entity }))
+    }
+}
+
+/// Queues a write operation for human review when an agentic token is in use.  When an agent attempts a write operation (e.g. `POST /v1/contracts/create`) using an agentic token, the server returns a `403 AgenticMutationBlocked` error with a pointer to this endpoint. The agent should then call this endpoint with the original request details so a human can review and approve the action.  On success, a pending approval request is created and the response includes an `approval_url` linking to the Approval Dashboard where a human can review, approve, or reject the request. Once approved, the original operation is executed automatically and the dashboard reflects the completed status.  Agents should surface the `approval_url` to the human user (e.g. via chat message or UI link) so they can navigate directly to the approval dashboard to review the request. 
 pub async fn submit_approval_requests_v1(configuration: &configuration::Configuration, submit_approval_requests_v1_request: models::SubmitApprovalRequestsV1Request) -> Result<models::SubmitApprovalRequestsV1200Response, Error<SubmitApprovalRequestsV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_submit_approval_requests_v1_request = submit_approval_requests_v1_request;
 
-    let uri_str = format!("{}/v1/approval_requests/submit", configuration.base_path);
+    let uri_str = format!("{}/v1/approval_requests", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
