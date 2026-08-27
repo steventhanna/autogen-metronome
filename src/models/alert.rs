@@ -52,6 +52,9 @@ pub struct Alert {
     pub group_values: Option<Vec<models::GroupValueFilterType>>,
     #[serde(rename = "seat_filter", skip_serializing_if = "Option::is_none")]
     pub seat_filter: Option<Box<models::CreateCustomerAlertPayloadSeatFilter>>,
+    /// Indicates the commit access type this notification is scoped to. Defaults to `SPEND` if not otherwise specified. Only present for `low_remaining_commit_balance_reached`, `low_remaining_commit_percentage_reached`, `low_remaining_contract_credit_and_commit_balance_reached`, `low_remaining_contract_credit_balance_reached`, `low_remaining_contract_credit_percentage_reached`, and `low_remaining_seat_balance_reached` notifications.
+    #[serde(rename = "access_type", skip_serializing_if = "Option::is_none")]
+    pub access_type: Option<AccessType>,
     /// Present for `low_remaining_contract_credit_and_commit_balance_reached` notifications. The filters that define the balances that are considered when evaluating the alert.
     #[serde(rename = "alert_specifiers", skip_serializing_if = "Option::is_none")]
     pub alert_specifiers: Option<Vec<models::AlertSpecifier>>,
@@ -74,6 +77,7 @@ impl Alert {
             invoice_types_filter: None,
             group_values: None,
             seat_filter: None,
+            access_type: None,
             alert_specifiers: None,
         }
     }
@@ -124,6 +128,20 @@ pub enum Status {
 impl Default for Status {
     fn default() -> Status {
         Self::Enabled
+    }
+}
+/// Indicates the commit access type this notification is scoped to. Defaults to `SPEND` if not otherwise specified. Only present for `low_remaining_commit_balance_reached`, `low_remaining_commit_percentage_reached`, `low_remaining_contract_credit_and_commit_balance_reached`, `low_remaining_contract_credit_balance_reached`, `low_remaining_contract_credit_percentage_reached`, and `low_remaining_seat_balance_reached` notifications.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum AccessType {
+    #[serde(rename = "SPEND")]
+    Spend,
+    #[serde(rename = "QUANTITY")]
+    Quantity,
+}
+
+impl Default for AccessType {
+    fn default() -> AccessType {
+        Self::Spend
     }
 }
 

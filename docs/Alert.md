@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **invoice_types_filter** | Option<**Vec<String>**> | Only supported for invoice_total_reached threshold notifications. A list of invoice types to evaluate. | [optional]
 **group_values** | Option<[**Vec<models::GroupValueFilterType>**](GroupValueFilterType.md)> | Only present for `spend_threshold_reached` notifications. Scope notification to a specific group key on individual line items. | [optional]
 **seat_filter** | Option<[**models::CreateCustomerAlertPayloadSeatFilter**](CreateCustomerAlertPayloadSeatFilter.md)> |  | [optional]
+**access_type** | Option<**AccessType**> | Indicates the commit access type this notification is scoped to. Defaults to `SPEND` if not otherwise specified. Only present for `low_remaining_commit_balance_reached`, `low_remaining_commit_percentage_reached`, `low_remaining_contract_credit_and_commit_balance_reached`, `low_remaining_contract_credit_balance_reached`, `low_remaining_contract_credit_percentage_reached`, and `low_remaining_seat_balance_reached` notifications. (enum: SPEND, QUANTITY) | [optional]
 **alert_specifiers** | Option<[**Vec<models::AlertSpecifier>**](AlertSpecifier.md)> | Present for `low_remaining_contract_credit_and_commit_balance_reached` notifications. The filters that define the balances that are considered when evaluating the alert. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
