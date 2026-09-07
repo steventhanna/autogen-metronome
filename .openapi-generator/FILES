@@ -111,6 +111,7 @@ docs/CreateContractResponse.md
 docs/CreateContractResponseContract.md
 docs/CreateContractResponseContractUsageFilterInner.md
 docs/CreateContractV1200Response.md
+docs/CreateCreditTypeV1Request.md
 docs/CreateCustomerAlertPayload.md
 docs/CreateCustomerAlertPayloadSeatFilter.md
 docs/CreateCustomerCommitPayload.md
@@ -573,6 +574,7 @@ docs/SubscriptionConfigAllocationInput.md
 docs/SubscriptionConfigAllocationInputV2.md
 docs/SubscriptionInput.md
 docs/SubscriptionInputV2.md
+docs/SubscriptionPaymentGateConfig.md
 docs/SubscriptionPaymentGateConfigInput.md
 docs/SubscriptionProration.md
 docs/SubscriptionProrationInput.md
@@ -604,7 +606,6 @@ docs/Tier.md
 docs/TierMetadata.md
 docs/UpdateAccessScheduleInput.md
 docs/UpdateBaseThresholdCommit.md
-docs/UpdateBillableMetricV1Request.md
 docs/UpdateCommitEndDatePayload.md
 docs/UpdateCommitInput.md
 docs/UpdateContractEndDatePayload.md
@@ -778,6 +779,7 @@ src/models/create_contract_response.rs
 src/models/create_contract_response_contract.rs
 src/models/create_contract_response_contract_usage_filter_inner.rs
 src/models/create_contract_v1_200_response.rs
+src/models/create_credit_type_v1_request.rs
 src/models/create_customer_alert_payload.rs
 src/models/create_customer_alert_payload_seat_filter.rs
 src/models/create_customer_commit_payload.rs
@@ -1229,6 +1231,7 @@ src/models/subscription_config_allocation_input.rs
 src/models/subscription_config_allocation_input_v2.rs
 src/models/subscription_input.rs
 src/models/subscription_input_v2.rs
+src/models/subscription_payment_gate_config.rs
 src/models/subscription_payment_gate_config_input.rs
 src/models/subscription_proration.rs
 src/models/subscription_proration_input.rs
@@ -1260,7 +1263,6 @@ src/models/tier.rs
 src/models/tier_metadata.rs
 src/models/update_access_schedule_input.rs
 src/models/update_base_threshold_commit.rs
-src/models/update_billable_metric_v1_request.rs
 src/models/update_commit_end_date_payload.rs
 src/models/update_commit_input.rs
 src/models/update_contract_end_date_payload.rs
