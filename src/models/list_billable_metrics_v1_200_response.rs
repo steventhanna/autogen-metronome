@@ -14,13 +14,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ListBillableMetricsV1200Response {
     #[serde(rename = "data")]
-    pub data: Vec<models::BillableMetricWithDeprecatedFields>,
+    pub data: Vec<models::ListBillableMetricsV1200ResponseDataInner>,
     #[serde(rename = "next_page", deserialize_with = "Option::deserialize")]
     pub next_page: Option<String>,
 }
 
 impl ListBillableMetricsV1200Response {
-    pub fn new(data: Vec<models::BillableMetricWithDeprecatedFields>, next_page: Option<String>) -> ListBillableMetricsV1200Response {
+    pub fn new(data: Vec<models::ListBillableMetricsV1200ResponseDataInner>, next_page: Option<String>) -> ListBillableMetricsV1200Response {
         ListBillableMetricsV1200Response {
             data,
             next_page,
