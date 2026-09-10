@@ -14,11 +14,11 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetCustomerBillingProviderConfigurationsV1200Response {
     #[serde(rename = "data")]
-    pub data: Vec<models::CustomerBillingProviderConfiguration>,
+    pub data: Vec<models::GetCustomerBillingProviderConfigurationsV1200ResponseDataInner>,
 }
 
 impl GetCustomerBillingProviderConfigurationsV1200Response {
-    pub fn new(data: Vec<models::CustomerBillingProviderConfiguration>) -> GetCustomerBillingProviderConfigurationsV1200Response {
+    pub fn new(data: Vec<models::GetCustomerBillingProviderConfigurationsV1200ResponseDataInner>) -> GetCustomerBillingProviderConfigurationsV1200Response {
         GetCustomerBillingProviderConfigurationsV1200Response {
             data,
         }

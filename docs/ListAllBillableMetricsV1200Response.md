@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**Vec<models::BillableMetricV1>**](BillableMetricV1.md) |  | 
+**data** | [**Vec<models::GetBillableMetricV1200ResponseData>**](GetBillableMetricV1200ResponseData.md) |  | 
 **next_page** | Option<**String**> |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

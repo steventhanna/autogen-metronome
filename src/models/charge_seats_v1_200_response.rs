@@ -67,7 +67,7 @@ pub struct ChargeSeatsV1200Response {
     pub reseller_royalty: Option<Box<models::ChargeSeatsV1200ResponseResellerRoyalty>>,
     #[serde(rename = "custom_fields", skip_serializing_if = "Option::is_none")]
     pub custom_fields: Option<std::collections::HashMap<String, serde_json::Value>>,
-    /// This field's availability is dependent on your client's configuration.
+    /// Indicates if the invoice has been or will be sent to the configured customer billing provider. Defaults to `billable`.
     #[serde(rename = "billable_status", skip_serializing_if = "Option::is_none")]
     pub billable_status: Option<BillableStatus>,
     /// Required on invoices with type USAGE_CONSOLIDATED. List of constituent invoices that were consolidated to create this invoice.
@@ -112,7 +112,7 @@ impl ChargeSeatsV1200Response {
         }
     }
 }
-/// This field's availability is dependent on your client's configuration.
+/// Indicates if the invoice has been or will be sent to the configured customer billing provider. Defaults to `billable`.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum BillableStatus {
     #[serde(rename = "billable")]

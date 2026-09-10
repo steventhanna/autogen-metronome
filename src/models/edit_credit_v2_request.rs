@@ -33,6 +33,9 @@ pub struct EditCreditV2Request {
     /// Which tags the credit applies to. If both applicable_product_ids and applicable_product_tags are not provided, the credit applies to all products.
     #[serde(rename = "applicable_product_tags", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub applicable_product_tags: Option<Option<Vec<String>>>,
+    /// Which contracts the customer-level credit applies to. If set to null, the credit applies to all of the customer's contracts. This field cannot be set on a contract-level credit.
+    #[serde(rename = "applicable_contract_ids", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub applicable_contract_ids: Option<Option<Vec<uuid::Uuid>>>,
     /// List of filters that determine what kind of customer usage draws down a commit or credit. A customer's usage needs to meet the condition of at least one of the specifiers to contribute to a commit's or credit's drawdown. This field cannot be used together with `applicable_product_ids` or `applicable_product_tags`. Instead, to target usage by product or product tag, pass those values in the body of `specifiers`.
     #[serde(rename = "specifiers", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub specifiers: Option<Option<Vec<models::GetContractV1200ResponseDataInitialCommitsInnerSpecifiersInner>>>,
@@ -58,6 +61,7 @@ impl EditCreditV2Request {
             access_schedule: None,
             applicable_product_ids: None,
             applicable_product_tags: None,
+            applicable_contract_ids: None,
             specifiers: None,
             product_id: None,
             priority: None,

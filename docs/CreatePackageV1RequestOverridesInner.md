@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**starting_at_offset** | [**models::CreatePackageV1RequestDuration**](CreatePackageV1RequestDuration.md) |  | 
-**duration** | Option<[**models::CreatePackageV1RequestDuration**](CreatePackageV1RequestDuration.md)> |  | [optional]
+**starting_at_offset** | [**models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration**](GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration.md) |  | 
+**duration** | Option<[**models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration**](GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration.md)> |  | [optional]
 **entitled** | Option<**bool**> |  | [optional]
 **r#type** | Option<**Type**> | Overwrites are prioritized over multipliers and tiered overrides. (enum: OVERWRITE, overwrite, MULTIPLIER, multiplier, TIERED, tiered) | [optional]
 **multiplier** | Option<**f64**> | Required for MULTIPLIER type. Must be >=0. | [optional]

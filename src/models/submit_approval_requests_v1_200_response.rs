@@ -14,11 +14,11 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SubmitApprovalRequestsV1200Response {
     #[serde(rename = "data")]
-    pub data: Box<models::ApprovalRequest>,
+    pub data: Box<models::ListApprovalRequestsV1200ResponseDataInner>,
 }
 
 impl SubmitApprovalRequestsV1200Response {
-    pub fn new(data: models::ApprovalRequest) -> SubmitApprovalRequestsV1200Response {
+    pub fn new(data: models::ListApprovalRequestsV1200ResponseDataInner) -> SubmitApprovalRequestsV1200Response {
         SubmitApprovalRequestsV1200Response {
             data: Box::new(data),
         }

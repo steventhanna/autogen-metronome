@@ -14,9 +14,9 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreatePackageV1RequestOverridesInner {
     #[serde(rename = "starting_at_offset")]
-    pub starting_at_offset: Box<models::CreatePackageV1RequestDuration>,
+    pub starting_at_offset: Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration>,
     #[serde(rename = "duration", skip_serializing_if = "Option::is_none")]
-    pub duration: Option<Box<models::CreatePackageV1RequestDuration>>,
+    pub duration: Option<Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration>>,
     #[serde(rename = "entitled", skip_serializing_if = "Option::is_none")]
     pub entitled: Option<bool>,
     /// Overwrites are prioritized over multipliers and tiered overrides.
@@ -45,7 +45,7 @@ pub struct CreatePackageV1RequestOverridesInner {
 }
 
 impl CreatePackageV1RequestOverridesInner {
-    pub fn new(starting_at_offset: models::CreatePackageV1RequestDuration, override_specifiers: Vec<models::CreateContractV1RequestOverridesInnerOverrideSpecifiersInner>) -> CreatePackageV1RequestOverridesInner {
+    pub fn new(starting_at_offset: models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration, override_specifiers: Vec<models::CreateContractV1RequestOverridesInnerOverrideSpecifiersInner>) -> CreatePackageV1RequestOverridesInner {
         CreatePackageV1RequestOverridesInner {
             starting_at_offset: Box::new(starting_at_offset),
             duration: None,

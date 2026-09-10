@@ -33,15 +33,13 @@ impl GetContractV1200ResponseDataInitialTransitionsInner {
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Type {
-    #[serde(rename = "SUPERSEDE")]
-    Supersede,
     #[serde(rename = "RENEWAL")]
     Renewal,
 }
 
 impl Default for Type {
     fn default() -> Type {
-        Self::Supersede
+        Self::Renewal
     }
 }
 

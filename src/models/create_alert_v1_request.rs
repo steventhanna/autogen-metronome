@@ -51,6 +51,9 @@ pub struct CreateAlertV1Request {
     pub group_values: Option<Vec<models::CreateAlertV1RequestGroupValuesInner>>,
     #[serde(rename = "seat_filter", skip_serializing_if = "Option::is_none")]
     pub seat_filter: Option<Box<models::CreateAlertV1RequestSeatFilter>>,
+    /// Filters the notification to commits/credits with this access type. Only supported for `low_remaining_commit_balance_reached`, `low_remaining_commit_percentage_reached`, `low_remaining_contract_credit_and_commit_balance_reached`, `low_remaining_contract_credit_balance_reached`, `low_remaining_contract_credit_percentage_reached`, and `low_remaining_seat_balance_reached` notifications. Credit type cannot be specified if using QUANTITY access type.
+    #[serde(rename = "access_type", skip_serializing_if = "Option::is_none")]
+    pub access_type: Option<AccessType>,
     /// Can be used with only `low_remaining_contract_credit_and_commit_balance_reached` notifications. Defines the balances that are considered when evaluating the alert.
     #[serde(rename = "alert_specifiers", skip_serializing_if = "Option::is_none")]
     pub alert_specifiers: Option<Vec<models::CreateAlertV1RequestAlertSpecifiersInner>>,
@@ -72,6 +75,7 @@ impl CreateAlertV1Request {
             invoice_types_filter: None,
             group_values: None,
             seat_filter: None,
+            access_type: None,
             alert_specifiers: None,
         }
     }
@@ -108,6 +112,24 @@ pub enum AlertType {
 impl Default for AlertType {
     fn default() -> AlertType {
         Self::SpendThresholdReached
+    }
+}
+/// Filters the notification to commits/credits with this access type. Only supported for `low_remaining_commit_balance_reached`, `low_remaining_commit_percentage_reached`, `low_remaining_contract_credit_and_commit_balance_reached`, `low_remaining_contract_credit_balance_reached`, `low_remaining_contract_credit_percentage_reached`, and `low_remaining_seat_balance_reached` notifications. Credit type cannot be specified if using QUANTITY access type.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum AccessType {
+    #[serde(rename = "SPEND")]
+    Spend,
+    #[serde(rename = "spend")]
+    Spend2,
+    #[serde(rename = "QUANTITY")]
+    Quantity,
+    #[serde(rename = "quantity")]
+    Quantity2,
+}
+
+impl Default for AccessType {
+    fn default() -> AccessType {
+        Self::Spend
     }
 }
 
