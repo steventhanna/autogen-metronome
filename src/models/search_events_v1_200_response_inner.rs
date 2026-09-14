@@ -33,7 +33,7 @@ pub struct SearchEventsV1200ResponseInner {
     #[serde(rename = "matched_customer", skip_serializing_if = "Option::is_none")]
     pub matched_customer: Option<Box<models::SearchEventsV1200ResponseInnerMatchedCustomer>>,
     #[serde(rename = "matched_billable_metrics", skip_serializing_if = "Option::is_none")]
-    pub matched_billable_metrics: Option<Vec<models::BillableMetricForEventsSearch>>,
+    pub matched_billable_metrics: Option<Vec<models::SearchEventsV1200ResponseInnerMatchedBillableMetricsInner>>,
 }
 
 impl SearchEventsV1200ResponseInner {

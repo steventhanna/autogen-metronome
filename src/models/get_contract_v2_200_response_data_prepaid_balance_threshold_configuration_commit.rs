@@ -32,7 +32,15 @@ pub struct GetContractV2200ResponseDataPrepaidBalanceThresholdConfigurationCommi
     pub applicable_product_tags: Option<Vec<String>>,
     /// List of filters that determine what kind of customer usage draws down a commit or credit. A customer's usage needs to meet the condition of at least one of the specifiers to contribute to a commit's or credit's drawdown. This field cannot be used together with `applicable_product_ids` or `applicable_product_tags`. Instead, to target usage by product or product tag, pass those values in the body of `specifiers`.
     #[serde(rename = "specifiers", skip_serializing_if = "Option::is_none")]
-    pub specifiers: Option<Vec<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfSpecifiersInner>>,
+    pub specifiers: Option<Vec<models::GetContractV1200ResponseDataInitialCommitsInnerSpecifiersInner>>,
+    #[serde(rename = "duration", skip_serializing_if = "Option::is_none")]
+    pub duration: Option<Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration>>,
+    /// Fraction of the created commit's unused balance that will roll over. Must be between 0 and 1.
+    #[serde(rename = "rollover_fraction", skip_serializing_if = "Option::is_none")]
+    pub rollover_fraction: Option<f64>,
+    /// Whether the created commits will be charged at commit rate or list rate.
+    #[serde(rename = "rate_type", skip_serializing_if = "Option::is_none")]
+    pub rate_type: Option<RateType>,
 }
 
 impl GetContractV2200ResponseDataPrepaidBalanceThresholdConfigurationCommit {
@@ -45,7 +53,28 @@ impl GetContractV2200ResponseDataPrepaidBalanceThresholdConfigurationCommit {
             applicable_product_ids: None,
             applicable_product_tags: None,
             specifiers: None,
+            duration: None,
+            rollover_fraction: None,
+            rate_type: None,
         }
+    }
+}
+/// Whether the created commits will be charged at commit rate or list rate.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum RateType {
+    #[serde(rename = "COMMIT_RATE")]
+    CommitRate,
+    #[serde(rename = "commit_rate")]
+    CommitRate2,
+    #[serde(rename = "LIST_RATE")]
+    ListRate,
+    #[serde(rename = "list_rate")]
+    ListRate2,
+}
+
+impl Default for RateType {
+    fn default() -> RateType {
+        Self::CommitRate
     }
 }
 

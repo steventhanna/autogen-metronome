@@ -45,6 +45,8 @@ pub struct CreateContractV1RequestSubscriptionsInner {
     pub seat_config: Option<Box<models::CreateContractV1RequestSubscriptionsInnerSeatConfig>>,
     #[serde(rename = "billing_cycle_config", skip_serializing_if = "Option::is_none")]
     pub billing_cycle_config: Option<Box<models::CreateContractV1RequestSubscriptionsInnerBillingCycleConfig>>,
+    #[serde(rename = "payment_gate_config", skip_serializing_if = "Option::is_none")]
+    pub payment_gate_config: Option<Box<models::CreateContractV1RequestSubscriptionsInnerPaymentGateConfig>>,
 }
 
 impl CreateContractV1RequestSubscriptionsInner {
@@ -63,6 +65,7 @@ impl CreateContractV1RequestSubscriptionsInner {
             quantity_management_mode: None,
             seat_config: None,
             billing_cycle_config: None,
+            payment_gate_config: None,
         }
     }
 }

@@ -16,15 +16,15 @@ pub struct GetPackageV1200ResponseDataCommitsInnerAccessScheduleScheduleItemsInn
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
     #[serde(rename = "starting_at_offset")]
-    pub starting_at_offset: Box<models::CreatePackageV1RequestDuration>,
+    pub starting_at_offset: Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration>,
     #[serde(rename = "duration")]
-    pub duration: Box<models::CreatePackageV1RequestDuration>,
+    pub duration: Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration>,
     #[serde(rename = "amount")]
     pub amount: f64,
 }
 
 impl GetPackageV1200ResponseDataCommitsInnerAccessScheduleScheduleItemsInner {
-    pub fn new(id: uuid::Uuid, starting_at_offset: models::CreatePackageV1RequestDuration, duration: models::CreatePackageV1RequestDuration, amount: f64) -> GetPackageV1200ResponseDataCommitsInnerAccessScheduleScheduleItemsInner {
+    pub fn new(id: uuid::Uuid, starting_at_offset: models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration, duration: models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration, amount: f64) -> GetPackageV1200ResponseDataCommitsInnerAccessScheduleScheduleItemsInner {
         GetPackageV1200ResponseDataCommitsInnerAccessScheduleScheduleItemsInner {
             id,
             starting_at_offset: Box::new(starting_at_offset),

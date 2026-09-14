@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **add_recurring_credits** | Option<[**Vec<models::GetContractV2200ResponseDataRecurringCreditsInner>**](GetContractV2200ResponseDataRecurringCreditsInner.md)> |  | [optional]
 **add_usage_filters** | Option<[**Vec<models::CreateContractV1200ResponseDataContractUsageFilterInner>**](CreateContractV1200ResponseDataContractUsageFilterInner.md)> |  | [optional]
 **add_subscriptions** | Option<[**Vec<models::GetContractV1200ResponseDataSubscriptionsInner>**](GetContractV1200ResponseDataSubscriptionsInner.md)> | List of subscriptions on the contract. | [optional]
-**add_prepaid_balance_threshold_configuration** | Option<[**models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfiguration**](GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfiguration.md)> |  | [optional]
+**add_prepaid_balance_threshold_configuration** | Option<[**models::GetContractV2200ResponseDataPrepaidBalanceThresholdConfiguration**](GetContractV2200ResponseDataPrepaidBalanceThresholdConfiguration.md)> |  | [optional]
 **add_spend_threshold_configuration** | Option<[**models::GetContractV1200ResponseDataInitialSpendThresholdConfiguration**](GetContractV1200ResponseDataInitialSpendThresholdConfiguration.md)> |  | [optional]
 **update_contract_name** | Option<**String**> | Value to update the contract name to. If not provided, the contract name will remain unchanged. | [optional]
 **update_discounts** | Option<[**Vec<models::GetContractEditHistoryV2200ResponseDataInnerUpdateDiscountsInner>**](GetContractEditHistoryV2200ResponseDataInnerUpdateDiscountsInner.md)> |  | [optional]

@@ -19,7 +19,7 @@ use super::{Error, configuration, ContentType};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ApproveApprovalRequestV1Error {
-    Status404(models::Error),
+    Status404(models::GetApprovalRequestV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -27,7 +27,7 @@ pub enum ApproveApprovalRequestV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DenyApprovalRequestV1Error {
-    Status404(models::Error),
+    Status404(models::GetApprovalRequestV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -35,7 +35,7 @@ pub enum DenyApprovalRequestV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetApprovalRequestV1Error {
-    Status404(models::Error),
+    Status404(models::GetApprovalRequestV1404Response),
     UnknownValue(serde_json::Value),
 }
 

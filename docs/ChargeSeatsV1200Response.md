@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 **correction_record** | Option<[**models::ChargeSeatsV1200ResponseCorrectionRecord**](ChargeSeatsV1200ResponseCorrectionRecord.md)> |  | [optional]
 **reseller_royalty** | Option<[**models::ChargeSeatsV1200ResponseResellerRoyalty**](ChargeSeatsV1200ResponseResellerRoyalty.md)> |  | [optional]
 **custom_fields** | Option<**std::collections::HashMap<String, serde_json::Value>**> |  | [optional]
-**billable_status** | Option<**BillableStatus**> | This field's availability is dependent on your client's configuration. (enum: billable, unbillable) | [optional]
+**billable_status** | Option<**BillableStatus**> | Indicates if the invoice has been or will be sent to the configured customer billing provider. Defaults to `billable`. (enum: billable, unbillable) | [optional]
 **constituent_invoices** | Option<[**Vec<models::ChargeSeatsV1200ResponseConstituentInvoicesInner>**](ChargeSeatsV1200ResponseConstituentInvoicesInner.md)> | Required on invoices with type USAGE_CONSOLIDATED. List of constituent invoices that were consolidated to create this invoice. | [optional]
 **payer** | Option<[**models::ChargeSeatsV1200ResponsePayer**](ChargeSeatsV1200ResponsePayer.md)> |  | [optional]
 **regenerated_from_invoice_id** | Option<**uuid::Uuid**> |  | [optional]

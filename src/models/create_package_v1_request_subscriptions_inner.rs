@@ -27,9 +27,9 @@ pub struct CreatePackageV1RequestSubscriptionsInner {
     #[serde(rename = "initial_quantity", skip_serializing_if = "Option::is_none")]
     pub initial_quantity: Option<f64>,
     #[serde(rename = "starting_at_offset", skip_serializing_if = "Option::is_none")]
-    pub starting_at_offset: Option<Box<models::CreatePackageV1RequestDuration>>,
+    pub starting_at_offset: Option<Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration>>,
     #[serde(rename = "duration", skip_serializing_if = "Option::is_none")]
-    pub duration: Option<Box<models::CreatePackageV1RequestDuration>>,
+    pub duration: Option<Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration>>,
     /// A temporary ID used to reference the subscription in recurring commit/credit subscription configs created within the same payload.
     #[serde(rename = "temporary_id", skip_serializing_if = "Option::is_none")]
     pub temporary_id: Option<String>,
@@ -43,6 +43,8 @@ pub struct CreatePackageV1RequestSubscriptionsInner {
     pub custom_fields: Option<std::collections::HashMap<String, String>>,
     #[serde(rename = "billing_cycle_config", skip_serializing_if = "Option::is_none")]
     pub billing_cycle_config: Option<Box<models::CreatePackageV1RequestSubscriptionsInnerBillingCycleConfig>>,
+    #[serde(rename = "payment_gate_config", skip_serializing_if = "Option::is_none")]
+    pub payment_gate_config: Option<Box<models::CreateContractV1RequestSubscriptionsInnerPaymentGateConfig>>,
 }
 
 impl CreatePackageV1RequestSubscriptionsInner {
@@ -61,6 +63,7 @@ impl CreatePackageV1RequestSubscriptionsInner {
             seat_config: None,
             custom_fields: None,
             billing_cycle_config: None,
+            payment_gate_config: None,
         }
     }
 }

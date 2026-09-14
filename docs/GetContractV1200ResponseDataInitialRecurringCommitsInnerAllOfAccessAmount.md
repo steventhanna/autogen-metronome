@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**access_type** | Option<**AccessType**> | Indicates how the balance of child commits is drawn down. `SPEND` deducts the dollar cost of usage. `QUANTITY` deducts the number of units used. (enum: SPEND, QUANTITY) | [optional]
 **unit_price** | **f64** |  | 
 **quantity** | Option<**f64**> |  | [optional]
 **credit_type_id** | **uuid::Uuid** |  | 
