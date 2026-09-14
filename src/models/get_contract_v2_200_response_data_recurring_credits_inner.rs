@@ -56,9 +56,12 @@ pub struct GetContractV2200ResponseDataRecurringCreditsInner {
     pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "commit_duration")]
     pub commit_duration: Box<models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfCommitDuration>,
-    /// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
+    /// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates. - Daily recurring commits have a limit of one per contract, and are unable to be created with seat-based subscriptions
     #[serde(rename = "recurrence_frequency", skip_serializing_if = "Option::is_none")]
     pub recurrence_frequency: Option<RecurrenceFrequency>,
+    /// The date this recurring commit's billing periods are anchored to.
+    #[serde(rename = "anchor_date")]
+    pub anchor_date: chrono::DateTime<chrono::FixedOffset>,
     /// Determines whether the first and last commit will be prorated. If not provided, the default is FIRST_AND_LAST (i.e. prorate both the first and last commits).
     #[serde(rename = "proration", skip_serializing_if = "Option::is_none")]
     pub proration: Option<Proration>,
@@ -71,7 +74,7 @@ pub struct GetContractV2200ResponseDataRecurringCreditsInner {
 }
 
 impl GetContractV2200ResponseDataRecurringCreditsInner {
-    pub fn new(id: uuid::Uuid, product: models::GetContractV1200ResponseDataInitialCommitsInnerProduct, access_amount: models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfAccessAmount, priority: f64, rate_type: RateType, starting_at: chrono::DateTime<chrono::FixedOffset>, commit_duration: models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfCommitDuration) -> GetContractV2200ResponseDataRecurringCreditsInner {
+    pub fn new(id: uuid::Uuid, product: models::GetContractV1200ResponseDataInitialCommitsInnerProduct, access_amount: models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfAccessAmount, priority: f64, rate_type: RateType, starting_at: chrono::DateTime<chrono::FixedOffset>, commit_duration: models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfCommitDuration, anchor_date: chrono::DateTime<chrono::FixedOffset>) -> GetContractV2200ResponseDataRecurringCreditsInner {
         GetContractV2200ResponseDataRecurringCreditsInner {
             id,
             contract: None,
@@ -90,6 +93,7 @@ impl GetContractV2200ResponseDataRecurringCreditsInner {
             ending_before: None,
             commit_duration: Box::new(commit_duration),
             recurrence_frequency: None,
+            anchor_date,
             proration: None,
             hierarchy_configuration: None,
             subscription_config: None,
@@ -115,7 +119,7 @@ impl Default for RateType {
         Self::CommitRate
     }
 }
-/// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
+/// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates. - Daily recurring commits have a limit of one per contract, and are unable to be created with seat-based subscriptions
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum RecurrenceFrequency {
     #[serde(rename = "MONTHLY")]

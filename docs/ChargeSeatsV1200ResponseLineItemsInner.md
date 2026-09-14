@@ -44,6 +44,7 @@ Name | Type | Description | Notes
 **discount_id** | Option<**uuid::Uuid**> | ID of the discount applied to this line item. | [optional]
 **discount_custom_fields** | Option<**std::collections::HashMap<String, String>**> | Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" } | [optional]
 **origin** | Option<[**models::ChargeSeatsV1200ResponseLineItemsInnerOrigin**](ChargeSeatsV1200ResponseLineItemsInnerOrigin.md)> |  | [optional]
+**quantity_consumed** | Option<**f64**> | Present on applied commit line items for quantity-based commits. Represents the unit quantity deducted the commit. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

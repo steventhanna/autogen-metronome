@@ -25,7 +25,7 @@ pub struct GetPackageV1200ResponseData {
     #[serde(rename = "aliases", skip_serializing_if = "Option::is_none")]
     pub aliases: Option<Vec<models::GetRateCardV1200ResponseDataAliasesInner>>,
     #[serde(rename = "duration", skip_serializing_if = "Option::is_none")]
-    pub duration: Option<Box<models::CreatePackageV1RequestDuration>>,
+    pub duration: Option<Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration>>,
     #[serde(rename = "commits")]
     pub commits: Vec<models::GetPackageV1200ResponseDataCommitsInner>,
     #[serde(rename = "credits", skip_serializing_if = "Option::is_none")]

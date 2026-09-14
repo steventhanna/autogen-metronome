@@ -46,6 +46,15 @@ pub struct GetContractV1200ResponseDataSubscriptionsInner {
     /// Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" }
     #[serde(rename = "custom_fields", skip_serializing_if = "Option::is_none")]
     pub custom_fields: Option<std::collections::HashMap<String, String>>,
+    /// Custom fields from the subscription product referenced by `subscription_rate.product`. These are distinct from the subscription instance's `custom_fields`.
+    #[serde(rename = "product_custom_fields", skip_serializing_if = "Option::is_none")]
+    pub product_custom_fields: Option<std::collections::HashMap<String, String>>,
+    #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
+    pub status: Option<Status>,
+    #[serde(rename = "paid_quantity", skip_serializing_if = "Option::is_none")]
+    pub paid_quantity: Option<f64>,
+    #[serde(rename = "payment_gate_config", skip_serializing_if = "Option::is_none")]
+    pub payment_gate_config: Option<Box<models::GetContractV1200ResponseDataSubscriptionsInnerPaymentGateConfig>>,
 }
 
 impl GetContractV1200ResponseDataSubscriptionsInner {
@@ -66,6 +75,10 @@ impl GetContractV1200ResponseDataSubscriptionsInner {
             fiat_credit_type_id: None,
             billing_cycle_config: None,
             custom_fields: None,
+            product_custom_fields: None,
+            status: None,
+            paid_quantity: None,
+            payment_gate_config: None,
         }
     }
 }
@@ -103,6 +116,26 @@ pub enum QuantityManagementMode {
 impl Default for QuantityManagementMode {
     fn default() -> QuantityManagementMode {
         Self::SeatBased
+    }
+}
+/// 
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum Status {
+    #[serde(rename = "NOT_STARTED")]
+    NotStarted,
+    #[serde(rename = "INCOMPLETE")]
+    Incomplete,
+    #[serde(rename = "ACTIVE")]
+    Active,
+    #[serde(rename = "UNPAID")]
+    Unpaid,
+    #[serde(rename = "ENDED")]
+    Ended,
+}
+
+impl Default for Status {
+    fn default() -> Status {
+        Self::NotStarted
     }
 }
 

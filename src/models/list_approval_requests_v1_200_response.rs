@@ -14,14 +14,14 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ListApprovalRequestsV1200Response {
     #[serde(rename = "data")]
-    pub data: Vec<models::ApprovalRequest>,
+    pub data: Vec<models::ListApprovalRequestsV1200ResponseDataInner>,
     /// Cursor to use for fetching the next page of results.
     #[serde(rename = "next_page", deserialize_with = "Option::deserialize")]
     pub next_page: Option<String>,
 }
 
 impl ListApprovalRequestsV1200Response {
-    pub fn new(data: Vec<models::ApprovalRequest>, next_page: Option<String>) -> ListApprovalRequestsV1200Response {
+    pub fn new(data: Vec<models::ListApprovalRequestsV1200ResponseDataInner>, next_page: Option<String>) -> ListApprovalRequestsV1200Response {
         ListApprovalRequestsV1200Response {
             data,
             next_page,
