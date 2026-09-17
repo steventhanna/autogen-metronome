@@ -43,6 +43,8 @@ pub struct SubscriptionTemplateInput {
     pub custom_fields: Option<std::collections::HashMap<String, String>>,
     #[serde(rename = "billing_cycle_config", skip_serializing_if = "Option::is_none")]
     pub billing_cycle_config: Option<Box<models::SubscriptionBillingCycleConfigTemplateInput>>,
+    #[serde(rename = "payment_gate_config", skip_serializing_if = "Option::is_none")]
+    pub payment_gate_config: Option<Box<models::SubscriptionPaymentGateConfigInput>>,
 }
 
 impl SubscriptionTemplateInput {
@@ -61,6 +63,7 @@ impl SubscriptionTemplateInput {
             seat_config: None,
             custom_fields: None,
             billing_cycle_config: None,
+            payment_gate_config: None,
         }
     }
 }

@@ -456,7 +456,7 @@ Name | Type | Description  | Required | Notes
 > models::ListContractsV1200Response list_contracts_v1(list_contracts_v1_request)
 List customer contracts (v1)
 
-Retrieves all contracts for a specific customer, including pricing, terms, credits, and commitments. Use this to view a customer's contract history and current agreements for billing management. Returns contract details with optional ledgers and balance information.   ⚠️ Note: This is the legacy v1 endpoint - new integrations should use the v2 endpoint for enhanced features. 
+Retrieves a page of contracts for a specific customer, including pricing, terms, credits, and commitments. Use this to view a customer's contract history and current agreements for billing management. Returns contract details with optional ledgers and balance information.  ### Usage guidelines: - Pagination: Results are limited to 20 contracts per page; use 'cursor' for more  ⚠️ Note: This is the legacy v1 endpoint - new integrations should use the v2 endpoint for enhanced features. 
 
 ### Parameters
 
@@ -486,7 +486,7 @@ Name | Type | Description  | Required | Notes
 > models::ListContractsV2200Response list_contracts_v2(list_contracts_v2_request)
 List customer contracts (v2)
 
-For a given customer, lists all of their contracts in chronological order.   ### Use this endpoint to: - Check if a customer is provisioned with any contract, and at which tier - Check the duration and terms of a customer's current contract - Power a page in your end customer experience that shows the customer's history of tiers (e.g. this customer started out on the Pro Plan, then downgraded to the Starter plan).  ### Usage guidelines: Use the `starting_at`, `covering_date`, and `include_archived` parameters to filter the list of returned contracts. For example, to list only currently active contracts, pass `covering_date` equal to the current time. 
+For a given customer, lists a page of their contracts in chronological order.  ### Use this endpoint to: - Check if a customer is provisioned with any contract, and at which tier - Check the duration and terms of a customer's current contract - Power a page in your end customer experience that shows the customer's history of tiers (e.g. this customer started out on the Pro Plan, then downgraded to the Starter plan).  ### Usage guidelines: Use the `starting_at`, `covering_date`, and `include_archived` parameters to filter the list of returned contracts. For example, to list only currently active contracts, pass `covering_date` equal to the current time.  Results are limited to 20 contracts per page. When the response includes a non-null `cursor`, pass it back as the `cursor` parameter to fetch the next page. 
 
 ### Parameters
 
