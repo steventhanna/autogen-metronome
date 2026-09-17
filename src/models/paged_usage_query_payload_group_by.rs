@@ -17,7 +17,7 @@ pub struct PagedUsageQueryPayloadGroupBy {
     /// The name of the group_by key to use
     #[serde(rename = "key")]
     pub key: String,
-    /// Values of the group_by key to return in the query. Omit this if you'd like all values for the key returned.
+    /// Values of the group_by key to return in the query. Accepts at most 200 values. Omit this if you'd like all values for the key returned.
     #[serde(rename = "values", skip_serializing_if = "Option::is_none")]
     pub values: Option<Vec<String>>,
 }
