@@ -171,7 +171,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_billable_metric_v1
 
-> models::ArchiveAlertV1200Response update_billable_metric_v1(billable_metric_id, update_billable_metric_v1_request)
+> models::ArchiveAlertV1200Response update_billable_metric_v1(billable_metric_id, create_credit_type_v1_request)
 Update a billable metric
 
 Updates only the display name of an existing billable metric. Use this to correct mistakes or apply standardized naming conventions across all billable metrics. Returns the billable metric ID to confirm the update.   Important: Only the name can be modified via this endpoint; configurations cannot be changed after creation.   #### Example workflow: If you need to make changes to a streaming billable metric, for example, Metronome supports easily rolling out these changes using a simple workflow: 1. Duplicate the billable metric 2. Make required changes 3. Save the metric 4. Navigate to the product you have associated with the incorrect metric 5. Schedule the product to reference the newly created metric on the appropriate date 
@@ -182,7 +182,7 @@ Updates only the display name of an existing billable metric. Use this to correc
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **billable_metric_id** | **uuid::Uuid** |  | [required] |
-**update_billable_metric_v1_request** | Option<[**UpdateBillableMetricV1Request**](UpdateBillableMetricV1Request.md)> | The billable metric to update |  |
+**create_credit_type_v1_request** | Option<[**CreateCreditTypeV1Request**](CreateCreditTypeV1Request.md)> | The billable metric to update |  |
 
 ### Return type
 

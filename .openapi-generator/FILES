@@ -111,6 +111,7 @@ docs/CreateContractResponse.md
 docs/CreateContractResponseContract.md
 docs/CreateContractResponseContractUsageFilterInner.md
 docs/CreateContractV1200Response.md
+docs/CreateCreditTypeV1Request.md
 docs/CreateCustomerAlertPayload.md
 docs/CreateCustomerAlertPayloadSeatFilter.md
 docs/CreateCustomerCommitPayload.md
@@ -269,6 +270,10 @@ docs/HasMore.md
 docs/HierarchyConfiguration.md
 docs/HierarchyConfigurationV2.md
 docs/HierarchyLink.md
+docs/HistoricalBalance.md
+docs/HistoricalBalanceFields.md
+docs/HistoricalBalanceOneOf.md
+docs/HistoricalBalanceOneOf1.md
 docs/HistoricalContractUsageInvoiceInputPayload.md
 docs/HistoricalContractUsageInvoiceLineItemBreakdownSubtotal.md
 docs/HistoricalContractUsageInvoiceLineItemInput.md
@@ -321,6 +326,8 @@ docs/ListCustomerCommitsV1Request.md
 docs/ListCustomerCreditsV1200Response.md
 docs/ListCustomerCreditsV1Request.md
 docs/ListCustomersV1200Response.md
+docs/ListHistoricalBalancesV1200Response.md
+docs/ListHistoricalBalancesV1Request.md
 docs/ListInvoicesV1200Response.md
 docs/ListOffsetNotificationConfigsPayload.md
 docs/ListOffsetNotificationConfigsV2200Response.md
@@ -339,6 +346,11 @@ docs/ManagedVendor.md
 docs/MinimumConfig.md
 docs/MoveRateCardProductsPayload.md
 docs/MoveRateCardProductsPayloadProductMovesInner.md
+docs/MoveToHistoryPayload.md
+docs/MoveToHistoryResponse.md
+docs/MoveToHistoryResponseSkippedReasonsInner.md
+docs/MoveToHistoryV2200Response.md
+docs/MoveToHistoryV2400Response.md
 docs/NameValuePair.md
 docs/NamedSchedule.md
 docs/NamedSchedulesApi.md
@@ -433,6 +445,7 @@ docs/RecurringCommitInputAllOfProrationRounding.md
 docs/RecurringCommitInputV2.md
 docs/RecurringCommitInputV2AllOfProrationRounding.md
 docs/RecurringCommitOrCreditBase.md
+docs/RecurringCommitOrCreditBaseAccessAmount.md
 docs/RecurringCommitOrCreditBaseV2.md
 docs/RecurringCommitOrCreditInputBase.md
 docs/RecurringCommitOrCreditInputBaseAccessAmount.md
@@ -482,11 +495,6 @@ docs/ResellerRoyaltyOrUpdateInput.md
 docs/ResellerRoyaltyOrUpdateV2.md
 docs/ResellerType.md
 docs/ResetCustomerAlertsPayload.md
-docs/RetireCommitsPayload.md
-docs/RetireCommitsResponse.md
-docs/RetireCommitsResponseSkippedReasonsInner.md
-docs/RetireCommitsV2200Response.md
-docs/RetireCommitsV2400Response.md
 docs/RevenueSystemConfigurationUpdate.md
 docs/RevenueSystemConfigurationUpdateEffectiveAtType.md
 docs/RevenueSystemConfigurationUpdateRevenueSystemConfiguration.md
@@ -573,6 +581,7 @@ docs/SubscriptionConfigAllocationInput.md
 docs/SubscriptionConfigAllocationInputV2.md
 docs/SubscriptionInput.md
 docs/SubscriptionInputV2.md
+docs/SubscriptionPaymentGateConfig.md
 docs/SubscriptionPaymentGateConfigInput.md
 docs/SubscriptionProration.md
 docs/SubscriptionProrationInput.md
@@ -604,7 +613,6 @@ docs/Tier.md
 docs/TierMetadata.md
 docs/UpdateAccessScheduleInput.md
 docs/UpdateBaseThresholdCommit.md
-docs/UpdateBillableMetricV1Request.md
 docs/UpdateCommitEndDatePayload.md
 docs/UpdateCommitInput.md
 docs/UpdateContractEndDatePayload.md
@@ -778,6 +786,7 @@ src/models/create_contract_response.rs
 src/models/create_contract_response_contract.rs
 src/models/create_contract_response_contract_usage_filter_inner.rs
 src/models/create_contract_v1_200_response.rs
+src/models/create_credit_type_v1_request.rs
 src/models/create_customer_alert_payload.rs
 src/models/create_customer_alert_payload_seat_filter.rs
 src/models/create_customer_commit_payload.rs
@@ -932,6 +941,10 @@ src/models/has_more.rs
 src/models/hierarchy_configuration.rs
 src/models/hierarchy_configuration_v2.rs
 src/models/hierarchy_link.rs
+src/models/historical_balance.rs
+src/models/historical_balance_fields.rs
+src/models/historical_balance_one_of.rs
+src/models/historical_balance_one_of_1.rs
 src/models/historical_contract_usage_invoice_input_payload.rs
 src/models/historical_contract_usage_invoice_line_item_breakdown_subtotal.rs
 src/models/historical_contract_usage_invoice_line_item_input.rs
@@ -983,6 +996,8 @@ src/models/list_customer_commits_v1_request.rs
 src/models/list_customer_credits_v1_200_response.rs
 src/models/list_customer_credits_v1_request.rs
 src/models/list_customers_v1_200_response.rs
+src/models/list_historical_balances_v1_200_response.rs
+src/models/list_historical_balances_v1_request.rs
 src/models/list_invoices_v1_200_response.rs
 src/models/list_offset_notification_configs_payload.rs
 src/models/list_offset_notification_configs_v2_200_response.rs
@@ -1003,6 +1018,11 @@ src/models/mod.rs
 src/models/model_override.rs
 src/models/move_rate_card_products_payload.rs
 src/models/move_rate_card_products_payload_product_moves_inner.rs
+src/models/move_to_history_payload.rs
+src/models/move_to_history_response.rs
+src/models/move_to_history_response_skipped_reasons_inner.rs
+src/models/move_to_history_v2_200_response.rs
+src/models/move_to_history_v2_400_response.rs
 src/models/name_value_pair.rs
 src/models/named_schedule.rs
 src/models/nullable_proration_rounding_config.rs
@@ -1091,6 +1111,7 @@ src/models/recurring_commit_input_all_of_proration_rounding.rs
 src/models/recurring_commit_input_v2.rs
 src/models/recurring_commit_input_v2_all_of_proration_rounding.rs
 src/models/recurring_commit_or_credit_base.rs
+src/models/recurring_commit_or_credit_base_access_amount.rs
 src/models/recurring_commit_or_credit_base_v2.rs
 src/models/recurring_commit_or_credit_input_base.rs
 src/models/recurring_commit_or_credit_input_base_access_amount.rs
@@ -1140,11 +1161,6 @@ src/models/reseller_royalty_or_update_input.rs
 src/models/reseller_royalty_or_update_v2.rs
 src/models/reseller_type.rs
 src/models/reset_customer_alerts_payload.rs
-src/models/retire_commits_payload.rs
-src/models/retire_commits_response.rs
-src/models/retire_commits_response_skipped_reasons_inner.rs
-src/models/retire_commits_v2_200_response.rs
-src/models/retire_commits_v2_400_response.rs
 src/models/revenue_system_configuration_update.rs
 src/models/revenue_system_configuration_update_effective_at_type.rs
 src/models/revenue_system_configuration_update_revenue_system_configuration.rs
@@ -1229,6 +1245,7 @@ src/models/subscription_config_allocation_input.rs
 src/models/subscription_config_allocation_input_v2.rs
 src/models/subscription_input.rs
 src/models/subscription_input_v2.rs
+src/models/subscription_payment_gate_config.rs
 src/models/subscription_payment_gate_config_input.rs
 src/models/subscription_proration.rs
 src/models/subscription_proration_input.rs
@@ -1260,7 +1277,6 @@ src/models/tier.rs
 src/models/tier_metadata.rs
 src/models/update_access_schedule_input.rs
 src/models/update_base_threshold_commit.rs
-src/models/update_billable_metric_v1_request.rs
 src/models/update_commit_end_date_payload.rs
 src/models/update_commit_input.rs
 src/models/update_contract_end_date_payload.rs
