@@ -20,6 +20,9 @@ pub struct CommitSubscriptionConfig {
     pub allocation: Option<models::SubscriptionConfigAllocation>,
     #[serde(rename = "apply_seat_increase_config", skip_serializing_if = "Option::is_none")]
     pub apply_seat_increase_config: Option<Box<models::ApplySeatIncreaseConfigForRecurringCommit>>,
+    /// Controls when a customer can access this commit when the attached subscription is payment-gated. `BILLING_PERIOD_PAID` releases the commit after payment for its billing period. `INITIAL_BILLING_PERIOD_PAID_ONLY` releases the commit after the first payment.
+    #[serde(rename = "access_policy", skip_serializing_if = "Option::is_none")]
+    pub access_policy: Option<AccessPolicy>,
 }
 
 impl CommitSubscriptionConfig {
@@ -29,7 +32,22 @@ impl CommitSubscriptionConfig {
             subscription_id: None,
             allocation: None,
             apply_seat_increase_config: None,
+            access_policy: None,
         }
+    }
+}
+/// Controls when a customer can access this commit when the attached subscription is payment-gated. `BILLING_PERIOD_PAID` releases the commit after payment for its billing period. `INITIAL_BILLING_PERIOD_PAID_ONLY` releases the commit after the first payment.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum AccessPolicy {
+    #[serde(rename = "BILLING_PERIOD_PAID")]
+    BillingPeriodPaid,
+    #[serde(rename = "INITIAL_BILLING_PERIOD_PAID_ONLY")]
+    InitialBillingPeriodPaidOnly,
+}
+
+impl Default for AccessPolicy {
+    fn default() -> AccessPolicy {
+        Self::BillingPeriodPaid
     }
 }
 

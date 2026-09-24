@@ -68,6 +68,9 @@ pub struct Credit {
     pub hierarchy_configuration: Option<Box<models::CommitHierarchyConfiguration>>,
     #[serde(rename = "rolled_over_from", skip_serializing_if = "Option::is_none")]
     pub rolled_over_from: Option<Box<models::CreditRolledOverFrom>>,
+    /// Timestamp of when the credit was created. - Recurring credit: latter of credit service period date and parent credit start date - Rollover credit: when the new contract started 
+    #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
+    pub created_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// The actor who created this credit. Omitted for system-generated credits such as recurring credits.
     #[serde(rename = "created_by", skip_serializing_if = "Option::is_none")]
     pub created_by: Option<String>,
@@ -99,6 +102,7 @@ impl Credit {
             uniqueness_key: None,
             hierarchy_configuration: None,
             rolled_over_from: None,
+            created_at: None,
             created_by: None,
         }
     }
