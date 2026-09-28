@@ -112,6 +112,15 @@ pub enum ListCustomerCreditsV1Error {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`list_historical_balances_v1`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ListHistoricalBalancesV1Error {
+    Status400(models::Error),
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`list_seat_balances_v1`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -120,18 +129,18 @@ pub enum ListSeatBalancesV1Error {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`move_to_history_v2`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum MoveToHistoryV2Error {
+    Status400(models::MoveToHistoryV2400Response),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`release_external_payment_gate_threshold_commit_v1`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ReleaseExternalPaymentGateThresholdCommitV1Error {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`retire_commits_v2`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum RetireCommitsV2Error {
-    Status400(models::RetireCommitsV2400Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -635,6 +644,47 @@ pub async fn list_customer_credits_v1(configuration: &configuration::Configurati
     }
 }
 
+/// Retrieve historical commit and credit balances for a customer. Historical balances include their schedules and current balance. Set `include_ledgers` to include transaction history. Ledgers and balances may change when invoices are voided and regenerated.  Use the date filters to select commits by either their access schedule or the time they became historical. 
+pub async fn list_historical_balances_v1(configuration: &configuration::Configuration, list_historical_balances_v1_request: Option<models::ListHistoricalBalancesV1Request>) -> Result<models::ListHistoricalBalancesV1200Response, Error<ListHistoricalBalancesV1Error>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_body_list_historical_balances_v1_request = list_historical_balances_v1_request;
+
+    let uri_str = format!("{}/v1/contracts/historicalBalances/list", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+    req_builder = req_builder.json(&p_body_list_historical_balances_v1_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ListHistoricalBalancesV1200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ListHistoricalBalancesV1200Response`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<ListHistoricalBalancesV1Error> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent { status, content, entity }))
+    }
+}
+
 /// Retrieve detailed balance for seat-based credits and commits from the contract's subscriptions, broken down by individual seats.  ### Use this endpoint to: - Display per-seat balance information in customer dashboards - Filter balance data by subscription or specific seats  ### Key response fields: An array of seat balance objects containing: - Seat id - Balance: current total balance across all commits and credits  ### Usage guidelines: - Date filtering: use `covering_date` OR `starting_at`/`ending_before` to filter balance data by time range - Set `include_credits_and_commits=true` for detailed commits and credits breakdown per seat - Set `include_ledgers=true` for detailed transaction history per commit/credit per seat 
 pub async fn list_seat_balances_v1(configuration: &configuration::Configuration, list_seat_balances_v1_request: Option<models::ListSeatBalancesV1Request>) -> Result<models::ListSeatBalancesV1200Response, Error<ListSeatBalancesV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
@@ -676,6 +726,47 @@ pub async fn list_seat_balances_v1(configuration: &configuration::Configuration,
     }
 }
 
+/// Move one or more fully depleted, immutable commits on a contract to historical storage. Historical commits are removed from active code paths, which makes future computations for this customer faster. They remain retrievable through the historical view. Set `dry_run` to `true` to preview the result without making changes. 
+pub async fn move_to_history_v2(configuration: &configuration::Configuration, move_to_history_payload: Option<models::MoveToHistoryPayload>) -> Result<models::MoveToHistoryV2200Response, Error<MoveToHistoryV2Error>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_body_move_to_history_payload = move_to_history_payload;
+
+    let uri_str = format!("{}/v2/contracts/commits/moveToHistory", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(ref token) = configuration.bearer_access_token {
+        req_builder = req_builder.bearer_auth(token.to_owned());
+    };
+    req_builder = req_builder.json(&p_body_move_to_history_payload);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::MoveToHistoryV2200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::MoveToHistoryV2200Response`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<MoveToHistoryV2Error> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent { status, content, entity }))
+    }
+}
+
 /// If using threshold billing with an external payment gateway, Metronome does not facilitate the payment gating process on behalf of the client. As a result, clients must facilitate the transaction themselves. This end-point is used to either release or cancel the commit pending on the outcome of the external payment attempt.  To release the commit, you must pass the `workflow_id` provided in the `payment_gate.external_initiate` webhook.  ### Use this endpoint to: Facilitate payment gating workflows for threshold billing if using a payment gateway Metronome does not support today.  ### Usage guidelines: Ensure that you are set up to consume the `payment_gate.external_initiate` webhook and save the `workflow_id`. 
 pub async fn release_external_payment_gate_threshold_commit_v1(configuration: &configuration::Configuration, external_payment_gate_threshold_commit_payload: Option<models::ExternalPaymentGateThresholdCommitPayload>) -> Result<(), Error<ReleaseExternalPaymentGateThresholdCommitV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
@@ -702,47 +793,6 @@ pub async fn release_external_payment_gate_threshold_commit_v1(configuration: &c
     } else {
         let content = resp.text().await?;
         let entity: Option<ReleaseExternalPaymentGateThresholdCommitV1Error> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent { status, content, entity }))
-    }
-}
-
-/// Retire one or more commits on a contract. Retirement moves fully-depleted, immutable commits into cold storage, making future computations on this customer faster. Retired commits are removed from active code paths but remain retrievable through a dedicated historical view. Set `dry_run` to `true` to preview the result without making changes. 
-pub async fn retire_commits_v2(configuration: &configuration::Configuration, retire_commits_payload: Option<models::RetireCommitsPayload>) -> Result<models::RetireCommitsV2200Response, Error<RetireCommitsV2Error>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_retire_commits_payload = retire_commits_payload;
-
-    let uri_str = format!("{}/v2/contracts/commits/retire", configuration.base_path);
-    let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-    if let Some(ref token) = configuration.bearer_access_token {
-        req_builder = req_builder.bearer_auth(token.to_owned());
-    };
-    req_builder = req_builder.json(&p_body_retire_commits_payload);
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RetireCommitsV2200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RetireCommitsV2200Response`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        let entity: Option<RetireCommitsV2Error> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
 }

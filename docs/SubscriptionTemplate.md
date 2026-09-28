@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **duration** | Option<[**models::RelativeDate**](RelativeDate.md)> |  | [optional]
 **fiat_credit_type_id** | Option<**uuid::Uuid**> |  | [optional]
 **billing_cycle_config** | Option<[**models::SubscriptionBillingCycleConfigTemplate**](SubscriptionBillingCycleConfigTemplate.md)> |  | [optional]
+**payment_gate_config** | Option<[**models::SubscriptionPaymentGateConfig**](SubscriptionPaymentGateConfig.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

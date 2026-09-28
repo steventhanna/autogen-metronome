@@ -20,6 +20,9 @@ Name | Type | Description | Notes
 **billing_cycle_config** | Option<[**models::SubscriptionBillingCycleConfig**](SubscriptionBillingCycleConfig.md)> |  | [optional]
 **custom_fields** | Option<**std::collections::HashMap<String, String>**> | Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" } | [optional]
 **product_custom_fields** | Option<**std::collections::HashMap<String, String>**> | Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" } | [optional]
+**status** | Option<**Status**> |  (enum: NOT_STARTED, INCOMPLETE, ACTIVE, UNPAID, ENDED) | [optional]
+**paid_quantity** | Option<**f64**> |  | [optional]
+**payment_gate_config** | Option<[**models::SubscriptionPaymentGateConfig**](SubscriptionPaymentGateConfig.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
