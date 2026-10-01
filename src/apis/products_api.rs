@@ -19,8 +19,8 @@ use super::{Error, configuration, ContentType};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ArchiveProductListItemV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::GetApprovalRequestV1404Response),
+    Status404(models::GetApprovalRequestV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -28,7 +28,7 @@ pub enum ArchiveProductListItemV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateProductV1Error {
-    Status400(models::Error),
+    Status400(models::GetApprovalRequestV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -36,7 +36,7 @@ pub enum CreateProductV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetProductV1Error {
-    Status404(models::Error),
+    Status404(models::GetApprovalRequestV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -51,16 +51,16 @@ pub enum ListProductsV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateProductV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::GetApprovalRequestV1404Response),
+    Status404(models::GetApprovalRequestV1404Response),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Archive a product. Any current rate cards associated with this product will continue to function as normal. However, it will no longer be available as an option for newly created rates. Once you archive a product, you can still retrieve it in the UI and API, but you cannot unarchive it. 
-pub async fn archive_product_list_item_v1(configuration: &configuration::Configuration, archive_product_list_item_payload: Option<models::ArchiveProductListItemPayload>) -> Result<models::ArchiveAlertV1200Response, Error<ArchiveProductListItemV1Error>> {
+pub async fn archive_product_list_item_v1(configuration: &configuration::Configuration, archive_product_list_item_v1_request: Option<models::ArchiveProductListItemV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<ArchiveProductListItemV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_archive_product_list_item_payload = archive_product_list_item_payload;
+    let p_body_archive_product_list_item_v1_request = archive_product_list_item_v1_request;
 
     let uri_str = format!("{}/v1/contract-pricing/products/archive", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -71,7 +71,7 @@ pub async fn archive_product_list_item_v1(configuration: &configuration::Configu
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_archive_product_list_item_payload);
+    req_builder = req_builder.json(&p_body_archive_product_list_item_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -99,9 +99,9 @@ pub async fn archive_product_list_item_v1(configuration: &configuration::Configu
 }
 
 /// Create a new product object. Products in Metronome represent your company's individual product or service offerings. A Product can be thought of as the basic unit of a line item on the invoice. This is analogous to SKUs or items in an ERP system. Give the product a meaningful name as they will appear on customer invoices. 
-pub async fn create_product_v1(configuration: &configuration::Configuration, create_product_list_item_payload: Option<models::CreateProductListItemPayload>) -> Result<models::ArchiveAlertV1200Response, Error<CreateProductV1Error>> {
+pub async fn create_product_v1(configuration: &configuration::Configuration, create_product_v1_request: Option<models::CreateProductV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<CreateProductV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_create_product_list_item_payload = create_product_list_item_payload;
+    let p_body_create_product_v1_request = create_product_v1_request;
 
     let uri_str = format!("{}/v1/contract-pricing/products/create", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -112,7 +112,7 @@ pub async fn create_product_v1(configuration: &configuration::Configuration, cre
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_create_product_list_item_payload);
+    req_builder = req_builder.json(&p_body_create_product_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -140,9 +140,9 @@ pub async fn create_product_v1(configuration: &configuration::Configuration, cre
 }
 
 /// Retrieve a product by its ID, including all metadata and historical changes. 
-pub async fn get_product_v1(configuration: &configuration::Configuration, id: Option<models::Id>) -> Result<models::GetProductV1200Response, Error<GetProductV1Error>> {
+pub async fn get_product_v1(configuration: &configuration::Configuration, archive_alert_v1200_response_data: Option<models::ArchiveAlertV1200ResponseData>) -> Result<models::GetProductV1200Response, Error<GetProductV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_id = id;
+    let p_body_archive_alert_v1200_response_data = archive_alert_v1200_response_data;
 
     let uri_str = format!("{}/v1/contract-pricing/products/get", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -153,7 +153,7 @@ pub async fn get_product_v1(configuration: &configuration::Configuration, id: Op
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_id);
+    req_builder = req_builder.json(&p_body_archive_alert_v1200_response_data);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -181,11 +181,11 @@ pub async fn get_product_v1(configuration: &configuration::Configuration, id: Op
 }
 
 /// Get a paginated list of all products in your organization with their complete configuration, version history, and metadata. By default excludes archived products unless explicitly requested via the `archive_filter` parameter. 
-pub async fn list_products_v1(configuration: &configuration::Configuration, limit: Option<i32>, next_page: Option<&str>, list_products_payload: Option<models::ListProductsPayload>) -> Result<models::ListProductsV1200Response, Error<ListProductsV1Error>> {
+pub async fn list_products_v1(configuration: &configuration::Configuration, limit: Option<i32>, next_page: Option<&str>, list_products_v1_request: Option<models::ListProductsV1Request>) -> Result<models::ListProductsV1200Response, Error<ListProductsV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_limit = limit;
     let p_query_next_page = next_page;
-    let p_body_list_products_payload = list_products_payload;
+    let p_body_list_products_v1_request = list_products_v1_request;
 
     let uri_str = format!("{}/v1/contract-pricing/products/list", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -202,7 +202,7 @@ pub async fn list_products_v1(configuration: &configuration::Configuration, limi
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_list_products_payload);
+    req_builder = req_builder.json(&p_body_list_products_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -230,9 +230,9 @@ pub async fn list_products_v1(configuration: &configuration::Configuration, limi
 }
 
 /// Updates a product's configuration while maintaining billing continuity for active customers. Use this endpoint to modify product names, metrics, pricing rules, and composite settings without disrupting ongoing billing cycles. Changes are scheduled using the starting_at timestamp, which must be on an hour boundary—set future dates to schedule updates ahead of time, or past dates for retroactive changes. Returns the updated product ID upon success.   ### Usage guidance:  - Product type cannot be changed after creation. For incorrect product types, create a new product and archive the original instead. 
-pub async fn update_product_v1(configuration: &configuration::Configuration, update_product_list_item_payload: Option<models::UpdateProductListItemPayload>) -> Result<models::ArchiveAlertV1200Response, Error<UpdateProductV1Error>> {
+pub async fn update_product_v1(configuration: &configuration::Configuration, update_product_v1_request: Option<models::UpdateProductV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<UpdateProductV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_update_product_list_item_payload = update_product_list_item_payload;
+    let p_body_update_product_v1_request = update_product_v1_request;
 
     let uri_str = format!("{}/v1/contract-pricing/products/update", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -243,7 +243,7 @@ pub async fn update_product_v1(configuration: &configuration::Configuration, upd
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_update_product_list_item_payload);
+    req_builder = req_builder.json(&p_body_update_product_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

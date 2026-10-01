@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**add_schedule_items** | Option<[**Vec<models::CreateContractV1RequestCommitsInnerAccessScheduleScheduleItemsInner>**](CreateContractV1RequestCommitsInnerAccessScheduleScheduleItemsInner.md)> |  | [optional]
+**add_schedule_items** | Option<[**Vec<models::CreateContractV1RequestPackageCustomizationsAddCommitsInnerAccessScheduleScheduleItemsInner>**](CreateContractV1RequestPackageCustomizationsAddCommitsInnerAccessScheduleScheduleItemsInner.md)> |  | [optional]
 **update_schedule_items** | Option<[**Vec<models::GetContractEditHistoryV2200ResponseDataInnerUpdateCommitsInnerAccessScheduleUpdateScheduleItemsInner>**](GetContractEditHistoryV2200ResponseDataInnerUpdateCommitsInnerAccessScheduleUpdateScheduleItemsInner.md)> |  | [optional]
 **remove_schedule_items** | Option<[**Vec<models::ArchiveAlertV1200ResponseData>**](ArchiveAlertV1200ResponseData.md)> |  | [optional]
 

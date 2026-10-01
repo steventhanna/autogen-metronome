@@ -14,10 +14,14 @@ use serde::{Deserialize, Serialize};
 /// GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfAccessAmount : The amount of commit to grant.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfAccessAmount {
+    /// Indicates how the balance of child commits is drawn down. `SPEND` deducts the dollar cost of usage. `QUANTITY` deducts the number of units used.
+    #[serde(rename = "access_type", skip_serializing_if = "Option::is_none")]
+    pub access_type: Option<AccessType>,
     #[serde(rename = "unit_price")]
     pub unit_price: f64,
     #[serde(rename = "quantity", skip_serializing_if = "Option::is_none")]
     pub quantity: Option<f64>,
+    /// This ID identifies the credit type for the access amount. Quantity-based recurring commits and credits return the null credit type UUID.
     #[serde(rename = "credit_type_id")]
     pub credit_type_id: uuid::Uuid,
 }
@@ -26,10 +30,25 @@ impl GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfAccessAmount {
     /// The amount of commit to grant.
     pub fn new(unit_price: f64, credit_type_id: uuid::Uuid) -> GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfAccessAmount {
         GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfAccessAmount {
+            access_type: None,
             unit_price,
             quantity: None,
             credit_type_id,
         }
+    }
+}
+/// Indicates how the balance of child commits is drawn down. `SPEND` deducts the dollar cost of usage. `QUANTITY` deducts the number of units used.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum AccessType {
+    #[serde(rename = "SPEND")]
+    Spend,
+    #[serde(rename = "QUANTITY")]
+    Quantity,
+}
+
+impl Default for AccessType {
+    fn default() -> AccessType {
+        Self::Spend
     }
 }
 

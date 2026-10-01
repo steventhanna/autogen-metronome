@@ -18,7 +18,7 @@ pub struct SetCustomerBillingProviderConfigurationsV1RequestDataInner {
     pub billing_provider: BillingProvider,
     #[serde(rename = "customer_id")]
     pub customer_id: uuid::Uuid,
-    /// Specifies which tax provider Metronome should use for tax calculation when billing through Stripe. This is only supported for Stripe billing provider configurations with auto_charge_payment_intent or manual_charge_payment_intent collection methods.
+    /// Specifies which tax provider Metronome should use for tax calculation when billing through Stripe. This is only supported for Stripe billing provider configurations.
     #[serde(rename = "tax_provider", skip_serializing_if = "Option::is_none")]
     pub tax_provider: Option<TaxProvider>,
     /// Configuration for the billing provider. The structure of this object is specific to the billing provider and delivery method combination. Defaults to an empty object, however, for most billing provider + delivery method combinations, it will not be a valid configuration.  For AWS marketplace configurations, the aws_is_subscription_product flag can be used to indicate a product with usage-based pricing.  More information can be found [here](https://docs.metronome.com/invoice-customers/solutions/marketplaces/invoice-aws/#provision-aws-marketplace-customers-in-metronome).
@@ -72,7 +72,7 @@ impl Default for BillingProvider {
         Self::AwsMarketplace
     }
 }
-/// Specifies which tax provider Metronome should use for tax calculation when billing through Stripe. This is only supported for Stripe billing provider configurations with auto_charge_payment_intent or manual_charge_payment_intent collection methods.
+/// Specifies which tax provider Metronome should use for tax calculation when billing through Stripe. This is only supported for Stripe billing provider configurations.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum TaxProvider {
     #[serde(rename = "anrok")]

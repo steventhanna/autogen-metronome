@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **name** | Option<**String**> |  | [optional]
 **rate_card_id** | Option<**uuid::Uuid**> |  | [optional]
 **aliases** | Option<[**Vec<models::GetRateCardV1200ResponseDataAliasesInner>**](GetRateCardV1200ResponseDataAliasesInner.md)> |  | [optional]
-**duration** | Option<[**models::CreatePackageV1RequestDuration**](CreatePackageV1RequestDuration.md)> |  | [optional]
+**duration** | Option<[**models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration**](GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration.md)> |  | [optional]
 **commits** | [**Vec<models::GetPackageV1200ResponseDataCommitsInner>**](GetPackageV1200ResponseDataCommitsInner.md) |  | 
 **credits** | Option<[**Vec<models::GetPackageV1200ResponseDataCreditsInner>**](GetPackageV1200ResponseDataCreditsInner.md)> |  | [optional]
 **overrides** | [**Vec<models::GetPackageV1200ResponseDataOverridesInner>**](GetPackageV1200ResponseDataOverridesInner.md) |  | 
@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 **recurring_credits** | Option<[**Vec<models::GetPackageV1200ResponseDataRecurringCreditsInner>**](GetPackageV1200ResponseDataRecurringCreditsInner.md)> |  | [optional]
 **spend_threshold_configuration** | Option<[**models::GetContractV1200ResponseDataInitialSpendThresholdConfiguration**](GetContractV1200ResponseDataInitialSpendThresholdConfiguration.md)> |  | [optional]
 **prepaid_balance_threshold_configuration** | Option<[**models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfiguration**](GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfiguration.md)> |  | [optional]
-**spend_trackers** | Option<[**Vec<models::CreateContractV1RequestSpendTrackersInner>**](CreateContractV1RequestSpendTrackersInner.md)> |  | [optional]
+**spend_trackers** | Option<[**Vec<models::CreateContractV1RequestPackageCustomizationsAddSpendTrackersInner>**](CreateContractV1RequestPackageCustomizationsAddSpendTrackersInner.md)> |  | [optional]
 **subscriptions** | Option<[**Vec<models::GetPackageV1200ResponseDataSubscriptionsInner>**](GetPackageV1200ResponseDataSubscriptionsInner.md)> |  | [optional]
 **contract_name** | Option<**String**> | The name to use for contracts created from this package. | [optional]
 **archived_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]

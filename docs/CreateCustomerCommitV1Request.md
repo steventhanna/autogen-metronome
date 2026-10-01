@@ -11,8 +11,8 @@ Name | Type | Description | Notes
 **description** | Option<**String**> | Used only in UI/API. It is not exposed to end customers. | [optional]
 **priority** | **f64** | If multiple credits or commits are applicable, the one with the lower priority will apply first. | 
 **product_id** | **uuid::Uuid** | ID of the fixed product associated with the commit. This is required because products are used to invoice the commit amount. | 
-**access_schedule** | [**models::CreateContractV1RequestCommitsInnerAccessSchedule**](CreateContractV1RequestCommitsInnerAccessSchedule.md) |  | 
-**invoice_schedule** | Option<[**models::CreateContractV1RequestCommitsInnerInvoiceSchedule**](CreateContractV1RequestCommitsInnerInvoiceSchedule.md)> |  | [optional]
+**access_schedule** | [**models::CreateContractV1RequestPackageCustomizationsAddCommitsInnerAccessSchedule**](CreateContractV1RequestPackageCustomizationsAddCommitsInnerAccessSchedule.md) |  | 
+**invoice_schedule** | Option<[**models::CreateContractV1RequestPackageCustomizationsAddCommitsInnerInvoiceSchedule**](CreateContractV1RequestPackageCustomizationsAddCommitsInnerInvoiceSchedule.md)> |  | [optional]
 **invoice_contract_id** | Option<**uuid::Uuid**> | The contract that this commit will be billed on. This is required for \"POSTPAID\" commits and for \"PREPAID\" commits unless there is no invoice schedule above (i.e., the commit is 'free'), or if do_not_invoice is set to true. | [optional]
 **applicable_product_ids** | Option<**Vec<uuid::Uuid>**> | Which products the commit applies to. If applicable_product_ids, applicable_product_tags or specifiers are not provided, the commit applies to all products. | [optional]
 **applicable_product_tags** | Option<**Vec<String>**> | Which tags the commit applies to. If applicable_product_ids, applicable_product_tags or specifiers are not provided, the commit applies to all products. | [optional]

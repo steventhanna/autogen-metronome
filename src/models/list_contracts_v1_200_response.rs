@@ -14,13 +14,17 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ListContractsV1200Response {
     #[serde(rename = "data")]
-    pub data: Vec<models::Contract>,
+    pub data: Vec<models::GetContractV1200ResponseData>,
+    /// Pass this value as `cursor` in a subsequent request to fetch the next page of contracts. Null if there are no more contracts.
+    #[serde(rename = "cursor", deserialize_with = "Option::deserialize")]
+    pub cursor: Option<String>,
 }
 
 impl ListContractsV1200Response {
-    pub fn new(data: Vec<models::Contract>) -> ListContractsV1200Response {
+    pub fn new(data: Vec<models::GetContractV1200ResponseData>, cursor: Option<String>) -> ListContractsV1200Response {
         ListContractsV1200Response {
             data,
+            cursor,
         }
     }
 }

@@ -19,7 +19,7 @@ pub struct EditContractV2RequestAddRecurringCommitsInner {
     #[serde(rename = "product_id")]
     pub product_id: uuid::Uuid,
     #[serde(rename = "access_amount")]
-    pub access_amount: Box<models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfAccessAmount>,
+    pub access_amount: Box<models::CreateContractV1RequestPackageCustomizationsAddRecurringCommitsInnerAllOfAccessAmount>,
     /// Will be passed down to the individual commits
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -55,7 +55,7 @@ pub struct EditContractV2RequestAddRecurringCommitsInner {
     pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "commit_duration")]
     pub commit_duration: Box<models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfCommitDuration>,
-    /// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
+    /// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates. - Daily recurring commits have a limit of one per contract, and are unable to be created with seat-based subscriptions
     #[serde(rename = "recurrence_frequency", skip_serializing_if = "Option::is_none")]
     pub recurrence_frequency: Option<RecurrenceFrequency>,
     /// Determines whether the first and last commit will be prorated. If not provided, the default is FIRST_AND_LAST (i.e. prorate both the first and last commits).
@@ -68,11 +68,11 @@ pub struct EditContractV2RequestAddRecurringCommitsInner {
     #[serde(rename = "invoice_amount", skip_serializing_if = "Option::is_none")]
     pub invoice_amount: Option<Box<models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfInvoiceAmount>>,
     #[serde(rename = "proration_rounding", skip_serializing_if = "Option::is_none")]
-    pub proration_rounding: Option<Box<models::CreateContractV1RequestRecurringCommitsInnerAllOfProrationRounding>>,
+    pub proration_rounding: Option<Box<models::CreateContractV1RequestPackageCustomizationsAddRecurringCommitsInnerAllOfProrationRounding>>,
 }
 
 impl EditContractV2RequestAddRecurringCommitsInner {
-    pub fn new(product_id: uuid::Uuid, access_amount: models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfAccessAmount, priority: f64, starting_at: chrono::DateTime<chrono::FixedOffset>, commit_duration: models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfCommitDuration) -> EditContractV2RequestAddRecurringCommitsInner {
+    pub fn new(product_id: uuid::Uuid, access_amount: models::CreateContractV1RequestPackageCustomizationsAddRecurringCommitsInnerAllOfAccessAmount, priority: f64, starting_at: chrono::DateTime<chrono::FixedOffset>, commit_duration: models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfCommitDuration) -> EditContractV2RequestAddRecurringCommitsInner {
         EditContractV2RequestAddRecurringCommitsInner {
             name: None,
             product_id,
@@ -116,7 +116,7 @@ impl Default for RateType {
         Self::CommitRate
     }
 }
-/// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
+/// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates. - Daily recurring commits have a limit of one per contract, and are unable to be created with seat-based subscriptions
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum RecurrenceFrequency {
     #[serde(rename = "MONTHLY")]

@@ -11,9 +11,12 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ChargeSeatsV1200ResponseLineItemsInnerAppliedCommitOrCredit : Details about the credit or commit that was applied to this line item. Only present on line items with product of `USAGE`, `SUBSCRIPTION` or `COMPOSITE` types.
+/// ChargeSeatsV1200ResponseLineItemsInnerAppliedCommitOrCredit : Details about the credit or commit that was applied to this line item. Only present on line items with product of `USAGE`, `SUBSCRIPTION`, `COMPOSITE`, or `CPU_CONVERSION` types.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ChargeSeatsV1200ResponseLineItemsInnerAppliedCommitOrCredit {
+    /// Indicates how the balance is drawn down. `SPEND` deducts the dollar cost of usage. `QUANTITY` deducts the number of units used.
+    #[serde(rename = "access_type", skip_serializing_if = "Option::is_none")]
+    pub access_type: Option<AccessType>,
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
     #[serde(rename = "type")]
@@ -21,12 +24,27 @@ pub struct ChargeSeatsV1200ResponseLineItemsInnerAppliedCommitOrCredit {
 }
 
 impl ChargeSeatsV1200ResponseLineItemsInnerAppliedCommitOrCredit {
-    /// Details about the credit or commit that was applied to this line item. Only present on line items with product of `USAGE`, `SUBSCRIPTION` or `COMPOSITE` types.
+    /// Details about the credit or commit that was applied to this line item. Only present on line items with product of `USAGE`, `SUBSCRIPTION`, `COMPOSITE`, or `CPU_CONVERSION` types.
     pub fn new(id: uuid::Uuid, r#type: Type) -> ChargeSeatsV1200ResponseLineItemsInnerAppliedCommitOrCredit {
         ChargeSeatsV1200ResponseLineItemsInnerAppliedCommitOrCredit {
+            access_type: None,
             id,
             r#type,
         }
+    }
+}
+/// Indicates how the balance is drawn down. `SPEND` deducts the dollar cost of usage. `QUANTITY` deducts the number of units used.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum AccessType {
+    #[serde(rename = "SPEND")]
+    Spend,
+    #[serde(rename = "QUANTITY")]
+    Quantity,
+}
+
+impl Default for AccessType {
+    fn default() -> AccessType {
+        Self::Spend
     }
 }
 /// 

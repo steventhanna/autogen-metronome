@@ -1,0 +1,43 @@
+# ListHistoricalBalancesV1200ResponseDataInnerOneOf
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**id** | **uuid::Uuid** |  | 
+**contract** | Option<[**models::ArchiveAlertV1200ResponseData**](ArchiveAlertV1200ResponseData.md)> |  | [optional]
+**r#type** | **Type** |  (enum: PREPAID, POSTPAID) | 
+**rate_type** | Option<**RateType**> |  (enum: COMMIT_RATE, LIST_RATE) | [optional]
+**name** | Option<**String**> |  | [optional]
+**priority** | Option<**f64**> | If multiple credits or commits are applicable, the one with the lower priority will apply first. | [optional]
+**cost_basis** | Option<**f64**> | The ratio of the amount paid for the commit to the amount of credit granted. | [optional]
+**product** | [**models::GetContractV1200ResponseDataInitialCommitsInnerProduct**](GetContractV1200ResponseDataInitialCommitsInnerProduct.md) |  | 
+**access_schedule** | Option<[**models::GetContractV1200ResponseDataInitialCommitsInnerAccessSchedule**](GetContractV1200ResponseDataInitialCommitsInnerAccessSchedule.md)> |  | [optional]
+**invoice_schedule** | Option<[**models::GetContractV1200ResponseDataInitialCommitsInnerInvoiceSchedule**](GetContractV1200ResponseDataInitialCommitsInnerInvoiceSchedule.md)> |  | [optional]
+**invoice_contract** | Option<[**models::ArchiveAlertV1200ResponseData**](ArchiveAlertV1200ResponseData.md)> |  | [optional]
+**recurring_commit_id** | Option<**uuid::Uuid**> | The ID of the recurring commit that this commit was generated from, if applicable. | [optional]
+**subscription_config** | Option<[**models::GetContractV1200ResponseDataInitialCommitsInnerSubscriptionConfig**](GetContractV1200ResponseDataInitialCommitsInnerSubscriptionConfig.md)> |  | [optional]
+**rolled_over_from** | Option<[**models::GetContractV1200ResponseDataInitialCommitsInnerRolledOverFrom**](GetContractV1200ResponseDataInitialCommitsInnerRolledOverFrom.md)> |  | [optional]
+**description** | Option<**String**> |  | [optional]
+**rollover_fraction** | Option<**f64**> |  | [optional]
+**applicable_product_ids** | Option<**Vec<uuid::Uuid>**> |  | [optional]
+**applicable_product_tags** | Option<**Vec<String>**> |  | [optional]
+**specifiers** | Option<[**Vec<models::GetContractV1200ResponseDataInitialCommitsInnerSpecifiersInner>**](GetContractV1200ResponseDataInitialCommitsInnerSpecifiersInner.md)> | List of filters that determine what kind of customer usage draws down a commit or credit. A customer's usage needs to meet the condition of at least one of the specifiers to contribute to a commit's or credit's drawdown. | [optional]
+**applicable_contract_ids** | Option<**Vec<uuid::Uuid>**> |  | [optional]
+**netsuite_sales_order_id** | Option<**String**> | This field's availability is dependent on your client's configuration. | [optional]
+**amount** | Option<**f64**> | (DEPRECATED) Use access_schedule + invoice_schedule instead. | [optional]
+**salesforce_opportunity_id** | Option<**String**> | This field's availability is dependent on your client's configuration. | [optional]
+**ledger** | Option<[**Vec<models::GetContractV1200ResponseDataInitialCommitsInnerLedgerInner>**](GetContractV1200ResponseDataInitialCommitsInnerLedgerInner.md)> | A list of ordered events that impact the balance of a commit. For example, an invoice deduction or a rollover. | [optional]
+**balance** | **f64** | The current computed balance of the historical commit or credit. This may change when invoices are voided and regenerated. | 
+**custom_fields** | Option<**std::collections::HashMap<String, String>**> | Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" } | [optional]
+**uniqueness_key** | Option<**String**> | Prevents the creation of duplicates. If a request to create a commit or credit is made with a uniqueness key that was previously used to create a commit or credit, a new record will not be created and the request will fail with a 409 error. | [optional]
+**archived_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> | RFC 3339 timestamp indicating when the commit was archived. If not provided, the commit is not archived. | [optional]
+**hierarchy_configuration** | Option<[**models::GetContractV1200ResponseDataInitialCommitsInnerHierarchyConfiguration**](GetContractV1200ResponseDataInitialCommitsInnerHierarchyConfiguration.md)> |  | [optional]
+**spend_tracker_attributes** | Option<[**models::GetContractV1200ResponseDataInitialCommitsInnerSpendTrackerAttributes**](GetContractV1200ResponseDataInitialCommitsInnerSpendTrackerAttributes.md)> |  | [optional]
+**created_at** | **chrono::DateTime<chrono::FixedOffset>** | Timestamp of when the commit was created. - Recurring commits: latter of commit service period date and parent commit start date - Rollover commits: when the new contract started  | 
+**created_by** | Option<**String**> | The actor who created this commit. Omitted for system-generated commits such as recurring commits, rollover commits, and threshold commits. | [optional]
+**retired_at** | **chrono::DateTime<chrono::FixedOffset>** | RFC 3339 timestamp indicating when the balance became historical. | 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

@@ -25,7 +25,7 @@ pub struct EditContractV2Request {
     #[serde(rename = "add_commits", skip_serializing_if = "Option::is_none")]
     pub add_commits: Option<Vec<models::EditContractV2RequestAddCommitsInner>>,
     #[serde(rename = "add_credits", skip_serializing_if = "Option::is_none")]
-    pub add_credits: Option<Vec<models::CreateContractV1RequestCreditsInner>>,
+    pub add_credits: Option<Vec<models::CreateContractV1RequestPackageCustomizationsAddCreditsInner>>,
     #[serde(rename = "add_recurring_commits", skip_serializing_if = "Option::is_none")]
     pub add_recurring_commits: Option<Vec<models::EditContractV2RequestAddRecurringCommitsInner>>,
     #[serde(rename = "add_recurring_credits", skip_serializing_if = "Option::is_none")]
@@ -43,18 +43,18 @@ pub struct EditContractV2Request {
     pub add_reseller_royalties: Option<Vec<models::AmendContractV1RequestResellerRoyaltiesInner>>,
     /// Optional list of [subscriptions](https://docs.metronome.com/manage-product-access/create-subscription/) to add to the contract.
     #[serde(rename = "add_subscriptions", skip_serializing_if = "Option::is_none")]
-    pub add_subscriptions: Option<Vec<models::CreateContractV1RequestSubscriptionsInner>>,
+    pub add_subscriptions: Option<Vec<models::CreateContractV1RequestPackageCustomizationsAddSubscriptionsInner>>,
     #[serde(rename = "add_spend_threshold_configuration", skip_serializing_if = "Option::is_none")]
     pub add_spend_threshold_configuration: Option<Box<models::GetContractV1200ResponseDataInitialSpendThresholdConfiguration>>,
     #[serde(rename = "add_prepaid_balance_threshold_configuration", skip_serializing_if = "Option::is_none")]
-    pub add_prepaid_balance_threshold_configuration: Option<Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfiguration>>,
+    pub add_prepaid_balance_threshold_configuration: Option<Box<models::GetContractV2200ResponseDataPrepaidBalanceThresholdConfiguration>>,
     #[serde(rename = "add_billing_provider_configuration_update", skip_serializing_if = "Option::is_none")]
     pub add_billing_provider_configuration_update: Option<Box<models::EditContractV2RequestAddBillingProviderConfigurationUpdate>>,
     #[serde(rename = "add_revenue_system_configuration_update", skip_serializing_if = "Option::is_none")]
     pub add_revenue_system_configuration_update: Option<Box<models::EditContractV2RequestAddRevenueSystemConfigurationUpdate>>,
     /// Spend trackers to add to this contract. Aliases must be unique within a contract.
     #[serde(rename = "add_spend_trackers", skip_serializing_if = "Option::is_none")]
-    pub add_spend_trackers: Option<Vec<models::CreateContractV1RequestSpendTrackersInner>>,
+    pub add_spend_trackers: Option<Vec<models::CreateContractV1RequestPackageCustomizationsAddSpendTrackersInner>>,
     /// Value to update the contract name to. If not provided, the contract name will remain unchanged.
     #[serde(rename = "update_contract_name", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub update_contract_name: Option<Option<String>>,

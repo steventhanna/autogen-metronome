@@ -32,11 +32,11 @@ pub struct AmendContractV1Request {
     #[serde(rename = "starting_at")]
     pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "commits", skip_serializing_if = "Option::is_none")]
-    pub commits: Option<Vec<models::CreateContractV1RequestCommitsInner>>,
+    pub commits: Option<Vec<models::CreateContractV1RequestPackageCustomizationsAddCommitsInner>>,
     #[serde(rename = "credits", skip_serializing_if = "Option::is_none")]
-    pub credits: Option<Vec<models::CreateContractV1RequestCreditsInner>>,
+    pub credits: Option<Vec<models::CreateContractV1RequestPackageCustomizationsAddCreditsInner>>,
     #[serde(rename = "overrides", skip_serializing_if = "Option::is_none")]
-    pub overrides: Option<Vec<models::CreateContractV1RequestOverridesInner>>,
+    pub overrides: Option<Vec<models::CreateContractV1RequestPackageCustomizationsAddOverridesInner>>,
     /// This field's availability is dependent on your client's configuration.
     #[serde(rename = "discounts", skip_serializing_if = "Option::is_none")]
     pub discounts: Option<Vec<models::CreateContractV1RequestDiscountsInner>>,
@@ -47,7 +47,7 @@ pub struct AmendContractV1Request {
     #[serde(rename = "reseller_royalties", skip_serializing_if = "Option::is_none")]
     pub reseller_royalties: Option<Vec<models::AmendContractV1RequestResellerRoyaltiesInner>>,
     #[serde(rename = "scheduled_charges", skip_serializing_if = "Option::is_none")]
-    pub scheduled_charges: Option<Vec<models::CreateContractV1RequestScheduledChargesInner>>,
+    pub scheduled_charges: Option<Vec<models::CreateContractV1RequestPackageCustomizationsAddScheduledChargesInner>>,
     /// Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" }
     #[serde(rename = "custom_fields", skip_serializing_if = "Option::is_none")]
     pub custom_fields: Option<std::collections::HashMap<String, String>>,

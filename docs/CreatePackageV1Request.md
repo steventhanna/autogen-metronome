@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **rate_card_id** | Option<**uuid::Uuid**> |  | [optional]
 **rate_card_alias** | Option<**String**> | Selects the rate card linked to the specified alias as of the contract's start date. | [optional]
 **aliases** | Option<[**Vec<models::GetRateCardV1200ResponseDataAliasesInner>**](GetRateCardV1200ResponseDataAliasesInner.md)> | Reference this alias when creating a contract. If the same alias is assigned to multiple packages, it will reference the package to which it was most recently assigned. It is not exposed to end customers. | [optional]
-**duration** | Option<[**models::CreatePackageV1RequestDuration**](CreatePackageV1RequestDuration.md)> |  | [optional]
+**duration** | Option<[**models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration**](GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration.md)> |  | [optional]
 **commits** | Option<[**Vec<models::CreatePackageV1RequestCommitsInner>**](CreatePackageV1RequestCommitsInner.md)> |  | [optional]
 **credits** | Option<[**Vec<models::CreatePackageV1RequestCreditsInner>**](CreatePackageV1RequestCreditsInner.md)> |  | [optional]
 **recurring_commits** | Option<[**Vec<models::CreatePackageV1RequestRecurringCommitsInner>**](CreatePackageV1RequestRecurringCommitsInner.md)> |  | [optional]
@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **delivery_method** | Option<**DeliveryMethod**> |  (enum: direct_to_billing_provider, aws_sqs, tackle, aws_sns) | [optional]
 **spend_threshold_configuration** | Option<[**models::GetContractV1200ResponseDataInitialSpendThresholdConfiguration**](GetContractV1200ResponseDataInitialSpendThresholdConfiguration.md)> |  | [optional]
 **prepaid_balance_threshold_configuration** | Option<[**models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfiguration**](GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfiguration.md)> |  | [optional]
-**spend_trackers** | Option<[**Vec<models::CreateContractV1RequestSpendTrackersInner>**](CreateContractV1RequestSpendTrackersInner.md)> |  | [optional]
+**spend_trackers** | Option<[**Vec<models::CreateContractV1RequestPackageCustomizationsAddSpendTrackersInner>**](CreateContractV1RequestPackageCustomizationsAddSpendTrackersInner.md)> |  | [optional]
 **subscriptions** | Option<[**Vec<models::CreatePackageV1RequestSubscriptionsInner>**](CreatePackageV1RequestSubscriptionsInner.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

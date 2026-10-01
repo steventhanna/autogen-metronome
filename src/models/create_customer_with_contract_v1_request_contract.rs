@@ -41,18 +41,18 @@ pub struct CreateCustomerWithContractV1RequestContract {
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
     pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "commits", skip_serializing_if = "Option::is_none")]
-    pub commits: Option<Vec<models::CreateContractV1RequestCommitsInner>>,
+    pub commits: Option<Vec<models::CreateContractV1RequestPackageCustomizationsAddCommitsInner>>,
     #[serde(rename = "credits", skip_serializing_if = "Option::is_none")]
-    pub credits: Option<Vec<models::CreateContractV1RequestCreditsInner>>,
+    pub credits: Option<Vec<models::CreateContractV1RequestPackageCustomizationsAddCreditsInner>>,
     #[serde(rename = "recurring_commits", skip_serializing_if = "Option::is_none")]
-    pub recurring_commits: Option<Vec<models::CreateContractV1RequestRecurringCommitsInner>>,
+    pub recurring_commits: Option<Vec<models::CreateContractV1RequestPackageCustomizationsAddRecurringCommitsInner>>,
     #[serde(rename = "recurring_credits", skip_serializing_if = "Option::is_none")]
-    pub recurring_credits: Option<Vec<models::CreateContractV1RequestRecurringCreditsInner>>,
+    pub recurring_credits: Option<Vec<models::CreateContractV1RequestPackageCustomizationsAddRecurringCreditsInner>>,
     /// Defaults to LOWEST_MULTIPLIER, which applies the greatest discount to list prices automatically. EXPLICIT prioritization requires specifying priorities for each multiplier; the one with the lowest priority value will be prioritized first.
     #[serde(rename = "multiplier_override_prioritization", skip_serializing_if = "Option::is_none")]
     pub multiplier_override_prioritization: Option<MultiplierOverridePrioritization>,
     #[serde(rename = "overrides", skip_serializing_if = "Option::is_none")]
-    pub overrides: Option<Vec<models::CreateContractV1RequestOverridesInner>>,
+    pub overrides: Option<Vec<models::CreateContractV1RequestPackageCustomizationsAddOverridesInner>>,
     /// This field's availability is dependent on your client's configuration.
     #[serde(rename = "discounts", skip_serializing_if = "Option::is_none")]
     pub discounts: Option<Vec<models::CreateContractV1RequestDiscountsInner>>,
@@ -63,7 +63,7 @@ pub struct CreateCustomerWithContractV1RequestContract {
     #[serde(rename = "professional_services", skip_serializing_if = "Option::is_none")]
     pub professional_services: Option<Vec<models::CreateContractV1RequestProfessionalServicesInner>>,
     #[serde(rename = "scheduled_charges", skip_serializing_if = "Option::is_none")]
-    pub scheduled_charges: Option<Vec<models::CreateContractV1RequestScheduledChargesInner>>,
+    pub scheduled_charges: Option<Vec<models::CreateContractV1RequestPackageCustomizationsAddScheduledChargesInner>>,
     /// Determines which scheduled and commit charges to consolidate onto the Contract's usage invoice. The charge's `timestamp` must match the usage invoice's `ending_before` date for consolidation to occur. This field cannot be modified after a Contract has been created. If this field is omitted, charges will appear on a separate invoice from usage charges.
     #[serde(rename = "scheduled_charges_on_usage_invoices", skip_serializing_if = "Option::is_none")]
     pub scheduled_charges_on_usage_invoices: Option<ScheduledChargesOnUsageInvoices>,
@@ -84,10 +84,10 @@ pub struct CreateCustomerWithContractV1RequestContract {
     pub prepaid_balance_threshold_configuration: Option<Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfiguration>>,
     /// Spend trackers to attach to this contract. Aliases must be unique within a contract.
     #[serde(rename = "spend_trackers", skip_serializing_if = "Option::is_none")]
-    pub spend_trackers: Option<Vec<models::CreateContractV1RequestSpendTrackersInner>>,
+    pub spend_trackers: Option<Vec<models::CreateContractV1RequestPackageCustomizationsAddSpendTrackersInner>>,
     /// Optional list of [subscriptions](https://docs.metronome.com/manage-product-access/create-subscription/) to add to the contract.
     #[serde(rename = "subscriptions", skip_serializing_if = "Option::is_none")]
-    pub subscriptions: Option<Vec<models::CreateContractV1RequestSubscriptionsInner>>,
+    pub subscriptions: Option<Vec<models::CreateContractV1RequestPackageCustomizationsAddSubscriptionsInner>>,
     #[serde(rename = "hierarchy_configuration", skip_serializing_if = "Option::is_none")]
     pub hierarchy_configuration: Option<Box<models::CreateContractV1RequestHierarchyConfiguration>>,
 }
