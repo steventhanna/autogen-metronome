@@ -25,7 +25,7 @@ pub struct GetPackageV1200ResponseData {
     #[serde(rename = "aliases", skip_serializing_if = "Option::is_none")]
     pub aliases: Option<Vec<models::GetRateCardV1200ResponseDataAliasesInner>>,
     #[serde(rename = "duration", skip_serializing_if = "Option::is_none")]
-    pub duration: Option<Box<models::CreatePackageV1RequestDuration>>,
+    pub duration: Option<Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration>>,
     #[serde(rename = "commits")]
     pub commits: Vec<models::GetPackageV1200ResponseDataCommitsInner>,
     #[serde(rename = "credits", skip_serializing_if = "Option::is_none")]
@@ -61,7 +61,7 @@ pub struct GetPackageV1200ResponseData {
     #[serde(rename = "prepaid_balance_threshold_configuration", skip_serializing_if = "Option::is_none")]
     pub prepaid_balance_threshold_configuration: Option<Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfiguration>>,
     #[serde(rename = "spend_trackers", skip_serializing_if = "Option::is_none")]
-    pub spend_trackers: Option<Vec<models::CreateContractV1RequestSpendTrackersInner>>,
+    pub spend_trackers: Option<Vec<models::CreateContractV1RequestPackageCustomizationsAddSpendTrackersInner>>,
     #[serde(rename = "subscriptions", skip_serializing_if = "Option::is_none")]
     pub subscriptions: Option<Vec<models::GetPackageV1200ResponseDataSubscriptionsInner>>,
     /// The name to use for contracts created from this package.

@@ -27,7 +27,7 @@ pub struct GetCustomerAlertV1Request {
     pub group_values: Option<Vec<models::GetCustomerAlertV1RequestGroupValuesInner>>,
     #[serde(rename = "seat_filter", skip_serializing_if = "Option::is_none")]
     pub seat_filter: Option<Box<models::GetCustomerAlertV1RequestSeatFilter>>,
-    /// Can be used with only `low_remaining_contract_credit_and_commit_balance_reached` notifications. Used to filter the alert by the custom field key-value pair.
+    /// Can be used only with `low_remaining_contract_credit_and_commit_balance_reached` and `low_remaining_contract_credit_and_commit_percentage_reached` notifications. Used to filter the alert by the custom field key-value pair.
     #[serde(rename = "alert_specifiers", skip_serializing_if = "Option::is_none")]
     pub alert_specifiers: Option<Vec<models::GetCustomerAlertV1RequestAlertSpecifiersInner>>,
     /// Used to filter the alert by the custom field key-value pair.

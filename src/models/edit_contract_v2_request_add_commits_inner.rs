@@ -23,7 +23,7 @@ pub struct EditContractV2RequestAddCommitsInner {
     #[serde(rename = "product_id")]
     pub product_id: uuid::Uuid,
     #[serde(rename = "access_schedule", skip_serializing_if = "Option::is_none")]
-    pub access_schedule: Option<Box<models::CreateContractV1RequestCommitsInnerAccessSchedule>>,
+    pub access_schedule: Option<Box<models::CreateContractV1RequestPackageCustomizationsAddCommitsInnerAccessSchedule>>,
     #[serde(rename = "invoice_schedule", skip_serializing_if = "Option::is_none")]
     pub invoice_schedule: Option<Box<models::GetContractEditHistoryV2200ResponseDataInnerUpdateDiscountsInnerSchedule>>,
     /// (DEPRECATED) Use access_schedule and invoice_schedule instead.
@@ -61,7 +61,7 @@ pub struct EditContractV2RequestAddCommitsInner {
     #[serde(rename = "hierarchy_configuration", skip_serializing_if = "Option::is_none")]
     pub hierarchy_configuration: Option<Box<models::GetContractV1200ResponseDataInitialCommitsInnerHierarchyConfiguration>>,
     #[serde(rename = "spend_tracker_attributes", skip_serializing_if = "Option::is_none")]
-    pub spend_tracker_attributes: Option<Box<models::CreateContractV1RequestCommitsInnerSpendTrackerAttributes>>,
+    pub spend_tracker_attributes: Option<Box<models::CreateContractV1RequestPackageCustomizationsAddCommitsInnerSpendTrackerAttributes>>,
 }
 
 impl EditContractV2RequestAddCommitsInner {

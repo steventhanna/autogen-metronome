@@ -27,7 +27,7 @@ pub struct CreateCustomerCreditV1Request {
     #[serde(rename = "product_id")]
     pub product_id: uuid::Uuid,
     #[serde(rename = "access_schedule")]
-    pub access_schedule: Box<models::CreateContractV1RequestCommitsInnerAccessSchedule>,
+    pub access_schedule: Box<models::CreateContractV1RequestPackageCustomizationsAddCommitsInnerAccessSchedule>,
     /// Which products the credit applies to. If both applicable_product_ids and applicable_product_tags are not provided, the credit applies to all products.
     #[serde(rename = "applicable_product_ids", skip_serializing_if = "Option::is_none")]
     pub applicable_product_ids: Option<Vec<uuid::Uuid>>,
@@ -57,7 +57,7 @@ pub struct CreateCustomerCreditV1Request {
 }
 
 impl CreateCustomerCreditV1Request {
-    pub fn new(customer_id: uuid::Uuid, priority: f64, product_id: uuid::Uuid, access_schedule: models::CreateContractV1RequestCommitsInnerAccessSchedule) -> CreateCustomerCreditV1Request {
+    pub fn new(customer_id: uuid::Uuid, priority: f64, product_id: uuid::Uuid, access_schedule: models::CreateContractV1RequestPackageCustomizationsAddCommitsInnerAccessSchedule) -> CreateCustomerCreditV1Request {
         CreateCustomerCreditV1Request {
             customer_id,
             name: None,

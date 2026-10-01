@@ -32,9 +32,9 @@ pub struct CreateCustomerCommitV1Request {
     #[serde(rename = "product_id")]
     pub product_id: uuid::Uuid,
     #[serde(rename = "access_schedule")]
-    pub access_schedule: Box<models::CreateContractV1RequestCommitsInnerAccessSchedule>,
+    pub access_schedule: Box<models::CreateContractV1RequestPackageCustomizationsAddCommitsInnerAccessSchedule>,
     #[serde(rename = "invoice_schedule", skip_serializing_if = "Option::is_none")]
-    pub invoice_schedule: Option<Box<models::CreateContractV1RequestCommitsInnerInvoiceSchedule>>,
+    pub invoice_schedule: Option<Box<models::CreateContractV1RequestPackageCustomizationsAddCommitsInnerInvoiceSchedule>>,
     /// The contract that this commit will be billed on. This is required for \"POSTPAID\" commits and for \"PREPAID\" commits unless there is no invoice schedule above (i.e., the commit is 'free'), or if do_not_invoice is set to true.
     #[serde(rename = "invoice_contract_id", skip_serializing_if = "Option::is_none")]
     pub invoice_contract_id: Option<uuid::Uuid>,
@@ -65,7 +65,7 @@ pub struct CreateCustomerCommitV1Request {
 }
 
 impl CreateCustomerCommitV1Request {
-    pub fn new(customer_id: uuid::Uuid, r#type: Type, priority: f64, product_id: uuid::Uuid, access_schedule: models::CreateContractV1RequestCommitsInnerAccessSchedule) -> CreateCustomerCommitV1Request {
+    pub fn new(customer_id: uuid::Uuid, r#type: Type, priority: f64, product_id: uuid::Uuid, access_schedule: models::CreateContractV1RequestPackageCustomizationsAddCommitsInnerAccessSchedule) -> CreateCustomerCommitV1Request {
         CreateCustomerCommitV1Request {
             customer_id,
             r#type,

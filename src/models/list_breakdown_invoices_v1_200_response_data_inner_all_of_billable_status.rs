@@ -11,13 +11,13 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ListBreakdownInvoicesV1200ResponseDataInnerAllOfBillableStatus : This field's availability is dependent on your client's configuration.
+/// ListBreakdownInvoicesV1200ResponseDataInnerAllOfBillableStatus : Indicates if the invoice has been or will be sent to the configured customer billing provider. Defaults to `billable`.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ListBreakdownInvoicesV1200ResponseDataInnerAllOfBillableStatus {
 }
 
 impl ListBreakdownInvoicesV1200ResponseDataInnerAllOfBillableStatus {
-    /// This field's availability is dependent on your client's configuration.
+    /// Indicates if the invoice has been or will be sent to the configured customer billing provider. Defaults to `billable`.
     pub fn new() -> ListBreakdownInvoicesV1200ResponseDataInnerAllOfBillableStatus {
         ListBreakdownInvoicesV1200ResponseDataInnerAllOfBillableStatus {
         }
