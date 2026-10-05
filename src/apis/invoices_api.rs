@@ -288,7 +288,7 @@ pub async fn list_breakdown_invoices_v1(configuration: &configuration::Configura
 }
 
 /// Retrieves a paginated list of invoices for a specific customer, with flexible filtering options to narrow results by status, date range, credit type, and more. This endpoint provides a comprehensive view of a customer's billing history and current charges, supporting both real-time billing dashboards and historical reporting needs.  ### Use this endpoint to: - Display historical invoice details in customer-facing dashboards or billing portals. - Retrieve current month draft invoices to show customers their month-to-date spend. - Access finalized invoices for historical billing records and payment reconciliation. - Validate customer pricing and credit applications for customer support queries.  - Generate financial reports by filtering invoices within specific date ranges  ### Key response fields: Array of invoice objects containing: - Invoice ID and status (DRAFT, FINALIZED, VOID) - Invoice type (USAGE, SCHEDULED) - Billing period start and end dates - Issue date and due date - Total amount, subtotal, and amount due - Applied credits summary - Contract ID reference - External billing provider status (if integrated with Stripe, etc.) - Pagination metadata `next_page` cursor  ### Usage guidelines: - The endpoint returns invoice summaries; use the Get Invoice endpoint for detailed line items - Draft invoices are continuously updated as new usage is reported and will show real-time spend - Results are ordered by creation date descending by default (newest first) - When filtering by date range, the filter applies to the billing period, not the issue date - For customers with many invoices, implement pagination to ensure all results are retrieved External billing provider statuses (like Stripe payment status) are included when applicable - Voided invoices are included in results by default unless filtered out by status 
-pub async fn list_invoices_v1(configuration: &configuration::Configuration, customer_id: &str, limit: Option<i32>, next_page: Option<&str>, status: Option<&str>, r#type: Option<&str>, skip_zero_qty_line_items: Option<bool>, sort: Option<&str>, credit_type_id: Option<&str>, contract_id: Option<&str>, starting_on: Option<chrono::DateTime<chrono::FixedOffset>>, ending_before: Option<chrono::DateTime<chrono::FixedOffset>>, webhook_notification_id: Option<&str>) -> Result<models::ListInvoicesV1200Response, Error<ListInvoicesV1Error>> {
+pub async fn list_invoices_v1(configuration: &configuration::Configuration, customer_id: &str, limit: Option<i32>, next_page: Option<&str>, status: Option<&str>, r#type: Option<&str>, skip_zero_qty_line_items: Option<bool>, sort: Option<&str>, credit_type_id: Option<&str>, contract_id: Option<&str>, starting_on: Option<chrono::DateTime<chrono::FixedOffset>>, ending_before: Option<chrono::DateTime<chrono::FixedOffset>>, webhook_notification_id: Option<&str>, include_retired_commit_invoices: Option<bool>) -> Result<models::ListInvoicesV1200Response, Error<ListInvoicesV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_customer_id = customer_id;
     let p_query_limit = limit;
@@ -302,6 +302,7 @@ pub async fn list_invoices_v1(configuration: &configuration::Configuration, cust
     let p_query_starting_on = starting_on;
     let p_query_ending_before = ending_before;
     let p_query_webhook_notification_id = webhook_notification_id;
+    let p_query_include_retired_commit_invoices = include_retired_commit_invoices;
 
     let uri_str = format!("{}/v1/customers/{customer_id}/invoices", configuration.base_path, customer_id=crate::apis::urlencode(p_path_customer_id));
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
@@ -338,6 +339,9 @@ pub async fn list_invoices_v1(configuration: &configuration::Configuration, cust
     }
     if let Some(ref param_value) = p_query_webhook_notification_id {
         req_builder = req_builder.query(&[("webhook_notification_id", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_include_retired_commit_invoices {
+        req_builder = req_builder.query(&[("include_retired_commit_invoices", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
