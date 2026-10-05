@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **subscription_rate** | [**models::SubscriptionRate**](SubscriptionRate.md) |  | 
 **name** | Option<**String**> |  | [optional]
 **description** | Option<**String**> |  | [optional]
+**subscription_alias** | Option<**String**> | Human-readable, per-package-unique alias for this subscription template, if one was set at package creation. Can be used to reference the subscription in contract customizations. | [optional]
 **collection_schedule** | **CollectionSchedule** |  (enum: ADVANCE, ARREARS, advance, arrears) | 
 **proration** | [**models::SubscriptionProration**](SubscriptionProration.md) |  | 
 **initial_quantity** | Option<**f64**> |  | [optional]
@@ -18,6 +19,7 @@ Name | Type | Description | Notes
 **duration** | Option<[**models::RelativeDate**](RelativeDate.md)> |  | [optional]
 **fiat_credit_type_id** | Option<**uuid::Uuid**> |  | [optional]
 **billing_cycle_config** | Option<[**models::SubscriptionBillingCycleConfigTemplate**](SubscriptionBillingCycleConfigTemplate.md)> |  | [optional]
+**payment_gate_config** | Option<[**models::SubscriptionPaymentGateConfig**](SubscriptionPaymentGateConfig.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

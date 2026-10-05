@@ -68,6 +68,10 @@ pub enum Day {
     ContractStart,
     #[serde(rename = "contract_start")]
     ContractStart2,
+    #[serde(rename = "CUSTOM_DATE")]
+    CustomDate,
+    #[serde(rename = "custom_date")]
+    CustomDate2,
 }
 
 impl Default for Day {
