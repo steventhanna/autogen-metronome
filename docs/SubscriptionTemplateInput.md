@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **subscription_rate** | [**models::SubscriptionRateInput**](SubscriptionRateInput.md) |  | 
 **name** | Option<**String**> |  | [optional]
 **description** | Option<**String**> |  | [optional]
+**subscription_alias** | Option<**String**> | Optional human-readable, per-package-unique alias for this subscription template. Lets a contract customization reference the subscription by alias instead of its template id. | [optional]
 **collection_schedule** | **CollectionSchedule** |  (enum: ADVANCE, ARREARS, advance, arrears) | 
 **proration** | [**models::SubscriptionProrationInput**](SubscriptionProrationInput.md) |  | 
 **initial_quantity** | Option<**f64**> | The initial quantity for the subscription. It must be non-negative value. Required if quantity_management_mode is QUANTITY_ONLY. | [optional]
@@ -17,6 +18,7 @@ Name | Type | Description | Notes
 **seat_config** | Option<[**models::SubscriptionSeatConfigTemplateInput**](SubscriptionSeatConfigTemplateInput.md)> |  | [optional]
 **custom_fields** | Option<**std::collections::HashMap<String, String>**> | Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" } | [optional]
 **billing_cycle_config** | Option<[**models::SubscriptionBillingCycleConfigTemplateInput**](SubscriptionBillingCycleConfigTemplateInput.md)> |  | [optional]
+**payment_gate_config** | Option<[**models::SubscriptionPaymentGateConfigInput**](SubscriptionPaymentGateConfigInput.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

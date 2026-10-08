@@ -24,6 +24,9 @@ pub struct SubscriptionTemplate {
     pub name: Option<String>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
+    /// Human-readable, per-package-unique alias for this subscription template, if one was set at package creation. Can be used to reference the subscription in contract customizations.
+    #[serde(rename = "subscription_alias", skip_serializing_if = "Option::is_none")]
+    pub subscription_alias: Option<String>,
     #[serde(rename = "collection_schedule")]
     pub collection_schedule: CollectionSchedule,
     #[serde(rename = "proration")]
@@ -41,8 +44,13 @@ pub struct SubscriptionTemplate {
     pub duration: Option<Box<models::RelativeDate>>,
     #[serde(rename = "fiat_credit_type_id", skip_serializing_if = "Option::is_none")]
     pub fiat_credit_type_id: Option<uuid::Uuid>,
+    /// If provided, the subscription's price will be in terms of this custom pricing unit instead of the fiat currency.
+    #[serde(rename = "custom_credit_type_id", skip_serializing_if = "Option::is_none")]
+    pub custom_credit_type_id: Option<uuid::Uuid>,
     #[serde(rename = "billing_cycle_config", skip_serializing_if = "Option::is_none")]
     pub billing_cycle_config: Option<Box<models::SubscriptionBillingCycleConfigTemplate>>,
+    #[serde(rename = "payment_gate_config", skip_serializing_if = "Option::is_none")]
+    pub payment_gate_config: Option<Box<models::SubscriptionPaymentGateConfig>>,
 }
 
 impl SubscriptionTemplate {
@@ -53,6 +61,7 @@ impl SubscriptionTemplate {
             subscription_rate: Box::new(subscription_rate),
             name: None,
             description: None,
+            subscription_alias: None,
             collection_schedule,
             proration: Box::new(proration),
             initial_quantity: None,
@@ -61,7 +70,9 @@ impl SubscriptionTemplate {
             starting_at_offset: None,
             duration: None,
             fiat_credit_type_id: None,
+            custom_credit_type_id: None,
             billing_cycle_config: None,
+            payment_gate_config: None,
         }
     }
 }

@@ -151,7 +151,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_invoices_v1
 
-> models::ListInvoicesV1200Response list_invoices_v1(customer_id, limit, next_page, status, r#type, skip_zero_qty_line_items, sort, credit_type_id, contract_id, starting_on, ending_before, webhook_notification_id)
+> models::ListInvoicesV1200Response list_invoices_v1(customer_id, limit, next_page, status, r#type, skip_zero_qty_line_items, sort, credit_type_id, contract_id, starting_on, ending_before, webhook_notification_id, include_retired_commit_invoices)
 List invoices
 
 Retrieves a paginated list of invoices for a specific customer, with flexible filtering options to narrow results by status, date range, credit type, and more. This endpoint provides a comprehensive view of a customer's billing history and current charges, supporting both real-time billing dashboards and historical reporting needs.  ### Use this endpoint to: - Display historical invoice details in customer-facing dashboards or billing portals. - Retrieve current month draft invoices to show customers their month-to-date spend. - Access finalized invoices for historical billing records and payment reconciliation. - Validate customer pricing and credit applications for customer support queries.  - Generate financial reports by filtering invoices within specific date ranges  ### Key response fields: Array of invoice objects containing: - Invoice ID and status (DRAFT, FINALIZED, VOID) - Invoice type (USAGE, SCHEDULED) - Billing period start and end dates - Issue date and due date - Total amount, subtotal, and amount due - Applied credits summary - Contract ID reference - External billing provider status (if integrated with Stripe, etc.) - Pagination metadata `next_page` cursor  ### Usage guidelines: - The endpoint returns invoice summaries; use the Get Invoice endpoint for detailed line items - Draft invoices are continuously updated as new usage is reported and will show real-time spend - Results are ordered by creation date descending by default (newest first) - When filtering by date range, the filter applies to the billing period, not the issue date - For customers with many invoices, implement pagination to ensure all results are retrieved External billing provider statuses (like Stripe payment status) are included when applicable - Voided invoices are included in results by default unless filtered out by status 
@@ -173,6 +173,7 @@ Name | Type | Description  | Required | Notes
 **starting_on** | Option<**chrono::DateTime<chrono::FixedOffset>**> | RFC 3339 timestamp (inclusive). Invoices will only be returned for billing periods that start at or after this time. |  |
 **ending_before** | Option<**chrono::DateTime<chrono::FixedOffset>**> | RFC 3339 timestamp (exclusive). Invoices will only be returned for billing periods that end before this time. |  |
 **webhook_notification_id** | Option<**String**> | Indicates that this API request was triggered by a webhook notification with the provided ID. |  |
+**include_retired_commit_invoices** | Option<**bool**> | When true, includes retired commit invoices alongside active invoices. Defaults to false. |  |[default to false]
 
 ### Return type
 
