@@ -22,8 +22,10 @@ pub struct UsageBatchQueryPayload {
     /// A window_size of \"day\" or \"hour\" will return the usage for the specified period segmented into daily or hourly aggregates. A window_size of \"none\" will return a single usage aggregate for the entirety of the specified period.
     #[serde(rename = "window_size")]
     pub window_size: WindowSize,
+    /// Must be aligned to UTC midnight, e.g. `2024-01-01T00:00:00Z`.
     #[serde(rename = "starting_on")]
     pub starting_on: chrono::DateTime<chrono::FixedOffset>,
+    /// Must be aligned to UTC midnight and at least one day after `starting_on`.
     #[serde(rename = "ending_before")]
     pub ending_before: chrono::DateTime<chrono::FixedOffset>,
 }

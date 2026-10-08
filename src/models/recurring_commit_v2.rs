@@ -23,7 +23,7 @@ pub struct RecurringCommitV2 {
     #[serde(rename = "product")]
     pub product: Box<models::SubscriptionRateProduct>,
     #[serde(rename = "access_amount")]
-    pub access_amount: Box<models::RecurringCommitOrCreditInputBaseAccessAmount>,
+    pub access_amount: Box<models::RecurringCommitOrCreditBaseAccessAmount>,
     /// Will be passed down to the individual commits
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -76,7 +76,7 @@ pub struct RecurringCommitV2 {
 }
 
 impl RecurringCommitV2 {
-    pub fn new(id: uuid::Uuid, product: models::SubscriptionRateProduct, access_amount: models::RecurringCommitOrCreditInputBaseAccessAmount, priority: f64, rate_type: RateType, starting_at: chrono::DateTime<chrono::FixedOffset>, commit_duration: models::RecurringCommitOrCreditInputBaseCommitDuration, anchor_date: chrono::DateTime<chrono::FixedOffset>) -> RecurringCommitV2 {
+    pub fn new(id: uuid::Uuid, product: models::SubscriptionRateProduct, access_amount: models::RecurringCommitOrCreditBaseAccessAmount, priority: f64, rate_type: RateType, starting_at: chrono::DateTime<chrono::FixedOffset>, commit_duration: models::RecurringCommitOrCreditInputBaseCommitDuration, anchor_date: chrono::DateTime<chrono::FixedOffset>) -> RecurringCommitV2 {
         RecurringCommitV2 {
             id,
             contract: None,
