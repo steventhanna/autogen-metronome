@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **contract** | Option<[**models::VoidInvoiceV1Request**](VoidInvoiceV1Request.md)> |  | [optional]
 **name** | Option<**String**> | Displayed on invoices. Will be passed through to the individual commits | [optional]
 **product** | [**models::SubscriptionRateProduct**](SubscriptionRateProduct.md) |  | 
-**access_amount** | [**models::RecurringCommitOrCreditInputBaseAccessAmount**](RecurringCommitOrCreditInputBaseAccessAmount.md) |  | 
+**access_amount** | [**models::RecurringCommitOrCreditBaseAccessAmount**](RecurringCommitOrCreditBaseAccessAmount.md) |  | 
 **description** | Option<**String**> | Will be passed down to the individual commits | [optional]
 **rollover_fraction** | Option<**f64**> | Will be passed down to the individual commits. This controls how much of an individual unexpired commit will roll over upon contract transition. Must be between 0 and 1. | [optional]
 **priority** | **f64** | Will be passed down to the individual commits | 
