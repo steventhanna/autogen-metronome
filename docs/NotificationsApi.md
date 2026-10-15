@@ -6,10 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**archive_notification_config_v2**](NotificationsApi.md#archive_notification_config_v2) | **POST** /v2/notifications/archive | Archive an offset lifecycle event notification configuration
 [**create_notification_config_v2**](NotificationsApi.md#create_notification_config_v2) | **POST** /v2/notifications/create | Create an offset lifecycle event notification configuration
-[**edit_notification_config_v2**](NotificationsApi.md#edit_notification_config_v2) | **POST** /v2/notifications/edit | Edit an offset lifecycle event notification configuration
+[**edit_notification_config_v2**](NotificationsApi.md#edit_notification_config_v2) | **POST** /v2/notifications/edit | Edit an offset or system notification
 [**get_notification_config_v2**](NotificationsApi.md#get_notification_config_v2) | **POST** /v2/notifications/get | Get an offset lifecycle event notification configuration
 [**list_offset_notification_configs_v2**](NotificationsApi.md#list_offset_notification_configs_v2) | **POST** /v2/notifications/offset/list | List offset lifecycle event notification configurations
-[**list_system_notification_configs_v2**](NotificationsApi.md#list_system_notification_configs_v2) | **POST** /v2/notifications/system/list | List system notification event types
+[**list_system_notification_configs_v2**](NotificationsApi.md#list_system_notification_configs_v2) | **POST** /v2/notifications/system/list | List system notification types
 
 
 
@@ -76,16 +76,16 @@ Name | Type | Description  | Required | Notes
 ## edit_notification_config_v2
 
 > models::EditNotificationConfigV2200Response edit_notification_config_v2(edit_notification_config_payload)
-Edit an offset lifecycle event notification configuration
+Edit an offset or system notification
 
-Edit an existing offset lifecycle event notification configuration.
+Edit an existing offset notification, or enable/disable a system notification
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**edit_notification_config_payload** | Option<[**EditNotificationConfigPayload**](EditNotificationConfigPayload.md)> | Offset notification configuration updates |  |
+**edit_notification_config_payload** | Option<[**EditNotificationConfigPayload**](EditNotificationConfigPayload.md)> | Offset or system notification updates |  |
 
 ### Return type
 
@@ -166,9 +166,9 @@ Name | Type | Description  | Required | Notes
 ## list_system_notification_configs_v2
 
 > models::ListSystemNotificationConfigsV2200Response list_system_notification_configs_v2()
-List system notification event types
+List system notification types
 
-List available system lifecycle event types for notifications. These are read-only event types that can be used when creating offset notifications.
+List available system notification types. You can enable these notifications directly or use supported types to create offset notifications.
 
 ### Parameters
 

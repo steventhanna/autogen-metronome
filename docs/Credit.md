@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **uniqueness_key** | Option<**String**> | Prevents the creation of duplicates. If a request to create a commit or credit is made with a uniqueness key that was previously used to create a commit or credit, a new record will not be created and the request will fail with a 409 error. | [optional]
 **hierarchy_configuration** | Option<[**models::CommitHierarchyConfiguration**](CommitHierarchyConfiguration.md)> |  | [optional]
 **rolled_over_from** | Option<[**models::CreditRolledOverFrom**](CreditRolledOverFrom.md)> |  | [optional]
+**created_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> | Timestamp of when the credit was created. - Recurring credit: latter of credit service period date and parent credit start date - Rollover credit: when the new contract started  | [optional]
 **created_by** | Option<**String**> | The actor who created this credit. Omitted for system-generated credits such as recurring credits. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

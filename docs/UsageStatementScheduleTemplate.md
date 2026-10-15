@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **frequency** | **Frequency** |  (enum: MONTHLY, QUARTERLY, ANNUAL, WEEKLY) | 
-**day** | Option<**Day**> |  (enum: FIRST_OF_MONTH, CONTRACT_START) | [optional]
+**day** | Option<**Day**> |  (enum: FIRST_OF_MONTH, CONTRACT_START, CUSTOM_DATE) | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
