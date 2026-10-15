@@ -15,6 +15,8 @@ use serde::{Deserialize, Serialize};
 pub struct UpdateSubscriptionInput {
     #[serde(rename = "subscription_id")]
     pub subscription_id: uuid::Uuid,
+    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     #[serde(rename = "ending_before", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub ending_before: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(rename = "quantity_management_mode_update", skip_serializing_if = "Option::is_none")]
@@ -32,6 +34,7 @@ impl UpdateSubscriptionInput {
     pub fn new(subscription_id: uuid::Uuid) -> UpdateSubscriptionInput {
         UpdateSubscriptionInput {
             subscription_id,
+            name: None,
             ending_before: None,
             quantity_management_mode_update: None,
             quantity_updates: None,

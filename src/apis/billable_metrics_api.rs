@@ -290,10 +290,10 @@ pub async fn list_billable_metrics_v1(configuration: &configuration::Configurati
 }
 
 /// Updates only the display name of an existing billable metric. Use this to correct mistakes or apply standardized naming conventions across all billable metrics. Returns the billable metric ID to confirm the update.   Important: Only the name can be modified via this endpoint; configurations cannot be changed after creation.   #### Example workflow: If you need to make changes to a streaming billable metric, for example, Metronome supports easily rolling out these changes using a simple workflow: 1. Duplicate the billable metric 2. Make required changes 3. Save the metric 4. Navigate to the product you have associated with the incorrect metric 5. Schedule the product to reference the newly created metric on the appropriate date 
-pub async fn update_billable_metric_v1(configuration: &configuration::Configuration, billable_metric_id: &str, update_billable_metric_v1_request: Option<models::UpdateBillableMetricV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<UpdateBillableMetricV1Error>> {
+pub async fn update_billable_metric_v1(configuration: &configuration::Configuration, billable_metric_id: &str, create_credit_type_v1_request: Option<models::CreateCreditTypeV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<UpdateBillableMetricV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_billable_metric_id = billable_metric_id;
-    let p_body_update_billable_metric_v1_request = update_billable_metric_v1_request;
+    let p_body_create_credit_type_v1_request = create_credit_type_v1_request;
 
     let uri_str = format!("{}/v1/billable-metrics/{billable_metric_id}", configuration.base_path, billable_metric_id=crate::apis::urlencode(p_path_billable_metric_id));
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
@@ -304,7 +304,7 @@ pub async fn update_billable_metric_v1(configuration: &configuration::Configurat
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_update_billable_metric_v1_request);
+    req_builder = req_builder.json(&p_body_create_credit_type_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

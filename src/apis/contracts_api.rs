@@ -183,7 +183,7 @@ pub enum UpdateInvoiceIssueDateV1Error {
 }
 
 
-/// Amendments will be replaced by Contract editing. New clients should implement using the `editContract` endpoint. Read more about the migration to contract editing [here](/guides/implement-metronome/migrate-amendments-to-edits/) and contact us via the [Metronome support portal](https://support.metronome.com/) for more details. Once contract editing is enabled, access to this endpoint will be removed. 
+/// Amendments will be replaced by Contract editing. New clients should implement using the `editContract` endpoint. Read more about the migration to contract editing [here](/guides/implement-metronome/migrate-amendments-to-edits/) and contact us via the [Metronome support portal](https://app.metronome.com/support) for more details. Once contract editing is enabled, access to this endpoint will be removed. 
 pub async fn amend_contract_v1(configuration: &configuration::Configuration, amend_contract_payload: Option<models::AmendContractPayload>) -> Result<models::ArchiveAlertV1200Response, Error<AmendContractV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_amend_contract_payload = amend_contract_payload;
@@ -429,7 +429,7 @@ pub async fn create_package_v1(configuration: &configuration::Configuration, cre
     }
 }
 
-/// The ability to edit a contract helps you react quickly to the needs of your customers and your business.  ### Use this endpoint to: - Encode mid-term commitment and discount changes - Fix configuration mistakes and easily roll back packaging changes  ### Key response fields: - The `id` of the edit - Complete edit details. For example, if you edited the contract to add new overrides and credits, you will receive the IDs of those overrides and credits in the response.  ### Usage guidelines: - When you edit a contract, any draft invoices update immediately to reflect that edit. Finalized invoices remain unchanged - you must void and regenerate them in the UI or API to reflect the edit. - Contract editing must be enabled to use this endpoint. Contact us via the [Metronome support portal](https://support.metronome.com/) to learn more. 
+/// The ability to edit a contract helps you react quickly to the needs of your customers and your business.  ### Use this endpoint to: - Encode mid-term commitment and discount changes - Fix configuration mistakes and easily roll back packaging changes  ### Key response fields: - The `id` of the edit - Complete edit details. For example, if you edited the contract to add new overrides and credits, you will receive the IDs of those overrides and credits in the response.  ### Usage guidelines: - When you edit a contract, any draft invoices update immediately to reflect that edit. Finalized invoices remain unchanged - you must void and regenerate them in the UI or API to reflect the edit. - Contract editing must be enabled to use this endpoint. Contact us via the [Metronome support portal](https://app.metronome.com/support) to learn more. 
 pub async fn edit_contract_v2(configuration: &configuration::Configuration, edit_contract_payload: Option<models::EditContractPayload>) -> Result<models::EditContractV2200Response, Error<EditContractV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_edit_contract_payload = edit_contract_payload;
@@ -773,7 +773,7 @@ pub async fn list_contracts_on_package_v1(configuration: &configuration::Configu
     }
 }
 
-/// Retrieves all contracts for a specific customer, including pricing, terms, credits, and commitments. Use this to view a customer's contract history and current agreements for billing management. Returns contract details with optional ledgers and balance information.   ⚠️ Note: This is the legacy v1 endpoint - new integrations should use the v2 endpoint for enhanced features. 
+/// Retrieves a page of contracts for a specific customer, including pricing, terms, credits, and commitments. Use this to view a customer's contract history and current agreements for billing management. Returns contract details with optional ledgers and balance information.  ### Usage guidelines: - Pagination: Results are limited to 20 contracts per page; use 'cursor' for more  ⚠️ Note: This is the legacy v1 endpoint - new integrations should use the v2 endpoint for enhanced features. 
 pub async fn list_contracts_v1(configuration: &configuration::Configuration, list_contracts_v1_request: Option<models::ListContractsV1Request>) -> Result<models::ListContractsV1200Response, Error<ListContractsV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_list_contracts_v1_request = list_contracts_v1_request;
@@ -814,7 +814,7 @@ pub async fn list_contracts_v1(configuration: &configuration::Configuration, lis
     }
 }
 
-/// For a given customer, lists all of their contracts in chronological order.   ### Use this endpoint to: - Check if a customer is provisioned with any contract, and at which tier - Check the duration and terms of a customer's current contract - Power a page in your end customer experience that shows the customer's history of tiers (e.g. this customer started out on the Pro Plan, then downgraded to the Starter plan).  ### Usage guidelines: Use the `starting_at`, `covering_date`, and `include_archived` parameters to filter the list of returned contracts. For example, to list only currently active contracts, pass `covering_date` equal to the current time. 
+/// For a given customer, lists a page of their contracts in chronological order.  ### Use this endpoint to: - Check if a customer is provisioned with any contract, and at which tier - Check the duration and terms of a customer's current contract - Power a page in your end customer experience that shows the customer's history of tiers (e.g. this customer started out on the Pro Plan, then downgraded to the Starter plan).  ### Usage guidelines: Use the `starting_at`, `covering_date`, and `include_archived` parameters to filter the list of returned contracts. For example, to list only currently active contracts, pass `covering_date` equal to the current time.  Results are limited to 20 contracts per page. When the response includes a non-null `cursor`, pass it back as the `cursor` parameter to fetch the next page. 
 pub async fn list_contracts_v2(configuration: &configuration::Configuration, list_contracts_v2_request: Option<models::ListContractsV2Request>) -> Result<models::ListContractsV2200Response, Error<ListContractsV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_list_contracts_v2_request = list_contracts_v2_request;
