@@ -16,7 +16,7 @@ pub struct GetNetBalanceV1200ResponseData {
     /// The combined net balance that the customer has access to use at this moment across all pertinent commits and credits.
     #[serde(rename = "balance")]
     pub balance: f64,
-    /// The ID of the credit type (can be fiat or a custom pricing unit) that the balance is for.
+    /// This ID identifies the credit type for the balance. The credit type can be fiat or a custom pricing unit. Quantity-based balances return the null credit type UUID.
     #[serde(rename = "credit_type_id")]
     pub credit_type_id: uuid::Uuid,
 }

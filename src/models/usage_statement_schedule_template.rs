@@ -52,6 +52,8 @@ pub enum Day {
     FirstOfMonth,
     #[serde(rename = "CONTRACT_START")]
     ContractStart,
+    #[serde(rename = "CUSTOM_DATE")]
+    CustomDate,
 }
 
 impl Default for Day {
