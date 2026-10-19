@@ -15,6 +15,8 @@ use serde::{Deserialize, Serialize};
 pub struct SubscriptionsUpdate {
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
+    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
     pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "quantity_updates", skip_serializing_if = "Option::is_none")]
@@ -27,6 +29,7 @@ impl SubscriptionsUpdate {
     pub fn new(id: uuid::Uuid) -> SubscriptionsUpdate {
         SubscriptionsUpdate {
             id,
+            name: None,
             ending_before: None,
             quantity_updates: None,
             seat_updates: None,

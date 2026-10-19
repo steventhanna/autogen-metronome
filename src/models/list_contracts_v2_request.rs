@@ -30,6 +30,12 @@ pub struct ListContractsV2Request {
     /// Optional RFC 3339 timestamp. Only include contracts active on the provided date. This cannot be provided if starting_at filter is provided.
     #[serde(rename = "covering_date", skip_serializing_if = "Option::is_none")]
     pub covering_date: Option<chrono::DateTime<chrono::FixedOffset>>,
+    /// Max number of contracts to return per page. Range: 1-20. Default: 20.
+    #[serde(rename = "limit", skip_serializing_if = "Option::is_none")]
+    pub limit: Option<f64>,
+    /// Cursor from a previous response to fetch the next page of contracts.
+    #[serde(rename = "cursor", skip_serializing_if = "Option::is_none")]
+    pub cursor: Option<String>,
 }
 
 impl ListContractsV2Request {
@@ -41,6 +47,8 @@ impl ListContractsV2Request {
             include_balance: None,
             starting_at: None,
             covering_date: None,
+            limit: None,
+            cursor: None,
         }
     }
 }

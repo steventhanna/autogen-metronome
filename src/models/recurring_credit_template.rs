@@ -20,7 +20,7 @@ pub struct RecurringCreditTemplate {
     #[serde(rename = "product")]
     pub product: Box<models::SubscriptionRateProduct>,
     #[serde(rename = "access_amount")]
-    pub access_amount: Box<models::RecurringCommitOrCreditInputBaseAccessAmount>,
+    pub access_amount: Box<models::RecurringCommitOrCreditBaseAccessAmount>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
     /// Will be passed down to the individual commits. This controls how much of an individual unexpired commit will roll over upon contract transition. Must be between 0 and 1.
@@ -59,7 +59,7 @@ pub struct RecurringCreditTemplate {
 }
 
 impl RecurringCreditTemplate {
-    pub fn new(id: uuid::Uuid, product: models::SubscriptionRateProduct, access_amount: models::RecurringCommitOrCreditInputBaseAccessAmount, priority: f64, rate_type: RateType, starting_at_offset: models::RelativeDate, commit_duration: models::RecurringCommitOrCreditTemplateBaseCommitDuration) -> RecurringCreditTemplate {
+    pub fn new(id: uuid::Uuid, product: models::SubscriptionRateProduct, access_amount: models::RecurringCommitOrCreditBaseAccessAmount, priority: f64, rate_type: RateType, starting_at_offset: models::RelativeDate, commit_duration: models::RecurringCommitOrCreditTemplateBaseCommitDuration) -> RecurringCreditTemplate {
         RecurringCreditTemplate {
             id,
             name: None,

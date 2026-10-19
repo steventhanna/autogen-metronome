@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **customer_id** | **uuid::Uuid** |  | 
 **package_id** | Option<**uuid::Uuid**> | If provided, provisions a customer on a package instead of creating a traditional contract. When specified, only customer_id, starting_at, package_id, uniqueness_key, transition, and custom_fields are allowed. | [optional]
 **package_alias** | Option<**String**> | Selects the package linked to the specified alias as of the contract's start date. Mutually exclusive with package_id. | [optional]
+**package_customizations** | Option<[**models::PackageCustomizations**](PackageCustomizations.md)> |  | [optional]
 **name** | Option<**String**> |  | [optional]
 **uniqueness_key** | Option<**String**> | Prevents the creation of duplicates. If a request to create a record is made with a previously used uniqueness key, a new record will not be created and the request will fail with a 409 error. | [optional]
 **netsuite_sales_order_id** | Option<**String**> | This field's availability is dependent on your client's configuration. | [optional]
