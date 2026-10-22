@@ -16,9 +16,10 @@ Method | HTTP request | Description
 [**list_customer_balances_v1**](CreditsAndCommitsApi.md#list_customer_balances_v1) | **POST** /v1/contracts/customerBalances/list | List balances
 [**list_customer_commits_v1**](CreditsAndCommitsApi.md#list_customer_commits_v1) | **POST** /v1/contracts/customerCommits/list | List commits
 [**list_customer_credits_v1**](CreditsAndCommitsApi.md#list_customer_credits_v1) | **POST** /v1/contracts/customerCredits/list | List credits
+[**list_historical_balances_v1**](CreditsAndCommitsApi.md#list_historical_balances_v1) | **POST** /v1/contracts/historicalBalances/list | List historical balances
 [**list_seat_balances_v1**](CreditsAndCommitsApi.md#list_seat_balances_v1) | **POST** /v1/contracts/seatBalances/list | List seat balances
+[**move_to_history_v2**](CreditsAndCommitsApi.md#move_to_history_v2) | **POST** /v2/contracts/commits/moveToHistory | Move commits to historical
 [**release_external_payment_gate_threshold_commit_v1**](CreditsAndCommitsApi.md#release_external_payment_gate_threshold_commit_v1) | **POST** /v1/contracts/commits/threshold-billing/release | Release external payment gate threshold commit
-[**retire_commits_v2**](CreditsAndCommitsApi.md#retire_commits_v2) | **POST** /v2/contracts/commits/retire | Retire commits
 [**update_commit_end_date_v1**](CreditsAndCommitsApi.md#update_commit_end_date_v1) | **POST** /v1/contracts/customerCommits/updateEndDate | Update the commit end date
 [**update_credit_end_date_v1**](CreditsAndCommitsApi.md#update_credit_end_date_v1) | **POST** /v1/contracts/customerCredits/updateEndDate | Update the credit end date
 
@@ -384,6 +385,36 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## list_historical_balances_v1
+
+> models::ListHistoricalBalancesV1200Response list_historical_balances_v1(list_historical_balances_v1_request)
+List historical balances
+
+Retrieve historical commit and credit balances for a customer. Historical balances include their schedules and current balance. Set `include_ledgers` to include transaction history. Ledgers and balances may change when invoices are voided and regenerated.  Use the date filters to select commits by either their access schedule or the time they became historical. 
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**list_historical_balances_v1_request** | Option<[**ListHistoricalBalancesV1Request**](ListHistoricalBalancesV1Request.md)> | List historical balances for a customer |  |
+
+### Return type
+
+[**models::ListHistoricalBalancesV1200Response**](listHistoricalBalances_v1_200_response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## list_seat_balances_v1
 
 > models::ListSeatBalancesV1200Response list_seat_balances_v1(list_seat_balances_v1_request)
@@ -401,6 +432,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::ListSeatBalancesV1200Response**](listSeatBalances_v1_200_response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## move_to_history_v2
+
+> models::MoveToHistoryV2200Response move_to_history_v2(move_to_history_payload)
+Move commits to historical
+
+Move one or more fully depleted, immutable commits on a contract to historical storage. Historical commits are removed from active code paths, which makes future computations for this customer faster. They remain retrievable through the historical view. Set `dry_run` to `true` to preview the result without making changes. 
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**move_to_history_payload** | Option<[**MoveToHistoryPayload**](MoveToHistoryPayload.md)> | Customer, contract, and commit IDs to move to historical |  |
+
+### Return type
+
+[**models::MoveToHistoryV2200Response**](moveToHistory_v2_200_response.md)
 
 ### Authorization
 
@@ -440,36 +501,6 @@ Name | Type | Description  | Required | Notes
 
 - **Content-Type**: application/json
 - **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## retire_commits_v2
-
-> models::RetireCommitsV2200Response retire_commits_v2(retire_commits_payload)
-Retire commits
-
-Retire one or more commits on a contract. Retirement moves fully-depleted, immutable commits into cold storage, making future computations on this customer faster. Retired commits are removed from active code paths but remain retrievable through a dedicated historical view. Set `dry_run` to `true` to preview the result without making changes. 
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**retire_commits_payload** | Option<[**RetireCommitsPayload**](RetireCommitsPayload.md)> | Customer, contract, and commit IDs to retire |  |
-
-### Return type
-
-[**models::RetireCommitsV2200Response**](retireCommits_v2_200_response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
