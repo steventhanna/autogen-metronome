@@ -27,6 +27,7 @@ pub enum ArchiveAlertV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateAlertV1Error {
+    Status409(models::UniquenessKeyConflictError),
     UnknownValue(serde_json::Value),
 }
 

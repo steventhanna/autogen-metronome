@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **credit_type** | [**models::CreditType**](CreditType.md) |  | 
 **starting_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> | The line item's start date (inclusive). | [optional]
 **ending_before** | Option<**chrono::DateTime<chrono::FixedOffset>**> | The line item's end date (exclusive). | [optional]
-**commit_id** | Option<**uuid::Uuid**> | For line items with product of `USAGE`, `SUBSCRIPTION`, or `COMPOSITE` types, the ID of the credit or commit that was applied to this line item. For line items with product type of `FIXED`, the ID of the prepaid or postpaid commit that is being paid for. | [optional]
+**commit_id** | Option<**uuid::Uuid**> | For line items with product of `USAGE`, `SUBSCRIPTION`, `COMPOSITE`, or `CPU_CONVERSION` types, the ID of the credit or commit that was applied to this line item. For line items with product type of `FIXED`, the ID of the prepaid or postpaid commit that is being paid for. | [optional]
 **applied_commit_or_credit** | Option<[**models::AppliedCommitOrCredit**](AppliedCommitOrCredit.md)> |  | [optional]
 **commit_custom_fields** | Option<**std::collections::HashMap<String, String>**> | Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" } | [optional]
 **commit_segment_id** | Option<**uuid::Uuid**> |  | [optional]
