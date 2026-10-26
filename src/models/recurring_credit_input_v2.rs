@@ -19,7 +19,7 @@ pub struct RecurringCreditInputV2 {
     #[serde(rename = "product_id")]
     pub product_id: uuid::Uuid,
     #[serde(rename = "access_amount")]
-    pub access_amount: Box<models::RecurringCommitOrCreditInputBaseAccessAmount>,
+    pub access_amount: Box<models::RecurringCommitOrCreditInputSharedFieldsAccessAmount>,
     /// Will be passed down to the individual commits
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -54,7 +54,7 @@ pub struct RecurringCreditInputV2 {
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
     pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "commit_duration")]
-    pub commit_duration: Box<models::RecurringCommitOrCreditInputBaseCommitDuration>,
+    pub commit_duration: Box<models::RecurringCommitOrCreditInputSharedFieldsCommitDuration>,
     /// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates. - Daily recurring commits have a limit of one per contract, and are unable to be created with seat-based subscriptions
     #[serde(rename = "recurrence_frequency", skip_serializing_if = "Option::is_none")]
     pub recurrence_frequency: Option<RecurrenceFrequency>,
@@ -70,7 +70,7 @@ pub struct RecurringCreditInputV2 {
 }
 
 impl RecurringCreditInputV2 {
-    pub fn new(product_id: uuid::Uuid, access_amount: models::RecurringCommitOrCreditInputBaseAccessAmount, priority: f64, starting_at: chrono::DateTime<chrono::FixedOffset>, commit_duration: models::RecurringCommitOrCreditInputBaseCommitDuration) -> RecurringCreditInputV2 {
+    pub fn new(product_id: uuid::Uuid, access_amount: models::RecurringCommitOrCreditInputSharedFieldsAccessAmount, priority: f64, starting_at: chrono::DateTime<chrono::FixedOffset>, commit_duration: models::RecurringCommitOrCreditInputSharedFieldsCommitDuration) -> RecurringCreditInputV2 {
         RecurringCreditInputV2 {
             name: None,
             product_id,

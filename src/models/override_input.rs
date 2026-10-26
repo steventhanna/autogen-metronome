@@ -38,9 +38,6 @@ pub struct OverrideInput {
     /// tags identifying products whose rates are being overridden. Cannot be used in conjunction with override_specifiers.
     #[serde(rename = "applicable_product_tags", skip_serializing_if = "Option::is_none")]
     pub applicable_product_tags: Option<Vec<String>>,
-    /// Cannot be used in conjunction with product_id or applicable_product_tags. If provided, the override will apply to all products with the specified specifiers.
-    #[serde(rename = "override_specifiers", skip_serializing_if = "Option::is_none")]
-    pub override_specifiers: Option<Vec<models::OverrideSpecifierInput>>,
     /// Required for TIERED type. Must have at least one tier.
     #[serde(rename = "tiers", skip_serializing_if = "Option::is_none")]
     pub tiers: Option<Vec<models::OverrideTierInput>>,
@@ -50,6 +47,9 @@ pub struct OverrideInput {
     /// Indicates whether the override applies to commit rates or list rates. Can only be used for overrides that have `is_commit_specific` set to `true`. Defaults to `\"LIST_RATE\"`.
     #[serde(rename = "target", skip_serializing_if = "Option::is_none")]
     pub target: Option<Target>,
+    /// Cannot be used in conjunction with product_id or applicable_product_tags. If provided, the override will apply to all products with the specified specifiers.
+    #[serde(rename = "override_specifiers", skip_serializing_if = "Option::is_none")]
+    pub override_specifiers: Option<Vec<models::OverrideSpecifierInput>>,
 }
 
 impl OverrideInput {
@@ -64,10 +64,10 @@ impl OverrideInput {
             overwrite_rate: None,
             product_id: None,
             applicable_product_tags: None,
-            override_specifiers: None,
             tiers: None,
             is_commit_specific: None,
             target: None,
+            override_specifiers: None,
         }
     }
 }

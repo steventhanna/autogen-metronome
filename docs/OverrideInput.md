@@ -13,10 +13,10 @@ Name | Type | Description | Notes
 **overwrite_rate** | Option<[**models::OverwriteRateInput**](OverwriteRateInput.md)> |  | [optional]
 **product_id** | Option<**uuid::Uuid**> | ID of the product whose rate is being overridden. Cannot be used in conjunction with override_specifiers. | [optional]
 **applicable_product_tags** | Option<**Vec<String>**> | tags identifying products whose rates are being overridden. Cannot be used in conjunction with override_specifiers. | [optional]
-**override_specifiers** | Option<[**Vec<models::OverrideSpecifierInput>**](OverrideSpecifierInput.md)> | Cannot be used in conjunction with product_id or applicable_product_tags. If provided, the override will apply to all products with the specified specifiers. | [optional]
 **tiers** | Option<[**Vec<models::OverrideTierInput>**](OverrideTierInput.md)> | Required for TIERED type. Must have at least one tier. | [optional]
 **is_commit_specific** | Option<**bool**> | Indicates whether the override should only apply to commits. Defaults to `false`. If `true` you can specify relevant commits in `override_specifiers` by passing `commit_ids`, `recurring_commit_ids`, or `any_commit_or_credit_ids`.  If you do not specify any of these fields, the override will apply when consuming any prepaid commit, postpaid commit, or credit | [optional]
 **target** | Option<**Target**> | Indicates whether the override applies to commit rates or list rates. Can only be used for overrides that have `is_commit_specific` set to `true`. Defaults to `\"LIST_RATE\"`. (enum: COMMIT_RATE, commit_rate, LIST_RATE, list_rate) | [optional]
+**override_specifiers** | Option<[**Vec<models::OverrideSpecifierInput>**](OverrideSpecifierInput.md)> | Cannot be used in conjunction with product_id or applicable_product_tags. If provided, the override will apply to all products with the specified specifiers. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -27,6 +27,7 @@ pub enum ArchiveAlertV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateAlertV1Error {
+    Status409(models::UniquenessKeyConflictError),
     UnknownValue(serde_json::Value),
 }
 
@@ -53,7 +54,7 @@ pub enum ResetCustomerAlertsV1Error {
 }
 
 
-/// Permanently disable a threshold notification and remove it from active monitoring across all customers. Archived threshold notifications stop evaluating immediately and can optionally release their uniqueness key for reuse in future threshold notification configurations.  ### Use this endpoint to: - Decommission threshold notifications that are no longer needed - Clean up test or deprecated threshold notification configurations - Free up uniqueness keys for reuse with new threshold notifications - Stop threshold notification evaluations without losing historical configuration data - Disable outdated monitoring rules during pricing model transitions  ### Key response fields: - data: Object containing the archived threshold notification's ID  ### Usage guidelines: - Irreversible for evaluation: Archived threshold notifications cannot be re-enabled; create a new threshold notification to resume monitoring - Uniqueness key handling: Set `release_uniqueness_key` : `true` to reuse the key in future threshold notifications - Immediate effect: Threshold notification evaluation stops instantly across all customers - Historical preservation: Archive operation maintains threshold notification history and configuration for compliance and auditing 
+/// Permanently disable a threshold notification and remove it from active monitoring across all customers. Archived threshold notifications stop evaluating immediately and can optionally release their uniqueness key for reuse in future threshold notification configurations.  ### Use this endpoint to: - Decommission threshold notifications that are no longer needed - Clean up test or deprecated threshold notification configurations - Free up uniqueness keys for reuse with new threshold notifications - Stop threshold notification evaluations without losing historical configuration data - Disable outdated monitoring rules during pricing model transitions  ### Key response fields: - data: Object containing the archived threshold notification's ID  ### Usage guidelines: - Irreversible for evaluation: Archived threshold notifications cannot be re-enabled; create a new threshold notification to resume monitoring - Uniqueness key handling: Set `release_uniqueness_key` : `true` to reuse the key in future threshold notifications - Immediate effect: Threshold notification evaluation stops instantly across all customers - Historical preservation: Archive operation maintains threshold notification history and configuration for compliance and auditing - Idempotent: Archiving an already-archived threshold notification returns the same successful response 
 pub async fn archive_alert_v1(configuration: &configuration::Configuration, archive_alert_payload: Option<models::ArchiveAlertPayload>) -> Result<models::ArchiveAlertV1200Response, Error<ArchiveAlertV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_archive_alert_payload = archive_alert_payload;

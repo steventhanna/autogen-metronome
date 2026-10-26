@@ -19,6 +19,9 @@ pub struct SubscriptionTemplateInput {
     pub name: Option<String>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
+    /// Optional human-readable, per-package-unique alias for this subscription template. Lets a contract customization reference the subscription by alias instead of its template id.
+    #[serde(rename = "subscription_alias", skip_serializing_if = "Option::is_none")]
+    pub subscription_alias: Option<String>,
     #[serde(rename = "collection_schedule")]
     pub collection_schedule: CollectionSchedule,
     #[serde(rename = "proration")]
@@ -43,6 +46,8 @@ pub struct SubscriptionTemplateInput {
     pub custom_fields: Option<std::collections::HashMap<String, String>>,
     #[serde(rename = "billing_cycle_config", skip_serializing_if = "Option::is_none")]
     pub billing_cycle_config: Option<Box<models::SubscriptionBillingCycleConfigTemplateInput>>,
+    #[serde(rename = "payment_gate_config", skip_serializing_if = "Option::is_none")]
+    pub payment_gate_config: Option<Box<models::SubscriptionPaymentGateConfigInput>>,
 }
 
 impl SubscriptionTemplateInput {
@@ -51,6 +56,7 @@ impl SubscriptionTemplateInput {
             subscription_rate: Box::new(subscription_rate),
             name: None,
             description: None,
+            subscription_alias: None,
             collection_schedule,
             proration: Box::new(proration),
             initial_quantity: None,
@@ -61,6 +67,7 @@ impl SubscriptionTemplateInput {
             seat_config: None,
             custom_fields: None,
             billing_cycle_config: None,
+            payment_gate_config: None,
         }
     }
 }
