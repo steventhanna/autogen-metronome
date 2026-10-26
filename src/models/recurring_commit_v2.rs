@@ -23,7 +23,7 @@ pub struct RecurringCommitV2 {
     #[serde(rename = "product")]
     pub product: Box<models::SubscriptionRateProduct>,
     #[serde(rename = "access_amount")]
-    pub access_amount: Box<models::RecurringCommitOrCreditInputBaseAccessAmount>,
+    pub access_amount: Box<models::RecurringCommitOrCreditBaseAccessAmount>,
     /// Will be passed down to the individual commits
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -55,7 +55,7 @@ pub struct RecurringCommitV2 {
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
     pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "commit_duration")]
-    pub commit_duration: Box<models::RecurringCommitOrCreditInputBaseCommitDuration>,
+    pub commit_duration: Box<models::RecurringCommitOrCreditInputSharedFieldsCommitDuration>,
     /// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates. - Daily recurring commits have a limit of one per contract, and are unable to be created with seat-based subscriptions
     #[serde(rename = "recurrence_frequency", skip_serializing_if = "Option::is_none")]
     pub recurrence_frequency: Option<RecurrenceFrequency>,
@@ -70,13 +70,13 @@ pub struct RecurringCommitV2 {
     #[serde(rename = "subscription_config", skip_serializing_if = "Option::is_none")]
     pub subscription_config: Option<Box<models::RecurringCommitSubscriptionConfig>>,
     #[serde(rename = "invoice_amount", skip_serializing_if = "Option::is_none")]
-    pub invoice_amount: Option<Box<models::RecurringCommitInputAllOfInvoiceAmount>>,
+    pub invoice_amount: Option<Box<models::RecurringCommitInputV2AllOfInvoiceAmount>>,
     #[serde(rename = "proration_rounding", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub proration_rounding: Option<Option<Box<models::RecurringCommitV2AllOfProrationRounding>>>,
 }
 
 impl RecurringCommitV2 {
-    pub fn new(id: uuid::Uuid, product: models::SubscriptionRateProduct, access_amount: models::RecurringCommitOrCreditInputBaseAccessAmount, priority: f64, rate_type: RateType, starting_at: chrono::DateTime<chrono::FixedOffset>, commit_duration: models::RecurringCommitOrCreditInputBaseCommitDuration, anchor_date: chrono::DateTime<chrono::FixedOffset>) -> RecurringCommitV2 {
+    pub fn new(id: uuid::Uuid, product: models::SubscriptionRateProduct, access_amount: models::RecurringCommitOrCreditBaseAccessAmount, priority: f64, rate_type: RateType, starting_at: chrono::DateTime<chrono::FixedOffset>, commit_duration: models::RecurringCommitOrCreditInputSharedFieldsCommitDuration, anchor_date: chrono::DateTime<chrono::FixedOffset>) -> RecurringCommitV2 {
         RecurringCommitV2 {
             id,
             contract: None,

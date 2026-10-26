@@ -19,7 +19,7 @@ pub struct RecurringCommitOrCreditTemplateInputBase {
     #[serde(rename = "product_id")]
     pub product_id: uuid::Uuid,
     #[serde(rename = "access_amount")]
-    pub access_amount: Box<models::RecurringCommitOrCreditInputBaseAccessAmount>,
+    pub access_amount: Box<models::RecurringCommitOrCreditInputSharedFieldsAccessAmount>,
     /// Will be passed down to the individual commits
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -49,7 +49,7 @@ pub struct RecurringCommitOrCreditTemplateInputBase {
     #[serde(rename = "duration", skip_serializing_if = "Option::is_none")]
     pub duration: Option<Box<models::RelativeDate>>,
     #[serde(rename = "commit_duration")]
-    pub commit_duration: Box<models::RecurringCommitOrCreditInputBaseCommitDuration>,
+    pub commit_duration: Box<models::RecurringCommitOrCreditInputSharedFieldsCommitDuration>,
     /// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates. - Daily recurring commits have a limit of one per contract, and are unable to be created with seat-based subscriptions
     #[serde(rename = "recurrence_frequency", skip_serializing_if = "Option::is_none")]
     pub recurrence_frequency: Option<RecurrenceFrequency>,
@@ -61,7 +61,7 @@ pub struct RecurringCommitOrCreditTemplateInputBase {
 }
 
 impl RecurringCommitOrCreditTemplateInputBase {
-    pub fn new(product_id: uuid::Uuid, access_amount: models::RecurringCommitOrCreditInputBaseAccessAmount, priority: f64, starting_at_offset: models::RelativeDate, commit_duration: models::RecurringCommitOrCreditInputBaseCommitDuration) -> RecurringCommitOrCreditTemplateInputBase {
+    pub fn new(product_id: uuid::Uuid, access_amount: models::RecurringCommitOrCreditInputSharedFieldsAccessAmount, priority: f64, starting_at_offset: models::RelativeDate, commit_duration: models::RecurringCommitOrCreditInputSharedFieldsCommitDuration) -> RecurringCommitOrCreditTemplateInputBase {
         RecurringCommitOrCreditTemplateInputBase {
             name: None,
             product_id,

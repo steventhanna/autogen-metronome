@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **contract** | Option<[**models::VoidInvoiceV1Request**](VoidInvoiceV1Request.md)> |  | [optional]
 **name** | Option<**String**> | Displayed on invoices. Will be passed through to the individual commits | [optional]
 **product** | [**models::SubscriptionRateProduct**](SubscriptionRateProduct.md) |  | 
-**access_amount** | [**models::RecurringCommitOrCreditInputBaseAccessAmount**](RecurringCommitOrCreditInputBaseAccessAmount.md) |  | 
+**access_amount** | [**models::RecurringCommitOrCreditBaseAccessAmount**](RecurringCommitOrCreditBaseAccessAmount.md) |  | 
 **description** | Option<**String**> | Will be passed down to the individual commits | [optional]
 **rollover_fraction** | Option<**f64**> | Will be passed down to the individual commits. This controls how much of an individual unexpired commit will roll over upon contract transition. Must be between 0 and 1. | [optional]
 **priority** | **f64** | Will be passed down to the individual commits | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **rate_type** | **RateType** | Whether the created commits will use the commit rate or list rate (enum: COMMIT_RATE, commit_rate, LIST_RATE, list_rate) | 
 **starting_at** | **chrono::DateTime<chrono::FixedOffset>** | Determines the start time for the first commit | 
 **ending_before** | Option<**chrono::DateTime<chrono::FixedOffset>**> | Determines when the contract will stop creating recurring commits. Optional | [optional]
-**commit_duration** | [**models::RecurringCommitOrCreditInputBaseCommitDuration**](RecurringCommitOrCreditInputBaseCommitDuration.md) |  | 
+**commit_duration** | [**models::RecurringCommitOrCreditInputSharedFieldsCommitDuration**](RecurringCommitOrCreditInputSharedFieldsCommitDuration.md) |  | 
 **recurrence_frequency** | Option<**RecurrenceFrequency**> | The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates. - Daily recurring commits have a limit of one per contract, and are unable to be created with seat-based subscriptions (enum: MONTHLY, monthly, QUARTERLY, quarterly, ANNUAL, annual, WEEKLY, weekly, DAILY, daily) | [optional]
 **anchor_date** | **chrono::DateTime<chrono::FixedOffset>** | The date this recurring commit's billing periods are anchored to. | 
 **proration** | Option<**Proration**> | Determines whether the first and last commit will be prorated.  If not provided, the default is FIRST_AND_LAST (i.e. prorate both the first and last commits). (enum: NONE, none, FIRST, first, LAST, last, FIRST_AND_LAST, first_and_last) | [optional]
