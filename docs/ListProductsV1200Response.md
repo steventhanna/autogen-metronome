@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**Vec<models::ProductListItem>**](ProductListItem.md) |  | 
+**data** | [**Vec<models::GetProductV1200ResponseData>**](GetProductV1200ResponseData.md) |  | 
 **next_page** | Option<**String**> |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

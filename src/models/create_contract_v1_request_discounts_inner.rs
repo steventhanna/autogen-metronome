@@ -19,7 +19,7 @@ pub struct CreateContractV1RequestDiscountsInner {
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
     #[serde(rename = "schedule")]
-    pub schedule: Box<models::CreateContractV1RequestCommitsInnerInvoiceSchedule>,
+    pub schedule: Box<models::CreateContractV1RequestPackageCustomizationsAddCommitsInnerInvoiceSchedule>,
     /// This field's availability is dependent on your client's configuration.
     #[serde(rename = "netsuite_sales_order_id", skip_serializing_if = "Option::is_none")]
     pub netsuite_sales_order_id: Option<String>,
@@ -29,7 +29,7 @@ pub struct CreateContractV1RequestDiscountsInner {
 }
 
 impl CreateContractV1RequestDiscountsInner {
-    pub fn new(product_id: uuid::Uuid, schedule: models::CreateContractV1RequestCommitsInnerInvoiceSchedule) -> CreateContractV1RequestDiscountsInner {
+    pub fn new(product_id: uuid::Uuid, schedule: models::CreateContractV1RequestPackageCustomizationsAddCommitsInnerInvoiceSchedule) -> CreateContractV1RequestDiscountsInner {
         CreateContractV1RequestDiscountsInner {
             product_id,
             name: None,

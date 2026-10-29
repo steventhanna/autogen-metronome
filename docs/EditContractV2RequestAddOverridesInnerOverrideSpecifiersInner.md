@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **product_tags** | Option<**Vec<String>**> | If provided, the override will only apply to products with all the specified tags. | [optional]
 **pricing_group_values** | Option<**std::collections::HashMap<String, String>**> | A map of pricing group names to values. The override will only apply to products with the specified pricing group values. | [optional]
 **presentation_group_values** | Option<**std::collections::HashMap<String, String>**> | A map of group names to values. The override will only apply to line items with the specified presentation group values. Can only be used for multiplier overrides. | [optional]
-**billing_frequency** | Option<**BillingFrequency**> |  (enum: MONTHLY, QUARTERLY, ANNUAL, WEEKLY, monthly, quarterly, annual, weekly) | [optional]
+**billing_frequency** | Option<**BillingFrequency**> |  (enum: MONTHLY, QUARTERLY, SEMI_ANNUAL, ANNUAL, WEEKLY, monthly, quarterly, semi_annual, annual, weekly) | [optional]
 **exclude** | Option<[**Vec<models::GetContractV1200ResponseDataInitialCommitsInnerSpecifiersInnerExcludeInner>**](GetContractV1200ResponseDataInitialCommitsInnerSpecifiersInnerExcludeInner.md)> | If provided, the specifier will not apply to product usage that matches the inclusion criteria and any of the excluding values. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -14,11 +14,17 @@ Name | Type | Description | Notes
 **billing_periods** | [**models::GetContractV1200ResponseDataSubscriptionsInnerBillingPeriods**](GetContractV1200ResponseDataSubscriptionsInnerBillingPeriods.md) |  | 
 **quantity_management_mode** | **QuantityManagementMode** | Determines how the subscription's quantity is controlled. Defaults to QUANTITY_ONLY. **QUANTITY_ONLY**: The subscription quantity is specified directly on the subscription. `initial_quantity` must be provided with this option. Compatible with recurring commits/credits that use POOLED allocation. **SEAT_BASED**: Use when you want to pass specific seat identifiers (e.g. add user_123) to increment and decrement a subscription quantity, rather than directly providing the quantity. You must use a **SEAT_BASED** subscription to use a linked recurring credit with an allocation per seat. `seat_config` must be provided with this option. (enum: SEAT_BASED, seat_based, QUANTITY_ONLY, quantity_only) | 
 **seat_config** | Option<[**models::GetContractV1200ResponseDataSubscriptionsInnerSeatConfig**](GetContractV1200ResponseDataSubscriptionsInnerSeatConfig.md)> |  | [optional]
+**created_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **starting_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **ending_before** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **fiat_credit_type_id** | Option<**uuid::Uuid**> |  | [optional]
+**custom_credit_type_id** | Option<**uuid::Uuid**> | If provided, the subscription's price will be in terms of this custom pricing unit instead of the fiat currency. | [optional]
 **billing_cycle_config** | Option<[**models::GetContractV1200ResponseDataSubscriptionsInnerBillingCycleConfig**](GetContractV1200ResponseDataSubscriptionsInnerBillingCycleConfig.md)> |  | [optional]
 **custom_fields** | Option<**std::collections::HashMap<String, String>**> | Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" } | [optional]
+**product_custom_fields** | Option<**std::collections::HashMap<String, String>**> | Custom fields from the subscription product referenced by `subscription_rate.product`. These are distinct from the subscription instance's `custom_fields`. | [optional]
+**status** | Option<**Status**> |  (enum: NOT_STARTED, INCOMPLETE, ACTIVE, UNPAID, ENDED) | [optional]
+**paid_quantity** | Option<**f64**> |  | [optional]
+**payment_gate_config** | Option<[**models::GetContractV1200ResponseDataSubscriptionsInnerPaymentGateConfig**](GetContractV1200ResponseDataSubscriptionsInnerPaymentGateConfig.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

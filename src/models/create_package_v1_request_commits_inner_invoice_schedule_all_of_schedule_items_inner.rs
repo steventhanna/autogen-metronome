@@ -20,11 +20,11 @@ pub struct CreatePackageV1RequestCommitsInnerInvoiceScheduleAllOfScheduleItemsIn
     #[serde(rename = "quantity")]
     pub quantity: f64,
     #[serde(rename = "date_offset")]
-    pub date_offset: Box<models::CreatePackageV1RequestDuration>,
+    pub date_offset: Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration>,
 }
 
 impl CreatePackageV1RequestCommitsInnerInvoiceScheduleAllOfScheduleItemsInner {
-    pub fn new(unit_price: f64, quantity: f64, date_offset: models::CreatePackageV1RequestDuration) -> CreatePackageV1RequestCommitsInnerInvoiceScheduleAllOfScheduleItemsInner {
+    pub fn new(unit_price: f64, quantity: f64, date_offset: models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration) -> CreatePackageV1RequestCommitsInnerInvoiceScheduleAllOfScheduleItemsInner {
         CreatePackageV1RequestCommitsInnerInvoiceScheduleAllOfScheduleItemsInner {
             unit_price,
             quantity,

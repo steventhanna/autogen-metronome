@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **credit_type** | [**models::ChargeSeatsV1200ResponseCreditType**](ChargeSeatsV1200ResponseCreditType.md) |  | 
 **starting_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> | The line item's start date (inclusive). | [optional]
 **ending_before** | Option<**chrono::DateTime<chrono::FixedOffset>**> | The line item's end date (exclusive). | [optional]
-**commit_id** | Option<**uuid::Uuid**> | For line items with product of `USAGE`, `SUBSCRIPTION`, or `COMPOSITE` types, the ID of the credit or commit that was applied to this line item. For line items with product type of `FIXED`, the ID of the prepaid or postpaid commit that is being paid for. | [optional]
+**commit_id** | Option<**uuid::Uuid**> | For line items with product of `USAGE`, `SUBSCRIPTION`, `COMPOSITE`, or `CPU_CONVERSION` types, the ID of the credit or commit that was applied to this line item. For line items with product type of `FIXED`, the ID of the prepaid or postpaid commit that is being paid for. | [optional]
 **applied_commit_or_credit** | Option<[**models::ChargeSeatsV1200ResponseLineItemsInnerAppliedCommitOrCredit**](ChargeSeatsV1200ResponseLineItemsInnerAppliedCommitOrCredit.md)> |  | [optional]
 **commit_custom_fields** | Option<**std::collections::HashMap<String, String>**> | Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" } | [optional]
 **commit_segment_id** | Option<**uuid::Uuid**> |  | [optional]
@@ -44,6 +44,7 @@ Name | Type | Description | Notes
 **discount_id** | Option<**uuid::Uuid**> | ID of the discount applied to this line item. | [optional]
 **discount_custom_fields** | Option<**std::collections::HashMap<String, String>**> | Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" } | [optional]
 **origin** | Option<[**models::ChargeSeatsV1200ResponseLineItemsInnerOrigin**](ChargeSeatsV1200ResponseLineItemsInnerOrigin.md)> |  | [optional]
+**quantity_consumed** | Option<**f64**> | Present on applied commit line items for quantity-based commits. Represents the unit quantity deducted the commit. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

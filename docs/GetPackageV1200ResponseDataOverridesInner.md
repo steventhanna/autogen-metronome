@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **product** | Option<[**models::GetContractV1200ResponseDataInitialCommitsInnerProduct**](GetContractV1200ResponseDataInitialCommitsInnerProduct.md)> |  | [optional]
 **applicable_product_tags** | Option<**Vec<String>**> |  | [optional]
 **override_specifiers** | [**Vec<models::GetPackageV1200ResponseDataOverridesInnerOverrideSpecifiersInner>**](GetPackageV1200ResponseDataOverridesInnerOverrideSpecifiersInner.md) |  | 
-**starting_at_offset** | [**models::CreatePackageV1RequestDuration**](CreatePackageV1RequestDuration.md) |  | 
-**duration** | Option<[**models::CreatePackageV1RequestDuration**](CreatePackageV1RequestDuration.md)> |  | [optional]
+**starting_at_offset** | [**models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration**](GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration.md) |  | 
+**duration** | Option<[**models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration**](GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration.md)> |  | [optional]
 **entitled** | Option<**bool**> |  | [optional]
 **r#type** | Option<**Type**> |  (enum: OVERWRITE, MULTIPLIER, TIERED) | [optional]
 **priority** | Option<**f64**> |  | [optional]

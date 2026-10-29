@@ -16,11 +16,11 @@ pub struct GetRateScheduleV1200Response {
     #[serde(rename = "next_page", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub next_page: Option<Option<String>>,
     #[serde(rename = "data")]
-    pub data: Vec<models::RateSchedule>,
+    pub data: Vec<models::GetRateScheduleV1200ResponseDataInner>,
 }
 
 impl GetRateScheduleV1200Response {
-    pub fn new(data: Vec<models::RateSchedule>) -> GetRateScheduleV1200Response {
+    pub fn new(data: Vec<models::GetRateScheduleV1200ResponseDataInner>) -> GetRateScheduleV1200Response {
         GetRateScheduleV1200Response {
             next_page: None,
             data,

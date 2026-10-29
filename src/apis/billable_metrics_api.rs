@@ -19,7 +19,7 @@ use super::{Error, configuration, ContentType};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ArchiveBillableMetricV1Error {
-    Status404(models::Error),
+    Status404(models::GetApprovalRequestV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -34,7 +34,7 @@ pub enum CreateBillableMetricV1V1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetBillableMetricV1Error {
-    Status404(models::Error),
+    Status404(models::GetApprovalRequestV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -61,9 +61,9 @@ pub enum UpdateBillableMetricV1Error {
 
 
 /// Use this endpoint to retire billable metrics that are no longer used. After a billable metric is archived, that billable metric can no longer be used in any new Products to define how that product should be metered. If you archive a billable metric that is already associated with a Product, the Product will continue to function as usual, metering based on the definition of the archived billable metric.   Archived billable metrics will be returned on the `getBillableMetric` and `listBillableMetrics` endpoints with a populated `archived_at` field. 
-pub async fn archive_billable_metric_v1(configuration: &configuration::Configuration, id: Option<models::Id>) -> Result<models::ArchiveAlertV1200Response, Error<ArchiveBillableMetricV1Error>> {
+pub async fn archive_billable_metric_v1(configuration: &configuration::Configuration, archive_alert_v1200_response_data: Option<models::ArchiveAlertV1200ResponseData>) -> Result<models::ArchiveAlertV1200Response, Error<ArchiveBillableMetricV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_id = id;
+    let p_body_archive_alert_v1200_response_data = archive_alert_v1200_response_data;
 
     let uri_str = format!("{}/v1/billable-metrics/archive", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -74,7 +74,7 @@ pub async fn archive_billable_metric_v1(configuration: &configuration::Configura
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_id);
+    req_builder = req_builder.json(&p_body_archive_alert_v1200_response_data);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -102,9 +102,9 @@ pub async fn archive_billable_metric_v1(configuration: &configuration::Configura
 }
 
 /// Create billable metrics programmatically with this endpoint—an essential step in configuring your pricing and packaging in Metronome.  A billable metric is a customizable query that filters and aggregates events from your event stream. These metrics are continuously tracked as usage data enters Metronome through the ingestion pipeline. The ingestion process transforms raw usage data into actionable pricing metrics, enabling accurate metering and billing for your products.  ### Use this endpoint to:  - Create individual or multiple billable metrics as part of a setup workflow. - Automate the entire pricing configuration process, from metric creation to customer contract setup. - Define metrics using either standard filtering/aggregation or a custom SQL query.  ### Key response fields:  - The ID of the billable metric that was created - The created billable metric will be available to be used in Products, usage endpoints, and alerts.   ### Usage guidelines:  - Metrics defined using standard filtering and aggregation are Streaming billable metrics, which have been optimized for ultra low latency and high throughput workflows.  - Use SQL billable metrics if you require more flexible aggregation options. 
-pub async fn create_billable_metric_v1_v1(configuration: &configuration::Configuration, create_billable_metric_v1_payload: Option<models::CreateBillableMetricV1Payload>) -> Result<models::ArchiveAlertV1200Response, Error<CreateBillableMetricV1V1Error>> {
+pub async fn create_billable_metric_v1_v1(configuration: &configuration::Configuration, create_billable_metric_v1_v1_request: Option<models::CreateBillableMetricV1V1Request>) -> Result<models::ArchiveAlertV1200Response, Error<CreateBillableMetricV1V1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_create_billable_metric_v1_payload = create_billable_metric_v1_payload;
+    let p_body_create_billable_metric_v1_v1_request = create_billable_metric_v1_v1_request;
 
     let uri_str = format!("{}/v1/billable-metrics/create", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -115,7 +115,7 @@ pub async fn create_billable_metric_v1_v1(configuration: &configuration::Configu
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_create_billable_metric_v1_payload);
+    req_builder = req_builder.json(&p_body_create_billable_metric_v1_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -290,10 +290,10 @@ pub async fn list_billable_metrics_v1(configuration: &configuration::Configurati
 }
 
 /// Updates only the display name of an existing billable metric. Use this to correct mistakes or apply standardized naming conventions across all billable metrics. Returns the billable metric ID to confirm the update.   Important: Only the name can be modified via this endpoint; configurations cannot be changed after creation.   #### Example workflow: If you need to make changes to a streaming billable metric, for example, Metronome supports easily rolling out these changes using a simple workflow: 1. Duplicate the billable metric 2. Make required changes 3. Save the metric 4. Navigate to the product you have associated with the incorrect metric 5. Schedule the product to reference the newly created metric on the appropriate date 
-pub async fn update_billable_metric_v1(configuration: &configuration::Configuration, billable_metric_id: &str, update_billable_metric_v1_request: Option<models::UpdateBillableMetricV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<UpdateBillableMetricV1Error>> {
+pub async fn update_billable_metric_v1(configuration: &configuration::Configuration, billable_metric_id: &str, create_credit_type_v1_request: Option<models::CreateCreditTypeV1Request>) -> Result<models::ArchiveAlertV1200Response, Error<UpdateBillableMetricV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_billable_metric_id = billable_metric_id;
-    let p_body_update_billable_metric_v1_request = update_billable_metric_v1_request;
+    let p_body_create_credit_type_v1_request = create_credit_type_v1_request;
 
     let uri_str = format!("{}/v1/billable-metrics/{billable_metric_id}", configuration.base_path, billable_metric_id=crate::apis::urlencode(p_path_billable_metric_id));
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
@@ -304,7 +304,7 @@ pub async fn update_billable_metric_v1(configuration: &configuration::Configurat
     if let Some(ref token) = configuration.bearer_access_token {
         req_builder = req_builder.bearer_auth(token.to_owned());
     };
-    req_builder = req_builder.json(&p_body_update_billable_metric_v1_request);
+    req_builder = req_builder.json(&p_body_create_credit_type_v1_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

@@ -4,12 +4,74 @@ All URIs are relative to *https://api.metronome.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**archive_credit_type_v1**](SettingsApi.md#archive_credit_type_v1) | **POST** /v1/credit-types/archive | Archive a pricing unit
+[**create_credit_type_v1**](SettingsApi.md#create_credit_type_v1) | **POST** /v1/credit-types/create | Create a pricing unit
 [**list_configured_billing_providers_v1**](SettingsApi.md#list_configured_billing_providers_v1) | **POST** /v1/listConfiguredBillingProviders | List account-level billing providers
 [**list_credit_types_v1**](SettingsApi.md#list_credit_types_v1) | **GET** /v1/credit-types/list | List pricing units
 [**set_up_billing_provider_v1**](SettingsApi.md#set_up_billing_provider_v1) | **POST** /v1/setUpBillingProvider | Set up account-level billing provider
 [**upsert_anrok_api_token_v1**](SettingsApi.md#upsert_anrok_api_token_v1) | **POST** /v1/upsertAnrokApiToken | Upsert Anrok API token
 [**upsert_avalara_credentials_v1**](SettingsApi.md#upsert_avalara_credentials_v1) | **POST** /v1/upsertAvalaraCredentials | Upsert Avalara credentials
 
+
+
+## archive_credit_type_v1
+
+> models::ArchiveAlertV1200Response archive_credit_type_v1(archive_alert_v1200_response_data)
+Archive a pricing unit
+
+Archive a custom pricing unit. Once archived, it will no longer appear in pricing unit selectors by default. 
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**archive_alert_v1200_response_data** | Option<[**ArchiveAlertV1200ResponseData**](ArchiveAlertV1200ResponseData.md)> | The ID of the pricing unit to archive |  |
+
+### Return type
+
+[**models::ArchiveAlertV1200Response**](archiveAlert_v1_200_response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## create_credit_type_v1
+
+> models::ArchiveAlertV1200Response create_credit_type_v1(create_credit_type_v1_request)
+Create a pricing unit
+
+Create a custom pricing unit. Custom pricing units can be used to charge for usage in a non-fiat pricing unit, for example AI credits. 
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**create_credit_type_v1_request** | Option<[**CreateCreditTypeV1Request**](CreateCreditTypeV1Request.md)> |  |  |
+
+### Return type
+
+[**models::ArchiveAlertV1200Response**](archiveAlert_v1_200_response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## list_configured_billing_providers_v1

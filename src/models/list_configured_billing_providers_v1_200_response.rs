@@ -14,13 +14,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ListConfiguredBillingProvidersV1200Response {
     #[serde(rename = "data")]
-    pub data: Vec<models::BillingProviderDeliveryMethod>,
+    pub data: Vec<models::ListConfiguredBillingProvidersV1200ResponseDataInner>,
     #[serde(rename = "next_page", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub next_page: Option<Option<uuid::Uuid>>,
 }
 
 impl ListConfiguredBillingProvidersV1200Response {
-    pub fn new(data: Vec<models::BillingProviderDeliveryMethod>) -> ListConfiguredBillingProvidersV1200Response {
+    pub fn new(data: Vec<models::ListConfiguredBillingProvidersV1200ResponseDataInner>) -> ListConfiguredBillingProvidersV1200Response {
         ListConfiguredBillingProvidersV1200Response {
             data,
             next_page: None,

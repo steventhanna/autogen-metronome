@@ -35,21 +35,35 @@ pub struct GetContractV1200ResponseDataSubscriptionsInner {
     pub quantity_management_mode: QuantityManagementMode,
     #[serde(rename = "seat_config", skip_serializing_if = "Option::is_none")]
     pub seat_config: Option<Box<models::GetContractV1200ResponseDataSubscriptionsInnerSeatConfig>>,
+    #[serde(rename = "created_at")]
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "starting_at")]
     pub starting_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
     pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "fiat_credit_type_id", skip_serializing_if = "Option::is_none")]
     pub fiat_credit_type_id: Option<uuid::Uuid>,
+    /// If provided, the subscription's price will be in terms of this custom pricing unit instead of the fiat currency.
+    #[serde(rename = "custom_credit_type_id", skip_serializing_if = "Option::is_none")]
+    pub custom_credit_type_id: Option<uuid::Uuid>,
     #[serde(rename = "billing_cycle_config", skip_serializing_if = "Option::is_none")]
     pub billing_cycle_config: Option<Box<models::GetContractV1200ResponseDataSubscriptionsInnerBillingCycleConfig>>,
     /// Custom fields to be added eg. { \"key1\": \"value1\", \"key2\": \"value2\" }
     #[serde(rename = "custom_fields", skip_serializing_if = "Option::is_none")]
     pub custom_fields: Option<std::collections::HashMap<String, String>>,
+    /// Custom fields from the subscription product referenced by `subscription_rate.product`. These are distinct from the subscription instance's `custom_fields`.
+    #[serde(rename = "product_custom_fields", skip_serializing_if = "Option::is_none")]
+    pub product_custom_fields: Option<std::collections::HashMap<String, String>>,
+    #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
+    pub status: Option<Status>,
+    #[serde(rename = "paid_quantity", skip_serializing_if = "Option::is_none")]
+    pub paid_quantity: Option<f64>,
+    #[serde(rename = "payment_gate_config", skip_serializing_if = "Option::is_none")]
+    pub payment_gate_config: Option<Box<models::GetContractV1200ResponseDataSubscriptionsInnerPaymentGateConfig>>,
 }
 
 impl GetContractV1200ResponseDataSubscriptionsInner {
-    pub fn new(subscription_rate: models::GetContractV1200ResponseDataSubscriptionsInnerSubscriptionRate, collection_schedule: CollectionSchedule, proration: models::GetContractV1200ResponseDataSubscriptionsInnerProration, quantity_schedule: Vec<models::GetContractV1200ResponseDataSubscriptionsInnerQuantityScheduleInner>, billing_periods: models::GetContractV1200ResponseDataSubscriptionsInnerBillingPeriods, quantity_management_mode: QuantityManagementMode, starting_at: chrono::DateTime<chrono::FixedOffset>) -> GetContractV1200ResponseDataSubscriptionsInner {
+    pub fn new(subscription_rate: models::GetContractV1200ResponseDataSubscriptionsInnerSubscriptionRate, collection_schedule: CollectionSchedule, proration: models::GetContractV1200ResponseDataSubscriptionsInnerProration, quantity_schedule: Vec<models::GetContractV1200ResponseDataSubscriptionsInnerQuantityScheduleInner>, billing_periods: models::GetContractV1200ResponseDataSubscriptionsInnerBillingPeriods, quantity_management_mode: QuantityManagementMode, created_at: chrono::DateTime<chrono::FixedOffset>, starting_at: chrono::DateTime<chrono::FixedOffset>) -> GetContractV1200ResponseDataSubscriptionsInner {
         GetContractV1200ResponseDataSubscriptionsInner {
             id: None,
             subscription_rate: Box::new(subscription_rate),
@@ -61,11 +75,17 @@ impl GetContractV1200ResponseDataSubscriptionsInner {
             billing_periods: Box::new(billing_periods),
             quantity_management_mode,
             seat_config: None,
+            created_at,
             starting_at,
             ending_before: None,
             fiat_credit_type_id: None,
+            custom_credit_type_id: None,
             billing_cycle_config: None,
             custom_fields: None,
+            product_custom_fields: None,
+            status: None,
+            paid_quantity: None,
+            payment_gate_config: None,
         }
     }
 }
@@ -103,6 +123,26 @@ pub enum QuantityManagementMode {
 impl Default for QuantityManagementMode {
     fn default() -> QuantityManagementMode {
         Self::SeatBased
+    }
+}
+/// 
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum Status {
+    #[serde(rename = "NOT_STARTED")]
+    NotStarted,
+    #[serde(rename = "INCOMPLETE")]
+    Incomplete,
+    #[serde(rename = "ACTIVE")]
+    Active,
+    #[serde(rename = "UNPAID")]
+    Unpaid,
+    #[serde(rename = "ENDED")]
+    Ended,
+}
+
+impl Default for Status {
+    fn default() -> Status {
+        Self::NotStarted
     }
 }
 

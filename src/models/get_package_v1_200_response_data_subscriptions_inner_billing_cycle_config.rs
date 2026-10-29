@@ -15,12 +15,16 @@ use serde::{Deserialize, Serialize};
 pub struct GetPackageV1200ResponseDataSubscriptionsInnerBillingCycleConfig {
     #[serde(rename = "invoice_placement", skip_serializing_if = "Option::is_none")]
     pub invoice_placement: Option<InvoicePlacement>,
+    /// Which date each subscription materialized from this template anchors its billing cycle to. USAGE_STATEMENT_ANCHOR (the default) tracks the contract's usage statement anchor.
+    #[serde(rename = "billing_cycle_anchor", skip_serializing_if = "Option::is_none")]
+    pub billing_cycle_anchor: Option<BillingCycleAnchor>,
 }
 
 impl GetPackageV1200ResponseDataSubscriptionsInnerBillingCycleConfig {
     pub fn new() -> GetPackageV1200ResponseDataSubscriptionsInnerBillingCycleConfig {
         GetPackageV1200ResponseDataSubscriptionsInnerBillingCycleConfig {
             invoice_placement: None,
+            billing_cycle_anchor: None,
         }
     }
 }
@@ -36,6 +40,24 @@ pub enum InvoicePlacement {
 impl Default for InvoicePlacement {
     fn default() -> InvoicePlacement {
         Self::OnScheduledInvoice
+    }
+}
+/// Which date each subscription materialized from this template anchors its billing cycle to. USAGE_STATEMENT_ANCHOR (the default) tracks the contract's usage statement anchor.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum BillingCycleAnchor {
+    #[serde(rename = "SUBSCRIPTION_START")]
+    SubscriptionStart,
+    #[serde(rename = "FIRST_OF_MONTH")]
+    FirstOfMonth,
+    #[serde(rename = "CUSTOM_DATE")]
+    CustomDate,
+    #[serde(rename = "USAGE_STATEMENT_ANCHOR")]
+    UsageStatementAnchor,
+}
+
+impl Default for BillingCycleAnchor {
+    fn default() -> BillingCycleAnchor {
+        Self::SubscriptionStart
     }
 }
 

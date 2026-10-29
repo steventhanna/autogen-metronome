@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **product_id** | **uuid::Uuid** | ID of the product to add a rate for | 
 **pricing_group_values** | Option<**std::collections::HashMap<String, String>**> | Optional. List of pricing group key value pairs which will be used to calculate the price. | [optional]
-**billing_frequency** | Option<**BillingFrequency**> | Optional. Frequency to bill subscriptions with. Required for subscription type products with Flat rate. (enum: MONTHLY, QUARTERLY, ANNUAL, WEEKLY, monthly, quarterly, annual, weekly) | [optional]
+**billing_frequency** | Option<**BillingFrequency**> | Optional. Frequency to bill subscriptions with. Required for subscription type products with Flat rate. (enum: MONTHLY, QUARTERLY, SEMI_ANNUAL, ANNUAL, WEEKLY, monthly, quarterly, semi_annual, annual, weekly) | [optional]
 **starting_at** | **chrono::DateTime<chrono::FixedOffset>** | inclusive effective date | 
 **ending_before** | Option<**chrono::DateTime<chrono::FixedOffset>**> | exclusive end date | [optional]
 **entitled** | **bool** |  | 

@@ -39,7 +39,7 @@ Name | Type | Description | Notes
 **recurring_commits** | Option<[**Vec<models::GetContractV2200ResponseDataRecurringCommitsInner>**](GetContractV2200ResponseDataRecurringCommitsInner.md)> |  | [optional]
 **recurring_credits** | Option<[**Vec<models::GetContractV2200ResponseDataRecurringCreditsInner>**](GetContractV2200ResponseDataRecurringCreditsInner.md)> |  | [optional]
 **spend_threshold_configuration** | Option<[**models::GetContractV1200ResponseDataInitialSpendThresholdConfiguration**](GetContractV1200ResponseDataInitialSpendThresholdConfiguration.md)> |  | [optional]
-**prepaid_balance_threshold_configuration** | Option<[**models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfiguration**](GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfiguration.md)> |  | [optional]
+**prepaid_balance_threshold_configuration** | Option<[**models::GetContractV2200ResponseDataPrepaidBalanceThresholdConfiguration**](GetContractV2200ResponseDataPrepaidBalanceThresholdConfiguration.md)> |  | [optional]
 **spend_trackers** | Option<[**Vec<models::GetContractV1200ResponseDataInitialSpendTrackersInner>**](GetContractV1200ResponseDataInitialSpendTrackersInner.md)> | Spend trackers attached to this contract. | [optional]
 **subscriptions** | Option<[**Vec<models::GetContractV1200ResponseDataSubscriptionsInner>**](GetContractV1200ResponseDataSubscriptionsInner.md)> | List of subscriptions on the contract. | [optional]
 **hierarchy_configuration** | Option<[**models::GetContractV1200ResponseDataInitialHierarchyConfiguration**](GetContractV1200ResponseDataInitialHierarchyConfiguration.md)> |  | [optional]

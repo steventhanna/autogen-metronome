@@ -14,22 +14,25 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreatePackageV1RequestSubscriptionsInner {
     #[serde(rename = "subscription_rate")]
-    pub subscription_rate: Box<models::CreateContractV1RequestSubscriptionsInnerSubscriptionRate>,
+    pub subscription_rate: Box<models::CreateContractV1RequestPackageCustomizationsAddSubscriptionsInnerSubscriptionRate>,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
+    /// Optional human-readable, per-package-unique alias for this subscription template. Lets a contract customization reference the subscription by alias instead of its template id.
+    #[serde(rename = "subscription_alias", skip_serializing_if = "Option::is_none")]
+    pub subscription_alias: Option<String>,
     #[serde(rename = "collection_schedule")]
     pub collection_schedule: CollectionSchedule,
     #[serde(rename = "proration")]
-    pub proration: Box<models::CreateContractV1RequestSubscriptionsInnerProration>,
+    pub proration: Box<models::CreateContractV1RequestPackageCustomizationsAddSubscriptionsInnerProration>,
     /// The initial quantity for the subscription. It must be non-negative value. Required if quantity_management_mode is QUANTITY_ONLY.
     #[serde(rename = "initial_quantity", skip_serializing_if = "Option::is_none")]
     pub initial_quantity: Option<f64>,
     #[serde(rename = "starting_at_offset", skip_serializing_if = "Option::is_none")]
-    pub starting_at_offset: Option<Box<models::CreatePackageV1RequestDuration>>,
+    pub starting_at_offset: Option<Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration>>,
     #[serde(rename = "duration", skip_serializing_if = "Option::is_none")]
-    pub duration: Option<Box<models::CreatePackageV1RequestDuration>>,
+    pub duration: Option<Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration>>,
     /// A temporary ID used to reference the subscription in recurring commit/credit subscription configs created within the same payload.
     #[serde(rename = "temporary_id", skip_serializing_if = "Option::is_none")]
     pub temporary_id: Option<String>,
@@ -43,14 +46,17 @@ pub struct CreatePackageV1RequestSubscriptionsInner {
     pub custom_fields: Option<std::collections::HashMap<String, String>>,
     #[serde(rename = "billing_cycle_config", skip_serializing_if = "Option::is_none")]
     pub billing_cycle_config: Option<Box<models::CreatePackageV1RequestSubscriptionsInnerBillingCycleConfig>>,
+    #[serde(rename = "payment_gate_config", skip_serializing_if = "Option::is_none")]
+    pub payment_gate_config: Option<Box<models::CreateContractV1RequestPackageCustomizationsAddSubscriptionsInnerPaymentGateConfig>>,
 }
 
 impl CreatePackageV1RequestSubscriptionsInner {
-    pub fn new(subscription_rate: models::CreateContractV1RequestSubscriptionsInnerSubscriptionRate, collection_schedule: CollectionSchedule, proration: models::CreateContractV1RequestSubscriptionsInnerProration) -> CreatePackageV1RequestSubscriptionsInner {
+    pub fn new(subscription_rate: models::CreateContractV1RequestPackageCustomizationsAddSubscriptionsInnerSubscriptionRate, collection_schedule: CollectionSchedule, proration: models::CreateContractV1RequestPackageCustomizationsAddSubscriptionsInnerProration) -> CreatePackageV1RequestSubscriptionsInner {
         CreatePackageV1RequestSubscriptionsInner {
             subscription_rate: Box::new(subscription_rate),
             name: None,
             description: None,
+            subscription_alias: None,
             collection_schedule,
             proration: Box::new(proration),
             initial_quantity: None,
@@ -61,6 +67,7 @@ impl CreatePackageV1RequestSubscriptionsInner {
             seat_config: None,
             custom_fields: None,
             billing_cycle_config: None,
+            payment_gate_config: None,
         }
     }
 }

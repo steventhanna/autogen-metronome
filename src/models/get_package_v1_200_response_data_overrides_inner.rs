@@ -22,9 +22,9 @@ pub struct GetPackageV1200ResponseDataOverridesInner {
     #[serde(rename = "override_specifiers")]
     pub override_specifiers: Vec<models::GetPackageV1200ResponseDataOverridesInnerOverrideSpecifiersInner>,
     #[serde(rename = "starting_at_offset")]
-    pub starting_at_offset: Box<models::CreatePackageV1RequestDuration>,
+    pub starting_at_offset: Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration>,
     #[serde(rename = "duration", skip_serializing_if = "Option::is_none")]
-    pub duration: Option<Box<models::CreatePackageV1RequestDuration>>,
+    pub duration: Option<Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration>>,
     #[serde(rename = "entitled", skip_serializing_if = "Option::is_none")]
     pub entitled: Option<bool>,
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
@@ -44,7 +44,7 @@ pub struct GetPackageV1200ResponseDataOverridesInner {
 }
 
 impl GetPackageV1200ResponseDataOverridesInner {
-    pub fn new(id: uuid::Uuid, override_specifiers: Vec<models::GetPackageV1200ResponseDataOverridesInnerOverrideSpecifiersInner>, starting_at_offset: models::CreatePackageV1RequestDuration) -> GetPackageV1200ResponseDataOverridesInner {
+    pub fn new(id: uuid::Uuid, override_specifiers: Vec<models::GetPackageV1200ResponseDataOverridesInnerOverrideSpecifiersInner>, starting_at_offset: models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfigurationCommitAllOfDuration) -> GetPackageV1200ResponseDataOverridesInner {
         GetPackageV1200ResponseDataOverridesInner {
             id,
             product: None,
