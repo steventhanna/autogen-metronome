@@ -14,14 +14,14 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetAuditLogsV1200Response {
     #[serde(rename = "data")]
-    pub data: Vec<models::AuditLog>,
+    pub data: Vec<models::GetAuditLogsV1200ResponseDataInner>,
     /// The next_page parameter is always returned to support ongoing log retrieval. It enables continuous querying, even when some requests return no new data. Save the next_page token from each response and use it for future requests to ensure no logs are missed. This setup is ideal for regular updates via automated processes, like cron jobs, to fetch logs continuously as they become available. When you receive an empty data array, it indicates a temporary absence of new logs, but subsequent requests might return new data.
     #[serde(rename = "next_page", deserialize_with = "Option::deserialize")]
     pub next_page: Option<String>,
 }
 
 impl GetAuditLogsV1200Response {
-    pub fn new(data: Vec<models::AuditLog>, next_page: Option<String>) -> GetAuditLogsV1200Response {
+    pub fn new(data: Vec<models::GetAuditLogsV1200ResponseDataInner>, next_page: Option<String>) -> GetAuditLogsV1200Response {
         GetAuditLogsV1200Response {
             data,
             next_page,

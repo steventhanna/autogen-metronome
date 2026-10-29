@@ -17,6 +17,9 @@ pub struct GetSubscriptionQuantityHistoryV1200ResponseData {
     pub subscription_id: Option<uuid::Uuid>,
     #[serde(rename = "fiat_credit_type_id", skip_serializing_if = "Option::is_none")]
     pub fiat_credit_type_id: Option<uuid::Uuid>,
+    /// The pricing unit for history prices when present. Otherwise prices use fiat_credit_type_id.
+    #[serde(rename = "custom_credit_type_id", skip_serializing_if = "Option::is_none")]
+    pub custom_credit_type_id: Option<uuid::Uuid>,
     #[serde(rename = "history", skip_serializing_if = "Option::is_none")]
     pub history: Option<Vec<models::GetSubscriptionQuantityHistoryV1200ResponseDataHistoryInner>>,
 }
@@ -26,6 +29,7 @@ impl GetSubscriptionQuantityHistoryV1200ResponseData {
         GetSubscriptionQuantityHistoryV1200ResponseData {
             subscription_id: None,
             fiat_credit_type_id: None,
+            custom_credit_type_id: None,
             history: None,
         }
     }

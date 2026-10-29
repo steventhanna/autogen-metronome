@@ -19,7 +19,7 @@ pub struct CreateContractV1RequestRecurringCommitsInner {
     #[serde(rename = "product_id")]
     pub product_id: uuid::Uuid,
     #[serde(rename = "access_amount")]
-    pub access_amount: Box<models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfAccessAmount>,
+    pub access_amount: Box<models::CreateContractV1RequestPackageCustomizationsAddRecurringCommitsInnerAllOfAllOfAccessAmount>,
     /// Will be passed down to the individual commits
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
@@ -55,24 +55,24 @@ pub struct CreateContractV1RequestRecurringCommitsInner {
     pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "commit_duration")]
     pub commit_duration: Box<models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfCommitDuration>,
-    /// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
+    /// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates. - Daily recurring commits have a limit of one per contract, and are unable to be created with seat-based subscriptions
     #[serde(rename = "recurrence_frequency", skip_serializing_if = "Option::is_none")]
     pub recurrence_frequency: Option<RecurrenceFrequency>,
     /// Determines whether the first and last commit will be prorated.  If not provided, the default is FIRST_AND_LAST (i.e. prorate both the first and last commits).
     #[serde(rename = "proration", skip_serializing_if = "Option::is_none")]
     pub proration: Option<Proration>,
-    #[serde(rename = "subscription_config", skip_serializing_if = "Option::is_none")]
-    pub subscription_config: Option<Box<models::CreateContractV1RequestRecurringCommitsInnerAllOfSubscriptionConfig>>,
     #[serde(rename = "hierarchy_configuration", skip_serializing_if = "Option::is_none")]
     pub hierarchy_configuration: Option<Box<models::GetContractV1200ResponseDataInitialCommitsInnerHierarchyConfiguration>>,
+    #[serde(rename = "subscription_config", skip_serializing_if = "Option::is_none")]
+    pub subscription_config: Option<Box<models::CreateContractV1RequestRecurringCommitsInnerAllOfAllOfSubscriptionConfig>>,
     #[serde(rename = "invoice_amount", skip_serializing_if = "Option::is_none")]
     pub invoice_amount: Option<Box<models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfInvoiceAmount>>,
     #[serde(rename = "proration_rounding", skip_serializing_if = "Option::is_none")]
-    pub proration_rounding: Option<Box<models::CreateContractV1RequestRecurringCommitsInnerAllOfProrationRounding>>,
+    pub proration_rounding: Option<Box<models::CreateContractV1RequestPackageCustomizationsAddRecurringCommitsInnerAllOfProrationRounding>>,
 }
 
 impl CreateContractV1RequestRecurringCommitsInner {
-    pub fn new(product_id: uuid::Uuid, access_amount: models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfAccessAmount, priority: f64, starting_at: chrono::DateTime<chrono::FixedOffset>, commit_duration: models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfCommitDuration) -> CreateContractV1RequestRecurringCommitsInner {
+    pub fn new(product_id: uuid::Uuid, access_amount: models::CreateContractV1RequestPackageCustomizationsAddRecurringCommitsInnerAllOfAllOfAccessAmount, priority: f64, starting_at: chrono::DateTime<chrono::FixedOffset>, commit_duration: models::GetContractV1200ResponseDataInitialRecurringCommitsInnerAllOfCommitDuration) -> CreateContractV1RequestRecurringCommitsInner {
         CreateContractV1RequestRecurringCommitsInner {
             name: None,
             product_id,
@@ -91,8 +91,8 @@ impl CreateContractV1RequestRecurringCommitsInner {
             commit_duration: Box::new(commit_duration),
             recurrence_frequency: None,
             proration: None,
-            subscription_config: None,
             hierarchy_configuration: None,
+            subscription_config: None,
             invoice_amount: None,
             proration_rounding: None,
         }
@@ -116,7 +116,7 @@ impl Default for RateType {
         Self::CommitRate
     }
 }
-/// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates.
+/// The frequency at which the recurring commits will be created. If not provided: - The commits will be created on the usage invoice frequency. If provided: - The period defined in the duration will correspond to this frequency. - Commits will be created aligned with the recurring commit's starting_at rather than the usage invoice dates. - Daily recurring commits have a limit of one per contract, and are unable to be created with seat-based subscriptions
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum RecurrenceFrequency {
     #[serde(rename = "MONTHLY")]
@@ -127,6 +127,10 @@ pub enum RecurrenceFrequency {
     Quarterly,
     #[serde(rename = "quarterly")]
     Quarterly2,
+    #[serde(rename = "SEMI_ANNUAL")]
+    SemiAnnual,
+    #[serde(rename = "semi_annual")]
+    SemiAnnual2,
     #[serde(rename = "ANNUAL")]
     Annual,
     #[serde(rename = "annual")]

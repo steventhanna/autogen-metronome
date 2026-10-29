@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **commit_ids** | Option<**Vec<String>**> |  | [optional]
 **recurring_commit_ids** | Option<**Vec<String>**> |  | [optional]
 **any_commit_or_credit_ids** | Option<**Vec<String>**> |  | [optional]
-**billing_frequency** | Option<**BillingFrequency**> |  (enum: MONTHLY, QUARTERLY, ANNUAL, WEEKLY, monthly, quarterly, annual, weekly) | [optional]
+**billing_frequency** | Option<**BillingFrequency**> |  (enum: MONTHLY, QUARTERLY, SEMI_ANNUAL, ANNUAL, WEEKLY, monthly, quarterly, semi_annual, annual, weekly) | [optional]
 **exclude** | Option<[**Vec<models::GetContractV1200ResponseDataInitialCommitsInnerSpecifiersInnerExcludeInner>**](GetContractV1200ResponseDataInitialCommitsInnerSpecifiersInnerExcludeInner.md)> | If provided, the specifier will not apply to product usage that matches the inclusion criteria and any of the excluding values. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

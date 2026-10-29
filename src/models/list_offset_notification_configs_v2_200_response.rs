@@ -14,13 +14,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ListOffsetNotificationConfigsV2200Response {
     #[serde(rename = "data")]
-    pub data: Vec<models::LifecycleEventOffsetNotificationConfig>,
+    pub data: Vec<models::CreateNotificationConfigV2200ResponseData>,
     #[serde(rename = "cursor", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub cursor: Option<Option<String>>,
 }
 
 impl ListOffsetNotificationConfigsV2200Response {
-    pub fn new(data: Vec<models::LifecycleEventOffsetNotificationConfig>) -> ListOffsetNotificationConfigsV2200Response {
+    pub fn new(data: Vec<models::CreateNotificationConfigV2200ResponseData>) -> ListOffsetNotificationConfigsV2200Response {
         ListOffsetNotificationConfigsV2200Response {
             data,
             cursor: None,

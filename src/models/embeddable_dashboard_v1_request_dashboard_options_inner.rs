@@ -15,18 +15,40 @@ use serde::{Deserialize, Serialize};
 pub struct EmbeddableDashboardV1RequestDashboardOptionsInner {
     /// The option key name
     #[serde(rename = "key")]
-    pub key: String,
-    /// The option value
+    pub key: Key,
+    /// The option value. For show_zero_usage_line_items: \"true\" or \"false\" (default \"false\"). For contract_id: a UUID filtering invoices to a specific contract. For invoice_type: \"USAGE\" or \"SCHEDULED\". For invoice_status_filter: \"VOID\", \"FINALIZED\", \"DRAFT\", \"FINALIZED_AND_DRAFT\", or \"ALL\". For hide_voided_invoices (deprecated): \"true\" or \"false\".
     #[serde(rename = "value")]
     pub value: String,
 }
 
 impl EmbeddableDashboardV1RequestDashboardOptionsInner {
-    pub fn new(key: String, value: String) -> EmbeddableDashboardV1RequestDashboardOptionsInner {
+    pub fn new(key: Key, value: String) -> EmbeddableDashboardV1RequestDashboardOptionsInner {
         EmbeddableDashboardV1RequestDashboardOptionsInner {
             key,
             value,
         }
+    }
+}
+/// The option key name
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum Key {
+    #[serde(rename = "show_zero_usage_line_items")]
+    ShowZeroUsageLineItems,
+    #[serde(rename = "contract_id")]
+    ContractId,
+    #[serde(rename = "invoice_type")]
+    InvoiceType,
+    #[serde(rename = "invoice_status_filter")]
+    InvoiceStatusFilter,
+    #[serde(rename = "hide_voided_invoices")]
+    HideVoidedInvoices,
+    #[serde(rename = "billable_status_filter")]
+    BillableStatusFilter,
+}
+
+impl Default for Key {
+    fn default() -> Key {
+        Self::ShowZeroUsageLineItems
     }
 }
 

@@ -34,19 +34,15 @@ impl CreateContractV1RequestTransition {
 /// This field's available values may vary based on your client's configuration.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Type {
-    #[serde(rename = "SUPERSEDE")]
-    Supersede,
     #[serde(rename = "RENEWAL")]
     Renewal,
-    #[serde(rename = "supersede")]
-    Supersede2,
     #[serde(rename = "renewal")]
     Renewal2,
 }
 
 impl Default for Type {
     fn default() -> Type {
-        Self::Supersede
+        Self::Renewal
     }
 }
 

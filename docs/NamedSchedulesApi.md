@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## get_contract_named_schedule_v1
 
-> models::NamedSchedule get_contract_named_schedule_v1(get_contract_named_schedule_payload)
+> models::GetCustomerNamedScheduleV1200Response get_contract_named_schedule_v1(get_contract_named_schedule_v1_request)
 Get a contract's named schedule
 
 Get a named schedule for the given contract. This endpoint's availability is dependent on your client's configuration.
@@ -26,11 +26,11 @@ Get a named schedule for the given contract. This endpoint's availability is dep
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**get_contract_named_schedule_payload** | Option<[**GetContractNamedSchedulePayload**](GetContractNamedSchedulePayload.md)> | Which customer, contract, schedule name, and date to retrieve. |  |
+**get_contract_named_schedule_v1_request** | Option<[**GetContractNamedScheduleV1Request**](GetContractNamedScheduleV1Request.md)> | Which customer, contract, schedule name, and date to retrieve. |  |
 
 ### Return type
 
-[**models::NamedSchedule**](NamedSchedule.md)
+[**models::GetCustomerNamedScheduleV1200Response**](getCustomerNamedSchedule_v1_200_response.md)
 
 ### Authorization
 
@@ -46,7 +46,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_customer_named_schedule_v1
 
-> models::NamedSchedule get_customer_named_schedule_v1(get_customer_named_schedule_payload)
+> models::GetCustomerNamedScheduleV1200Response get_customer_named_schedule_v1(get_customer_named_schedule_v1_request)
 Get a customer's named schedule
 
 Get a named schedule for the given customer. This endpoint's availability is dependent on your client's configuration.
@@ -56,11 +56,11 @@ Get a named schedule for the given customer. This endpoint's availability is dep
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**get_customer_named_schedule_payload** | Option<[**GetCustomerNamedSchedulePayload**](GetCustomerNamedSchedulePayload.md)> | Which customer, schedule name, and date to retrieve. |  |
+**get_customer_named_schedule_v1_request** | Option<[**GetCustomerNamedScheduleV1Request**](GetCustomerNamedScheduleV1Request.md)> | Which customer, schedule name, and date to retrieve. |  |
 
 ### Return type
 
-[**models::NamedSchedule**](NamedSchedule.md)
+[**models::GetCustomerNamedScheduleV1200Response**](getCustomerNamedSchedule_v1_200_response.md)
 
 ### Authorization
 
@@ -76,7 +76,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_rate_card_named_schedule_v1
 
-> models::NamedSchedule get_rate_card_named_schedule_v1(get_rate_card_named_schedule_payload)
+> models::GetCustomerNamedScheduleV1200Response get_rate_card_named_schedule_v1(get_rate_card_named_schedule_v1_request)
 Get a rate card's named schedule
 
 Get a named schedule for the given rate card. This endpoint's availability is dependent on your client's configuration.
@@ -86,11 +86,11 @@ Get a named schedule for the given rate card. This endpoint's availability is de
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**get_rate_card_named_schedule_payload** | Option<[**GetRateCardNamedSchedulePayload**](GetRateCardNamedSchedulePayload.md)> | Which rate card, schedule name, and date to retrieve. |  |
+**get_rate_card_named_schedule_v1_request** | Option<[**GetRateCardNamedScheduleV1Request**](GetRateCardNamedScheduleV1Request.md)> | Which rate card, schedule name, and date to retrieve. |  |
 
 ### Return type
 
-[**models::NamedSchedule**](NamedSchedule.md)
+[**models::GetCustomerNamedScheduleV1200Response**](getCustomerNamedSchedule_v1_200_response.md)
 
 ### Authorization
 
@@ -106,7 +106,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_contracts_named_schedules_v1
 
-> models::ListContractsNamedSchedulesPage list_contracts_named_schedules_v1(list_contracts_named_schedules_payload)
+> models::ListContractsNamedSchedulesV1200Response list_contracts_named_schedules_v1(list_contracts_named_schedules_v1_request)
 List contract named schedules
 
 List contract-level named schedules for a customer, optionally scoped to a single contract.
@@ -116,11 +116,11 @@ List contract-level named schedules for a customer, optionally scoped to a singl
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**list_contracts_named_schedules_payload** | Option<[**ListContractsNamedSchedulesPayload**](ListContractsNamedSchedulesPayload.md)> | Specify which customer and optional filters to use when listing contract named schedules. |  |
+**list_contracts_named_schedules_v1_request** | Option<[**ListContractsNamedSchedulesV1Request**](ListContractsNamedSchedulesV1Request.md)> | Specify which customer and optional filters to use when listing contract named schedules. |  |
 
 ### Return type
 
-[**models::ListContractsNamedSchedulesPage**](ListContractsNamedSchedulesPage.md)
+[**models::ListContractsNamedSchedulesV1200Response**](listContractsNamedSchedules_v1_200_response.md)
 
 ### Authorization
 
@@ -136,7 +136,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_contract_named_schedule_v1
 
-> update_contract_named_schedule_v1(update_contract_named_schedule_payload)
+> update_contract_named_schedule_v1(update_contract_named_schedule_v1_request)
 Update a contract's named schedule
 
 Update a named schedule for the given contract. This endpoint's availability is dependent on your client's configuration.
@@ -146,7 +146,7 @@ Update a named schedule for the given contract. This endpoint's availability is 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**update_contract_named_schedule_payload** | Option<[**UpdateContractNamedSchedulePayload**](UpdateContractNamedSchedulePayload.md)> | The customer, contract, schedule name, date range, and value to set. |  |
+**update_contract_named_schedule_v1_request** | Option<[**UpdateContractNamedScheduleV1Request**](UpdateContractNamedScheduleV1Request.md)> | The customer, contract, schedule name, date range, and value to set. |  |
 
 ### Return type
 
@@ -166,7 +166,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_customer_named_schedule_v1
 
-> update_customer_named_schedule_v1(update_customer_named_schedule_payload)
+> update_customer_named_schedule_v1(update_customer_named_schedule_v1_request)
 Update a customer's named schedule
 
 Update a named schedule for the given customer. This endpoint's availability is dependent on your client's configuration.
@@ -176,7 +176,7 @@ Update a named schedule for the given customer. This endpoint's availability is 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**update_customer_named_schedule_payload** | Option<[**UpdateCustomerNamedSchedulePayload**](UpdateCustomerNamedSchedulePayload.md)> | The customer, schedule name, date range, and value to set. |  |
+**update_customer_named_schedule_v1_request** | Option<[**UpdateCustomerNamedScheduleV1Request**](UpdateCustomerNamedScheduleV1Request.md)> | The customer, schedule name, date range, and value to set. |  |
 
 ### Return type
 
@@ -196,7 +196,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_rate_card_named_schedule_v1
 
-> update_rate_card_named_schedule_v1(update_rate_card_named_schedule_payload)
+> update_rate_card_named_schedule_v1(update_rate_card_named_schedule_v1_request)
 Update a rate card's named schedule
 
 Update a named schedule for the given rate card. This endpoint's availability is dependent on your client's configuration.
@@ -206,7 +206,7 @@ Update a named schedule for the given rate card. This endpoint's availability is
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**update_rate_card_named_schedule_payload** | Option<[**UpdateRateCardNamedSchedulePayload**](UpdateRateCardNamedSchedulePayload.md)> | The rate card, schedule name, date range, and value to set. |  |
+**update_rate_card_named_schedule_v1_request** | Option<[**UpdateRateCardNamedScheduleV1Request**](UpdateRateCardNamedScheduleV1Request.md)> | The rate card, schedule name, date range, and value to set. |  |
 
 ### Return type
 

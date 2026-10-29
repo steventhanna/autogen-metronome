@@ -44,7 +44,7 @@ pub struct GetContractEditHistoryV2200ResponseDataInner {
     #[serde(rename = "add_subscriptions", skip_serializing_if = "Option::is_none")]
     pub add_subscriptions: Option<Vec<models::GetContractV1200ResponseDataSubscriptionsInner>>,
     #[serde(rename = "add_prepaid_balance_threshold_configuration", skip_serializing_if = "Option::is_none")]
-    pub add_prepaid_balance_threshold_configuration: Option<Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfiguration>>,
+    pub add_prepaid_balance_threshold_configuration: Option<Box<models::GetContractV2200ResponseDataPrepaidBalanceThresholdConfiguration>>,
     #[serde(rename = "add_spend_threshold_configuration", skip_serializing_if = "Option::is_none")]
     pub add_spend_threshold_configuration: Option<Box<models::GetContractV1200ResponseDataInitialSpendThresholdConfiguration>>,
     /// Value to update the contract name to. If not provided, the contract name will remain unchanged.

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**Vec<models::CustomerBillingProviderConfiguration>**](CustomerBillingProviderConfiguration.md) |  | 
+**data** | [**Vec<models::GetCustomerBillingProviderConfigurationsV1200ResponseDataInner>**](GetCustomerBillingProviderConfigurationsV1200ResponseDataInner.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

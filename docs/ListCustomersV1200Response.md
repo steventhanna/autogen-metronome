@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**Vec<models::CustomerDetail>**](CustomerDetail.md) |  | 
+**data** | [**Vec<models::GetCustomerV1200ResponseData>**](GetCustomerV1200ResponseData.md) |  | 
 **next_page** | Option<**String**> |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

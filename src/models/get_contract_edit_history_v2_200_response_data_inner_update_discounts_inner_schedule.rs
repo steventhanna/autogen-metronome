@@ -19,7 +19,7 @@ pub struct GetContractEditHistoryV2200ResponseDataInnerUpdateDiscountsInnerSched
     pub credit_type_id: Option<uuid::Uuid>,
     /// Either provide amount or provide both unit_price and quantity.
     #[serde(rename = "schedule_items", skip_serializing_if = "Option::is_none")]
-    pub schedule_items: Option<Vec<models::CreateContractV1RequestCommitsInnerInvoiceScheduleScheduleItemsInner>>,
+    pub schedule_items: Option<Vec<models::CreateContractV1RequestPackageCustomizationsAddCommitsInnerInvoiceScheduleScheduleItemsInner>>,
     #[serde(rename = "recurring_schedule", skip_serializing_if = "Option::is_none")]
     pub recurring_schedule: Option<Box<models::GetContractEditHistoryV2200ResponseDataInnerUpdateDiscountsInnerScheduleRecurringSchedule>>,
     /// This field is only applicable to commit invoice schedules. If true, this schedule will not generate an invoice.

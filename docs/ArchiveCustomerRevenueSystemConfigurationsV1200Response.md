@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**models::CustomerRevenueSystemArchivePayload**](CustomerRevenueSystemArchivePayload.md) |  | 
+**data** | [**models::ArchiveCustomerRevenueSystemConfigurationsV1Request**](ArchiveCustomerRevenueSystemConfigurationsV1Request.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

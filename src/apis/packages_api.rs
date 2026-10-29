@@ -19,8 +19,8 @@ use super::{Error, configuration, ContentType};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ArchivePackageV1Error {
-    Status400(models::Error),
-    Status404(models::Error),
+    Status400(models::GetApprovalRequestV1404Response),
+    Status404(models::GetApprovalRequestV1404Response),
     UnknownValue(serde_json::Value),
 }
 
@@ -28,7 +28,7 @@ pub enum ArchivePackageV1Error {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetPackageV1Error {
-    Status404(models::Error),
+    Status404(models::GetApprovalRequestV1404Response),
     UnknownValue(serde_json::Value),
 }
 

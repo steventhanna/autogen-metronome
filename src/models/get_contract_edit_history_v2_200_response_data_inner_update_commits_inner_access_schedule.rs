@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetContractEditHistoryV2200ResponseDataInnerUpdateCommitsInnerAccessSchedule {
     #[serde(rename = "add_schedule_items", skip_serializing_if = "Option::is_none")]
-    pub add_schedule_items: Option<Vec<models::CreateContractV1RequestCommitsInnerAccessScheduleScheduleItemsInner>>,
+    pub add_schedule_items: Option<Vec<models::CreateContractV1RequestPackageCustomizationsAddCommitsInnerAccessScheduleScheduleItemsInner>>,
     #[serde(rename = "update_schedule_items", skip_serializing_if = "Option::is_none")]
     pub update_schedule_items: Option<Vec<models::GetContractEditHistoryV2200ResponseDataInnerUpdateCommitsInnerAccessScheduleUpdateScheduleItemsInner>>,
     #[serde(rename = "remove_schedule_items", skip_serializing_if = "Option::is_none")]

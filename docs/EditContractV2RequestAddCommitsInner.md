@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **rate_type** | Option<**RateType**> |  (enum: COMMIT_RATE, commit_rate, LIST_RATE, list_rate) | [optional]
 **name** | Option<**String**> | displayed on invoices | [optional]
 **product_id** | **uuid::Uuid** |  | 
-**access_schedule** | Option<[**models::CreateContractV1RequestCommitsInnerAccessSchedule**](CreateContractV1RequestCommitsInnerAccessSchedule.md)> |  | [optional]
+**access_schedule** | Option<[**models::CreateContractV1RequestPackageCustomizationsAddCommitsInnerAccessSchedule**](CreateContractV1RequestPackageCustomizationsAddCommitsInnerAccessSchedule.md)> |  | [optional]
 **invoice_schedule** | Option<[**models::GetContractEditHistoryV2200ResponseDataInnerUpdateDiscountsInnerSchedule**](GetContractEditHistoryV2200ResponseDataInnerUpdateDiscountsInnerSchedule.md)> |  | [optional]
 **amount** | Option<**f64**> | (DEPRECATED) Use access_schedule and invoice_schedule instead. | [optional]
 **description** | Option<**String**> | Used only in UI/API. It is not exposed to end customers. | [optional]
@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **temporary_id** | Option<**String**> | A temporary ID for the commit that can be used to reference the commit for commit specific overrides. | [optional]
 **payment_gate_config** | Option<[**models::EditContractV2RequestAddCommitsInnerPaymentGateConfig**](EditContractV2RequestAddCommitsInnerPaymentGateConfig.md)> |  | [optional]
 **hierarchy_configuration** | Option<[**models::GetContractV1200ResponseDataInitialCommitsInnerHierarchyConfiguration**](GetContractV1200ResponseDataInitialCommitsInnerHierarchyConfiguration.md)> |  | [optional]
-**spend_tracker_attributes** | Option<[**models::CreateContractV1RequestCommitsInnerSpendTrackerAttributes**](CreateContractV1RequestCommitsInnerSpendTrackerAttributes.md)> |  | [optional]
+**spend_tracker_attributes** | Option<[**models::CreateContractV1RequestPackageCustomizationsAddCommitsInnerSpendTrackerAttributes**](CreateContractV1RequestPackageCustomizationsAddCommitsInnerSpendTrackerAttributes.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

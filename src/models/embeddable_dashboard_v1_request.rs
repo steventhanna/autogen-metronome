@@ -20,13 +20,10 @@ pub struct EmbeddableDashboardV1Request {
     pub dashboard: Dashboard,
     /// Optional dashboard specific options
     #[serde(rename = "dashboard_options", skip_serializing_if = "Option::is_none")]
-    pub dashboard_options: Option<Vec<models::GetCustomerAlertV1RequestGroupValuesInner>>,
+    pub dashboard_options: Option<Vec<models::EmbeddableDashboardV1RequestDashboardOptionsInner>>,
     /// Optional list of colors to override
     #[serde(rename = "color_overrides", skip_serializing_if = "Option::is_none")]
     pub color_overrides: Option<Vec<models::EmbeddableDashboardV1RequestColorOverridesInner>>,
-    /// Optional list of billable metric group key overrides
-    #[serde(rename = "bm_group_key_overrides", skip_serializing_if = "Option::is_none")]
-    pub bm_group_key_overrides: Option<Vec<models::EmbeddableDashboardV1RequestBmGroupKeyOverridesInner>>,
 }
 
 impl EmbeddableDashboardV1Request {
@@ -36,7 +33,6 @@ impl EmbeddableDashboardV1Request {
             dashboard,
             dashboard_options: None,
             color_overrides: None,
-            bm_group_key_overrides: None,
         }
     }
 }

@@ -96,7 +96,7 @@ pub struct GetContractV2200ResponseData {
     #[serde(rename = "spend_threshold_configuration", skip_serializing_if = "Option::is_none")]
     pub spend_threshold_configuration: Option<Box<models::GetContractV1200ResponseDataInitialSpendThresholdConfiguration>>,
     #[serde(rename = "prepaid_balance_threshold_configuration", skip_serializing_if = "Option::is_none")]
-    pub prepaid_balance_threshold_configuration: Option<Box<models::GetContractV1200ResponseDataInitialPrepaidBalanceThresholdConfiguration>>,
+    pub prepaid_balance_threshold_configuration: Option<Box<models::GetContractV2200ResponseDataPrepaidBalanceThresholdConfiguration>>,
     /// Spend trackers attached to this contract.
     #[serde(rename = "spend_trackers", skip_serializing_if = "Option::is_none")]
     pub spend_trackers: Option<Vec<models::GetContractV1200ResponseDataInitialSpendTrackersInner>>,

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**billing_provider_configuration** | [**models::GetCustomerBillingProviderConfigurationsV1200ResponseDataInner**](GetCustomerBillingProviderConfigurationsV1200ResponseDataInner.md) |  | 
+**billing_provider_configuration** | Option<[**models::GetContractV2200ResponseDataBillingProviderConfigurationScheduleInnerBillingProviderConfiguration**](GetContractV2200ResponseDataBillingProviderConfigurationScheduleInnerBillingProviderConfiguration.md)> |  | 
 **effective_at** | **chrono::DateTime<chrono::FixedOffset>** | The date this billing provider configuration became or becomes active. | 
 **effective_until** | Option<**chrono::DateTime<chrono::FixedOffset>**> | The date this billing provider configuration is superseded by the next entry. Null for the last entry in the schedule. | [optional]
 

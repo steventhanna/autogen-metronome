@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **is_duplicate** | Option<**bool**> |  | [optional]
 **processed_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **matched_customer** | Option<[**models::SearchEventsV1200ResponseInnerMatchedCustomer**](SearchEventsV1200ResponseInnerMatchedCustomer.md)> |  | [optional]
-**matched_billable_metrics** | Option<[**Vec<models::BillableMetricForEventsSearch>**](BillableMetricForEventsSearch.md)> |  | [optional]
+**matched_billable_metrics** | Option<[**Vec<models::SearchEventsV1200ResponseInnerMatchedBillableMetricsInner>**](SearchEventsV1200ResponseInnerMatchedBillableMetricsInner.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **rate_type** | Option<**RateType**> |  (enum: COMMIT_RATE, LIST_RATE) | [optional]
 **name** | Option<**String**> |  | [optional]
 **priority** | Option<**f64**> | If multiple credits or commits are applicable, the one with the lower priority will apply first. | [optional]
+**cost_basis** | Option<**f64**> | The ratio of the amount paid for the commit to the amount of credit granted. | [optional]
 **product** | [**models::GetContractV1200ResponseDataInitialCommitsInnerProduct**](GetContractV1200ResponseDataInitialCommitsInnerProduct.md) |  | 
 **access_schedule** | Option<[**models::GetContractV1200ResponseDataInitialCommitsInnerAccessSchedule**](GetContractV1200ResponseDataInitialCommitsInnerAccessSchedule.md)> |  | [optional]
 **invoice_schedule** | Option<[**models::GetContractV1200ResponseDataInitialCommitsInnerInvoiceSchedule**](GetContractV1200ResponseDataInitialCommitsInnerInvoiceSchedule.md)> |  | [optional]

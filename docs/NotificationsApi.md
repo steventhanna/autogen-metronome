@@ -6,16 +6,16 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**archive_notification_config_v2**](NotificationsApi.md#archive_notification_config_v2) | **POST** /v2/notifications/archive | Archive an offset lifecycle event notification configuration
 [**create_notification_config_v2**](NotificationsApi.md#create_notification_config_v2) | **POST** /v2/notifications/create | Create an offset lifecycle event notification configuration
-[**edit_notification_config_v2**](NotificationsApi.md#edit_notification_config_v2) | **POST** /v2/notifications/edit | Edit an offset lifecycle event notification configuration
+[**edit_notification_config_v2**](NotificationsApi.md#edit_notification_config_v2) | **POST** /v2/notifications/edit | Edit an offset or system notification
 [**get_notification_config_v2**](NotificationsApi.md#get_notification_config_v2) | **POST** /v2/notifications/get | Get an offset lifecycle event notification configuration
 [**list_offset_notification_configs_v2**](NotificationsApi.md#list_offset_notification_configs_v2) | **POST** /v2/notifications/offset/list | List offset lifecycle event notification configurations
-[**list_system_notification_configs_v2**](NotificationsApi.md#list_system_notification_configs_v2) | **POST** /v2/notifications/system/list | List system notification event types
+[**list_system_notification_configs_v2**](NotificationsApi.md#list_system_notification_configs_v2) | **POST** /v2/notifications/system/list | List system notification types
 
 
 
 ## archive_notification_config_v2
 
-> models::CreateNotificationConfigV2200Response archive_notification_config_v2(archive_notification_config_payload)
+> models::CreateNotificationConfigV2200Response archive_notification_config_v2(archive_alert_v1200_response_data)
 Archive an offset lifecycle event notification configuration
 
 Archive an offset lifecycle event notification configuration. Archived notifications are not processed. 
@@ -25,7 +25,7 @@ Archive an offset lifecycle event notification configuration. Archived notificat
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**archive_notification_config_payload** | Option<[**ArchiveNotificationConfigPayload**](ArchiveNotificationConfigPayload.md)> | Offset notification configuration ID to archive |  |
+**archive_alert_v1200_response_data** | Option<[**ArchiveAlertV1200ResponseData**](ArchiveAlertV1200ResponseData.md)> | Offset notification configuration ID to archive |  |
 
 ### Return type
 
@@ -45,7 +45,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_notification_config_v2
 
-> models::CreateNotificationConfigV2200Response create_notification_config_v2(create_notification_config_payload)
+> models::CreateNotificationConfigV2200Response create_notification_config_v2(create_notification_config_v2_request)
 Create an offset lifecycle event notification configuration
 
 Create an offset lifecycle event notification configuration. The lifecycle event type is inferred from the policy.type field. 
@@ -55,7 +55,7 @@ Create an offset lifecycle event notification configuration. The lifecycle event
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**create_notification_config_payload** | Option<[**CreateNotificationConfigPayload**](CreateNotificationConfigPayload.md)> | Notification configuration details |  |
+**create_notification_config_v2_request** | Option<[**CreateNotificationConfigV2Request**](CreateNotificationConfigV2Request.md)> | Notification configuration details |  |
 
 ### Return type
 
@@ -75,17 +75,17 @@ Name | Type | Description  | Required | Notes
 
 ## edit_notification_config_v2
 
-> models::EditNotificationConfigV2200Response edit_notification_config_v2(edit_notification_config_payload)
-Edit an offset lifecycle event notification configuration
+> models::EditNotificationConfigV2200Response edit_notification_config_v2(edit_notification_config_v2_request)
+Edit an offset or system notification
 
-Edit an existing offset lifecycle event notification configuration.
+Edit an existing offset notification, or enable/disable a system notification
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**edit_notification_config_payload** | Option<[**EditNotificationConfigPayload**](EditNotificationConfigPayload.md)> | Offset notification configuration updates |  |
+**edit_notification_config_v2_request** | Option<[**EditNotificationConfigV2Request**](EditNotificationConfigV2Request.md)> | Offset or system notification updates |  |
 
 ### Return type
 
@@ -105,7 +105,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_notification_config_v2
 
-> models::CreateNotificationConfigV2200Response get_notification_config_v2(get_notification_config_payload)
+> models::CreateNotificationConfigV2200Response get_notification_config_v2(archive_alert_v1200_response_data)
 Get an offset lifecycle event notification configuration
 
 Retrieve a specific offset lifecycle event notification configuration by ID.
@@ -115,7 +115,7 @@ Retrieve a specific offset lifecycle event notification configuration by ID.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**get_notification_config_payload** | Option<[**GetNotificationConfigPayload**](GetNotificationConfigPayload.md)> | Offset notification configuration ID |  |
+**archive_alert_v1200_response_data** | Option<[**ArchiveAlertV1200ResponseData**](ArchiveAlertV1200ResponseData.md)> | Offset notification configuration ID |  |
 
 ### Return type
 
@@ -135,7 +135,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_offset_notification_configs_v2
 
-> models::ListOffsetNotificationConfigsV2200Response list_offset_notification_configs_v2(list_offset_notification_configs_payload)
+> models::ListOffsetNotificationConfigsV2200Response list_offset_notification_configs_v2(list_offset_notification_configs_v2_request)
 List offset lifecycle event notification configurations
 
 List offset lifecycle event notification configurations. These are user-created notifications that trigger at a specified time offset relative to lifecycle events. Returns a maximum of 400 results per request. 
@@ -145,7 +145,7 @@ List offset lifecycle event notification configurations. These are user-created 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**list_offset_notification_configs_payload** | Option<[**ListOffsetNotificationConfigsPayload**](ListOffsetNotificationConfigsPayload.md)> | Optional pagination and filtering parameters |  |
+**list_offset_notification_configs_v2_request** | Option<[**ListOffsetNotificationConfigsV2Request**](ListOffsetNotificationConfigsV2Request.md)> | Optional pagination and filtering parameters |  |
 
 ### Return type
 
@@ -166,9 +166,9 @@ Name | Type | Description  | Required | Notes
 ## list_system_notification_configs_v2
 
 > models::ListSystemNotificationConfigsV2200Response list_system_notification_configs_v2()
-List system notification event types
+List system notification types
 
-List available system lifecycle event types for notifications. These are read-only event types that can be used when creating offset notifications.
+List available system notification types. You can enable these notifications directly or use supported types to create offset notifications.
 
 ### Parameters
 
