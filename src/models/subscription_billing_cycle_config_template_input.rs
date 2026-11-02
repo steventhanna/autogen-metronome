@@ -16,12 +16,16 @@ pub struct SubscriptionBillingCycleConfigTemplateInput {
     /// Controls whether subscriptions consolidate onto usage invoices. Defaults to ON_USAGE_INVOICE if omitted.
     #[serde(rename = "invoice_placement", skip_serializing_if = "Option::is_none")]
     pub invoice_placement: Option<InvoicePlacement>,
+    /// Controls which date each subscription materialized from this template anchors its billing cycle to. CUSTOM_DATE requires a subscription_anchor_date supplied per contract via package customizations. Defaults to USAGE_STATEMENT_ANCHOR (the contract's usage statement anchor) if omitted.
+    #[serde(rename = "billing_cycle_anchor", skip_serializing_if = "Option::is_none")]
+    pub billing_cycle_anchor: Option<BillingCycleAnchor>,
 }
 
 impl SubscriptionBillingCycleConfigTemplateInput {
     pub fn new() -> SubscriptionBillingCycleConfigTemplateInput {
         SubscriptionBillingCycleConfigTemplateInput {
             invoice_placement: None,
+            billing_cycle_anchor: None,
         }
     }
 }
@@ -41,6 +45,32 @@ pub enum InvoicePlacement {
 impl Default for InvoicePlacement {
     fn default() -> InvoicePlacement {
         Self::OnScheduledInvoice
+    }
+}
+/// Controls which date each subscription materialized from this template anchors its billing cycle to. CUSTOM_DATE requires a subscription_anchor_date supplied per contract via package customizations. Defaults to USAGE_STATEMENT_ANCHOR (the contract's usage statement anchor) if omitted.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum BillingCycleAnchor {
+    #[serde(rename = "SUBSCRIPTION_START")]
+    SubscriptionStart,
+    #[serde(rename = "FIRST_OF_MONTH")]
+    FirstOfMonth,
+    #[serde(rename = "CUSTOM_DATE")]
+    CustomDate,
+    #[serde(rename = "USAGE_STATEMENT_ANCHOR")]
+    UsageStatementAnchor,
+    #[serde(rename = "subscription_start")]
+    SubscriptionStart2,
+    #[serde(rename = "first_of_month")]
+    FirstOfMonth2,
+    #[serde(rename = "custom_date")]
+    CustomDate2,
+    #[serde(rename = "usage_statement_anchor")]
+    UsageStatementAnchor2,
+}
+
+impl Default for BillingCycleAnchor {
+    fn default() -> BillingCycleAnchor {
+        Self::SubscriptionStart
     }
 }
 

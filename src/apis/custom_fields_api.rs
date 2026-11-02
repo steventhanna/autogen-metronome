@@ -186,7 +186,7 @@ pub async fn list_custom_field_keys_v1(configuration: &configuration::Configurat
     }
 }
 
-/// Sets custom field values on a specific Metronome entity instance. Overwrites existing values for matching keys while preserving other fields. All updates are transactional—either all values are set or none are. Custom field values are limited to 200 characters each. 
+/// Sets custom field values on a specific Metronome entity instance. Overwrites existing values for matching keys while preserving other fields. All updates are transactional—either all values are set or none are. Custom field values are limited to 200 characters each.  Adding or updating custom fields on credits, commits, or contracts does not emit `credit.edit`, `commit.edit`, or `contract.edit` events. 
 pub async fn set_custom_fields_v1(configuration: &configuration::Configuration, set_custom_fields_v1_request: Option<models::SetCustomFieldsV1Request>) -> Result<(), Error<SetCustomFieldsV1Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_set_custom_fields_v1_request = set_custom_fields_v1_request;

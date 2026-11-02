@@ -146,7 +146,7 @@ pub async fn create_notification_config_v2(configuration: &configuration::Config
     }
 }
 
-/// Edit an existing offset lifecycle event notification configuration.
+/// Edit an existing offset notification, or enable/disable a system notification
 pub async fn edit_notification_config_v2(configuration: &configuration::Configuration, edit_notification_config_payload: Option<models::EditNotificationConfigPayload>) -> Result<models::EditNotificationConfigV2200Response, Error<EditNotificationConfigV2Error>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_edit_notification_config_payload = edit_notification_config_payload;
@@ -269,7 +269,7 @@ pub async fn list_offset_notification_configs_v2(configuration: &configuration::
     }
 }
 
-/// List available system lifecycle event types for notifications. These are read-only event types that can be used when creating offset notifications.
+/// List available system notification types. You can enable these notifications directly or use supported types to create offset notifications.
 pub async fn list_system_notification_configs_v2(configuration: &configuration::Configuration, ) -> Result<models::ListSystemNotificationConfigsV2200Response, Error<ListSystemNotificationConfigsV2Error>> {
 
     let uri_str = format!("{}/v2/notifications/system/list", configuration.base_path);

@@ -33,6 +33,9 @@ pub struct CustomerBillingProviderConfiguration {
     pub delivery_method_configuration: std::collections::HashMap<String, serde_json::Value>,
     #[serde(rename = "archived_at", deserialize_with = "Option::deserialize")]
     pub archived_at: Option<chrono::DateTime<chrono::FixedOffset>>,
+    /// Rules that stop matching invoices from being sent to the billing provider. Supported for Stripe and NetSuite billing provider configurations. When omitted, every invoice is sent to the billing provider. Stripe invoices can be force-sent after a rule suppresses them.
+    #[serde(rename = "unbillable_invoices_configuration", skip_serializing_if = "Option::is_none")]
+    pub unbillable_invoices_configuration: Option<Vec<models::UnbillableInvoiceRule>>,
 }
 
 impl CustomerBillingProviderConfiguration {
@@ -46,6 +49,7 @@ impl CustomerBillingProviderConfiguration {
             delivery_method,
             delivery_method_configuration,
             archived_at,
+            unbillable_invoices_configuration: None,
         }
     }
 }
