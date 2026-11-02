@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **uuid::Uuid** |  | 
+**name** | Option<**String**> |  | [optional]
 **ending_before** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **quantity_updates** | Option<[**Vec<models::UpdateSubscriptionInputQuantityUpdatesInner>**](UpdateSubscriptionInputQuantityUpdatesInner.md)> |  | [optional]
 **seat_updates** | Option<[**models::SubscriptionSeatUpdateInput**](SubscriptionSeatUpdateInput.md)> |  | [optional]

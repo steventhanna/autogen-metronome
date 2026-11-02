@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **list_rate** | [**models::Rate**](Rate.md) |  | 
 **override_rate** | Option<[**models::Rate**](Rate.md)> |  | [optional]
 **commit_rate** | Option<[**models::CommitRate**](CommitRate.md)> |  | [optional]
-**billing_frequency** | Option<**BillingFrequency**> |  (enum: MONTHLY, QUARTERLY, ANNUAL, WEEKLY) | [optional]
+**billing_frequency** | Option<**BillingFrequency**> |  (enum: MONTHLY, QUARTERLY, SEMI_ANNUAL, ANNUAL, WEEKLY) | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

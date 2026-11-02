@@ -21,6 +21,8 @@ pub struct CreateContractPayload {
     /// Selects the package linked to the specified alias as of the contract's start date. Mutually exclusive with package_id.
     #[serde(rename = "package_alias", skip_serializing_if = "Option::is_none")]
     pub package_alias: Option<String>,
+    #[serde(rename = "package_customizations", skip_serializing_if = "Option::is_none")]
+    pub package_customizations: Option<Box<models::PackageCustomizations>>,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
     /// Prevents the creation of duplicates. If a request to create a record is made with a previously used uniqueness key, a new record will not be created and the request will fail with a 409 error.
@@ -107,6 +109,7 @@ impl CreateContractPayload {
             customer_id,
             package_id: None,
             package_alias: None,
+            package_customizations: None,
             name: None,
             uniqueness_key: None,
             netsuite_sales_order_id: None,

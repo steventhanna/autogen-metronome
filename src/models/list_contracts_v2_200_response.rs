@@ -15,12 +15,16 @@ use serde::{Deserialize, Serialize};
 pub struct ListContractsV2200Response {
     #[serde(rename = "data")]
     pub data: Vec<models::ContractV2>,
+    /// Pass this value as `cursor` in a subsequent request to fetch the next page of contracts. Null if there are no more contracts.
+    #[serde(rename = "cursor", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub cursor: Option<Option<String>>,
 }
 
 impl ListContractsV2200Response {
     pub fn new(data: Vec<models::ContractV2>) -> ListContractsV2200Response {
         ListContractsV2200Response {
             data,
+            cursor: None,
         }
     }
 }

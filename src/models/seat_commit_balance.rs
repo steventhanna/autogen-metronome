@@ -16,6 +16,12 @@ pub struct SeatCommitBalance {
     /// The commit or credit ID
     #[serde(rename = "id")]
     pub id: uuid::Uuid,
+    /// Indicates how the balance is drawn down. `SPEND` deducts the dollar cost of usage. `QUANTITY` deducts the number of units used.
+    #[serde(rename = "access_type", skip_serializing_if = "Option::is_none")]
+    pub access_type: Option<AccessType>,
+    /// The credit type for this commit. Quantity-based commits return the null credit type UUID.
+    #[serde(rename = "credit_type_id", skip_serializing_if = "Option::is_none")]
+    pub credit_type_id: Option<uuid::Uuid>,
     /// The current balance for this commit for this specific seat
     #[serde(rename = "balance")]
     pub balance: f64,
@@ -34,11 +40,27 @@ impl SeatCommitBalance {
     pub fn new(id: uuid::Uuid, balance: f64, start_date: chrono::DateTime<chrono::FixedOffset>) -> SeatCommitBalance {
         SeatCommitBalance {
             id,
+            access_type: None,
+            credit_type_id: None,
             balance,
             start_date,
             end_date: None,
             ledger_entries: None,
         }
+    }
+}
+/// Indicates how the balance is drawn down. `SPEND` deducts the dollar cost of usage. `QUANTITY` deducts the number of units used.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+pub enum AccessType {
+    #[serde(rename = "SPEND")]
+    Spend,
+    #[serde(rename = "QUANTITY")]
+    Quantity,
+}
+
+impl Default for AccessType {
+    fn default() -> AccessType {
+        Self::Spend
     }
 }
 
