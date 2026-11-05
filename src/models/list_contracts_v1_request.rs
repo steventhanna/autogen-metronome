@@ -24,12 +24,18 @@ pub struct ListContractsV1Request {
     /// Include archived contracts in the response
     #[serde(rename = "include_archived", skip_serializing_if = "Option::is_none")]
     pub include_archived: Option<bool>,
-    /// Optional RFC 3339 timestamp. If provided, the response will include only contracts where effective_at is on or after the provided date.  This cannot be provided if the covering_date filter is provided.
+    /// Optional RFC 3339 timestamp. If provided, the response will include only contracts where starting_at is on or after the provided date.  This cannot be provided if the covering_date filter is provided.
     #[serde(rename = "starting_at", skip_serializing_if = "Option::is_none")]
     pub starting_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// Optional RFC 3339 timestamp. If provided, the response will include only contracts effective on the provided date.  This cannot be provided if the starting_at filter is provided.
     #[serde(rename = "covering_date", skip_serializing_if = "Option::is_none")]
     pub covering_date: Option<chrono::DateTime<chrono::FixedOffset>>,
+    /// Max number of contracts to return per page. Range: 1-20. Default: 20.
+    #[serde(rename = "limit", skip_serializing_if = "Option::is_none")]
+    pub limit: Option<i32>,
+    /// Cursor from a previous response to fetch the next page of contracts.
+    #[serde(rename = "cursor", skip_serializing_if = "Option::is_none")]
+    pub cursor: Option<String>,
 }
 
 impl ListContractsV1Request {
@@ -41,6 +47,8 @@ impl ListContractsV1Request {
             include_archived: None,
             starting_at: None,
             covering_date: None,
+            limit: None,
+            cursor: None,
         }
     }
 }

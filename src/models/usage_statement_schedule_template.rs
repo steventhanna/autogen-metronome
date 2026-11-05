@@ -34,6 +34,8 @@ pub enum Frequency {
     Monthly,
     #[serde(rename = "QUARTERLY")]
     Quarterly,
+    #[serde(rename = "SEMI_ANNUAL")]
+    SemiAnnual,
     #[serde(rename = "ANNUAL")]
     Annual,
     #[serde(rename = "WEEKLY")]
@@ -52,6 +54,8 @@ pub enum Day {
     FirstOfMonth,
     #[serde(rename = "CONTRACT_START")]
     ContractStart,
+    #[serde(rename = "CUSTOM_DATE")]
+    CustomDate,
 }
 
 impl Default for Day {

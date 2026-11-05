@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **netsuite_sales_order_id** | Option<**String**> | This field's availability is dependent on your client's configuration. | [optional]
 **salesforce_opportunity_id** | Option<**String**> | This field's availability is dependent on your client's configuration. | [optional]
 **hierarchy_configuration** | Option<[**models::CommitHierarchyConfiguration**](CommitHierarchyConfiguration.md)> |  | [optional]
+**payment_gate_config** | Option<[**models::CommitPaymentGateConfig**](CommitPaymentGateConfig.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

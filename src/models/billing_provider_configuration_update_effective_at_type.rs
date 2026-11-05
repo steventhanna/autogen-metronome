@@ -18,6 +18,8 @@ pub enum BillingProviderConfigurationUpdateEffectiveAtType {
     StartOfCurrentPeriod,
     #[serde(rename = "START_OF_NEXT_PERIOD")]
     StartOfNextPeriod,
+    #[serde(rename = "TODAY")]
+    Today,
 
 }
 
@@ -26,6 +28,7 @@ impl std::fmt::Display for BillingProviderConfigurationUpdateEffectiveAtType {
         match self {
             Self::StartOfCurrentPeriod => write!(f, "START_OF_CURRENT_PERIOD"),
             Self::StartOfNextPeriod => write!(f, "START_OF_NEXT_PERIOD"),
+            Self::Today => write!(f, "TODAY"),
         }
     }
 }

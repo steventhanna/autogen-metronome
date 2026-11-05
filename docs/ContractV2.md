@@ -41,6 +41,7 @@ Name | Type | Description | Notes
 **spend_threshold_configuration** | Option<[**models::SpendThresholdConfigurationV2**](SpendThresholdConfigurationV2.md)> |  | [optional]
 **prepaid_balance_threshold_configuration** | Option<[**models::PrepaidBalanceThresholdConfigurationV2**](PrepaidBalanceThresholdConfigurationV2.md)> |  | [optional]
 **spend_trackers** | Option<[**Vec<models::SpendTracker>**](SpendTracker.md)> | Spend trackers attached to this contract. | [optional]
+**credit_type_conversion_schedules** | Option<[**Vec<models::CreditTypeConversionSchedule>**](CreditTypeConversionSchedule.md)> | The schedule of conversion rates that apply to each custom pricing unit,  resolved from the contract's conversion overrides. If no schedule is returned for a custom pricing unit or the currently active segment has a null conversion rate, the rate card's conversion rate applies. | [optional]
 **subscriptions** | Option<[**Vec<models::SubscriptionV2>**](SubscriptionV2.md)> | List of subscriptions on the contract. | [optional]
 **hierarchy_configuration** | Option<[**models::HierarchyConfigurationV2**](HierarchyConfigurationV2.md)> |  | [optional]
 **priority** | Option<**f64**> | Priority of the contract. | [optional]

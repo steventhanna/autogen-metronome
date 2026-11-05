@@ -99,6 +99,9 @@ pub struct ContractV2 {
     /// Spend trackers attached to this contract.
     #[serde(rename = "spend_trackers", skip_serializing_if = "Option::is_none")]
     pub spend_trackers: Option<Vec<models::SpendTracker>>,
+    /// The schedule of conversion rates that apply to each custom pricing unit,  resolved from the contract's conversion overrides. If no schedule is returned for a custom pricing unit or the currently active segment has a null conversion rate, the rate card's conversion rate applies.
+    #[serde(rename = "credit_type_conversion_schedules", skip_serializing_if = "Option::is_none")]
+    pub credit_type_conversion_schedules: Option<Vec<models::CreditTypeConversionSchedule>>,
     /// List of subscriptions on the contract.
     #[serde(rename = "subscriptions", skip_serializing_if = "Option::is_none")]
     pub subscriptions: Option<Vec<models::SubscriptionV2>>,
@@ -149,6 +152,7 @@ impl ContractV2 {
             spend_threshold_configuration: None,
             prepaid_balance_threshold_configuration: None,
             spend_trackers: None,
+            credit_type_conversion_schedules: None,
             subscriptions: None,
             hierarchy_configuration: None,
             priority: None,

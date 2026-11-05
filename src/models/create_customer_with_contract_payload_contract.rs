@@ -84,6 +84,9 @@ pub struct CreateCustomerWithContractPayloadContract {
     /// Spend trackers to attach to this contract. Aliases must be unique within a contract.
     #[serde(rename = "spend_trackers", skip_serializing_if = "Option::is_none")]
     pub spend_trackers: Option<Vec<models::SpendTrackerInput>>,
+    /// Overrides the conversion rate for the custom pricing unit over the specified interval.
+    #[serde(rename = "credit_type_conversion_overrides", skip_serializing_if = "Option::is_none")]
+    pub credit_type_conversion_overrides: Option<Vec<models::CreditTypeConversionOverrideInput>>,
     /// Optional list of [subscriptions](https://docs.metronome.com/manage-product-access/create-subscription/) to add to the contract.
     #[serde(rename = "subscriptions", skip_serializing_if = "Option::is_none")]
     pub subscriptions: Option<Vec<models::SubscriptionInput>>,
@@ -123,6 +126,7 @@ impl CreateCustomerWithContractPayloadContract {
             spend_threshold_configuration: None,
             prepaid_balance_threshold_configuration: None,
             spend_trackers: None,
+            credit_type_conversion_overrides: None,
             subscriptions: None,
             hierarchy_configuration: None,
         }

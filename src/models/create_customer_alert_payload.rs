@@ -51,10 +51,10 @@ pub struct CreateCustomerAlertPayload {
     pub group_values: Option<Vec<models::GroupValueFilterType>>,
     #[serde(rename = "seat_filter", skip_serializing_if = "Option::is_none")]
     pub seat_filter: Option<Box<models::CreateCustomerAlertPayloadSeatFilter>>,
-    /// Filters the notification to commits/credits with this access type. Only supported for `low_remaining_commit_balance_reached`, `low_remaining_commit_percentage_reached`, `low_remaining_contract_credit_and_commit_balance_reached`, `low_remaining_contract_credit_balance_reached`, `low_remaining_contract_credit_percentage_reached`, and `low_remaining_seat_balance_reached` notifications. Credit type cannot be specified if using QUANTITY access type.
+    /// Filters the notification to commits/credits with this access type. Only supported for `low_remaining_commit_balance_reached`, `low_remaining_commit_percentage_reached`, `low_remaining_contract_credit_and_commit_balance_reached`, `low_remaining_contract_credit_and_commit_percentage_reached`, `low_remaining_contract_credit_balance_reached`, `low_remaining_contract_credit_percentage_reached`, and `low_remaining_seat_balance_reached` notifications. Credit type cannot be specified if using QUANTITY access type.
     #[serde(rename = "access_type", skip_serializing_if = "Option::is_none")]
     pub access_type: Option<AccessType>,
-    /// Can be used with only `low_remaining_contract_credit_and_commit_balance_reached` notifications. Defines the balances that are considered when evaluating the alert.
+    /// Can be used only with `low_remaining_contract_credit_and_commit_balance_reached` and `low_remaining_contract_credit_and_commit_percentage_reached` notifications. Defines the commits and credits used to calculate the remaining balance or percentage.
     #[serde(rename = "alert_specifiers", skip_serializing_if = "Option::is_none")]
     pub alert_specifiers: Option<Vec<models::AlertSpecifier>>,
 }
@@ -103,6 +103,8 @@ pub enum AlertType {
     LowRemainingContractCreditPercentageReached,
     #[serde(rename = "low_remaining_contract_credit_and_commit_balance_reached")]
     LowRemainingContractCreditAndCommitBalanceReached,
+    #[serde(rename = "low_remaining_contract_credit_and_commit_percentage_reached")]
+    LowRemainingContractCreditAndCommitPercentageReached,
     #[serde(rename = "invoice_total_reached")]
     InvoiceTotalReached,
     #[serde(rename = "low_remaining_seat_balance_reached")]
@@ -114,7 +116,7 @@ impl Default for AlertType {
         Self::SpendThresholdReached
     }
 }
-/// Filters the notification to commits/credits with this access type. Only supported for `low_remaining_commit_balance_reached`, `low_remaining_commit_percentage_reached`, `low_remaining_contract_credit_and_commit_balance_reached`, `low_remaining_contract_credit_balance_reached`, `low_remaining_contract_credit_percentage_reached`, and `low_remaining_seat_balance_reached` notifications. Credit type cannot be specified if using QUANTITY access type.
+/// Filters the notification to commits/credits with this access type. Only supported for `low_remaining_commit_balance_reached`, `low_remaining_commit_percentage_reached`, `low_remaining_contract_credit_and_commit_balance_reached`, `low_remaining_contract_credit_and_commit_percentage_reached`, `low_remaining_contract_credit_balance_reached`, `low_remaining_contract_credit_percentage_reached`, and `low_remaining_seat_balance_reached` notifications. Credit type cannot be specified if using QUANTITY access type.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum AccessType {
     #[serde(rename = "SPEND")]

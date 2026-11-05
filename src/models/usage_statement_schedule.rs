@@ -39,6 +39,10 @@ pub enum Frequency {
     Quarterly,
     #[serde(rename = "quarterly")]
     Quarterly2,
+    #[serde(rename = "SEMI_ANNUAL")]
+    SemiAnnual,
+    #[serde(rename = "semi_annual")]
+    SemiAnnual2,
     #[serde(rename = "ANNUAL")]
     Annual,
     #[serde(rename = "annual")]

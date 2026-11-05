@@ -52,7 +52,7 @@ pub struct InvoiceLineItem {
     /// The line item's end date (exclusive).
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
     pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
-    /// For line items with product of `USAGE`, `SUBSCRIPTION`, or `COMPOSITE` types, the ID of the credit or commit that was applied to this line item. For line items with product type of `FIXED`, the ID of the prepaid or postpaid commit that is being paid for.
+    /// For line items with product of `USAGE`, `SUBSCRIPTION`, `COMPOSITE`, or `CPU_CONVERSION` types, the ID of the credit or commit that was applied to this line item. For line items with product type of `FIXED`, the ID of the prepaid or postpaid commit that is being paid for.
     #[serde(rename = "commit_id", skip_serializing_if = "Option::is_none")]
     pub commit_id: Option<uuid::Uuid>,
     #[serde(rename = "applied_commit_or_credit", skip_serializing_if = "Option::is_none")]
@@ -116,7 +116,7 @@ pub struct InvoiceLineItem {
     #[serde(rename = "discount_custom_fields", skip_serializing_if = "Option::is_none")]
     pub discount_custom_fields: Option<std::collections::HashMap<String, String>>,
     #[serde(rename = "origin", skip_serializing_if = "Option::is_none")]
-    pub origin: Option<Box<models::InvoiceLineItemOrigin>>,
+    pub origin: Option<Box<models::SpendBreakdownLineItemOrigin>>,
     /// Present on applied commit line items for quantity-based commits. Represents the unit quantity deducted the commit.
     #[serde(rename = "quantity_consumed", skip_serializing_if = "Option::is_none")]
     pub quantity_consumed: Option<f64>,
