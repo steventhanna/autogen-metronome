@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **subscription_id** | **uuid::Uuid** |  | 
+**name** | Option<**String**> |  | [optional]
 **ending_before** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **quantity_management_mode_update** | Option<[**models::UpdateSubscriptionInputQuantityManagementModeUpdate**](UpdateSubscriptionInputQuantityManagementModeUpdate.md)> |  | [optional]
 **quantity_updates** | Option<[**Vec<models::UpdateSubscriptionInputQuantityUpdatesInner>**](UpdateSubscriptionInputQuantityUpdatesInner.md)> | Quantity changes are applied on the effective date based on the order which they are sent. For example, if I scheduled the quantity to be 12 on May 21 and then scheduled a quantity delta change of -1, the result from that day would be 11. | [optional]

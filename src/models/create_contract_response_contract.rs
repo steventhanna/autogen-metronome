@@ -75,6 +75,9 @@ pub struct CreateContractResponseContract {
     pub spend_threshold_configuration: Option<Box<models::SpendThresholdConfiguration>>,
     #[serde(rename = "prepaid_balance_threshold_configuration", skip_serializing_if = "Option::is_none")]
     pub prepaid_balance_threshold_configuration: Option<Box<models::PrepaidBalanceThresholdConfiguration>>,
+    /// The conversion rates that apply to each custom pricing unit with overrides over the course of the contract, resolved from the contract's conversion overrides. Segments with a null fiat_per_custom_credit have no override, so the rate card's conversion applies.
+    #[serde(rename = "credit_type_conversion_schedules", skip_serializing_if = "Option::is_none")]
+    pub credit_type_conversion_schedules: Option<Vec<models::CreditTypeConversionSchedule>>,
     #[serde(rename = "hierarchy_configuration", skip_serializing_if = "Option::is_none")]
     pub hierarchy_configuration: Option<Box<models::HierarchyConfiguration>>,
 }
@@ -111,6 +114,7 @@ impl CreateContractResponseContract {
             customer_billing_provider_configuration: None,
             spend_threshold_configuration: None,
             prepaid_balance_threshold_configuration: None,
+            credit_type_conversion_schedules: None,
             hierarchy_configuration: None,
         }
     }

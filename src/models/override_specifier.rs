@@ -56,6 +56,8 @@ pub enum BillingFrequency {
     Monthly,
     #[serde(rename = "QUARTERLY")]
     Quarterly,
+    #[serde(rename = "SEMI_ANNUAL")]
+    SemiAnnual,
     #[serde(rename = "ANNUAL")]
     Annual,
     #[serde(rename = "WEEKLY")]
@@ -64,6 +66,8 @@ pub enum BillingFrequency {
     Monthly2,
     #[serde(rename = "quarterly")]
     Quarterly2,
+    #[serde(rename = "semi_annual")]
+    SemiAnnual2,
     #[serde(rename = "annual")]
     Annual2,
     #[serde(rename = "weekly")]

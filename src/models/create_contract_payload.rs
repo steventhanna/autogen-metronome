@@ -21,6 +21,8 @@ pub struct CreateContractPayload {
     /// Selects the package linked to the specified alias as of the contract's start date. Mutually exclusive with package_id.
     #[serde(rename = "package_alias", skip_serializing_if = "Option::is_none")]
     pub package_alias: Option<String>,
+    #[serde(rename = "package_customizations", skip_serializing_if = "Option::is_none")]
+    pub package_customizations: Option<Box<models::PackageCustomizations>>,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
     /// Prevents the creation of duplicates. If a request to create a record is made with a previously used uniqueness key, a new record will not be created and the request will fail with a 409 error.
@@ -94,6 +96,9 @@ pub struct CreateContractPayload {
     /// Spend trackers to attach to this contract. Aliases must be unique within a contract.
     #[serde(rename = "spend_trackers", skip_serializing_if = "Option::is_none")]
     pub spend_trackers: Option<Vec<models::SpendTrackerInput>>,
+    /// Overrides the conversion rate for the custom pricing unit over the specified interval.
+    #[serde(rename = "credit_type_conversion_overrides", skip_serializing_if = "Option::is_none")]
+    pub credit_type_conversion_overrides: Option<Vec<models::CreditTypeConversionOverrideInput>>,
     /// Optional list of [subscriptions](https://docs.metronome.com/manage-product-access/create-subscription/) to add to the contract.
     #[serde(rename = "subscriptions", skip_serializing_if = "Option::is_none")]
     pub subscriptions: Option<Vec<models::SubscriptionInput>>,
@@ -107,6 +112,7 @@ impl CreateContractPayload {
             customer_id,
             package_id: None,
             package_alias: None,
+            package_customizations: None,
             name: None,
             uniqueness_key: None,
             netsuite_sales_order_id: None,
@@ -137,6 +143,7 @@ impl CreateContractPayload {
             spend_threshold_configuration: None,
             prepaid_balance_threshold_configuration: None,
             spend_trackers: None,
+            credit_type_conversion_overrides: None,
             subscriptions: None,
             hierarchy_configuration: None,
         }

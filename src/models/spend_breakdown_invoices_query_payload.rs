@@ -28,13 +28,13 @@ pub struct SpendBreakdownInvoicesQueryPayload {
     /// Invoice sort order by issued_at, e.g. date_asc or date_desc.  Defaults to date_asc.
     #[serde(rename = "sort", skip_serializing_if = "Option::is_none")]
     pub sort: Option<Sort>,
-    /// The granularity of the breakdowns to return. Defaults to \"day\".
+    /// The granularity of the breakdowns to return. Defaults to \"day\". `day` returns one breakdown per day. `none` returns one breakdown per billing period. 
     #[serde(rename = "window_size", skip_serializing_if = "Option::is_none")]
     pub window_size: Option<WindowSize>,
-    /// A list of keys that can be used to additionally segment the values of the billable metric when making usage queries. Must be valid keys that are present in the billable metrics or an empty list. The value will be ignored and the default keys will be used if: billable metric is MAX type; product uses tiered pricing model; product has quantity rounding enabled; there are contract overrides based on presentation group keys 
+    /// Keys to break down spend by. Each key must also appear in `group_filters` with at least one value. Must be valid keys that are present in the billable metrics or an empty list. The value will be ignored and the default keys will be used if: billable metric is MAX type; product uses tiered pricing model; product has quantity rounding enabled; there are contract overrides based on presentation group keys 
     #[serde(rename = "group_keys", skip_serializing_if = "Option::is_none")]
     pub group_keys: Option<Vec<String>>,
-    /// An object where the keys are the group keys and the values are arrays of group values. If the values is an empty array, the returned usage data will be aggregated across all values for that key. The value will be ignored and the default keys will be used if: billable metric is MAX type; product uses tiered pricing model; product has quantity rounding enabled; there are contract overrides based on presentation group keys 
+    /// An object where the keys are the group keys and the values are arrays of group values. Each key in `group_keys` must have a non-empty list of values here. The value will be ignored and the default keys will be used if: billable metric is MAX type; product uses tiered pricing model; product has quantity rounding enabled; there are contract overrides based on presentation group keys 
     #[serde(rename = "group_filters", skip_serializing_if = "Option::is_none")]
     pub group_filters: Option<std::collections::HashMap<String, Vec<String>>>,
     /// Max number of results that should be returned. For daily and \"none\" breakdowns, the response can return up to 35 days worth of breakdowns. If there are more results, a cursor to the next page is returned.
@@ -75,7 +75,7 @@ impl Default for Sort {
         Self::DateAsc
     }
 }
-/// The granularity of the breakdowns to return. Defaults to \"day\".
+/// The granularity of the breakdowns to return. Defaults to \"day\". `day` returns one breakdown per day. `none` returns one breakdown per billing period. 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum WindowSize {
     #[serde(rename = "day")]

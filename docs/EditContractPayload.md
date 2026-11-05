@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **add_billing_provider_configuration_update** | Option<[**models::BillingProviderConfigurationUpdate**](BillingProviderConfigurationUpdate.md)> |  | [optional]
 **add_revenue_system_configuration_update** | Option<[**models::RevenueSystemConfigurationUpdate**](RevenueSystemConfigurationUpdate.md)> |  | [optional]
 **add_spend_trackers** | Option<[**Vec<models::SpendTrackerInput>**](SpendTrackerInput.md)> | Spend trackers to add to this contract. Aliases must be unique within a contract. | [optional]
+**add_credit_type_conversion_overrides** | Option<[**Vec<models::CreditTypeConversionOverrideInputV2>**](CreditTypeConversionOverrideInputV2.md)> | Overrides the conversion rate for the custom pricing unit over the specified interval. Overrides added later take precedence when multiple are added over the same interval. | [optional]
 **update_contract_name** | Option<**String**> | Value to update the contract name to. If not provided, the contract name will remain unchanged. | [optional]
 **update_scheduled_charges** | Option<[**Vec<models::UpdateScheduledChargeInput>**](UpdateScheduledChargeInput.md)> |  | [optional]
 **update_commits** | Option<[**Vec<models::UpdateCommitInput>**](UpdateCommitInput.md)> |  | [optional]

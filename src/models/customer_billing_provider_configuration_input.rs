@@ -27,6 +27,9 @@ pub struct CustomerBillingProviderConfigurationInput {
     pub delivery_method_id: Option<uuid::Uuid>,
     #[serde(rename = "delivery_method", skip_serializing_if = "Option::is_none")]
     pub delivery_method: Option<models::BillingProviderDeliveryMethodType>,
+    /// Rules that stop matching invoices from being sent to the billing provider. Supported for Stripe and NetSuite billing provider configurations. When omitted, every invoice is sent to the billing provider. Stripe invoices can be force-sent after a rule suppresses them.
+    #[serde(rename = "unbillable_invoices_configuration", skip_serializing_if = "Option::is_none")]
+    pub unbillable_invoices_configuration: Option<Vec<models::UnbillableInvoiceRule>>,
 }
 
 impl CustomerBillingProviderConfigurationInput {
@@ -38,6 +41,7 @@ impl CustomerBillingProviderConfigurationInput {
             configuration: None,
             delivery_method_id: None,
             delivery_method: None,
+            unbillable_invoices_configuration: None,
         }
     }
 }

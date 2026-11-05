@@ -144,5 +144,6 @@ pub mod security_api;
 pub mod settings_api;
 #[cfg(feature = "usage")]
 pub mod usage_api;
+pub mod webhooks_api;
 
 pub mod configuration;

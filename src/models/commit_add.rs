@@ -49,6 +49,8 @@ pub struct CommitAdd {
     pub salesforce_opportunity_id: Option<String>,
     #[serde(rename = "hierarchy_configuration", skip_serializing_if = "Option::is_none")]
     pub hierarchy_configuration: Option<Box<models::CommitHierarchyConfiguration>>,
+    #[serde(rename = "payment_gate_config", skip_serializing_if = "Option::is_none")]
+    pub payment_gate_config: Option<Box<models::CommitPaymentGateConfig>>,
 }
 
 impl CommitAdd {
@@ -70,6 +72,7 @@ impl CommitAdd {
             netsuite_sales_order_id: None,
             salesforce_opportunity_id: None,
             hierarchy_configuration: None,
+            payment_gate_config: None,
         }
     }
 }

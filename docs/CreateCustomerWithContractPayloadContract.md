@@ -33,6 +33,7 @@ Name | Type | Description | Notes
 **spend_threshold_configuration** | Option<[**models::SpendThresholdConfiguration**](SpendThresholdConfiguration.md)> |  | [optional]
 **prepaid_balance_threshold_configuration** | Option<[**models::PrepaidBalanceThresholdConfiguration**](PrepaidBalanceThresholdConfiguration.md)> |  | [optional]
 **spend_trackers** | Option<[**Vec<models::SpendTrackerInput>**](SpendTrackerInput.md)> | Spend trackers to attach to this contract. Aliases must be unique within a contract. | [optional]
+**credit_type_conversion_overrides** | Option<[**Vec<models::CreditTypeConversionOverrideInput>**](CreditTypeConversionOverrideInput.md)> | Overrides the conversion rate for the custom pricing unit over the specified interval. | [optional]
 **subscriptions** | Option<[**Vec<models::SubscriptionInput>**](SubscriptionInput.md)> | Optional list of [subscriptions](https://docs.metronome.com/manage-product-access/create-subscription/) to add to the contract. | [optional]
 **hierarchy_configuration** | Option<[**models::ContractHierarchyConfigurationInput**](ContractHierarchyConfigurationInput.md)> |  | [optional]
 

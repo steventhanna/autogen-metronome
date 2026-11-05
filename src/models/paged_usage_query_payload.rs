@@ -20,8 +20,10 @@ pub struct PagedUsageQueryPayload {
     /// A window_size of \"day\" or \"hour\" will return the usage for the specified period segmented into daily or hourly aggregates. A window_size of \"none\" will return a single usage aggregate for the entirety of the specified period.
     #[serde(rename = "window_size")]
     pub window_size: WindowSize,
+    /// Must be aligned to UTC midnight, e.g. `2024-01-01T00:00:00Z`.
     #[serde(rename = "starting_on", skip_serializing_if = "Option::is_none")]
     pub starting_on: Option<chrono::DateTime<chrono::FixedOffset>>,
+    /// Must be aligned to UTC midnight and at least one day after `starting_on`.
     #[serde(rename = "ending_before", skip_serializing_if = "Option::is_none")]
     pub ending_before: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "group_by", skip_serializing_if = "Option::is_none")]
@@ -29,12 +31,9 @@ pub struct PagedUsageQueryPayload {
     /// Group key to group usage by. Supports both simple (single key) and compound (multiple keys) group keys.  For simple group keys, provide a single key e.g. `[\"region\"]`. For compound group keys, provide multiple keys e.g. `[\"region\", \"team\"]`.  For streaming metrics, the keys must be defined as a simple or compound group key on the billable metric. For compound group keys, all keys must match an exact compound group key definition — partial matches are not allowed.  Cannot be used together with `group_by`. 
     #[serde(rename = "group_key", skip_serializing_if = "Option::is_none")]
     pub group_key: Option<Vec<String>>,
-    /// Object mapping group keys to arrays of values to filter on. Only usage matching these filter values will be returned. Keys must be present in group_key. Omit a key or use an empty array to include all values for that dimension. 
+    /// Object mapping group keys to arrays of values to filter on. Only usage matching these filter values will be returned. Keys must be present in group_key. Omit a key or use an empty array to include all values for that dimension. The combined number of entries across all value arrays may not exceed 200. 
     #[serde(rename = "group_filters", skip_serializing_if = "Option::is_none")]
     pub group_filters: Option<std::collections::HashMap<String, Vec<String>>>,
-    /// If true, will return the usage for the current billing period. Will return an error if the customer is currently uncontracted or starting_on and ending_before are specified when this is true.
-    #[serde(rename = "current_period", skip_serializing_if = "Option::is_none")]
-    pub current_period: Option<bool>,
 }
 
 impl PagedUsageQueryPayload {
@@ -48,7 +47,6 @@ impl PagedUsageQueryPayload {
             group_by: None,
             group_key: None,
             group_filters: None,
-            current_period: None,
         }
     }
 }

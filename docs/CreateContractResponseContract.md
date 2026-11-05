@@ -32,6 +32,7 @@ Name | Type | Description | Notes
 **customer_billing_provider_configuration** | Option<[**models::CustomerBillingProviderConfiguration**](CustomerBillingProviderConfiguration.md)> |  | [optional]
 **spend_threshold_configuration** | Option<[**models::SpendThresholdConfiguration**](SpendThresholdConfiguration.md)> |  | [optional]
 **prepaid_balance_threshold_configuration** | Option<[**models::PrepaidBalanceThresholdConfiguration**](PrepaidBalanceThresholdConfiguration.md)> |  | [optional]
+**credit_type_conversion_schedules** | Option<[**Vec<models::CreditTypeConversionSchedule>**](CreditTypeConversionSchedule.md)> | The conversion rates that apply to each custom pricing unit with overrides over the course of the contract, resolved from the contract's conversion overrides. Segments with a null fiat_per_custom_credit have no override, so the rate card's conversion applies. | [optional]
 **hierarchy_configuration** | Option<[**models::HierarchyConfiguration**](HierarchyConfiguration.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

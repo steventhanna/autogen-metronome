@@ -20,7 +20,7 @@ pub struct SpendBreakdownInvoice {
     #[serde(rename = "credit_type")]
     pub credit_type: Box<models::CreditType>,
     #[serde(rename = "line_items")]
-    pub line_items: Vec<models::InvoiceLineItem>,
+    pub line_items: Vec<models::SpendBreakdownLineItem>,
     /// Beginning of the usage period this invoice covers (UTC)
     #[serde(rename = "start_timestamp", skip_serializing_if = "Option::is_none")]
     pub start_timestamp: Option<chrono::DateTime<chrono::FixedOffset>>,
@@ -30,11 +30,9 @@ pub struct SpendBreakdownInvoice {
     /// When the invoice was issued (UTC)
     #[serde(rename = "issued_at", skip_serializing_if = "Option::is_none")]
     pub issued_at: Option<chrono::DateTime<chrono::FixedOffset>>,
-    /// When the invoice was created (UTC). This field is present for correction invoices only.
-    #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
-    pub created_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "status")]
     pub status: String,
+    /// The invoice type. Spend breakdowns only return usage invoices.
     #[serde(rename = "type")]
     pub r#type: String,
     #[serde(rename = "contract_id", skip_serializing_if = "Option::is_none")]
@@ -46,7 +44,7 @@ pub struct SpendBreakdownInvoice {
 }
 
 impl SpendBreakdownInvoice {
-    pub fn new(id: uuid::Uuid, customer_id: uuid::Uuid, credit_type: models::CreditType, line_items: Vec<models::InvoiceLineItem>, status: String, r#type: String, breakdown_start_timestamp: chrono::DateTime<chrono::FixedOffset>, breakdown_end_timestamp: chrono::DateTime<chrono::FixedOffset>) -> SpendBreakdownInvoice {
+    pub fn new(id: uuid::Uuid, customer_id: uuid::Uuid, credit_type: models::CreditType, line_items: Vec<models::SpendBreakdownLineItem>, status: String, r#type: String, breakdown_start_timestamp: chrono::DateTime<chrono::FixedOffset>, breakdown_end_timestamp: chrono::DateTime<chrono::FixedOffset>) -> SpendBreakdownInvoice {
         SpendBreakdownInvoice {
             id,
             customer_id,
@@ -55,7 +53,6 @@ impl SpendBreakdownInvoice {
             start_timestamp: None,
             end_timestamp: None,
             issued_at: None,
-            created_at: None,
             status,
             r#type,
             contract_id: None,

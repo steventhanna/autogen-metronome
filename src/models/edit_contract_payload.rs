@@ -55,6 +55,9 @@ pub struct EditContractPayload {
     /// Spend trackers to add to this contract. Aliases must be unique within a contract.
     #[serde(rename = "add_spend_trackers", skip_serializing_if = "Option::is_none")]
     pub add_spend_trackers: Option<Vec<models::SpendTrackerInput>>,
+    /// Overrides the conversion rate for the custom pricing unit over the specified interval. Overrides added later take precedence when multiple are added over the same interval.
+    #[serde(rename = "add_credit_type_conversion_overrides", skip_serializing_if = "Option::is_none")]
+    pub add_credit_type_conversion_overrides: Option<Vec<models::CreditTypeConversionOverrideInputV2>>,
     /// Value to update the contract name to. If not provided, the contract name will remain unchanged.
     #[serde(rename = "update_contract_name", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub update_contract_name: Option<Option<String>>,
@@ -124,6 +127,7 @@ impl EditContractPayload {
             add_billing_provider_configuration_update: None,
             add_revenue_system_configuration_update: None,
             add_spend_trackers: None,
+            add_credit_type_conversion_overrides: None,
             update_contract_name: None,
             update_scheduled_charges: None,
             update_commits: None,

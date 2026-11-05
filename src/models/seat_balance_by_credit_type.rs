@@ -16,6 +16,7 @@ pub struct SeatBalanceByCreditType {
     /// Indicates how the balance is drawn down. `SPEND` deducts the dollar cost of usage. `QUANTITY` deducts the number of units used.
     #[serde(rename = "access_type", skip_serializing_if = "Option::is_none")]
     pub access_type: Option<AccessType>,
+    /// This ID identifies the credit type for the balance. Quantity-based balances return the null credit type UUID.
     #[serde(rename = "credit_type_id")]
     pub credit_type_id: uuid::Uuid,
     /// The total balance across all commits and credits for this seat, of this credit type.
